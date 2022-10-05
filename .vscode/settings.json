@@ -59,11 +59,22 @@
   },
   "cSpell.words": [
     "auxlock",
+    "cleanstyle",
+    "deletetemp",
+    "Greibach",
+    "Kleene",
+    "metasymbol",
+    "metasymbols",
+    "nonleft",
+    "nonnullable",
+    "nonterminal",
+    "nonterminals",
+    "pushdown",
     "tikzit",
     "tikzstyle",
     "tikzstyles",
     "tikztemp",
-    "deletetemp",
-    "cleanstyle"
+    "tradeoff",
+    "Unilinear"
   ]
 }

@@ -1,8 +1,1196 @@
 \documentclass[english]{article}
 \usepackage{notestemplate}
+\usepackage{flc}
 
 \begin{document}
 
 \makecover{Formal Languages and Compilers}{2022/2023}
+
+\section{Introduction to Formal Languages}
+
+\subsection{Definitions}
+
+\begin{itemize}
+  \item \textbf{Alphabet:} a \textbf{finite} set of symbols \(\Sigma = \{a_1, a_2, \ldots a_k\}\)
+        \begin{itemize}
+          \item \textbf{cardinality} of an alphabet: the number of different symbols in it \(\left|\Sigma\right| = k\)
+        \end{itemize}
+  \item \textbf{String:} a \textbf{finite}, ordered sequence of symbols (possibly repeated) from an Alphabet \(\sigma = a_1a_2\ldots a_n\)
+        \begin{itemize}
+          \item the strings of a language are also called its \textbf{sentences} or \textbf{phrases}
+          \item \textbf{length} of a string \(x\): the number of symbols in it \(|x\)
+          \item \textbf{number of occurrences} of a symbol \(a\) in a string \(w\): \(\left|a\right|_w = n\) where \(w = a_1a_2\ldots a_n\)
+          \item two strings are \textbf{equal} if and only if they have the same length and the same symbols in the same order
+          \item \textbf{empty string:} the string with no symbols in it, denoted by \(\varepsilon\)
+        \end{itemize}
+  \item \textbf{Substring:} a string \(x\) is a substring of a string \(y\) if \(x = uyv\) for some \(u, v\) in \(\Sigma^\ast\)
+        \begin{itemize}
+          \item \(x\) is a \textbf{proper} substring of \(y\) if \(u \neq \varepsilon \lor v \neq \varepsilon\)
+          \item \(u\) is a \textbf{prefix} of \(x\)
+          \item \(v\) is \textbf{suffix} of \(x\)
+        \end{itemize}
+  \item \textbf{Language:} any set of strings defined over a given alphabet \(\Sigma\)
+        \begin{itemize}
+          \item cardinality of a language: the number of different strings in it \(\left|L\right| = n\) where \(L = \{w_1, w_2, \ldots w_n\}\)
+          \item sometimes the \(\Sigma\) is both used to denote the set of all strings over the alphabet \(\Sigma\) and the language of all the strings of length \(1\)
+        \end{itemize}
+\end{itemize}
+
+\subsection{Operations}
+
+\subsubsection{Operations on strings}
+
+\begin{itemize}
+  \item \textbf{Concatenation} or product of two strings \(x\) and \(y\): \(x \cdot y\) or \(xy\) for short
+        \begin{itemize}
+          \item if \(x = a_1a_2\ldots a_n\) and \(y = b_1b_2\ldots b_m\) then \(x \cdot y = a_1a_2\ldots a_n b_1b_2\ldots b_m\)
+          \item \textbf{associative} property: \(x  (y  z) = (x  y)  z\)
+          \item \textbf{length} of the product: \(|x  y| = |x| + |y|\)
+          \item \textbf{product} of the empty string and any string is the empty string: \(\varepsilon \cdot x = \varepsilon\)
+        \end{itemize}
+  \item \textbf{Reflection} of a string \(x\): \(x^R\)
+        \begin{itemize}
+          \item if \(x = a_1a_2\ldots a_n\) then \(x^R = a_na_{n-1}\ldots a_1\)
+          \item \textbf{double reflection} of a string \(x\) is the same string: \(\left(x^R\right)^R = x\)
+          \item \textbf{distributive} property: \((x y)^R = x^R y^R\)
+        \end{itemize}
+  \item \textbf{Repetition} of a string \(x\) to the power of \(n, \, (n > 0)\) : concatenation of \(n\) copies of \(x\)
+        \begin{itemize}
+          \item if \(n = 0\) then \(x^n = x^0 = \varepsilon\)
+          \item if \(n = 1\) then \(x^n = x^1 = x\)
+          \item elevating \(\varepsilon\) to any power gives \(\varepsilon\): \(\varepsilon^n = \varepsilon\)
+          \item inductive \textbf{definition:} \[\begin{cases}
+                    x ^ n = x \cdot x ^ {n - 1} \quad n > 0 \\
+                    x ^ 0 = \varepsilon
+                  \end{cases}\]
+        \end{itemize}
+  \item \textbf{Operator precedence:} repetition and reflection have higher precedence than concatenation
+\end{itemize}
+
+\subsubsection{Operations on languages}
+
+\textbf{Operations} are typically defined on languages by applying them to each string in the language.
+
+\begin{itemize}
+  \item \textbf{Reflection} of a language \(L\): \(L^R\)
+        \begin{itemize}
+          \item formal \textbf{definition:} \(L^R = \left\{x \, | \, \exists \, y \, (y \in L \land x = y^R) \right\}\)
+          \item the same properties of the string reflection apply to the language reflection
+        \end{itemize}
+  \item \textbf{Prefixes} of a language \(L\): \(P(L)\)
+        \begin{itemize}
+          \item formal \textbf{definition:} \(P(L) = \left\{y \, | \, y \neq \varepsilon \land \exists \, x \, \exists \, z \, (x \in L \land x = yz \land z \neq \varepsilon) \right\}\)
+          \item \textbf{prefix free} languages: no proper prefixes of any string in the language are also in the language \(P(L) \cap L = \emptyset\)
+        \end{itemize}
+  \item \textbf{Concatenation} of two languages \(L\) and \(M\): \(L \cdot M\) or \(LM\) for short
+        \begin{itemize}
+          \item formal \textbf{definition:} \(L \cdot M = \left\{x \cdot y \, | \, x \in L \land y \in M \right\}\)
+          \item consequences: \(\emptyset^0 = \{\varepsilon\} \quad L \emptyset = \emptyset L = \emptyset \quad L \{\varepsilon\} = \{\varepsilon\} L = L\)
+        \end{itemize}
+  \item Repetition of a language \(L\) to the power of \(n, \, (n > 0)\) : concatenation of \(n\) copies of \(L\)
+        \begin{itemize}
+          \item \textbf{inductive} definition: \[\begin{cases}
+                    L ^ n = L \cdot L ^ {n - 1} \quad n > 0 \\
+                    L ^ 0 = \emptyset
+                  \end{cases}\]
+          \item \textbf{finite languages:} if \(L = \{\varepsilon, a_1, a_2, \ldots, a_k\}\), then \(L^n\) is finite as all its strings have length \(n\)
+        \end{itemize}
+  \item \textbf{Quotient} of a language \(L\) by a language \(M\): \(L / M\)
+        \begin{itemize}
+          \item formal \textbf{definition:} \(L / M = \left\{y \, | \, \exists \, x \in L \, \exists \, z \in M \, (x = yz) \right\}\)
+          \item If no string in a language \(M\) ha a string in \(L\) as a suffix, then \(L / M = L, M / L = \emptyset\)
+        \end{itemize}
+\end{itemize}
+
+\paragraph{Set theoretic operations}
+
+The customary operations on sets can be applied to languages as well:
+
+\begin{itemize}
+  \item \textbf{Union:} \(L \cup M = \left\{x \, | \, x \in L \lor x \in M \right\}\)
+  \item \textbf{Intersection:} \(L \cap M = \left\{x \, | \, x \in L \land x \in M \right\}\)
+  \item \textbf{Difference:} \(L \setminus M = \left\{x \, | \, x \in L \land x \notin M \right\}\)
+  \item \textbf{Inclusion:} \(L \subseteq M \iff L \setminus M = \emptyset\)
+  \item \textbf{Strict inclusion:} \(L \subset M \iff L \subseteq M \land L \neq M\)
+  \item \textbf{Equality:} \(L = M \iff L \subseteq M \land M \subseteq L\)
+\end{itemize}
+
+\bigskip
+Consequences:
+
+\begin{itemize}
+  \item \textbf{Universal} language: the set of all strings over the Alphabet \(\Sigma\), including \(\varepsilon\)
+        \begin{itemize}
+          \item formal \textbf{definition:} \(L_{\text{universal}} = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 \cup \ldots\)
+        \end{itemize}
+  \item \textbf{Complement} of a language \(L\) over an alphabet \(\Sigma\): the set difference of the universal language and \(L\)
+        \begin{itemize}
+          \item formal \textbf{definition:} \(\lnot L = L^C = L_{\text{universal}} \setminus L\)
+          \item the universal language is \textbf{not empty:} \(L_{\text{universal}} = \lnot \emptyset\)
+          \item the \textbf{complement} of a \textbf{finite language} is always \textbf{infinite}
+          \item the \textbf{complement} of an \textbf{infinite language} is \textbf{not necessarily finite}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Algebraic operations on languages}
+
+\paragraph[Reflexive and transitive closure R* of relation R]{Reflexive and transitive closure \(R^\ast\) of a relation \(R\)}
+
+Given a set \(A\) and a relation \(R \subseteq A \times A, \, (a_1, a_2) \in \mathbb{R}\) is also denoted as \(a_1 R a_2\).
+Then \(R^\ast\) is a relation defined by:
+
+\begin{itemize}
+  \item \(x R^\ast x \quad \forall \, x \in A\), \textbf{reflexivity} property
+  \item \(x_1 R x_2 \land x_2 R x_3 \land \ldots \land x_{n-1} R x_n \implies x_1 R^\ast x_n \quad \forall \, x_1, x_2, \ldots, x_n \in A\), \textbf{transitivity} property
+\end{itemize}
+
+If \(a R b\) is a step in relation \(R^\ast\), then \(a R^\ast b\) is a \textbf{chain} of \(n \geq 0\) steps.
+
+\paragraph[Transitive closure R+ of relation R]{Transitive closure \(R^+\) of a relation \(R\)}
+
+Given a set \(A\) and a relation \(R \subseteq A \times A, \, (a_1, a_2) \in \mathbb{R}\) is also denoted as \(a_1 R a_2\).
+Then \(R^+\) is a relation defined by:
+
+\begin{itemize}
+  \item \(x_1 R x_2 \land x_2 R x_3 \land \ldots \land x_{n-1} R x_n \implies x_1 R^+ x_n \quad \forall \, x_1, x_2, \ldots, x_n \in A\), \textbf{transitivity} property
+\end{itemize}
+
+If \(a R b\) is a step in relation \(R^+\), then \(a R^+ b\) is a \textbf{chain} of \(n \geq 1\) steps.
+
+\subsubsection{Star operator - Kleene star}
+
+The \textbf{star operator} is the reflexive transitive closure under the concatenation operation;
+It's also called the \textbf{Kleene star}.
+Formal definition:
+\[ L^\ast = \bigcup_{h=0}^{\infty} L^h = L^0 \bigcup L^1 \bigcup L^2 \bigcup \ldots = \varepsilon \bigcup L^1 \bigcup L^2
+  \bigcup \ldots \]
+
+\bigskip
+Properties:
+
+\begin{itemize}
+  \item \textbf{Monotonicity:} \(L \subseteq L^\ast\)
+  \item \textbf{Closure} under concatenation: if \(x \in L^\ast\) and \(y \in L^\ast\) then \(xy \in L^\ast\)
+  \item \textbf{Idempotence:} \(\left(L^\ast\right)^\ast = L^\ast\)
+  \item \textbf{Commutativity} of star and reflection: \(\left(L^\ast\right)^R = \left(L^R\right)^\ast\)
+
+\end{itemize}
+
+\bigskip
+Consequences:
+
+\begin{itemize}
+  \item It represent the union of all the powers of the language \(L\)
+  \item Every string of the star language can be chopped into substrings that are in the original language \(L\)
+  \item The star language \(L^\ast\) can be equal to the base language \(L\)
+  \item If \(\Sigma\) is the base language, then \(\Sigma^\ast\) is the universal language
+  \item The language \(L\) is defined on alphabet \(\Sigma\)
+  \item If \(L^\ast\) is finite then: \(\emptyset^\ast = \{\varepsilon\} = \{\varepsilon\}^\ast = \{\varepsilon\}\)
+\end{itemize}
+
+\subsubsection{Cross operator}
+
+The \textbf{cross operator} is the transitive closure under the concatenation operation.
+The union does not include the first power \(L^0\).
+Formal definition:
+
+\[ L^+ = \bigcup_{h=1}^{\infty} L^h = L^1 \bigcup L^2 \bigcup \ldots \]
+
+\bigskip
+Consequences:
+
+\begin{itemize}
+  \item It can be derived from the star operator: \(L^+ = L \cdot L^\ast\)
+  \item If \(\varepsilon \in L\) then \(L^+ = L^\ast\)
+\end{itemize}
+
+\clearpage
+
+\section{Regular expressions and Regular languages}
+
+The family of \textbf{regular languages} is the simplest language family.
+
+It can be defined in many ways, but this course will focus on the following \(3\):
+
+\begin{enumerate}
+  \item \textbf{Algebraically}
+  \item Via generative \textbf{grammars}
+  \item Via recognizer \textbf{automata}
+\end{enumerate}
+
+\subsection{Algebraic definition}
+
+A language over an alphabet \(\Sigma = \{a_1, a_2, \ldots, a_n\}\) is \textbf{regular} if it can be expressed by applying for a finite number of times the operations of concatenation (\(\cdot\)), union (\(\cup\)) and star (\(\ast\)) starting by unitary languages \(\{a_1\}, \{a_2\} \ldots \{a_n\}\) or the empty string \(\varepsilon\).
+
+More precisely, a regular expression is a string \(r\) containing the terminal characters of \(\Sigma\) and the aforementioned operators, in accordance with the following rules:
+
+\begin{enumerate}
+  \item \(r = \varepsilon\), empty or null string
+  \item \(r = a\), unitary language
+  \item \(r = s \cup t\), union of two regular expressions
+  \item \(r = s \cdot t\), concatenation of two regular expressions
+  \item \(r = (s)^\ast\), star of a regular expression
+\end{enumerate}
+
+where the symbols \(s\) and \(t\) are regular expressions themselves.
+
+\bigskip
+The correspondence between a regular expression and its denoted language is so direct that it's possible to define the language \(L_e\) via the \re \(e\) itself.
+
+A language is \textbf{regular} if it is denoted by a \textbf{regular expression};
+the empty language \(\emptyset\) is considered a regular language as well, despite not being denoted by any regular expression.
+
+The collection of all regular languages is called the family \REG of regular languages.
+
+Another simple family of languages is the collection of all the finite languages \textit{(all the languages with a finite cardinality)}, and it's called \textit{FIN}.
+
+Since every finite language is regular, it can be proven that
+\[ \textit{FIN} \subseteq \REG \]
+as every finite language is the union of a finite number of strings \(x_1, x_2, \ldots, x_n\), where each \(x_i\) is a regular expression \textit{(a concatenation of a finite number of Alphabet symbols)}.
+\[ \left(x_1 \cup x_2 \cup \ldots \cup x_k \right) = \left({a_1}_1 {a_1}_2 \ldots {a_1}_n \cup \ldots \cup {a_k}_1 {a_k}_2 \ldots {a_k}_m \right) \]
+Since family \REG includes non finite languages too, the inclusion is \textbf{proper:}
+\[ \textit{FIN} \subset \REG \]
+
+\subsubsection{Derivation of a language from a regular expression}
+
+In order to derivate a language from a regular expression, it's necessary to follow the rules of the regular expression itself.
+This may lead to multiple choices, as star and crosses operators offer multiple possibilities;
+by making a choice, a new \re defining a less general language \textit{(albeit contained in the original one)} is obtained.
+
+A regular expression is a \textbf{choice} of another by if:
+
+\begin{enumerate}
+  \item The \re \(e_k\) (with \(1 \leq k \leq m, m > 2\)) is a choice of the union: \[ e_1 \cup e_2 \cup \ldots \cup e_m \]
+  \item The \textit{r.e} \(e^m\) (with \(m > 1\)) is a choice of the star \(e^\ast\) or cross \(e^+\)
+  \item The empty string \(\varepsilon\) is a choice of the star \(e^\ast\)
+\end{enumerate}
+
+Given a \re \(e\), it's possible to derive another \re \(e^\prime\) by making a choice:
+replacing any \inlinequote{outermost} (or \inlinequote{top level}) sub expression with another that is a choice of it.
+
+\paragraph{Derivation relation}
+
+An \re \(e\) derives another \re \(e^\prime\) if \(e^\prime\), written as \(e \Rightarrow e^\prime\), if the two \re can be factorized as:
+\[ e = \alpha\beta\gamma \quad e^\prime = \alpha\delta\gamma \]
+where \(\delta\) is a choice f \(\beta\).
+
+Such a derivation \(\Rightarrow\) is called \textbf{immediate} as it makes only a choice (or one step).
+The derivation relation can be applied repeatedly, yielding:
+
+\begin{itemize}
+  \item \(e \xRightarrow{n} e_n\) if \(e \Rightarrow e_1 \Rightarrow \ldots \Rightarrow e_n\) in \(n\) steps
+  \item \(e \xRightarrow{\ast} e_n\) if \(e\) derives \(e_n\) in \(n \geq 0\) steps
+  \item \(e \xRightarrow{+} e_n\) if \(e\) derives \(e_n\) in \(n \geq 1\) steps
+\end{itemize}
+
+\bigskip
+Immediate derivations:
+
+\begin{itemize}
+  \item \(a^\ast \cup b^+ \Rightarrow a^\ast\)
+  \item \(a^\ast \cup b^+ \Rightarrow b^+\)
+  \item \(\left(a^\ast \cup b b\right)^\ast \Rightarrow \left(a^\ast \cup bb\right) \left(a^\ast \cup bb\right) = \left(a^\ast \cup bb \right)^2\)
+\end{itemize}
+
+\bigskip
+Some expressions produced by derivation from an expression \(r\) contain the meta symbols of union, star, and cross;
+other just contain terminal characters, empty strings, or redundant parentheses.
+
+The latter expressions compose the language denoted by the \re and it's defined as:
+\[L_r = \left\{x \in \Sigma^\ast \, | \, r \xRightarrow{\ast} x \right\}\]
+
+\bigskip
+Two \re are \textbf{equivalent} if they define the same language.
+A phrase of a regular language can be obtained through different choices used in the derivation.
+
+\paragraph{Ambiguity of regular expressions}
+
+A sentence, and the \re that derives it is said to be \textbf{ambiguous} if and only if it can be obtained by structurally different derivations.
+Derivations are structurally different if they differ not only in the order of the choices, but also in the choices themselves.
+
+\bigskip
+A \textbf{numbered r.e.} is a \re where each choice is numbered;
+those can used to determine the ambiguity of a r.e.
+
+\textbf{Sufficient conditions for ambiguity:}
+a \re \(e\) is ambiguous if the language of the numbered version \(e^\prime\) includes two distinct strings \(x\) and \(y\) that coincide when the numbers are removed.
+
+\subsubsection{Extended regular expressions}
+
+In order to use regular expressions in practice, it is convenient to add the basic operators of union, concatenation, and star and the derived operators of power and cross to the already defined set of operators.
+
+Moreover, it's useful to add the following operators:
+
+\begin{itemize}
+  \item \textbf{Repetition} from \(k \geq 0\) to \(n > k\) times \([a]^n_k = a^k \cup a^{k+1} \cup \ldots \cup a^n\)
+  \item \textbf{Option} \([a]^1_0 = a^0 \cup a^1 = \varepsilon \cup a\)
+  \item \textbf{Interval} of an ordered set, for instance, the interval of the set of integers from \(0\) to \(9\) is \((0 \ldots 9)\)
+\end{itemize}
+
+Sometimes, set operations of intersection, set difference and complement are defined to.
+
+\bigskip
+It can be proven \textit{(via finite automata)} that the use of these operators does not change the expressive power of a regular expression, but they provide some convenience.
+
+\subsection{Closure property of \REG}
+
+Let \texttt{op} be an operator to be applied to one or two languages in order to obtain another language.
+A language family is closed under operator \texttt{op} if the product of \texttt{op} applied to two languages in the family is also in the family.
+
+In other words, let \textit{FAM} be a language family and \(A, B\) two languages such that \(A, B \in FAM\).
+Then both languages are closed under the operator \texttt{op} if and only if \(C = A \, \texttt{op} \, B \in FAM\).
+
+\bigskip
+The family \REG is \textbf{closed} under the operators of \textbf{concatenation} \(\cdot\), \textbf{union} \(\cup\), and \textbf{star} \(\ast\);
+therefore it is closed under any derived operator, such as \textbf{power} \(^n\) and \textbf{cross} \(^+\).
+
+As a direct consequence, it's \textbf{not closed} under the operators of set \textbf{difference} \(\setminus\), \textbf{complement} \(\lnot\) and \textbf{intersection} \(\cap\).
+
+\subsection{Limits of regular expressions}
+
+Simple languages such as \(L = \left\{ \texttt{begin}^n \ \texttt{end}^n \, | \, n > 0 \right\}\) representing basic syntactic structures such as:
+
+\begin{verbatim}
+begin
+  ...
+  begin
+    ...
+     begin
+      ...
+     end
+    ...
+  end
+...
+end
+\end{verbatim}
+
+are not regular \textit{(and cannot be represented by a regular expression)} because:
+
+\begin{itemize}
+  \item the \textbf{number} of \texttt{begin} and \texttt{end} is not \textbf{guaranteed to be the same}
+  \item the \textbf{nesting} of \texttt{begin} and \texttt{end} is not \textbf{guaranteed to be balanced}
+\end{itemize}
+
+\bigskip
+In order to represent such (and other) languages, a new formal model has been introduced: the \textbf{generative grammars}.
+
+\clearpage
+
+\section{Generative grammars}
+
+A \textbf{generative grammar} \textit{(also called \textbf{syntax})} is a set of simple rules that can be repeatedly applied in order to generate all and only the valid strings.
+In other words, a generative grammar defines languages via:
+
+\begin{itemize}
+  \item rule \textbf{rewriting}
+  \item \textbf{repeated application} of the rules
+\end{itemize}
+
+\subsection{Context-Free Grammars}
+
+A \textbf{context-free} \textit{(also called \CF, type 2, BNF or simply free)} grammar \(G\) is defined as a 4-tuple \(\langle V, \Sigma, P, S\rangle\) where:
+
+\begin{itemize}
+  \item \(V\) is the set of nonterminal symbols, called \textbf{nonterminal alphabet}
+  \item \(\Sigma\) is the set of terminal symbols, called \textbf{terminal alphabet}
+  \item \(P\) is the set of \textbf{rules} or \textbf{productions}
+  \item \(S \in V\) is a specific nonterminal symbol, called \textbf{axiom}
+\end{itemize}
+
+All rules are in form of \(X \rightarrow \alpha\), where \(X \in V\) and \(\alpha \in (V \cup \Sigma)^\ast\).
+The left and right parts of a rule are called \textit{(respectively)} \textbf{\LP} and \textbf{\RP} for brevity.
+
+Two or more rules with the same left part, such as
+\[ X \rightarrow \alpha_1 \quad X \rightarrow \alpha_2\quad \cdots \quad X \rightarrow \alpha_n \]
+can be grouped into a single rule:
+\[ x \rightarrow \alpha_1 \, | \, \alpha_2 \, | \, \cdots  \, | \, \alpha_n \quad \text{or} \quad X \rightarrow \alpha_1 \cup \alpha_2 \cup \cdots \cup \alpha_n \]
+
+Where the strings \(\alpha_1, \alpha_2, \ldots, \alpha_n\) are called \textbf{alternatives} of \(X\).
+
+In order to avoid confusions, metasymbols \(\rightarrow\), \(|\), \(\cup\) and \(\varepsilon\) should not be used for terminal of nonterminal symbols;
+moreover, the terminal and nonterminal alphabets should be disjoint (\(\Sigma \cap V = \emptyset\)).
+The metasymbol \(\rightarrow\) is used to separate the left part from the right part of a rule and it's different from the \(\Rightarrow\) symbol, used to represent the derivation relation \textit{(or rule rewriting)}.
+
+The \textbf{axiom} \(S\) is used to start the derivation process and it's the only nonterminal symbol that can be used as left part of a rule.
+
+\bigskip
+Normally, these conventions are adopted:
+
+\begin{itemize}
+  \item \textbf{Terminal} characters are written as \textbf{latin lowercase letters} \(\{a, b, c, \ldots, z\}\)
+  \item \textbf{Nonterminal} characters are written as \textbf{latin uppercase letters} \(\{A, B, C, \ldots, Z\}\)
+  \item \textbf{Strings} containing only \textbf{terminal characters} are written as \textbf{latin lowercase letters} \(\{a, b, c, \ldots, z\}\)
+  \item \textbf{Strings} containing only \textbf{nonterminal characters} are written as \(\sigma\)
+  \item \textbf{Strings} containing both \textbf{terminal} and \textbf{nonterminal characters} are written as \textbf{greek lowercase letters} \(\{\alpha, \beta, \gamma, \ldots, \omega\}\)
+\end{itemize}
+
+\subsubsection{Rule types}
+
+Rules can be classified depending on their form, in order to make the study more immediate.
+The classification is found in Table~\ref{tab:rule-types}.
+
+Additionally, a \textbf{rule} that is both \textit{left recursive} and \textit{right recursive} is called \textbf{\textit{left-right-recursive}} or \textit{two-side-recur}.
+The terminal in the \RP of a rule in \textit{operator form} is called \textit{operator}.
+
+\begin{table}[htbp]
+  \bigskip
+  \centering
+  \begin{tabular}{l|c|r}
+    \textit{class}                           & \textit{description}                                               & \textit{model}                         \\
+    \hline
+    \textit{terminal}                        & either \RP contains only terminals or it's the empty string        & \(\rightarrow u \, | \, \varepsilon\)  \\
+    \textit{empty} or \textit{null}          & \RP is the empty string                                            & \(\rightarrow \varepsilon\)            \\
+    \textit{initial} or \textit{axiomatic}   & \LP is the grammar axiom \(S\)                                     & \(S \rightarrow \alpha\)               \\
+    \textit{recursive}                       & \LP occurs in \RP                                                  & \(A \rightarrow \alpha A \beta\)       \\
+    \textit{left recursive}                  & \LP is the prefix of \RP                                           & \(A \rightarrow A \beta\)              \\
+    \textit{right recursive}                 & \LP is the suffix of \RP                                           & \(A \rightarrow \beta A\)              \\
+    \textit{copy}                            & \RP consists of one nonterminal                                    & \(A \rightarrow B\)                    \\
+    \textit{identity}                        & \LP and \RP are the same                                           & \(A \rightarrow A\)                    \\
+    \textit{linear}                          & \RP contains at most one nonterminal                               & \(\rightarrow u B v \,|\, v\)          \\
+    \textit{left linear} or \textit{type 3}  & \RP contains at most one nonterminal as the \textit{prefix}        & \(\rightarrow B v \,|\, w\)            \\
+    \textit{right linear} or \textit{type 3} & \RP contains at most one nonterminal as the \textit{suffix}        & \(\rightarrow u B \,|\, w\)            \\
+    \textit{homogeneous normal}              & \RP consists either of \(n \geq 2\) nonterminals or \(1\) terminal & \(\rightarrow A_1 \ldots A_n \,|\, a\) \\
+    \textit{Chomsky normal}                  & \RP consists of \(2\) nonterminals or \(1\) terminal               & \(\rightarrow B C \,|\, a\)            \\
+    \textit{Greibach normal}                 & \RP consists of \(1\) terminal possibly followed by nonterminal    & \(\rightarrow a \sigma \,|\, b\)       \\
+    \textit{operator form}                   & \RP consists of \(2\) nonterminals separated by a terminal         & \(\rightarrow A a B\)                  \\
+  \end{tabular}
+  \bigskip
+  \caption{Rule types}
+  \label{tab:rule-types}
+\end{table}
+
+\subsubsection{Derivation and language generation}
+
+Firstly, the notion of \textbf{string derivation} has to be formalized.
+Let \(\beta = \delta A \eta\) be a string containing a nonterminal symbol \(A\) and two strings \(\delta\) and \(\eta\).
+Let \(A \rightarrow \alpha\) be a rule of grammar \(G\) and let \(\gamma\alpha\eta\) the string obtained by replacing the nonterminal symbol \(A\) in \(\beta\) by applying the rule.
+
+The relation between the two strings is called \textbf{derivation}.
+The string \(\beta\) derives the string \(\gamma\) for grammar \(G\) and it's denoted by the symbol \(\beta\xRightarrow[G]{}\gamma\).
+Rule \(A \rightarrow \alpha\) is applied in such a derivation and string \(\alpha\) \textbf{reduces} to nonterminal \(A\).
+
+Now consider a chain of derivation, with \(n \geq 0\) steps
+\[ \beta_0 \Rightarrow \beta_1 \Rightarrow \cdots \Rightarrow \beta_n \]
+which can be shortened to
+\[ \beta_0 \xRightarrow{n} \beta_n \]
+where \(\beta_0\) is the initial string and \(\beta_n\) is the final string.
+
+If \(n = 0\), every string derives itself (as \(\beta \Rightarrow \beta\)) and the relation is called \textbf{reflexive}.
+
+To express derivations of any length, the symbols \(\beta_0 \xRightarrow{\ast} \beta_n, n \geq 0\) or \(\beta_0 \xRightarrow{\ast} \beta_n, n \geq 1\) are used.
+In general, the \textbf{language generated} or defined by a grammar \(G\) \textbf{starting from nonterminal} \(A\) is the set of terminal strings that derive from nonterminal \(A\) in one or more steps:
+\[ L_A(G) = \left\{x \in \Sigma^\ast \, | \, A \xRightarrow{+} x \right\} \]
+
+If the nonterminal is the axiom \(S\), then the \textbf{language generated} by \(G\) is:
+\[ L(G) = L_S(G) = \left\{x \in \Sigma^\ast \, | \, S \xRightarrow{+} x \right\} \]
+
+\bigskip
+Furthermore:
+
+\begin{itemize}
+  \item If \(A \xRightarrow{\ast} \alpha, \ \alpha \in (V \cup \Sigma)\), then \(\alpha\) is called \textbf{string form} generated by \(G\)
+  \item If \(S \xRightarrow{\ast} \alpha \ \alpha \in (V \cup \Sigma)\), then \(\alpha\) is called \textbf{sentential from} or \textbf{phrase form} generated by \(G\)
+  \item If \(A \xRightarrow{\ast} s, \ s \in \Sigma^\ast\) then \(s\) is called \textbf{phrase} or \textbf{sentence} generated by \(G\)
+\end{itemize}
+
+\bigskip
+Two grammars \(G\) and \(G^\prime\) are equivalent if they generate the same language \textit{(i.e. \(L(G) = L(G^\prime)\))}.
+
+\subsubsection{Erronous grammars and useless rules}
+
+A grammar \(G\) is called \textbf{clean} if both the following conditions are satisfied:
+
+\begin{enumerate}
+  \item every \textbf{nonterminal} \(A\) is \textbf{reachable} from the axiom \(S\), as it exists a derivation \(S \xRightarrow{+} \alpha A \beta\)
+  \item every \textbf{nonterminal} \(A\) is \textbf{well defined}, as it generates a non-empty language \(L_A(G) \neq \emptyset\)
+        \begin{itemize}
+          \item this rule includes also the case when no derivation from \(A\) terminates with a terminal string
+        \end{itemize}
+\end{enumerate}
+
+It's quite straightforward to check whether a grammar is clean;
+the following algorithm describes how to do it.
+
+\paragraph{Grammar cleaning}
+
+The grammar cleaning algorithm is based on the following two steps:
+
+% slide 12, page 39
+\begin{enumerate}[label=\textbf{Step \arabic*}, ref=\textbf{Step \arabic*}, left=20pt]
+  \item Compute the set \(\textit{DEF} \subseteq V\) of the well defined nonterminals
+        \begin{itemize}
+          \item \textit{DEF} is initialized with the nonterminals that occur in the terminal rules (the rules having a terminal as their \RP)
+                \[ \textit{DEF} \coloneqq \left\{ A \, | \, (A \rightarrow u) \in P, \ u \in \Sigma^\ast  \right\} \]
+          \item this transformation is applied repeated until convergence is reached
+                \[ \textit{DEF} \coloneqq \textit{DEF} \cup \left\{ B \, | \, (B \rightarrow D_1 \ldots D_n) \in P \land \, \forall \, i \, D_i \in \left(\Sigma \cup \textit{DEF} \,\right)\right\} \]
+                \begin{itemize}
+                  \item each symbol \(D_i, 1 \leq i \leq n\) is either a terminal in \(\Sigma\) or a nonterminal in \(\textit{DEF}\) already
+                  \item at each iteration, two possibile outcomes are possible:
+                        \begin{enumerate}
+                          \item a new nonterminal is found that occurs as \LP of a rule having as \RP a string of terminals or well defined nonterminals
+                          \item the termination condition is reached, as no new nonterminal is found
+                        \end{enumerate}
+                \end{itemize}
+        \end{itemize}
+  \item Compute a directed graph between nonterminals using the \textbf{produce} relation, defined as \(A \xrightarrow{produce} B\)
+        \begin{itemize}
+          \item this relation indicates that a nonterminal \(A\) produces a nonterminal \(B\) if and only if there exists a rule \(A \rightarrow \alpha B \beta\), with \(\alpha, \beta\) strings
+          \item a nonterminal \(C\) is reachable from the axiom \(S\) if and only if in the graph there exists a path directed from \(S\) to \(C\)
+          \item nonterminal that are not reachable are eliminated
+        \end{itemize}
+\end{enumerate}
+
+\bigskip
+Often another requirement is added for cleanliness of a grammar: it must not allow \textbf{circular derivations} \(A \xRightarrow{+} A\), as they are not essential and produce \textbf{ambiguity} \textit{(discussed in Section~\ref{sec:grammar-ambiguity})}.
+
+Such derivation are not essential because if a string \(x\) is generated via a circular derivation such as \(A \Rightarrow A \Rightarrow A\), it can also be obtained by a non-circular derivation \(A \Rightarrow x\).
+
+\subsection{Recursion and Language Infinity}
+
+An essential property of technical languages is to be infinite.
+In order to generate an infinite number of string, the grammar has to derive strings of unbounded length:
+this feature needs \textbf{recursion} in the grammar rules.
+
+An \(n\)-step derivation of the form \(A \xRightarrow{n} x A y, \ n \geq 1\) is called \textbf{recursive} or \textbf{immediately recursive} if \(n=1\), while the nonterminal \(A\) is called \textbf{recursive}.
+Similarly, if the strings \(x=\varepsilon\) or \(y=\varepsilon\), the recursion is called respectively \textbf{left-recursive} and \textbf{right-recursive}.
+
+\bigskip
+\textbf{Formally:} let grammar \(G\) be clean and devoid of circular derivations.
+Then language \(L(G)\) is infinite if and only if grammar \(G\) has a recursive derivation.
+
+\begin{itemize}
+  \item \textbf{Necessary condition:} if no recursive derivation is possible, every derivation has limited length and the language is finite
+  \item \textbf{Sufficient condition:} if the language has a rule \(A \xRightarrow{n} x A y\), then it holds \(A \xRightarrow{+} x^m A y^m\) for any \(m \geq 1\) with \(x, y \in \Sigma+\) (not empty because grammar is not circular)
+        \begin{itemize}
+          \item cleanliness condition of \(G\) implies \(S \xRightarrow{\ast} uAv\) (as \(A\) is reachable from \(S\))
+          \item a successful derivation of \(A\) implies \(A \xRightarrow{+} w\)
+          \item therefore there exists nonterminals that generate an infinite language:
+                \[ S \xRightarrow{\ast} uAv \xRightarrow{+}ux^m Ay^m v \xRightarrow{+} u x^m w y^m v \quad \forall \, m \geq 1 \]
+        \end{itemize}
+\end{itemize}
+
+\bigskip
+In other words:
+
+\begin{itemize}
+  \item a grammar \textbf{does not have recursive derivations} \(\Longleftrightarrow\) the graph of the produce relation \textbf{has no circuits}
+  \item a grammar \textbf{has recursions} \(\Longleftrightarrow\) the graph of the produce relation \textbf{has circuits}
+\end{itemize}
+
+\subsection{Syntax trees and canonical derivations}
+
+A \textbf{syntax tree} is an oriented, sorted sorted graph with no cycles, such that for each pair of nodes \(A\) and \(B\) there is at most one edge from \(A\) to \(B\).
+
+\bigskip
+\textbf{Properties:}
+
+\begin{itemize}
+  \item it represents \textbf{graphically} the derivation process
+  \item the \textbf{degree} of a node is the number of its children
+  \item the \textbf{root} of the tree is the axiom \(S\)
+  \item the \textbf{frontier} of the tree \textit{(the leaves ordered from left to right)} contains the generated phrase
+  \item the \textbf{subtree} with root \(N\) is the tree having \(N\) as its root, including all its descendants
+\end{itemize}
+
+\bigskip
+Two more type of syntax trees are defined:
+
+\begin{itemize}
+  \item \textbf{skeleton tree}, where only the frontier and the structure are shown
+  \item \textbf{condensed skeleton tree}, where internal nodes on a non branching paths are merged; only the frontier and the structure are shown
+\end{itemize}
+
+\subsubsection{Left and Right derivation}
+
+A derivation of \(p \geq 1\) steps \(\beta_0 \Rightarrow \beta_1 \Rightarrow \ldots \Rightarrow \beta_p\) where
+\[ \beta_i = \delta_i A_i \eta_i, \ \beta_{i+1} = \delta_i \alpha_i \eta_i \quad \text{with} \ 0 \leq i \leq p-1 \]
+it's called \textbf{left} \textit{(leftmost)} \textbf{derivation} or \textbf{right} \textit{(rightmost)} \textbf{derivation} if it holds \(\delta_i \in \Sigma^\ast\) or \(\eta_i \in \Sigma^\ast\), respectively, for every \(0 \leq i \leq p-1\).
+
+In other words, at each step a left derivation \textit{(or a right one)} expands the rightmost \textit{(or leftmost)} nonterminal.
+A letter \(l\) or \(r\) may be subscripted to the arrow sign \textit{(\(\Rightarrow\))}, to explicitly indicate the direction of the derivation.
+Other derivations that are neither left or right exist, either because the nonterminal expanded is not always leftmost or rightmost, or because the expansion is sometimes leftmost and sometimes rightmost.
+
+Every sentence of a context free grammar can be generated by a left derivation and by a right one.
+This property does not hold for other grammars \textit{(such as context sensitive grammars)}.
+
+\subsubsection{Regular composition of free languages}
+
+If the basic operations of regular languages \textit{(union, concatenation, star and cross)} are applied to context free languages, the result is still a member of the \CF family.
+
+Let \(G_1 = \left(\Sigma_1, V_1, P_1, S_1 \right)\) and \(G_2 = \left(\Sigma_2, V_2, P_2, S_2 \right)\) be two context free grammars, defining respectively the languages \(L_1\) and \(L_2\).
+Let's firstly assume that their non terminal sets are disjoint, so that \(V_1 \cap V_2 = \emptyset\) and that symbol \(S\), the axiom that is going to be used to build the new grammars, is not used by either \(G_1\) or \(G_2\) \textit{(\(S \notin (V_1 \cup V_2)\))}.
+
+\begin{itemize}
+  \item \textbf{Union:} the grammar \(G\) of language \(L_1 \cup L_2\) contains all the rules of \(G_1\) and \(G_2\), plus the initial rules \(S \Rightarrow S_1 \,|\, S_2 \). In formula:
+        \[ G = \left(\Sigma_1 \cup \Sigma_2, V_1 \cup V_2 \cup \{S\}, P_1 \cup P_2 \cup \{S \rightarrow S_1 \, | \, S_2\}, S \right) \]
+  \item \textbf{Concatenation:} the grammar \(G\) of language \(L_1 \cdot L_2\) contains all the rules of \(G_1\) and \(G_2\), plus the initial rules \(S \Rightarrow S_1 S_2\). In formula:
+        \[ G = \left(\Sigma_1 \cup \Sigma_2, V_1 \cup V_2 \cup \{S\}, P_1 \cup P_2 \cup \{S \rightarrow S_1 S_2\}, S \right) \]
+  \item The grammar \(G\) of language \(L_1^\ast\) contains all the rules of \(G_1\), plus the initial rules \(S \Rightarrow S_1 \,|\, \varepsilon\)
+  \item The grammar \(G\) of language \(L_1  L_2\) contains all the rules of \(G_1\) and \(G_2\), plus the initial rules \(S \Rightarrow S_1 S_2\), thanks to to the identity \(L^+ = L \cdot L^\ast\)
+\end{itemize}
+
+Finally, the family \textit{CG} of context free languages is \textbf{closed} under the operations of \textbf{union}, \textbf{concatenation}, \textbf{star} and \textbf{cross}.
+
+Moreover, the mirror language of \(L(G)\), \(L(G)^R\), can be generated by a grammar \(G^R\) that is obtained from \(G\) by reversing the \RP of the rules; as such, the family of \textit{CG} languages is also closed under the operation of mirror.
+
+\subsection{Grammar ambiguity}
+\label{sec:grammar-ambiguity}
+
+In natural language, the common linguistic phenomenon ambiguity shows up when a sentence has two or more meanings.
+Ambiguity can be:
+
+\begin{itemize}
+  \item \textbf{semantic}, whenever a phrase contains a word that has two or more meanings
+  \item \textbf{syntactic}, \textit{(or structural)} whenever a phrase has different meaning depending on the structure assigned
+\end{itemize}
+
+Regarding grammars, a sentence \(x\) of a grammar \(G\) is syntactically ambiguous if it generated by two or more syntax trees.
+Then the grammar too is called ambiguous.
+
+\bigskip
+\textbf{Definitions:}
+
+\begin{itemize}
+  \item The \textbf{degree of ambiguity} of a \textbf{sentence} \(x\) of a language \(L(G)\) is the number of \textbf{distinct trees} of \(x\) compatible with \(G\)
+        \begin{itemize}
+          \item this value can be unlimited
+        \end{itemize}
+  \item The \textbf{degree of ambiguity} of a \textbf{grammar} \(G\) os the maximum among the degree of ambiguity of its sentences
+\end{itemize}
+
+\bigskip
+Determining that a if a grammar is ambiguous is an important problem.
+Sadly, it's and undecidable characteristic: there is no general algorithm that, given any free grammar, terminates \textit{(in a finite number of steps)} with the correct answer.
+However, the absence of ambiguity in a specific grammar can be shown on a case by case basis, using inductive reasoning on a finite number of cases.
+
+The best approach to prevent the problem is to act in the design phase, by avoiding the ambiguous forms explained in the following Section.
+
+\subsubsection{Catalog of ambiguous forms and remedies}
+
+In the following Paragraphs \textit{(\ref{par:ambiguity-from-bilateral-recursion} to \ref{par:other-causes-of-ambiguity})}, common source of ambiguities and their respective solutions will be illustrated.
+
+\paragraph{Ambiguity from bilateral recursion}
+\label{par:ambiguity-from-bilateral-recursion}
+
+A nonterminal symbol \(A\) is bilaterally recursive if it is both left and right recursive, for example \(A \xRightarrow{+} A \gamma\) and \(A \xRightarrow{+} \beta A\).
+The cases where the two derivations are produced by the same rule of by different rules have to be treated separately:
+
+\begin{itemize}
+  \item Bilateral recursion \textbf{from the same rule:} \(E \rightarrow E + E \, | \, i\)
+        \begin{itemize}
+          \item this rule generates a regular language \(L(G) = i (+i)^\ast\)
+          \item non ambiguous right recursive grammar: \(E \rightarrow i + E \, | \, i\)
+          \item non ambiguous left recursive grammar: \(E \rightarrow E + i \, | \, i\)
+        \end{itemize}
+  \item Bilateral recursion \textbf{from different rules:} \(A \rightarrow aA \, | \, Ab \, | \, c\)
+        \begin{itemize}
+          \item this rule generates a regular language \(L(G) = a^\ast c b^\ast\)
+          \item solution 1: the two lists are generated by distinct rules
+                \(\begin{cases}
+                  S  \rightarrow AcB                    \\
+                  A  \rightarrow aA \, | \, \varepsilon \\
+                  B  \rightarrow bB \, | \, \varepsilon
+                \end{cases}\)
+          \item solution 2: the rules force an order in the generation
+                \(\begin{cases}
+                  S \rightarrow aS \, | \, X \\
+                  X \rightarrow Xb \, | \, c
+                \end{cases}\)
+        \end{itemize}
+\end{itemize}
+
+\paragraph{Ambiguity from language union}
+
+If two languages \(L_1 = L(G_1)\) and \(L_2 = L(G_2)\) share some sentence, as their intersection is not empty \textit{(\(L_1 \cap L_2 \neq \emptyset\))}, the grammar \(G = G_1 \cup G_2\) is ambiguous.
+The sentence \(x \in L_1 \cap L_2\) is generated via two different trees, using respectively the rules of \(G_1\) or \(G_2\).
+On the contrary, sentences \(y \in L_1 \setminus L_2\) and \(z \in L_2 \setminus L_1\) are non ambiguous.
+
+In order to fix this ambiguity, disjoint set of rules for \(L_1 \cap L_2\), \(L_1 \setminus L_2\), and \(L_2 \setminus L_1\) must be provided.
+There is not a general method to achieve this goal, so it has to be done in a case by case basis.
+
+\paragraph{Inherent ambiguity}
+
+A language is inherently ambiguous if it is not possible to define a grammar that generates it without ambiguity.
+In other words, a language \(L(G)\) over a grammar \(G\) is inherently ambiguous if it is not possible to define a grammar \(G'\) that generates \(L(G)\) without ambiguity.
+
+This is the rarest case of ambiguity and it can be avoided in technical languages.
+
+\paragraph{Ambiguity from concatenation of languages}
+
+Concatenating two \textit{(or more)} non ambiguous languages \(L_1 = L(G_1)\) and \(L_2 = L(G_2)\) can generate ambiguity if a suffix of \(L_1\) is a prefix or a sentence of \(L_2\).
+The concatenation grammar  of \(L_1 L_2\)
+\[G = \left(\Sigma_1 \cup \Sigma_2, \{S\} \cup V_{N_1} \cup V_{N_2}, \{S \rightarrow S_1 S_2\} \cup P_1 \cup _2, S\right)\]
+contains the axiomatic rule \(S \rightarrow S_1 S_2\) in addition to the rules of \(G_1\) and \(G_2\).
+
+Ambiguity arises if the following sentences exist in the languages:
+\[ u^\prime \in L_1 \quad u^\prime v \in L_2 \quad v z^{\prime \prime} \in L_2 \quad z^{\prime \prime} \in L_2 \quad v \neq \varepsilon \]
+then the string \(u^\prime v z^{\prime \prime}\) is generated by two different derivations:
+
+\[S \Rightarrow S_1 S_2 \xRightarrow{+} u^\prime S_2 \xRightarrow{+} u^\prime v z^{\prime \prime}\]
+\[S \Rightarrow S_1 S_2 \xRightarrow{+} u^\prime v S_2 \xRightarrow{+} u^\prime v z^{\prime \prime}\]
+
+To remove such ambiguity, the operation of moving a string from suffix of \(L_1\) to prefix of \(L_2\) (and vice versa) should be prevented.
+A simple solution is to introduce a new terminal as a separator between the two languages, for example \(\#\), such that the concatenation \(L_1 \# L_2\) is easily defined without ambiguity by a grammar with the initial rule \(S \rightarrow S_1 \# S_2\).
+
+\paragraph{Other causes of ambiguity}
+\label{par:other-causes-of-ambiguity}
+% page 60 - slide 25 pack 4
+
+Other causes of ambiguity are:
+
+\begin{itemize}
+  \item Ambiguous regular expression
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item \textbf{solution:} remove redundant productions from the rules
+        \end{itemize}
+  \item Lack of order in derivations
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item \textbf{solution:} introduce a new rule that forces the order
+        \end{itemize}
+\end{itemize}
+
+\subsection{Strong and Weak equivalence}
+
+It's not enough for a grammar to generate correct sentences as it should also assign a suitable meaning to them;
+this property is called \textbf{structural adequacy}.
+Thanks to this definition, equivalence of grammars can be refined in two different ways:
+\textbf{weak equivalence} and \textbf{strong equivalence}.
+
+The next two Sections \textit{(\ref{sec:weak-equivalence}~and~\ref{sec:strong-equivalence})} will introduce the two equivalence relations and will show how they can be used to prove the structural adequacy of a grammar.
+
+\subsubsection{Weak equivalence}
+\label{sec:weak-equivalence}
+
+Two grammars \(G\) and \(G^\prime\) are \textbf{weakly equivalent} if they generate the same language:
+\[ L(G) = L(G^\prime) \]
+This relation is called \textbf{weak equivalence} does not guarantee that one grammar can be substituted with the other one \textit{(for example in technical languages processors such as compilers):}
+the two grammars \(G\) and \(G^\prime\) are not guaranteed to assign the same meaningful structure to every sentence.
+
+\subsubsection{Strong equivalence}
+\label{sec:strong-equivalence}
+
+Two grammars \(G\) and \(G^\prime\) are \textbf{strongly} \textit{(or \textbf{structurally})} \textbf{equivalent} if the following \(2\) conditions are satisfied:
+
+\begin{enumerate}[label=\arabic*), ref=(\arabic*)]
+  \item\label{enum:strong-equivalence-1} \(L(G) = L(G^\prime)\), weak equivalence
+  \item\label{enum:strong-equivalence-2} \(G\) and \(G^\prime\) assign to each sentence two structurally similar syntax trees
+\end{enumerate}
+
+The Condition~\ref{enum:strong-equivalence-2} has to be formulated in accordance with the intended application.
+A plausible formulation is:
+\textit{two syntax trees are structurally similar if the corresponding condensed skeleton trees are equal}.
+
+\bigskip
+Strong equivalence implies weak equivalence \textit{(due to Condition~\ref{enum:strong-equivalence-1})}, but not vice versa;
+however the former is a decidable problem, while the latter is not.
+As a consequence, it may happen that grammars \(G\) and \(G^\prime\) are not strongly equivalent without being able to determine if they are weakly equivalent.
+
+\bigskip
+The notion of structural equivalence can be generalized by requiring that the two corresponding trees should be easily mapped into one another by some simple transformation.
+This idea can be realized in various way;
+for example, one possibility is to have a bijective correspondence between the subtrees of one tree and the subtrees of the other.
+
+\subsection{Grammars normal forms and transformation}
+
+While normal forms are not strictly necessary for the definition of a grammar, they are used to simplify formal statements and theorem works as they constrain the rules without reducing the family of languages that can be generated by them.
+
+In applied works, however, normal formal grammars are usually not a good choice because they are larger and less readable.
+In order to simplify them, a number of transformations can be applied to a grammar.
+They will be presented in the following Sections \textit{(\ref{sec:nonterminal-expansion}~to~\ref{sec:conversion-to-greibach-and-real-time-normal-form})}
+
+\subsubsection{Nonterminal Expansion}
+\label{sec:nonterminal-expansion}
+
+A general purpose transformation preserving language is \textbf{nonterminal expansion}, which consists of replacing a nonterminal with its alternatives.
+It replaces rule \(A \rightarrow \alpha B \gamma\) with rules:
+\[ A \rightarrow \alpha \beta_1 \gamma \, | \, \alpha \beta_2 \gamma \, | \, \ldots \, | \, \alpha \beta_n \gamma \quad n \geq 1 \]
+where
+\[ B \rightarrow \beta_1 \, | \, \beta_2 \, | \, \ldots \, | \, \beta_n \] are all the alternatives of \(B\).
+
+The language is not modified, since the two-steps derivation \(A \Rightarrow \alpha B \gamma \Rightarrow \alpha \beta_i \gamma\) becomes the immediate derivation \(A \Rightarrow \alpha \beta_i \gamma\).
+
+\subsubsection{Axiom elimination from Right Parts}
+\label{sec:axiom-elimination-from-right-parts}
+
+At no loss of generality, every \RP of a rule can exclude the axiom \(S\).
+The axiom elimination from \RP consists in introducing a new axiom \(S_0\) and the rule \(S_0 \rightarrow S\):
+all the rules will be devoid of the axiom from the \RP as they will be strings \(\in \left( \Sigma \cup \left( V \setminus \left\{ S \right\} \right) \right)\)
+
+\subsubsection{Nullable Nonterminals and Elimination of Empty rules}
+\label{sec:nullable-nonterminals-and-elimination-of-empty-rules}
+
+A nonterminal \(A\) is \textbf{nullable} if it can derive the empty string;
+i.e. there exists a derivation \(A \xRightarrow{+} \varepsilon\).
+
+Consider the set \(\textit{Null} \subseteq V\) of nullable nonterminals.
+It is composed by the following logical clauses, to be applied until a fixed point is reached:
+
+\[
+  A \in \ \textit{Null} \Rightarrow
+  \begin{cases}
+    (A \rightarrow \varepsilon) \in P                                                  \\
+    (A \rightarrow A_1 A_2 \ldots A_2) \in P \ \text{with} \ A_i \in V \setminus \{A\} \\
+    \forall \, 1 \leq i \leq n \ A_i \in \textit{Null}
+  \end{cases}
+\]
+
+Where:
+
+\begin{enumerate}[label=row \arabic*), left=20pt]
+  \item for each rule \(\in P\) add as alternatives those obtained by deleting, in the \RP, the nullable nonterminals
+  \item remove all empty rules \(A \rightarrow \varepsilon\), except for \(A=S\)
+  \item clean the grammar and remove any circularity
+\end{enumerate}
+
+\subsubsection{Copy Rules and Their Elimination}
+\label{sec:copy-rules-and-their-elimination}
+
+A \textbf{copy}\textit{ (or \textbf{subcategorization})} \textbf{rule} has the form \(A \rightarrow B\), where \(B \in V\) is a nonterminal symbol.
+Any such rule is equivalent to the relation \(L_B(G) \subseteq L_A(G)\), which means that the syntax class \(B\) is a subcategory of \textit{(is included in)} the syntax class \(A\).
+
+For example, related to programming languages, the rules
+\[\texttt{iterative\_phrase } \rightarrow \texttt{ while\_phrase } | \texttt{ for\_phrase } | \texttt{ repeat\_phrase }\]
+introduce three different subcategories of the iterative phrase: \texttt{while}, \texttt{for} and \texttt{repeat}.
+
+Copy rules factorize common parts, reducing the grammar size while reducing the readability;
+furthermore they don't have any practical utility.
+Removing these rules create shorter syntax trees: this is a common tradeoff in the design of formal grammars.
+
+For a grammar \(G\) and a nonterminal \(A\), the set \(\textit{Copy}\,(A) \subseteq V\) is defined as the set of \(A\) and all the nonterminals that are immediate of transitive copies of \(A\):
+\[ \textit{Copy}\,(A) = \left\{ B \in V \, | \, \exists \text{ a derivation } A \xRightarrow{\ast} B \right\} \]
+Let's assume that \(G\) is in nonnullable normal form and that the axiom \(S\) does not occur in any \RP.
+In order to compute the set \textit{Copy} the following logical clauses have to be applied until a fixed point is reached:
+\begin{itemize}
+  \item \(A \in \textit{Copy}\,(A)\), initialization
+  \item \(C \in \textit{Copy}\,(A)\) if \(B \in \textit{Copy}\,(A) \land C \rightarrow B \in P\)
+\end{itemize}
+Finally construct the rule set \(P^\prime\) of a new grammar \(G^\prime\), equivalent to \(G\) and copy free, as follows:
+\begin{itemize}
+  \item \(P^\prime \coloneqq P \setminus \left\{ A \rightarrow B \, | \, A, B \in V \right\}\), cancellation of copy rules
+  \item \(P^\prime \coloneqq P^\prime \cup \left\{ A \rightarrow \alpha \, | \, \alpha \in \left( \left( \Sigma \cup V \right)^\ast \setminus V \right) \land \left( B \rightarrow \alpha \right) \in P \land B \in \textit{Copy}\,(A) \right\}\)
+\end{itemize}
+
+The effect is that a non immediate \textit{(multi step)} derivation \(A \xRightarrow{+} B \xRightarrow{+} \alpha\) of \(G\) shrinks to the immediate \textit{(one step)} derivation \(A \Rightarrow \alpha\) of \(G^\prime\) while keeping all the original non copy rules.
+
+\bigskip
+If, contrary to the hypothesis, \(G\) contains nullable terminals, the definition of set \textit{Copy} and its computation must also consider the derivations in form \(A \xRightarrow{+} BC \xRightarrow{+} B\) where nonterminal \(C\) is nullable.
+
+\subsubsection{Conversion of Left Recursion to Right Recursion}
+\label{sec:conversion-of-left-recursion-to-right-recursion}
+
+Another normal form, called nonleft-recursive, is characterized by the absence of left-recursive rules of derivations \textit{(l-recursions)}.
+This form in needed for the top-down parsers, to be studied later. % TODO link to top-down parsers
+
+There are two forms of transformation:
+\begin{itemize}
+  \item \textbf{Immediate}, explained in this Paragraph
+  \item \textbf{Non immediate}, explained in the book and not treated in the course due to its complexity
+\end{itemize}
+
+\bigskip
+\textbf{Transformation of immediate left recursion:}
+consider all l-recursive alternatives of a nonterminal \(A\):
+\[ A \rightarrow A \beta_1 \, | \, A \beta_2 \, | \, \ldots \, | \, A \beta_h \quad h \geq 1 \]
+where no string \(\beta_i\) is empty and let the remaining alternatives of \(A\), needed to terminate the recursion, be:
+\[ A \rightarrow \gamma_1 \, | \, \gamma_2 \, | \, \ldots \, | \, \gamma_k \quad k \geq 1 \]
+
+A new secondary nonterminal \(A^\prime\) is introduced and the rule set is modified as follows:
+\[\begin{cases}
+    A \rightarrow \gamma_1 A^\prime \, | \, \gamma_2 A^\prime \, | \, \ldots \, | \, \gamma_k A^\prime \, | \, \gamma_1 \, | \, \gamma_2 \, | \, \ldots \, | \, \gamma_k \\
+    A^\prime \rightarrow \beta_1 A^\prime \, | \, \beta_2 A^\prime \, | \, \ldots \, |\, \beta_h A^\prime \, | \, \beta_1 \, | \, \beta_2 \, | \, \ldots \, | \, \beta_h
+  \end{cases}\]
+Now every original derivation involving l-recursive steps such as
+\[\underbracket{A \Rightarrow A \beta_2 \Rightarrow A \beta_3 \beta_2}_{\text{l-recursive}} \Rightarrow \gamma_1 \beta_3 \beta_2 \]
+is replaced by the equivalent derivation:
+\[A \Rightarrow \gamma_1 \underbracket{A^\prime \Rightarrow \gamma_1 \beta_3 A^\prime}_{\text{r-recursive}} \Rightarrow \gamma_1 \beta_3 \beta_2 \]
+
+\subsubsection{Conversion to Chomsky Normal Form}
+\label{sec:conversion-to-chomsky-normal-form}
+
+In the \textbf{Chomsky Normal Form} \textit{(or CNF)} only two types of rules are allowed:
+
+\begin{itemize}
+  \item homogeneous binary, \(A \rightarrow BC\) where \(B, C \in V\)
+  \item terminal with a singleton right part \(A \rightarrow a\) where \(a \in \Sigma\)
+\end{itemize}
+
+Moreover, if the empty strings in in the language, there is the axiomatic rule \(S \rightarrow \varepsilon\), but the axiom \(S\) is not allowed in any rule right part.
+With such constraints, any internal node of a syntax tree may have either who nonterminal siblings or one terminal sibling.
+
+In order to convert a grammar \(G\) to \textit{CNF}, the following steps are performed:
+
+\begin{enumerate}[label=\arabic*), ref=(\arabic*)]
+  \item\label{enum:chomsky-transformation-1} Each rule \(A_0 \rightarrow A_1 A_2 \ldots A_n\) of length \(n \geq 2\) in converted into a rule of length \(2\) by singling out the first symbols \(A_1\) and the remaining suffixes \(\langle A_2, \ldots, A_n \rangle\)
+  \begin{itemize}
+    \item a new nonterminal \(\langle A_2, \ldots, A_n \rangle\) is introduced
+    \item a new rule \(\langle A_2, \ldots, A_n \rangle \rightarrow A_2 \ldots A_n\) is created
+    \item the original rule is replaced by \(A_0 \rightarrow A_1 \langle A_2, \ldots, A_n \rangle\)
+  \end{itemize}
+  \item The rule of length \(2\) can still convert terminals (as it's in form \(A \rightarrow aB, a \in \Sigma\)) and has to be replaced
+        \begin{itemize}
+          \item a new nonterminal \(\langle a \rangle\) is introduced
+          \item a new rule \(\langle a \rangle \rightarrow a\) is created
+          \item the original rule is replaced by \(A \rightarrow \langle a \rangle B\)
+        \end{itemize}
+  \item Repeat step \ref{enum:chomsky-transformation-1} until the grammar is in \textit{CNF}
+\end{enumerate}
+
+\subsubsection{Conversion to Greibach and Real-Time normal Form}
+\label{sec:conversion-to-greibach-and-real-time-normal-form}
+
+In the \textbf{real-time normal form}, every rule starts with a terminal:
+\[A \rightarrow a \alpha \quad \text{ where } a \in \Sigma \text{ and } \alpha \in \left( \Sigma \cup V \right)^\ast \]
+A special case of real time form is the \textbf{Greibach normal form:}
+\[ A \rightarrow a \alpha \quad \text{ where } a \in \Sigma \text{ and } \alpha \in V^\ast \]
+
+Every rules starts with a terminal, followed by zero or more nonterminals;
+both form exclude the empty string \(\varepsilon\) from the language.
+
+The \textit{real time} designation will be later understood as a property of the pushdown automaton that can recognize the language:
+at each step, the automaton reads and consumes an input character. % TODO add the link where this is explained
+Therefore, the total number of steps equals the length of the input string to be recognized.
+
+In order so simplify a grammar, it can be converted in \textit{Greibach} or \textit{real time} normal form.
+However, such conversion will not be discussed in this course.
+
+\subsection{Free Grammars Extended with Regular Expressions - \EBNF}
+
+The legibility of a \re can be combined with the expressiveness of a grammar via the \textbf{extended context-free grammar} \textit{(or \EBNF)} notation, that uses the best parts of each formalism.
+Very simply, a rule \RP can be a \re over terminals and non terminals.
+
+Formally, an \EBNF grammar is a tuple \(\langle V, \Sigma, R, S \rangle\) that contains exactly \(|V| \geq 1\) rules, each one in the form \(A \rightarrow \alpha\), where \(A \in V\) \textit{(\(A\) is a terminal)} and \(\alpha\) is a \re over the alphabet \(V \cup \Sigma\).
+For better legibility and concision, operators permitted over the \re are included in the grammar definition.
+
+\subsubsection{Derivation and Trees in Extended Grammars}
+
+The right part \(\alpha\) of an extended rule \(A \rightarrow \alpha\) of a grammar \(G\) is a \re which, in general, derives an infinite set of string;
+each of them can be viewed as the right part of a non extended rule with infinitely many alternatives.
+
+Consider a grammar \(G\) and its rule \(A \rightarrow \alpha\), where \(\alpha\) is a \re possibly containing the choice operators of star, cross, union, and option.
+Let \(\alpha^\prime\) a string that derives from \(\alpha\), according to the definition of \re derivation, and does not contain any choice operator.
+For every pair of strings \(\delta, \eta\), there exists a one step derivation \(\delta A \eta \xRightarrow[G]{} \delta \alpha^\prime \eta\).
+
+Then it's possible to define a multi step derivation that starts from the axiom and produces a terminal string, and consequently can define the language generated by a \EBNF grammar, in the same manner as for basic grammars.
+
+The tree generated by a \EBNF grammar is generally shorter and broader than the one generated by its non extended counterpart.
+
+It can be shown that regular languages are a special case of context free languages:
+they are generated by grammars with strong constraints on the rules form.
+Due to these constraints, the sentences of regular languages present \inlinequote{inevitable} repetitions.
+
+\paragraph{From \RE to \CF}
+\label{par:from-re-to-cf}
+
+It's possible to create a \CF \textit{(context-free)} grammar that generates the same language of a \re:
+a one-to-one correspondence between the respective rules of the two is shown in Table~\ref{tab:re-to-cf}.
+
+\begin{table}[htbp]
+  \centering
+  \bigskip
+  \begin{tabular}{l|l}
+    \RE                                          & \RP of \CF rule                                                \\
+    \hline
+    \(r = r_1 \cdot r_2 \cdot \ldots \cdot r_k\) & \(E_1 E_2 \ldots E_k\)                                         \\
+    \(r = r_1 \cup r_2 \cup \ldots \cup r_k\)    & \(E_1 \cup E_2 \cup \ldots \cup E_k\)                          \\
+    \(r = (r_1)^\ast\)                           & \(E E_1 \, | \, \varepsilon\) or \(E_1 E \, | \, \varepsilon\) \\
+    \(r = (r_1)^+\)                              & \(E E_1 \,|\,E_1\) or \(E_1 E \,|\,E_1\)                       \\
+    \(r = b \in \Sigma\)                         & \(b\)                                                          \\
+    \(r = \varepsilon\)                          & \(\varepsilon\)
+  \end{tabular}
+  \bigskip
+  \caption{Correspondence between \RE and \CF rules}
+  \label{tab:re-to-cf}
+\end{table}
+
+It can therefore be concluded that every regular language is free, while there are free languages that are not regular \textit{(for example the language of palindromes)}.
+The relation between families of grammars is then:
+\[ \REG \subseteq \CF \]
+
+\subsection{Linear grammars}
+
+A \textbf{linear grammar} is a \CF grammar that has at most one nonterminal in its right part.
+This family of grammars gives evidence to some fundamental properties and leads to a straightforward construction of the automaton that recognizes the strings of a regular language.
+
+All of its rules have form:
+\[A \rightarrow uBv \quad \text{ with } u, v \in \Sigma^\ast, B \in \left(V \cup \varepsilon\right) \]
+that is, there's at most one nonterminal in the \RP of a rule.
+The family of linear grammar is still more powerful than the family of \RE.
+
+\subsubsection{Unilinear grammars}
+
+The unilinear grammars represent a subset of linear grammars.
+
+The rules of the following form are called respectively \textbf{right linear} and \textbf{left linear:}
+
+\begin{itemize}
+  \item right linear rule: \(A \rightarrow uB \) where \(u \in \Sigma^\ast\) and \(B \in \left( V \cup \varepsilon \right)\)
+  \item left linear rule: \(A \rightarrow Bu \) where \(u \in \Sigma^\ast\) and \(B \in \left( V \cup \varepsilon \right)\)
+\end{itemize}
+
+Both cases are linear and obtained by deleting on either side of of the two terminal strings that embrace nonterminal \(B\) in a linear grammar.
+A grammar where the rules are either right of left linear is termed unilinear or of type 3.
+
+Regular expressions can be translated into unilinear grammars via finite state automata.
+
+\subsubsection{Linear Language Equations}
+
+In order to show that unilinear grammars generate regular languages, the rules of the former can be turned in a set of linear equations with regular languages as solution;
+the rules illustrated in Paragraph~\ref{par:from-re-to-cf} \textit{(\nameref{tab:re-to-cf})} will be used to create the equations.
+
+For simplicity, consider a grammar \(G = \langle V, \Sigma, R, S \rangle\) in strictly right linear with all the terminal rules empty (e.g. \(A \rightarrow \varepsilon\).
+The case of left linear grammars is analogous.
+
+A string \(x \in \Sigma^\ast\) is a language \(L_A(G)\) if:
+
+\begin{itemize}
+  \item string \(x\) is empty, and set \(P\) contains rule \(A \rightarrow \varepsilon\)
+  \item string \(x\) is empty, and set \(P\) contains rule \(A \rightarrow B\) with \(\varepsilon \in L_B(G)\)
+  \item string \(x = ay\) starts with character \(a\), set \(P\) contains rule \(A \rightarrow aB\) and string \(y \in \Sigma^\ast\) is in the language \(L_B(G)\)
+\end{itemize}
+
+Every rule can be transcribed into a linear equation that has as unknowns the languages generated from each nonterminal.
+
+Let \(n = |V|\) be the number of nonterminals of grammar \(G\).
+Each nonterminal \(A_i\) is defined by a set of alternatives:
+\[ A_i \rightarrow a A_1 \, | \, b A_1 \, | \, \ldots \, | \, a A_n \, | \, b A_n \, | \, \ldots \, | \, A_1 \, | \, \ldots \, | \, A_n \, | \, \varepsilon \]
+where some of the alternatives are empty. The rule \(A_i \rightarrow A_i\) is never present since the language is non circular.
+
+Then the set of corresponding linear equations is:
+\[ L_{A_i} = a L_{A_1} \cup b L_{A_1} \cup \ldots \cup a L_{A_n} \cup b L_{A_n} \cup \ldots \cup L_{A_1} \cup \ldots \cup L_{A_n} \cup \varepsilon \]
+where the last term is the empty string.
+
+This system of \(n\) equations in \(n\) unknowns can be solved via substitution and the \textit{Arden identity}, shown in ne.
+
+\paragraph{Arden Identity}
+
+The equation in the unknown language \(X= K X \cup L\) where \(K\) is a non empty language and \(L\) is any language, has only one and unique solution, provided by the \textbf{Arden Identity:}
+\[ X = K^\ast L \]
+
+It's simple to see that language \(K^\ast L\) is a solution of the equation \(X = K X \cup L\), since by substituting it for the unknown in both sides, the equation turns into the identity:
+\[ K^\ast K = (K K^\ast L) \cup L \]
+
+\bigskip
+The proof is omitted.
+
+\subsection{Comparison of Regular and Context Free Grammars}
+
+This section is dedicated to the introduction of properties that are useful to show that soma languages are not regular:
+regular languages \textit{(and therefore unilinear grammars and regular expressions)} share peculiar properties.
+
+\subsubsection{Pumping of strings}
+
+First of all, recall that in order to generate an infinite language, a grammar has to be recursive, as only a derivation such as \(A \xRightarrow{+} u A v\) can be iterated for an unbounded number of times \(n\) producing a string \(u^n A v^n\).
+
+Let \(G\) be a unilinear grammar.
+For any sufficiently long sentence \(x\), longer than some constant dependent only on the grammar, it's possible to find a factorization \(x = tuv\) where \(u \neq \varepsilon\) such that for every \(n \geq 0\), the string \(t u^n v\) is in the language.
+
+It can be said that the given sentence can be \textit{pumped} by injecting the substring \(u\) for arbitrarily many times.
+
+\paragraph{Proof}
+
+Consider a strictly right linear grammar and let \(k\) be the number of nonterminal symbols.
+The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the same nonterminal label \(A\) \textit{(illustrated in Figure~\ref{fig:pumping-strings-syntax-tree})}
+
+\begin{figure}[htbp]
+  \centering
+  \bigskip
+  \tikzfig{figure-1.tikz}
+  \caption{Syntax tree of a sentence of length \(k\) in a strictly right linear grammar}
+  \label{fig:pumping-strings-syntax-tree}
+  \bigskip
+\end{figure}
+
+Consider the factorization into \(t = a_1 a_2 \ldots\), \(u = b_1 b_2 \ldots\), and \(b = c_1 c_2 \ldots c_m\).
+Therefore, there is recursive derivation:
+\[S \xRightarrow{+} t A \xRightarrow{+} tuA \xRightarrow{+} tuv \]
+that can be repeated to generate the string \(tu^+ v\).
+
+\subsubsection{Role of Self-nesting Derivations}
+
+Since the fact that the \REG family is strictly included within the \CF family, the focus on this section is what makes some languages not regular.
+Typical non regular languages, such as the Dyck language, the palindromes, and two power language have a common feature:
+a recursive derivation that is neither left nor right linear.
+Such a derivation has the form:
+\[ A \xRightarrow{+} \alpha A \beta \quad \alpha \neq \varepsilon \land \beta \neq \varepsilon \]
+where the \RP contains the nonterminal symbol \(A\) between two strings \(\alpha\) and \(\beta\) of both terminals and nonterminals.
+
+\bigskip
+A grammar is not self nesting if, for all nonterminals \(A\), every derivation \(A \xRightarrow{+} \alpha A \beta\) has either \(\alpha = \varepsilon\) or \(\beta = \varepsilon\);
+self nesting derivations cannot be obtained with the grammars of the \REG family.
+
+Therefore:
+\[ \text{grammars without self nested derivations } \Rightarrow \text{ regular languages } \]
+while the opposite does not necessarily hold.
+
+\bigskip
+This introduces a big limitation to the family of languages generated via \re, as all sufficiently long sentences necessarily contain two substrings that can be repeated for an unbounded number of times, thus generating self nested structures.
+
+\subsubsection{Closure Properties of \REG and \CF families}
+
+Languages operations can be used to combine existing languages into new one;
+when the result of an operation does not belong to the original family it cannot be generated with the same type of grammar.
+
+Therefore, the closure of the \REG and \CF families is here explained, keeping in mind that:
+
+\begin{itemize}
+  \item a non membership \textit{(such as \(\neg L \notin \CF\))} means that the left term does not always belong to the family, while some of the complement of the language may belong to the family
+  \item The reversal of a language \(L(G)\) is generated by the mirror grammar, which is obtained by reversing the right rule parts of the original grammar \(G\)
+  \item If a language is left linear, its mirror is right linear, and vice versa
+  \item The symbol \(\oplus\) is used as a symbol for union \textit{(normally represented as \(\cup\) or \(cdot\))}
+\end{itemize}
+
+The closure of the two families is shown in Table~\ref{tab:closure-regular-cf}.
+
+\begin{table}[htbp]
+  \centering
+  \bigskip
+  \begin{tabular}{l|l|l|l|l}
+    \textit{reversal} & \textit{star}       & \textit{union}              & \textit{complement}   & \textit{intersection}       \\
+    \hline
+    \(R^R \in \REG\)  & \(R^\ast \in \REG\) & \(R_1 \oplus R_2 \in \REG\) & \(\neg R \in \REG\)   & \(R_1 \cap R_2 \in \REG\)   \\
+    \(L^R \in \CF\)   & \(L^\ast \in \CF\)  & \(L_1 \oplus L_2 \in \CF\)  & \(\neg L \notin \CF\) & \(L_1 \cap L_2 \notin \CF\)
+  \end{tabular}
+  \caption{Closure of the \REG and \CF families}
+  \label{tab:closure-regular-cf}
+  \bigskip
+\end{table}
+
+The properties of the \REG closure are easily proven via finite state automata.
+The reflection and star properties of \CF have already been proven in the previous Sections; while:
+
+\begin{itemize}
+  \item \CF is not closed under complement because it is closed under union but not under intersection
+  \item the closure of \CF under union can be proven by defining suitable grammars
+  \item the non closure of \CF under intersection can be proven by using finite state automata
+\end{itemize}
+
+\bigskip
+Free languages can be intersected with regular languages in order to make a grammar more discriminatory, forcing some constraints on the original sentences.
+The intersection of a free language \(L\) with a regular language \(R\) is still a part of the \CF family:
+\[ L \cap R \in \CF \]
+
+\subsection{More General Grammars and Language Families}
+
+Context free grammars cover the main constructs occurring in technical languages, such as hierarchical lists and nested structures, but fail with other syntactic structures as simple as the replica language or the three power language \(L = \left\{ a^n b^n c^n \, | \, n \geq 1 \right\}\).
+
+American linguist Noam Chomsky proposed a categorization of languages based on the complexity of their grammars, which is still used today;
+such list is called the Chomsky hierarchy and is shown in Table~\ref{tab:chomsky-hierarchy}.
+
+\begin{table}[hp]
+  \centering
+  \begin{adjustbox}{angle=90}
+    \begin{tabular}{l|l|l|l}
+      \textit{grammar type}              & \textit{rule form}                                                                                                                                                                                                  & \textit{language family} & \textit{recognizer model} \\
+      \hline
+      \textit{type 0}                    & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^+\)                                                                                                                                & recursively enumerable   & turing machine            \\
+      \textit{type 1}, context-sensitive & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^*\)                                                                                                                                & contextual               & linear-bounded automaton  \\
+      \textit{type 2}, context-free      & \(A \rightarrow \alpha\) with \(A \in V\) and \(\alpha \in \left( \Sigma \cup V \right)^\ast\)                                                                                                                      & \CF                      & pushdown automaton        \\
+      \textit{type 3}, unilinear         & \(\begin{cases}A \rightarrow uB \ & \textit{(right)} \\ A \rightarrow Bu  \  & \textit{(left)} \end{cases}\) with \(\begin{cases}A \in V \\ u \in \Sigma^\ast \\ B \in \left( V \cup \left\{ \varepsilon \right\} \right)\end{cases}\) & \REG                     & finite automaton          \\
+    \end{tabular}
+  \end{adjustbox}
+  \bigskip
+  \caption{Chomsky hierarchy}
+  \label{tab:chomsky-hierarchy}
+\end{table}
 
 \end{document}

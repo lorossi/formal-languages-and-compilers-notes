@@ -1,0 +1,54 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=blank] (0) at (0, 0) {\(S\)};
+		\node [style=blank] (1) at (-2, -2) {\(a_1\)};
+		\node [style=blank] (2) at (1, -2) {\ldots};
+		\node [style=blank] (3) at (-1, -4) {\(a_2\)};
+		\node [style=blank] (4) at (2, -4) {\(A\)};
+		\node [style=blank] (5) at (0, -6) {\(b_1\)};
+		\node [style=blank] (6) at (3, -6) {\ldots};
+		\node [style=blank] (7) at (1, -8) {\(b_2\)};
+		\node [style=blank] (8) at (4, -8) {\(A\)};
+		\node [style=blank] (9) at (5, -10) {\ldots};
+		\node [style=blank] (10) at (6, -12) {\ldots};
+		\node [style=blank] (11) at (2, -10) {\(c_1\)};
+		\node [style=blank] (12) at (3, -12) {\(c_2\)};
+		\node [style=blank] (13) at (4, -14) {\(c_m\)};
+		\node [style=blank] (14) at (-0.5, -5) {\ldots};
+		\node [style=blank] (16) at (1.5, -9) {\ldots};
+		\node [style=blank] (18) at (3.5, -13) {\ldots};
+		\node [style=none] (19) at (-4, -2) {};
+		\node [style=none] (20) at (-4, -4) {};
+		\node [style=none] (21) at (-4, -6) {};
+		\node [style=none] (22) at (-4, -8) {};
+		\node [style=none] (23) at (-4, -10) {};
+		\node [style=none] (24) at (-4, -12) {};
+		\node [style=none] (25) at (-4.75, -3) {\(t\)};
+		\node [style=none] (26) at (-4.75, -7) {\(u\)};
+		\node [style=none] (27) at (-4.75, -11) {\(v\)};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=solid] (1) to (0);
+		\draw [style=solid] (0) to (2);
+		\draw [style=solid] (2) to (3);
+		\draw [style=solid] (2) to (4);
+		\draw [style=solid] (6) to (4);
+		\draw [style=solid] (4) to (5);
+		\draw [style=solid] (7) to (6);
+		\draw [style=solid] (8) to (6);
+		\draw [style=solid] (8) to (9);
+		\draw [style=solid] (9) to (10);
+		\draw [style=solid] (11) to (8);
+		\draw [style=solid] (12) to (9);
+		\draw [style=solid] (10) to (13);
+		\draw [style=dashed] (3) to (20.center);
+		\draw [style=dashed] (1) to (19.center);
+		\draw [style=dashed] (19.center) to (20.center);
+		\draw [style=dashed] (21.center) to (22.center);
+		\draw [style=dashed] (23.center) to (24.center);
+		\draw [style=dashed] (23.center) to (11);
+		\draw [style=dashed] (24.center) to (12);
+		\draw [style=dashed] (22.center) to (7);
+		\draw [style=dashed] (21.center) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}
