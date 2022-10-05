@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{notestemplate}[2022/09/18 LaTeX template for my notes]
+\ProvidesPackage{notestemplate}[2022/10/05 LaTeX template for my notes]
 
 % I don't really know how those packages interact or why they do so
 %   but if I change the import order, something always stops working
@@ -17,6 +17,7 @@
 \RequirePackage{amsfonts} % math fonts
 \RequirePackage{amssymb} % math symbols
 \RequirePackage{mathtools} % math operators for asmmath
+\RequirePackage{wasysym} % math symbols
 \RequirePackage{hyperref} % links colouring
 \RequirePackage{verbatim} % monospaced text blocks
 \RequirePackage{listings} % syntax highlighting
@@ -32,12 +33,13 @@
 \RequirePackage{courier} % for bold in listlng
 \RequirePackage{anyfontsize} % for better font sizes
 \RequirePackage{subcaption} % for subfigures and subcaptions
+\RequirePackage{adjustbox} % to rotate and adjust floats
 \RequirePackage[style=iso]{datetime2} % datetime command
 
 \ProcessOptions\relax
 
 % tikz libraries for automata and drawing
-\usetikzlibrary{automata, positioning, backgrounds, arrows, arrows.meta, shapes, shapes.geometric, shapes.misc}
+\usetikzlibrary{automata, positioning, backgrounds, arrows, arrows.meta, shapes}
 % tikz styles
 \input{tikzstyle.tikzstyles}
 % standard layers used in .tikz files
@@ -66,7 +68,6 @@
 % changed bullet for lists
 \newcommand\sbullet[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{\(\bullet\)}}}}}
 \newcommand\striangle[1][.5]{\mathbin{\vcenter{\hbox{\scalebox{#1}{\(\blacktriangleright\)}}}}}
-
 \renewcommand{\labelitemi}{\(\sbullet[.9]\)}
 \renewcommand{\labelitemii}{\(\sbullet[.65]\)}
 \renewcommand{\labelitemiii}{\(\striangle[.5]\)}
@@ -92,7 +93,7 @@
 \numberwithin{equation}{section}
 
 % page margins
-\geometry{left = 2 cm, right = 2 cm, bottom = 2.5 cm, top = 2.5 cm}
+\geometry{left=2cm,right=2cm,bottom=2.5cm,top=2.5cm}
 \setlength{\parindent}{0em}
 
 % hyperlinks colours
@@ -137,9 +138,15 @@
   }
 }
 
+% lstlisting pseudocode style
+\lstdefinelanguage{pseudocode}{
+  morekeywords={NIL,and,ceil,do,downto,each,else,end,error,floor,for,if,in,nand,new,nor,or,repeat,return,swap,then,to,until,while,xnor,xor},
+  morecomment=[l][commentstyle]{//},
+  morecomment=[s][commentstyle]{/*}{*/},
+}
 
-% lstlisting style definition for pseudocode
-\lstdefinestyle{pseudocode}{
+% lstlsting generic style definition
+\lstdefinestyle{custom}{
   commentstyle=\color{gray},
   keywordstyle=\color{black}\bfseries,
   basicstyle=\ttfamily,
@@ -155,29 +162,7 @@
   showtabs=false,
   showlines=false,
   tabsize=2,
-  morekeywords={and,ceil,downto,each,else,end,error,floor,for,if,in,nand,new,NIL,nor,or,repeat,return,swap,then,to,while,xnor,xor,do,until},
   mathescape=true,
-  morecomment=[l][commentstyle]{//},
-  }
-
-% lstlsting style definition for C
-\lstdefinestyle{customc}{
-  commentstyle=\color{darkgray},
-  keywordstyle=\color{black}\bfseries,
-  basicstyle=\ttfamily\footnotesize,
-  language=C,
-  showstringspaces=false,
-  tabsize=2,
-}
-
-% lstlsting style definition for Python
-\lstdefinestyle{custompython}{
-  commentstyle=\color{darkgray},
-  keywordstyle=\color{black}\bfseries,
-  basicstyle=\ttfamily\footnotesize,
-  language=Python,
-  showstringspaces=false,
-  tabsize=2,
 }
 
 % command for indented quote block
