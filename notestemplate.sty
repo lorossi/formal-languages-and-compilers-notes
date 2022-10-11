@@ -17,15 +17,14 @@
 \RequirePackage{amsfonts} % math fonts
 \RequirePackage{amssymb} % math symbols
 \RequirePackage{mathtools} % math operators for asmmath
-\RequirePackage{wasysym} % math symbols
-\RequirePackage{hyperref} % links colouring
 \RequirePackage{verbatim} % monospaced text blocks
 \RequirePackage{listings} % syntax highlighting
 \RequirePackage{enumitem} % custom enum
 \RequirePackage{graphicx} % images
 \RequirePackage{fontawesome} % dings
+\RequirePackage{bbding} % more dings
+\RequirePackage{wasysym} % math symbols
 \RequirePackage{titlesec} % for sections customization
-\RequirePackage{amsmath} % for better math typesetting
 \RequirePackage{xspace} % for spacing after commands
 \RequirePackage{xfrac} % for diagonal fractions
 \RequirePackage{tocloft} % for spacing in TOC
@@ -34,6 +33,8 @@
 \RequirePackage{anyfontsize} % for better font sizes
 \RequirePackage{subcaption} % for subfigures and subcaptions
 \RequirePackage{adjustbox} % to rotate and adjust floats
+\RequirePackage{hyperref} % links colouring
+\RequirePackage{tabularray} % for better tables
 \RequirePackage[style=iso]{datetime2} % datetime command
 
 \ProcessOptions\relax
@@ -78,9 +79,13 @@
 
 % add commands for checkmark
 \newcommand{\cmark}{\faCheck\xspace} % check
+\newcommand{\cmarkthin}{\ding{51}\xspace} % check
 \newcommand{\xmark}{\faTimes\xspace}  % cross
+\newcommand{\xmarkthin}{\ding{55}\xspace}  % cross
 \newcommand{\colorcmark}{\textcolor{ForestGreen}{\cmark}\xspace} % green check
+\newcommand{\colorcmarkthin}{\textcolor{ForestGreen}{\cmarkthin}\xspace} % green check
 \newcommand{\colorxmark}{\textcolor{BrickRed}{\xmark}\xspace} % red cross
+\newcommand{\colorxmarkthin}{\textcolor{BrickRed}{\xmarkthin}\xspace} % red cross
 
 % cusom macro creation
 \newcommand{\shortfor}[1]{\textit{#1}\xspace}
@@ -138,6 +143,10 @@
   }
 }
 
+% define custom colours
+\definecolor{codetext}{rgb}{0.05,0.05,0.05}
+\definecolor{codecomment}{rgb}{0.3,0.3,0.3}
+
 % lstlisting pseudocode style
 \lstdefinelanguage{pseudocode}{
   morekeywords={NIL,and,ceil,do,downto,each,else,end,error,floor,for,if,in,nand,new,nor,or,repeat,return,swap,then,to,until,while,xnor,xor},
@@ -145,15 +154,14 @@
   morecomment=[s][commentstyle]{/*}{*/},
 }
 
-% lstlsting generic style definition
+% lstlsting custom style definition
 \lstdefinestyle{custom}{
-  commentstyle=\color{gray},
-  keywordstyle=\color{black}\bfseries,
-  basicstyle=\ttfamily,
+  commentstyle=\color{codecomment},
+  keywordstyle=\color{codetext}\bfseries,
+  basicstyle=\color{codetext}\ttfamily,
   breakatwhitespace=false,
   captionpos=b,
   keepspaces=false,
-  numbers=left,
   xleftmargin=10pt,
   belowcaptionskip=20pt,
   numberstyle=\small,
@@ -164,6 +172,9 @@
   tabsize=2,
   mathescape=true,
 }
+
+% lstlisting default style
+\lstset{style=custom}
 
 % command for indented quote block
 \newcommand{\indentquote}[1]{
