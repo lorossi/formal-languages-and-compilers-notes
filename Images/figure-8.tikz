@@ -1,0 +1,15 @@
+  \begin{tikzpicture}[auto, node distance=2cm]
+    \node[state, initial] (S) {\(S\)};
+    \node[state] at (2, 0) (A) {\(A\)};
+    \node[] at (3, 0) (B) {};
+    \node[] at (0, 1) (C) {};
+
+    \path[->]
+      (S) edge[below] node {\(\varepsilon\)} (A);
+
+    \path[->, thick]
+      (A) edge node {} (B);
+
+    \path[->, red, thick]
+      (S) edge node {} (C);
+\end{tikzpicture}

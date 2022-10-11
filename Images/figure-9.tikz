@@ -1,0 +1,29 @@
+\adjustbox{valign=m}{
+  \begin{tikzpicture}
+    \node[] at (0, 0) (start) {};
+    \node[state, circle] at (1, 0) (q1) {};
+    \node[state, circle] at (3, 0) (q2) {};
+    \node[] at (4, 0) (end) {};
+
+    \path[->]
+      (q1) edge node[above=1ex] {\(a\)} (q2);
+
+    \path[->, thick]
+      (start) edge (q1)
+      (q2) edge (end);
+  \end{tikzpicture}
+
+  \begin{tikzpicture}
+    \node[] at (0, 0) (start) {};
+    \node[state, circle] at (1, 0) (q5) {};
+    \node[state, circle] at (3, 0) (q6) {};
+    \node[] at (4, 0) (end) {};
+
+    \path[->]
+      (q5) edge node[above=1ex] {\(\varepsilon\)} (q6);
+
+    \path[->, thick]
+      (start) edge (q5)
+      (q6) edge (end);
+  \end{tikzpicture}
+}

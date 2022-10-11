@@ -1,0 +1,67 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (0, 0.5) {};
+		\node [style=none] (1) at (0, -1) {};
+		\node [style=left align] (2) at (0.25, -0.25) {\(\vdash \ a_1 \ a_2 \cdots \)};
+		\node [style=none, inner sep=2pt] (3) at (11.25, -0.25) {\(a_i\)};
+		\node [style=right align] (4) at (16.75, -0.25) {\(\cdots \ a_n \ \dashv\)};
+		\node [style=none] (5) at (17, 0.5) {};
+		\node [style=none] (6) at (17, -1) {};
+		\node [style=none] (7) at (0, -6) {};
+		\node [style=none] (8) at (0, -7.5) {};
+		\node [style=left align] (9) at (0.25, -6.75) {\(\vdash \ M_1 \ M_2 \ \cdots \)};
+		\node [style=none, inner sep=1.5pt] (10) at (6.75, -6.75) {\(M_j\)};
+		\node [style=right align] (11) at (16.75, -6.75) {\(\cdots \ M_m \ \dashv\)};
+		\node [style=none] (12) at (17, -6) {};
+		\node [style=none] (13) at (17, -7.5) {};
+		\node [style=none] (14) at (5.5, -3) {};
+		\node [style=none] (15) at (11.5, -3) {};
+		\node [style=none] (16) at (5.5, -4) {};
+		\node [style=none] (17) at (11.5, -4) {};
+		\node [style=none] (18) at (8.5, -3.5) {\texttt{control unit}};
+		\node [style=none] (19) at (8.5, -4) {};
+		\node [style=none] (20) at (6.75, -6) {};
+		\node [style=none] (21) at (8.5, -5) {};
+		\node [style=none] (22) at (11.25, -2) {};
+		\node [style=none] (23) at (8.5, -3) {};
+		\node [style=none] (24) at (8.5, -2) {};
+		\node [style=none] (25) at (7.5, -6) {};
+		\node [style=none] (26) at (7.5, -7.5) {};
+		\node [style=none] (27) at (6, -7.5) {};
+		\node [style=none] (28) at (6, -6) {};
+		\node [style=none] (29) at (10.5, -1) {};
+		\node [style=none] (30) at (10.5, 0.5) {};
+		\node [style=none] (31) at (12, 0.5) {};
+		\node [style=none] (32) at (12, -1) {};
+		\node [style=left align] (33) at (0, -1.5) {\texttt{input tape}};
+		\node [style=left align] (34) at (0, -5.5) {\texttt{memory tape}};
+		\node [style=none] (35) at (11.25, -1) {};
+		\node [style=none] (36) at (6.75, -5) {};
+		\node [style=none] (37) at (11.5, 1) {\small \texttt{input head}};
+		\node [style=none] (38) at (6.5, -8) {\small \texttt{memory head}};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=solid] (1.center) to (6.center);
+		\draw [style=solid] (6.center) to (5.center);
+		\draw [style=solid] (5.center) to (0.center);
+		\draw [style=solid] (0.center) to (1.center);
+		\draw [style=solid] (8.center) to (13.center);
+		\draw [style=solid] (13.center) to (12.center);
+		\draw [style=solid] (12.center) to (7.center);
+		\draw [style=solid] (7.center) to (8.center);
+		\draw [style=solid] (16.center) to (17.center);
+		\draw [style=solid] (17.center) to (15.center);
+		\draw [style=solid] (15.center) to (14.center);
+		\draw [style=solid] (14.center) to (16.center);
+		\draw [style=solid arrow] (21.center) to (19.center);
+		\draw [style=solid arrow] (24.center) to (23.center);
+		\draw [style=solid] (24.center) to (22.center);
+		\draw [style=solid] (28.center) to (27.center);
+		\draw [style=solid] (25.center) to (26.center);
+		\draw [style=solid] (29.center) to (30.center);
+		\draw [style=solid] (32.center) to (31.center);
+		\draw [style=solid arrow] (22.center) to (35.center);
+		\draw [style=solid arrow] (36.center) to (20.center);
+		\draw [style=solid] (36.center) to (21.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,30 @@
+\adjustbox{valign=m}{
+  \begin{tikzpicture}
+  \node[] (start) at (0,0) {};
+  \node[state] (i) at (1,0) {\(i\)};
+  \node[state] (dummy1) at (3,0) {};
+  \node[state] (i1) at (5,0) {\(i^\prime\)};
+  \node[state] (t1) at (7,0) {\(t^\prime\)};
+  \node[state] (dummy2) at (9,0) {};
+  \node[state] (t) at (11,0) {\(t\)};
+  \node[] (end) at (12,0) {};
+
+  \path[->]
+    (i) edge[above=1.5ex] node {\(\varepsilon\)} (dummy1)
+    (dummy1) edge[above=1.5ex] node {\(\varepsilon\)} (i1)
+    (t1) edge[above=1.5ex] node {\(\varepsilon\)} (dummy2)
+    (dummy2) edge[above=1.5ex] node {\(\varepsilon\)} (t);
+
+  \path[->]
+    (dummy2) edge[below=1.5ex, bend right, out=30, in=150] node {\(\varepsilon\)} (dummy1)
+    (i) edge[above=1.5ex, bend left] node {\(\varepsilon\)} (t);
+
+  \path[->, dashed]
+    (i1) edge[above=1.5ex] node {} (t1);
+
+  \path[->, thick]
+    (start) edge node {} (i)
+    (t) edge node {} (end);
+
+  \end{tikzpicture}
+  }

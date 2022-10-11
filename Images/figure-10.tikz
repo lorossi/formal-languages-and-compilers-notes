@@ -1,0 +1,19 @@
+\adjustbox{valign=m}{
+  \begin{tikzpicture}
+    \node (start) at (0,0) {};
+    \node[state, circle] (i1) at (1,0) {\(i^{\prime}\)};
+    \node[state, circle] (t1) at (3,0) {\(i^{\prime\prime}\)};
+
+    \node[state, circle] (i2) at (5,0) {\(i^{\prime\prime\prime}\)};
+    \node[state, circle] (t2) at (7,0) {\(i^{\prime\prime\prime\prime}\)};
+    \node (end) at (8,0) {};
+
+    \path[->] (t1) edge[above=1.5ex] node {\(\varepsilon\)} (i2);
+    \path[->, dashed]
+      (i1) edge node {} (t1)
+      (i2) edge node {} (t2);
+    \path[->, thick]
+      (start) edge node {} (i1)
+      (t2) edge node {} (end);
+  \end{tikzpicture}
+}

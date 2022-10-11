@@ -1,0 +1,8 @@
+\adjustbox{valign=m}{
+  \begin{tikzpicture}[auto, node distance=1cm]
+    \node[state, inner sep=2pt,minimum size=0pt, circle] (p) {\(p\)};
+    \node[inner sep=2pt,minimum size=0pt] (q) [right of=p] {};
+
+    \path[->] (p) edge node[above] {} (q);
+  \end{tikzpicture}
+}

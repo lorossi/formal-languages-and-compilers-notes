@@ -1,0 +1,12 @@
+  \begin{tikzpicture}[auto, node distance=2cm]
+    \node[state, initial] (S) {\(S\)};
+    \node[state] at (2, 0) (A) {\(A\)};
+    \node[state] at (4, 0) (B) {\(B\)};
+
+    \path[->, below]
+      (S) edge node {\(\varepsilon\)} (A)
+      (A) edge node {\(a\)} (B);
+
+    \path[->, thick, draw=red, text=red, above=1.5ex]
+      (S) edge[bend left] node {\(a\)} (B);
+  \end{tikzpicture}
