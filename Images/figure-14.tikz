@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=black, minimum size=5pt] (1) at (0, 0) {};
+		\node [style=black, minimum size=5pt] (2) at (-3, -2) {};
+		\node [style=blank] (3) at (0, -2) {\(+\)};
+		\node [style=black, minimum size=5pt] (4) at (3, -2) {};
+		\node [style=black, minimum size=5pt] (5) at (-3, -4) {};
+		\node [style=black, minimum size=5pt] (6) at (-3, -6) {};
+		\node [style=black, minimum size=5pt] (7) at (1, -4) {};
+		\node [style=blank] (8) at (3, -4) {\(\times\)};
+		\node [style=black, minimum size=5pt] (9) at (5, -4) {};
+		\node [style=black, minimum size=5pt] (10) at (1, -6) {};
+		\node [style=blank] (11) at (-3, -8) {\(i\)};
+		\node [style=blank] (12) at (1, -8) {\(i\)};
+		\node [style=blank] (13) at (5, -6) {\(i\)};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=solid] (1) to (2);
+		\draw [style=solid] (1) to (3);
+		\draw [style=solid] (1) to (4);
+		\draw [style=solid] (5) to (2);
+		\draw [style=solid] (6) to (5);
+		\draw [style=solid] (11) to (6);
+		\draw [style=solid] (4) to (7);
+		\draw [style=solid] (7) to (10);
+		\draw [style=solid] (12) to (10);
+		\draw [style=solid] (4) to (8);
+		\draw [style=solid] (4) to (9);
+		\draw [style=solid] (9) to (13);
+	\end{pgfonlayer}
+\end{tikzpicture}
