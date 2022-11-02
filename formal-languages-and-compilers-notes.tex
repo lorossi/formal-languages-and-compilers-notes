@@ -394,10 +394,10 @@ In other words, a generative grammar defines languages via:
 A \textbf{context-free} \textit{(also called \CF, type 2, BNF or simply free)} grammar \(G\) is defined as a 4-tuple \(\langle V, \Sigma, P, S\rangle\) where:
 
 \begin{itemize}
-  \item \(V\) is the set of nonterminal symbols, called \textbf{nonterminal alphabet}
+  \item \(V\) is the set of non-terminal symbols, called \textbf{non-terminal alphabet}
   \item \(\Sigma\) is the set of terminal symbols, called \textbf{terminal alphabet}
   \item \(P\) is the set of \textbf{rules} or \textbf{productions}
-  \item \(S \in V\) is a specific nonterminal symbol, called \textbf{axiom}
+  \item \(S \in V\) is a specific non-terminal symbol, called \textbf{axiom}
 \end{itemize}
 
 All rules are in form of \(X \rightarrow \alpha\), where \(X \in V\) and \(\alpha \in (V \cup \Sigma)^\ast\).
@@ -410,11 +410,11 @@ can be grouped into a single rule:
 
 Where the strings \(\alpha_1, \alpha_2, \ldots, \alpha_n\) are called \textbf{alternatives} of \(X\).
 
-In order to avoid confusions, metasymbols \(\rightarrow\), \(|\), \(\cup\) and \(\varepsilon\) should not be used for terminal of nonterminal symbols;
-moreover, the terminal and nonterminal alphabets should be disjoint (\(\Sigma \cap V = \emptyset\)).
+In order to avoid confusions, metasymbols \(\rightarrow\), \(|\), \(\cup\) and \(\varepsilon\) should not be used for terminal of non-terminal symbols;
+moreover, the terminal and non-terminal alphabets should be disjoint (\(\Sigma \cap V = \emptyset\)).
 The metasymbol \(\rightarrow\) is used to separate the left part from the right part of a rule and it's different from the \(\Rightarrow\) symbol, used to represent the derivation relation \textit{(or rule rewriting)}.
 
-The \textbf{axiom} \(S\) is used to start the derivation process and it's the only nonterminal symbol that can be used as left part of a rule.
+The \textbf{axiom} \(S\) is used to start the derivation process and it's the only non-terminal symbol that can be used as left part of a rule.
 
 \bigskip
 Normally, these conventions are adopted:
@@ -423,8 +423,8 @@ Normally, these conventions are adopted:
   \item \textbf{Terminal} characters are written as \textbf{latin lowercase letters} \(\{a, b, c, \ldots, z\}\)
   \item \textbf{Nonterminal} characters are written as \textbf{latin uppercase letters} \(\{A, B, C, \ldots, Z\}\)
   \item \textbf{Strings} containing only \textbf{terminal characters} are written as \textbf{latin lowercase letters} \(\{a, b, c, \ldots, z\}\)
-  \item \textbf{Strings} containing only \textbf{nonterminal characters} are written as \(\sigma\) \textit{(in general, greek lowercase letters towards the end of the alphabet)}
-  \item \textbf{Strings} containing both \textbf{terminal} and \textbf{nonterminal characters} are written as \textbf{greek lowercase letters} \(\{\alpha, \beta, \gamma, \ldots, \omega\}\)
+  \item \textbf{Strings} containing only \textbf{non-terminal characters} are written as \(\sigma\) \textit{(in general, greek lowercase letters towards the end of the alphabet)}
+  \item \textbf{Strings} containing both \textbf{terminal} and \textbf{non-terminal characters} are written as \textbf{greek lowercase letters} \(\{\alpha, \beta, \gamma, \ldots, \omega\}\)
 \end{itemize}
 
 \subsubsection{Rule types}
@@ -447,15 +447,15 @@ The terminal in the \RP of a rule in \textit{operator form} is called \textit{op
     \textit{recursive}                       & \LP occurs in \RP                                                  & \(A \rightarrow \alpha A \beta\)       \\
     \textit{left recursive}                  & \LP is the prefix of \RP                                           & \(A \rightarrow A \beta\)              \\
     \textit{right recursive}                 & \LP is the suffix of \RP                                           & \(A \rightarrow \beta A\)              \\
-    \textit{copy}                            & \RP consists of one nonterminal                                    & \(A \rightarrow B\)                    \\
+    \textit{copy}                            & \RP consists of one non-terminal                                    & \(A \rightarrow B\)                    \\
     \textit{identity}                        & \LP and \RP are the same                                           & \(A \rightarrow A\)                    \\
-    \textit{linear}                          & \RP contains at most one nonterminal                               & \(\rightarrow u B v \,|\, v\)          \\
-    \textit{left-linear} or \textit{type 3}  & \RP contains at most one nonterminal as the \textit{prefix}        & \(\rightarrow B v \,|\, w\)            \\
-    \textit{right-linear} or \textit{type 3} & \RP contains at most one nonterminal as the \textit{suffix}        & \(\rightarrow u B \,|\, w\)            \\
-    \textit{homogeneous normal}              & \RP consists either of \(n \geq 2\) nonterminals or \(1\) terminal & \(\rightarrow A_1 \ldots A_n \,|\, a\) \\
-    \textit{Chomsky normal}                  & \RP consists of \(2\) nonterminals or \(1\) terminal               & \(\rightarrow B C \,|\, a\)            \\
-    \textit{Greibach normal}                 & \RP consists of \(1\) terminal possibly followed by nonterminal    & \(\rightarrow a \sigma \,|\, b\)       \\
-    \textit{operator form}                   & \RP consists of \(2\) nonterminals separated by a terminal         & \(\rightarrow A a B\)                  \\
+    \textit{linear}                          & \RP contains at most one non-terminal                               & \(\rightarrow u B v \,|\, v\)          \\
+    \textit{left-linear} or \textit{type 3}  & \RP contains at most one non-terminal as the \textit{prefix}        & \(\rightarrow B v \,|\, w\)            \\
+    \textit{right-linear} or \textit{type 3} & \RP contains at most one non-terminal as the \textit{suffix}        & \(\rightarrow u B \,|\, w\)            \\
+    \textit{homogeneous normal}              & \RP consists either of \(n \geq 2\) non-terminals or \(1\) terminal & \(\rightarrow A_1 \ldots A_n \,|\, a\) \\
+    \textit{Chomsky normal}                  & \RP consists of \(2\) non-terminals or \(1\) terminal               & \(\rightarrow B C \,|\, a\)            \\
+    \textit{Greibach normal}                 & \RP consists of \(1\) terminal possibly followed by non-terminal    & \(\rightarrow a \sigma \,|\, b\)       \\
+    \textit{operator form}                   & \RP consists of \(2\) non-terminals separated by a terminal         & \(\rightarrow A a B\)                  \\
   \end{tabular}
   \bigskip
   \caption{Rule types}
@@ -465,12 +465,12 @@ The terminal in the \RP of a rule in \textit{operator form} is called \textit{op
 \subsubsection{Derivation and language generation}
 
 Firstly, the notion of \textbf{string derivation} has to be formalized.
-Let \(\beta = \delta A \eta\) be a string containing a nonterminal symbol \(A\) and two strings \(\delta\) and \(\eta\).
-Let \(A \rightarrow \alpha\) be a rule of grammar \(G\) and let \(\gamma\alpha\eta\) the string obtained by replacing the nonterminal symbol \(A\) in \(\beta\) by applying the rule.
+Let \(\beta = \delta A \eta\) be a string containing a non-terminal symbol \(A\) and two strings \(\delta\) and \(\eta\).
+Let \(A \rightarrow \alpha\) be a rule of grammar \(G\) and let \(\gamma\alpha\eta\) the string obtained by replacing the non-terminal symbol \(A\) in \(\beta\) by applying the rule.
 
 The relation between the two strings is called \textbf{derivation}.
 The string \(\beta\) derives the string \(\gamma\) for grammar \(G\) and it's denoted by the symbol \(\beta\xRightarrow[G]{}\gamma\).
-Rule \(A \rightarrow \alpha\) is applied in such a derivation and string \(\alpha\) \textbf{reduces} to nonterminal \(A\).
+Rule \(A \rightarrow \alpha\) is applied in such a derivation and string \(\alpha\) \textbf{reduces} to non-terminal \(A\).
 
 Now consider a chain of derivation, with \(n \geq 0\) steps
 \[ \beta_0 \Rightarrow \beta_1 \Rightarrow \cdots \Rightarrow \beta_n \]
@@ -481,10 +481,10 @@ where \(\beta_0\) is the initial string and \(\beta_n\) is the final string.
 If \(n = 0\), every string derives itself (as \(\beta \Rightarrow \beta\)) and the relation is called \textbf{reflexive}.
 
 To express derivations of any length, the symbols \(\beta_0 \xRightarrow{\ast} \beta_n, n \geq 0\) or \(\beta_0 \xRightarrow{\ast} \beta_n, n \geq 1\) are used.
-In general, the \textbf{language generated} or defined by a grammar \(G\) \textbf{starting from nonterminal} \(A\) is the set of terminal strings that derive from nonterminal \(A\) in one or more steps:
+In general, the \textbf{language generated} or defined by a grammar \(G\) \textbf{starting from non-terminal} \(A\) is the set of terminal strings that derive from non-terminal \(A\) in one or more steps:
 \[ L_A(G) = \left\{x \in \Sigma^\ast \mid A \xRightarrow{+} x \right\} \]
 
-If the nonterminal is the axiom \(S\), then the \textbf{language generated} by \(G\) is:
+If the non-terminal is the axiom \(S\), then the \textbf{language generated} by \(G\) is:
 \[ L_S(G) = L(G) = \left\{x \in \Sigma^\ast \mid S \xRightarrow{+} x \right\} \]
 
 \bigskip
@@ -504,8 +504,8 @@ Two grammars \(G\) and \(G^\prime\) are \textbf{equivalent} if they generate the
 A grammar \(G\) is called \textbf{clean} if both the following conditions are satisfied:
 
 \begin{enumerate}
-  \item every \textbf{nonterminal} \(A\) is \textbf{reachable} from the axiom \(S\), as it exists a derivation \(S \xRightarrow{+} \alpha A \beta\)
-  \item every \textbf{nonterminal} \(A\) is \textbf{well defined}, as it generates a non-empty language \(L_G(A) \neq \emptyset\)
+  \item every \textbf{non-terminal} \(A\) is \textbf{reachable} from the axiom \(S\), as it exists a derivation \(S \xRightarrow{+} \alpha A \beta\)
+  \item every \textbf{non-terminal} \(A\) is \textbf{well defined}, as it generates a non-empty language \(L_G(A) \neq \emptyset\)
         \begin{itemize}[label=\(\rightarrow\)]
           \item this rule includes also the case when no derivation from \(A\) terminates with a terminal string
         \end{itemize}
@@ -520,26 +520,26 @@ The \textbf{Grammar Cleaning Algorithm} is based on the following two steps:
 
 % slide 12, page 39
 \begin{enumerate}[label=\textbf{step \arabic*}:, ref=(\textbf{\arabic*}), left=20pt]
-  \item compute the \textit{set} \(\textit{DEF} \subseteq V\) of the well defined nonterminals
+  \item compute the \textit{set} \(\textit{DEF} \subseteq V\) of the well defined non-terminals
         \begin{itemize}
-          \item \textit{DEF} is initialized with the nonterminals that occur in the terminal rules \textit{(the rules having a terminal as their \RP)}
+          \item \textit{DEF} is initialized with the non-terminals that occur in the terminal rules \textit{(the rules having a terminal as their \RP)}
                 \[ \textit{DEF} \coloneqq \left\{ A \mid (A \rightarrow u) \in P, \ u \in \Sigma^\ast  \right\} \]
           \item this transformation is applied repeated until convergence is reached
                 \[ \textit{DEF} \coloneqq \textit{DEF} \cup \left\{ B \mid (B \rightarrow D_1 \ldots D_n) \in P \land \, \forall \, i \, D_i \in \left(\Sigma \cup \textit{DEF} \,\right)\right\} \]
                 \begin{itemize}
-                  \item each symbol \(D_i, 1 \leq i \leq n\) is either a terminal in \(\Sigma\) or a nonterminal in \(\textit{DEF}\) already
+                  \item each symbol \(D_i, 1 \leq i \leq n\) is either a terminal in \(\Sigma\) or a non-terminal in \(\textit{DEF}\) already
                   \item at each iteration, two possibile outcomes are possible:
                         \begin{enumerate}
-                          \item a new nonterminal is found that occurs as \LP of a rule having as \RP a string of terminals or well defined nonterminals
-                          \item the termination condition is reached, as no new nonterminal is found
+                          \item a new non-terminal is found that occurs as \LP of a rule having as \RP a string of terminals or well defined non-terminals
+                          \item the termination condition is reached, as no new non-terminal is found
                         \end{enumerate}
                 \end{itemize}
         \end{itemize}
-  \item compute a \textit{directed graph} between nonterminals using the \textbf{produce} relation \(A \xrightarrow{produce} B\)
+  \item compute a \textit{directed graph} between non-terminals using the \textbf{produce} relation \(A \xrightarrow{produce} B\)
         \begin{itemize}
-          \item this relation indicates that a nonterminal \(A\) produces a nonterminal \(B\) if and only if there exists a rule \(A \rightarrow \alpha B \beta\), with \(\alpha, \beta\) strings
-          \item a nonterminal \(C\) is reachable from the axiom \(S\) if and only if in the graph there exists a path directed from \(S\) to \(C\)
-          \item nonterminal that are not reachable are eliminated
+          \item this relation indicates that a non-terminal \(A\) produces a non-terminal \(B\) if and only if there exists a rule \(A \rightarrow \alpha B \beta\), with \(\alpha, \beta\) strings
+          \item a non-terminal \(C\) is reachable from the axiom \(S\) if and only if in the graph there exists a path directed from \(S\) to \(C\)
+          \item non-terminal that are not reachable are eliminated
         \end{itemize}
 \end{enumerate}
 
@@ -557,7 +557,7 @@ An essential property of technical languages is to be infinite.
 In order to generate an infinite number of string, the grammar has to derive strings of unbounded length:
 this feature needs \textbf{recursion} in the grammar rules.
 
-An \(n\)-step derivation of the form \(A \xRightarrow{n} x A y, \ n \geq 1\) is called \textbf{recursive} or \textbf{immediately recursive} if \(n=1\), while the nonterminal \(A\) is called \textbf{recursive}.
+An \(n\)-step derivation of the form \(A \xRightarrow{n} x A y, \ n \geq 1\) is called \textbf{recursive} or \textbf{immediately recursive} if \(n=1\), while the non-terminal \(A\) is called \textbf{recursive}.
 Similarly, if the strings \(x=\varepsilon\) or \(y=\varepsilon\), the recursion is called respectively \textbf{left-recursive} and \textbf{right-recursive}.
 
 \bigskip
@@ -570,7 +570,7 @@ Then language \(L(G)\) is infinite if and only if grammar \(G\) has a recursive 
         \begin{itemize}
           \item cleanliness condition of \(G\) implies \(S \xRightarrow{\ast} uAv\) (as \(A\) is reachable from \(S\))
           \item a successful derivation of \(A\) implies \(A \xRightarrow{+} w\)
-          \item therefore there exists nonterminals that generate an infinite language:
+          \item therefore there exists non-terminals that generate an infinite language:
                 \[ S \xRightarrow{\ast} uAv \xRightarrow{+}ux^m Ay^m v \xRightarrow{+} u x^m w y^m v \quad \forall \, m \geq 1 \]
         \end{itemize}
 \end{itemize}
@@ -645,9 +645,9 @@ A derivation of \(p \geq 1\) steps \(\beta_0 \Rightarrow \beta_1 \Rightarrow \ld
 it's called \textbf{left} \textit{(leftmost)} \textbf{derivation} \textbf{or} \textbf{right} \textit{(rightmost)} \textbf{derivation} if it holds \(\delta_i \in \Sigma^\ast\) or \(\eta_i \in \Sigma^\ast\), respectively, for every \(0 \leq i \leq p-1\) \textit{(every left or right part of the \RP is composed only by terminals)}.
 
 \bigskip
-In other words, at each step a left derivation \textit{(or a right one)} expands the rightmost \textit{(or leftmost)} nonterminal.
+In other words, at each step a left derivation \textit{(or a right one)} expands the rightmost \textit{(or leftmost)} non-terminal.
 A letter \(l\) or \(r\) may be subscripted to the arrow sign \textit{(\(\Rightarrow\))}, to explicitly indicate the direction of the derivation.
-Other derivations that are neither left or right exist, either because the nonterminal expanded is not always leftmost or rightmost, or because the expansion is sometimes leftmost and sometimes rightmost.
+Other derivations that are neither left or right exist, either because the non-terminal expanded is not always leftmost or rightmost, or because the expansion is sometimes leftmost and sometimes rightmost.
 
 Every sentence of a context free grammar can be generated by a left derivation and a right one;
 this property does not hold for other grammars \textit{(such as context sensitive grammars)}.
@@ -712,7 +712,7 @@ In the following Paragraphs \textit{(\ref{par:ambiguity-from-bilateral-recursion
 \paragraph{Ambiguity from bilateral recursion}
 \label{par:ambiguity-from-bilateral-recursion}
 
-A nonterminal symbol \(A\) is bilaterally recursive if it is \textbf{explained in the following Section}, for example \(A \xRightarrow{+} A \gamma\) and \(A \xRightarrow{+} \beta A\).
+A non-terminal symbol \(A\) is bilaterally recursive if it is \textbf{explained in the following Section}, for example \(A \xRightarrow{+} A \gamma\) and \(A \xRightarrow{+} \beta A\).
 The cases where the two derivations are produced by the same rule of by different rules have to be treated separately:
 
 \begin{itemize}
@@ -836,12 +836,12 @@ While normal forms are not strictly necessary for the definition of a grammar, t
 
 In applied works, however, normal formal grammars are usually not a good choice because they are larger and less readable;
 in order to simplify them, a number of transformations can be applied,
-They will be presented in the following Sections \textit{(\ref{sec:nonterminal-expansion}~to~\ref{sec:conversion-to-greibach-and-real-time-normal-form})}
+They will be presented in the following Sections \textit{(\ref{sec:non-terminal-expansion}~to~\ref{sec:conversion-to-greibach-and-real-time-normal-form})}
 
 \subsubsection{Nonterminal Expansion}
-\label{sec:nonterminal-expansion}
+\label{sec:non-terminal-expansion}
 
-A general purpose transformation preserving language is \textbf{nonterminal expansion}, which consists of replacing a nonterminal with its alternatives.
+A general purpose transformation preserving language is \textbf{non-terminal expansion}, which consists of replacing a non-terminal with its alternatives.
 It replaces rule \(A \rightarrow \alpha B \gamma\) with rules:
 \[ A \rightarrow \alpha \beta_1 \gamma \mid \alpha \beta_2 \gamma \mid \ldots \mid \alpha \beta_n \gamma \quad n \geq 1 \]
 where
@@ -858,12 +858,12 @@ The axiom elimination from \RP consists in introducing a new axiom \(S_0\) and t
 all the rules will be devoid of the axiom from the \RP as they will be strings \(\in \left( \Sigma \cup \left( V \setminus \left\{ S \right\} \right) \right)\)
 
 \subsubsection{Nullable Nonterminals and elimination of Empty rules}
-\label{sec:nullable-nonterminals-and-elimination-of-empty-rules}
+\label{sec:nullable-non-terminals-and-elimination-of-empty-rules}
 
-A nonterminal \(A\) is \textbf{nullable} if it can derive the empty string;
+A non-terminal \(A\) is \textbf{nullable} if it can derive the empty string;
 i.e. there exists a derivation \(A \xRightarrow{+} \varepsilon\).
 
-Consider the set \(\textit{Null} \subseteq V\) of nullable nonterminals.
+Consider the set \(\textit{Null} \subseteq V\) of nullable non-terminals.
 It is composed by the following logical clauses, to be applied until a fixed point is reached:
 
 \[
@@ -878,7 +878,7 @@ It is composed by the following logical clauses, to be applied until a fixed poi
 Where:
 
 \begin{enumerate}[label=row \arabic*), left=20pt]
-  \item for each rule \(\in P\) add as alternatives those obtained by deleting, in the \RP, the nullable nonterminals
+  \item for each rule \(\in P\) add as alternatives those obtained by deleting, in the \RP, the nullable non-terminals
   \item remove all empty rules \(A \rightarrow \varepsilon\), except for \(A=S\)
   \item clean the grammar and remove any circularity
 \end{enumerate}
@@ -886,7 +886,7 @@ Where:
 \subsubsection{Copy Rules and their elimination}
 \label{sec:copy-rules-and-their-elimination}
 
-A \textbf{copy}\textit{ (or \textbf{subcategorization})} \textbf{rule} has the form \(A \rightarrow B\), where \(B \in V\) is a nonterminal symbol.
+A \textbf{copy}\textit{ (or \textbf{subcategorization})} \textbf{rule} has the form \(A \rightarrow B\), where \(B \in V\) is a non-terminal symbol.
 Any such rule is equivalent to the relation \(L_B(G) \subseteq L_A(G)\), which means that the syntax class \(B\) is a subcategory of \textit{(is included in)} the syntax class \(A\).
 
 For example, related to programming languages, the rules
@@ -897,7 +897,7 @@ Copy rules factorize common parts, reducing the grammar size while reducing the 
 furthermore they don't have any practical utility.
 Removing these rules create shorter syntax trees: this is a common tradeoff in the design of formal grammars.
 
-For a grammar \(G\) and a nonterminal \(A\), the set \(\textit{Copy}\,(A) \subseteq V\) is defined as the set of \(A\) and all the nonterminals that are immediate of transitive copies of \(A\):
+For a grammar \(G\) and a non-terminal \(A\), the set \(\textit{Copy}\,(A) \subseteq V\) is defined as the set of \(A\) and all the non-terminals that are immediate of transitive copies of \(A\):
 \[ \textit{Copy}\,(A) = \left\{ B \in V \mid \exists \text{ a derivation } A \xRightarrow{\ast} B \right\} \]
 Let's assume that \(G\) is in nonnullable normal form and that the axiom \(S\) does not occur in any \RP.
 In order to compute the set \textit{Copy} the following logical clauses have to be applied until a fixed point is reached:
@@ -914,7 +914,7 @@ Finally construct the rule set \(P^\prime\) of a new grammar \(G^\prime\), equiv
 The effect is that a non immediate \textit{(multi step)} derivation \(A \xRightarrow{+} B \xRightarrow{+} \alpha\) of \(G\) shrinks to the immediate \textit{(one step)} derivation \(A \Rightarrow \alpha\) of \(G^\prime\) while keeping all the original non copy rules.
 
 \bigskip
-If, contrary to the hypothesis, \(G\) contains nullable terminals, the definition of set \textit{Copy} and its computation must also consider the derivations in form \(A \xRightarrow{+} BC \xRightarrow{+} B\) where nonterminal \(C\) is nullable.
+If, contrary to the hypothesis, \(G\) contains nullable terminals, the definition of set \textit{Copy} and its computation must also consider the derivations in form \(A \xRightarrow{+} BC \xRightarrow{+} B\) where non-terminal \(C\) is nullable.
 
 \subsubsection{Conversion of Left Recursion to Right Recursion}
 \label{sec:conversion-of-left-recursion-to-right-recursion}
@@ -930,12 +930,12 @@ There are two forms of transformation:
 
 \bigskip
 \textbf{Transformation of immediate left recursion:}
-consider all l-recursive alternatives of a nonterminal \(A\):
+consider all l-recursive alternatives of a non-terminal \(A\):
 \[ A \rightarrow A \beta_1 \mid A \beta_2 \mid \ldots \mid A \beta_h \quad h \geq 1 \]
 where no string \(\beta_i\) is empty and let the remaining alternatives of \(A\), needed to terminate the recursion, be:
 \[ A \rightarrow \gamma_1 \mid \gamma_2 \mid \ldots \mid \gamma_k \quad k \geq 1 \]
 
-A new secondary nonterminal \(A^\prime\) is introduced and the rule set is modified as follows:
+A new secondary non-terminal \(A^\prime\) is introduced and the rule set is modified as follows:
 \[\begin{cases}
     A \rightarrow \gamma_1 A^\prime \mid \gamma_2 A^\prime \mid \ldots \mid \gamma_k A^\prime \mid \gamma_1 \mid \gamma_2 \mid \ldots \mid \gamma_k \\
     A^\prime \rightarrow \beta_1 A^\prime \mid \beta_2 A^\prime \mid \ldots \, |\, \beta_h A^\prime \mid \beta_1 \mid \beta_2 \mid \ldots \mid \beta_h
@@ -956,20 +956,20 @@ In the \textbf{Chomsky Normal Form} \textit{(or CNF)} only two types of rules ar
 \end{enumerate}
 
 Moreover, if the empty strings in in the language, there is the axiomatic rule \(S \rightarrow \varepsilon\), but the axiom \(S\) is not allowed in any rule right part.
-With such constraints, any internal node of a syntax tree may have either who nonterminal siblings or one terminal sibling.
+With such constraints, any internal node of a syntax tree may have either who non-terminal siblings or one terminal sibling.
 
 In order to convert a grammar \(G\) to \textit{CNF}, the following steps are performed:
 
 \begin{enumerate}[label=\arabic*., ref=(\arabic*)]
   \item\label{enum:chomsky-transformation-1} Each rule \(A_0 \rightarrow A_1 A_2 \ldots A_n\) of length \(n \geq 2\) in converted into a rule of length \(2\) by singling out the first symbols \(A_1\) and the remaining suffixes \(\langle A_2, \ldots, A_n \rangle\)
   \begin{itemize}
-    \item a new nonterminal \(\langle A_2, \ldots, A_n \rangle\) is introduced
+    \item a new non-terminal \(\langle A_2, \ldots, A_n \rangle\) is introduced
     \item a new rule \(\langle A_2, \ldots, A_n \rangle \rightarrow A_2 \ldots A_n\) is created
     \item the original rule is replaced by \(A_0 \rightarrow A_1 \langle A_2, \ldots, A_n \rangle\)
   \end{itemize}
   \item The rule of length \(2\) can still convert terminals (as it's in form \(A \rightarrow aB, a \in \Sigma\)) and has to be replaced
         \begin{itemize}
-          \item a new nonterminal \(\langle a \rangle\) is introduced
+          \item a new non-terminal \(\langle a \rangle\) is introduced
           \item a new rule \(\langle a \rangle \rightarrow a\) is created
           \item the original rule is replaced by \(A \rightarrow \langle a \rangle B\)
         \end{itemize}
@@ -984,7 +984,7 @@ In the \textbf{real-time normal form}, every rule starts with a terminal:
 A special case of real time form is the \textbf{Greibach normal form:}
 \[ A \rightarrow a \alpha \ \text{where} \ a \in \Sigma \ \text{and} \ \alpha \in V^\ast \]
 
-Every rules starts with a terminal, followed by zero or more nonterminals;
+Every rules starts with a terminal, followed by zero or more non-terminals;
 both form exclude the empty string \(\varepsilon\) from the language.
 
 The \textit{real time} designation will be later understood \textit{(Section~\ref{sec:formal-definition-pda})} as a property of the pushdown automaton that can recognize the language:
@@ -1045,12 +1045,12 @@ The relation between families of grammars is then:
 
 \subsection{Linear grammars}
 
-A \textbf{linear grammar} is a \CF grammar that has at most one nonterminal in its right part.
+A \textbf{linear grammar} is a \CF grammar that has at most one non-terminal in its right part.
 This family of grammars gives evidence to some fundamental properties and leads to a straightforward construction of the automaton that recognizes the strings of a regular language.
 
 All of its rules have form:
 \[A \rightarrow uBv \quad \text{ with } u, v \in \Sigma^\ast, B \in \left(V \cup \varepsilon\right) \]
-that is, there's at most one nonterminal in the \RP of a rule.
+that is, there's at most one non-terminal in the \RP of a rule.
 The family of linear grammar is still more powerful than the family of \RE.
 
 \subsubsection{Unilinear grammars}
@@ -1064,7 +1064,7 @@ The rules of the following form are called respectively \textbf{right-linear} an
   \item left-linear rule: \(A \rightarrow Bu \) where \(u \in \Sigma^\ast\) and \(B \in \left( V \cup \varepsilon \right)\)
 \end{itemize}
 
-Both cases are linear and obtained by deleting on either side of of the two terminal strings that embrace nonterminal \(B\) in a linear grammar.
+Both cases are linear and obtained by deleting on either side of of the two terminal strings that embrace non-terminal \(B\) in a linear grammar.
 A grammar where the rules are either right of left-linear is termed unilinear or of type 3.
 
 Regular expressions can be translated into unilinear grammars via finite state automata.
@@ -1085,10 +1085,10 @@ A string \(x \in \Sigma^\ast\) is a language \(L_A(G)\) if:
   \item string \(x = ay\) starts with character \(a\), set \(P\) contains rule \(A \rightarrow aB\) and string \(y \in \Sigma^\ast\) is in the language \(L_B(G)\)
 \end{itemize}
 
-Every rule can be transcribed into a linear equation that has as unknowns the languages generated from each nonterminal.
+Every rule can be transcribed into a linear equation that has as unknowns the languages generated from each non-terminal.
 
-Let \(n = |V|\) be the number of nonterminals of grammar \(G\).
-Each nonterminal \(A_i\) is defined by a set of alternatives:
+Let \(n = |V|\) be the number of non-terminals of grammar \(G\).
+Each non-terminal \(A_i\) is defined by a set of alternatives:
 \[ A_i \rightarrow a A_1 \mid b A_1 \mid \ldots \mid a A_n \mid b A_n \mid \ldots \mid A_1 \mid \ldots \mid A_n \mid \varepsilon \]
 where some of the alternatives are empty. The rule \(A_i \rightarrow A_i\) is never present since the language is non circular.
 
@@ -1125,8 +1125,8 @@ It can be said that the given sentence can be \textit{pumped} by injecting the s
 
 \paragraph{Proof}
 
-Consider a strictly right-linear grammar and let \(k\) be the number of nonterminal symbols.
-The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the same nonterminal label \(A\) \textit{(illustrated in Figure~\ref{fig:pumping-strings-syntax-tree})}
+Consider a strictly right-linear grammar and let \(k\) be the number of non-terminal symbols.
+The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the same non-terminal label \(A\) \textit{(illustrated in Figure~\ref{fig:pumping-strings-syntax-tree})}
 
 \begin{figure}[htbp]
   \centering
@@ -1149,10 +1149,10 @@ Typical non regular languages, such as the Dyck language, the palindromes, and t
 a \textbf{recursive derivation that is neither left nor right-linear}.
 Such a derivation has the form:
 \[ A \xRightarrow{+} \alpha A \beta \quad \alpha \neq \varepsilon \land \beta \neq \varepsilon \]
-where the \RP contains the nonterminal symbol \(A\) between two strings \(\alpha\) and \(\beta\) of both terminals and nonterminals.
+where the \RP contains the non-terminal symbol \(A\) between two strings \(\alpha\) and \(\beta\) of both terminals and non-terminals.
 
 \bigskip
-A grammar is \textbf{not self nesting} if, for all nonterminals \(A\), every derivation \(A \xRightarrow{+} \alpha A \beta\) has either \(\alpha = \varepsilon\) or \(\beta = \varepsilon\);
+A grammar is \textbf{not self nesting} if, for all non-terminals \(A\), every derivation \(A \xRightarrow{+} \alpha A \beta\) has either \(\alpha = \varepsilon\) or \(\beta = \varepsilon\);
 self nesting derivations cannot be obtained with the grammars of the \REG family.
 
 Therefore:
@@ -1183,7 +1183,7 @@ The closure of the two families is shown in Table~\ref{tab:closure-regular-cf}.
   \centering
   \bigskip
   \begin{tblr}{c|c|c|c|c}
-    \textit{reversal} & \textit{star}       & \textit{union}              & \textit{complement}   & \textit{intersection}       \\
+    \textit{reversal} & \textit{star}       & \textit{union}              & \textit{complement}         & \textit{intersection}       \\
     \hline
     \(R^R \in \REG\)  & \(R^\ast \in \REG\) & \(R_1 \oplus R_2 \in \REG\) & \(\overline{R} \in \REG\)   & \(R_1 \cap R_2 \in \REG\)   \\
     \(L^R \in \CF\)   & \(L^\ast \in \CF\)  & \(L_1 \oplus L_2 \in \CF\)  & \(\overline{L} \notin \CF\) & \(L_1 \cap L_2 \notin \CF\)
@@ -1672,7 +1672,7 @@ the language has then to be reversed.
   \begin{tblr}{c|c|c}
     \textit{\#} & \textit{Grammar}                                         & \textit{Automaton}                                \\
     \hline
-    \(1\)       & \textit{nonterminal alphabet} \(V = Q\)                  & \textit{state set} \(Q = V\)                      \\
+    \(1\)       & \textit{non-terminal alphabet} \(V = Q\)                  & \textit{state set} \(Q = V\)                      \\
     \(2\)       & \textit{axiom} \(S = q_0\)                               & \textit{initial state} \(q_0 = S\)                \\
     \(3\)       & \(p \rightarrow a q\) where \(a \in \Sigma, p, q \in V\) & \input{Images/figure-3.tikz}                      \\
     \(4\)       & \(p \rightarrow q\) where \(p, q \in V\)                 & \input{Images/figure-4.tikz}                      \\
@@ -1686,7 +1686,7 @@ the language has then to be reversed.
 \bigskip
 Consider a right-linear grammar \(G = \left( V, \Sigma, P, S \right)\) and a nondeterministic automaton \(N = \left( Q, \Sigma, \delta, q_0, F \right)\) with a single initial state.
 Initially, assume that all the grammar rules are strictly unilinear:
-the states \(Q\) match then nonterminals \(V\), the initial state \(q_0\) matches the axiom \(S\) \textit{(rules \(1\) and \(2\) of the Table)}.
+the states \(Q\) match then non-terminals \(V\), the initial state \(q_0\) matches the axiom \(S\) \textit{(rules \(1\) and \(2\) of the Table)}.
 The pair of alternatives \(p \rightarrow a q \mid ar\) corresponds to a pair of nondeterministic moves \textit{(rule \(3\))}.
 A copy rule matches a spontaneous move  \textit{(rule \(4\))};
 finally, a final rule matches a final state \textit{(rule \(5\))}.
@@ -1994,8 +1994,8 @@ a deterministic finite state automaton \(M^\prime\) that recognizes the compleme
   \item the transition function \(\overline{\delta}\) of \(\overline{M}\) is
         \[\overline{\delta(q, a)} = \begin{cases}
             \delta(q, a) \quad & \text{ if } \delta(q, a)\in Q                                                             \\
-            p \quad           & \text{ if } \delta(q, a) = \epsilon \quad \textit{(if }  \delta \textit{ is not defined)} \\
-            p \quad           & \text{ for every } a \in \Sigma
+            p \quad            & \text{ if } \delta(q, a) = \epsilon \quad \textit{(if }  \delta \textit{ is not defined)} \\
+            p \quad            & \text{ for every } a \in \Sigma
           \end{cases}\]
   \item the final state set of \(\overline{M}\) if \(\overline{F} = \left( Q \setminus F \right) \cup \left\{ p \right\}\)
 \end{enumerate}
@@ -2324,9 +2324,9 @@ A grammar is called \textbf{simple deterministic} if it satisfies the next condi
 \begin{enumerate}
   \item every rule \RP starts with a terminal character
         \begin{itemize}
-          \item empty rules and rules starting with nonterminal symbols are not allowed
+          \item empty rules and rules starting with non-terminal symbols are not allowed
         \end{itemize}
-  \item for any nonterminal \(A\), there do no exist alternatives that start with the same character
+  \item for any non-terminal \(A\), there do no exist alternatives that start with the same character
         \begin{itemize}
           \item formally \(\nexists \, \left( A \rightarrow a \alpha \mid a \beta \right) \quad a \in \Sigma, \ \alpha, \beta \in \left( \Sigma \cup V \right)^\ast, \alpha \neq \beta\)
         \end{itemize}
@@ -2388,6 +2388,10 @@ Depending on the derivation being the leftmost or rightmost, and on the construc
         \end{itemize}
 \end{enumerate}
 
+\bigskip
+In order to store the previous states in a stack of unbounded length, \textbf{pointers} are used;
+the \textbf{pointer} is a reference to a node in the syntax tree, and it is used to store the current state of the parser.
+
 \subsubsection{Bottom up analysis}
 
 The right derivation built by the bottom up parser is in reverse order, because the input string is read from left to right.
@@ -2422,18 +2426,18 @@ Despite looking like a useless mind experiment, it has several advantages:
 \end{itemize}
 
 \bigskip
-In a grammar, each nonterminal is the left part of one or more alternatives;
-if a grammar \(G\) is in the extended context-free form (see \textit{(Section~\ref{sec:free-grammars-extended-with-regular-expressions})}), a rule \RP may contain the union operator, which makes it possible to define each nonterminal by just one rule
+In a grammar, each non-terminal is the left part of one or more alternatives;
+if a grammar \(G\) is in the extended context-free form (see \textit{(Section~\ref{sec:free-grammars-extended-with-regular-expressions})}), a rule \RP may contain the union operator, which makes it possible to define each non-terminal by just one rule
 \[ A \rightarrow \alpha \quad \alpha \ \re \in \left( \Sigma \cup V \right)^\ast \]
 The the \re \(\alpha\) defines a regular language, which can be recognized by an automaton \(M_A\).
-In the trivial case, where \(\alpha\) contain just terminal symbols, \(M_A\) recognizes \(L_A(G)\) starting from nonterminal \(A\);
-generally, \(M_A\) recognizes \(L_A(G)\) starting from the initial state, and invoking the automaton \(M_{B}\) for each nonterminal \(B\) found in \(\alpha\) \textit{(for rules in form \(A \rightarrow B,\  B \rightarrow \beta\))}.
+In the trivial case, where \(\alpha\) contain just terminal symbols, \(M_A\) recognizes \(L_A(G)\) starting from non-terminal \(A\);
+generally, \(M_A\) recognizes \(L_A(G)\) starting from the initial state, and invoking the automaton \(M_{B}\) for each non-terminal \(B\) found in \(\alpha\) \textit{(for rules in form \(A \rightarrow B,\  B \rightarrow \beta\))}.
 The case where \(B = A\) is accepted; the resulting invocation is called \textit{recursive}.
 
 \subsubsection{Formal definition of the Automaton Network}
 
-Let \(\Sigma\), \(V\) and \(S\) be respectively the set of terminals, nonterminals and axiom of an \EBNF grammar \(G\).
-For each nonterminal \(A\) there is exactly one grammar rule \(A \rightarrow \alpha\) and the rule right part \(\alpha\) is a \re over alphabet \(\Sigma \cup V\)
+Let \(\Sigma\), \(V\) and \(S\) be respectively the set of terminals, non-terminals and axiom of an \EBNF grammar \(G\).
+For each non-terminal \(A\) there is exactly one grammar rule \(A \rightarrow \alpha\) and the rule right part \(\alpha\) is a \re over alphabet \(\Sigma \cup V\)
 
 \textbf{Denotations:}
 \begin{itemize}
@@ -2468,7 +2472,7 @@ The set of initials \(\Ini \subseteq \Sigma\) of a state \(q_A\) is defined as:
 \end{itemize}
 
 \bigskip
-Let symbol \(a\) be terminal, symbols \(A\) and \(B\) be nonterminals, and \(q_A\) and \(r_A\) be states of automata \(M_A\).
+Let symbol \(a\) be terminal, symbols \(A\) and \(B\) be non-terminals, and \(q_A\) and \(r_A\) be states of automata \(M_A\).
 Set \Ini si computed by applying the following logical clauses until a fixed point is reached:
 
 \begin{enumerate}
@@ -2477,9 +2481,10 @@ Set \Ini si computed by applying the following logical clauses until a fixed poi
   \item \(\exists \ \text{arc} \ q_A \xrightarrow{B} r_A \land L(0_B) \ \text{is nullable} \ \land a \in \Ini(r_A)\)
 \end{enumerate}
 
-\paragraph{Look ahead}
+\paragraph{Candidates}
+\label{par:candidates}
 
-A pair \(\left\langle \textit{state}, \textit{token} \right\rangle\) is candidate (or item):
+A pair \(\left\langle \textit{state}, \textit{token} \right\rangle\) is candidate \textit{(or item)}:
 more precisely, a candidate is a pair \(\left\langle q_B, a \right\rangle \in Q \times \left( \Sigma \cup \left\{ \dashv \right\} \right)\).
 
 The intended meaning is that token \(a\) is a legal look ahead for the current state \(q_B\) of machine \(M_B\).
@@ -2488,21 +2493,23 @@ it says that the end of text character \(\dashv\) is expected when the entire in
 
 In order to calculate the candidates for a given grammar or machine net, a function named \textbf{closure} is defined.
 
-\bigskip
+\paragraph{Closure}
+\label{par:closure}
+
 Let \(C\) be a set of candidates.
 The \textbf{closure} of \(C\) is the function defined by applying the following clause:
 
 \begin{gather*}
   \begin{aligned}
-    & \textit{closure}(C) = C                          \\
-    & \langle 0_B, b \rangle \in \textit{closure}(C) \ \text{if} \ \exists \ \text{candidate} \ \langle q,a \rangle \in C \ \textbf{and} \ \exists \ \text{arc} \  q\xrightarrow{B} r \in \mathcal{M} \ \textbf{and} \ b \in \ \Ini \left( L \left( r \right) \cdot a \right) \\
+     & \textit{closure}(C) = C                                                                                                                                                                                                                                                 \\
+     & \langle 0_B, b \rangle \in \textit{closure}(C) \ \text{if} \ \exists \ \text{candidate} \ \langle q,a \rangle \in C \ \textbf{and} \ \exists \ \text{arc} \  q\xrightarrow{B} r \in \mathcal{M} \ \textbf{and} \ b \in \ \Ini \left( L \left( r \right) \cdot a \right) \\
   \end{aligned}
 \end{gather*}
 
 until a fixed point is reached.
 
 \bigskip
-The function closure computes the set of the machines that re reached from a given state \(q\) through one ore more invocations, without any intervening state transition.
+The function closure computes the set of the machines that are reached from a given state \(q\) through one or more \textit{invocations}, without any intervening state transition.
 For each reachable machine \(M_B\), represented by the initial state \(0_B\), the function returns any input character \(b\) that can legally occur when the machine terminates;
 such a character is the part of the look ahead set.
 
@@ -2519,11 +2526,11 @@ The formal conditions that allow a Bottom Up to be \textbf{deterministic} is nam
 Since the \EBNF grammars are considered and in common use \(k=1\), the condition is referred to as \ELRo.
 The language family accepted by the parsers of type \(\textit{LR}(1)\) \textit{(or \ELRo)} is exactly the family \DET of deterministic context free languages.
 
-The \ELRo parsers implement a deterministic automaton equipped with a pushdown stack and with a set of internal states \textit{(called macro states or \(m\)-states)} that consist of a set of candidates.
+The \ELRo parsers implement a deterministic automaton equipped with a pushdown stack and with a set of internal states \textit{(called macro states or \mstates)} that consist of a set of candidates.
 The automaton performs a series of moves of two types:
 
 \begin{itemize}
-  \item \textbf{shift move}, which reads an incoming character \textit{(token)} and applies a state transition function to compute the next \(m\)-state; the two of them are then pushed in the stack
+  \item \textbf{shift move}, which reads an incoming character \textit{(token)} and applies a state transition function to compute the next \mstate; the two of them are then pushed in the stack
   \item \textbf{reduction move}, applied as soon as the sequence of topmost stack symbols matches the recognizing path in a machine \(M_A\), under the condition that the current character is in the current look-ahead set
         \begin{itemize}[label=\(\rightarrow\)]
           \item the fragment of the syntax tree computed so far grows
@@ -2546,18 +2553,18 @@ The conditions for determinism are:
 \subsubsection{Multiple transition property and convergence}
 
 This condition may affect determinism;
-it occurs when two states within an \(m\)-state have outgoing arcs labelled with the same grammar symbol.
+it occurs when two states within an \mstate have outgoing arcs labelled with the same grammar symbol.
 
 \bigskip
-A pilot \(m\)-state \(I\) has the multiple transition property \textit{(MTP)} if it includes two candidates \(\langle q, \pi \rangle\) and \(\langle r. \rho\rangle\) with \(q \neq r\), such that for some grammar symbol \(X\) both transitions \(\delta(q, X)\) and \(\delta(r, X)\) are defined.
+A pilot \mstate \(I\) has the multiple transition property \textit{(MTP)} if it includes two candidates \(\langle q, \pi \rangle\) and \(\langle r. \rho\rangle\) with \(q \neq r\), such that for some grammar symbol \(X\) both transitions \(\delta(q, X)\) and \(\delta(r, X)\) are defined.
 
-Then the \(m\)-state \(I\) and the transition \(\theta(I, X)\) are called \textbf{convergent} if it holds \(\delta(q, X) = \delta(r, X)\).
+Then the \mstate \(I\) and the transition \(\theta(I, X)\) are called \textbf{convergent} if it holds \(\delta(q, X) = \delta(r, X)\).
 A \textbf{convergent transition} has a \textbf{convergence conflict} if \(\pi \cap \rho \neq \emptyset\), meaning the two look ahead sets of the two candidates are not disjoint.
 
 \subsubsection[ELR(1) condition]{\ELRo condition}
 \label{sec:elro-condition}
 
-Since two or more paths can lead to the same final state, two or more reductions may be applied when the parsers enters \(m\)-state \(I\);
+Since two or more paths can lead to the same final state, two or more reductions may be applied when the parsers enters \mstate \(I\);
 to choose the correct reduction, the parser has to store additional informations on the stack.
 The next conditions endure that all steps are deterministic.
 
@@ -2565,7 +2572,7 @@ The next conditions endure that all steps are deterministic.
 An \EBNF grammar or its machine net meets the condition \ELRo if the corresponding pilot satisfies the following conditions:
 
 \begin{itemize}
-  \item Every \(m\)-state \(I\) satisfies the next two clauses:
+  \item Every \mstate \(I\) satisfies the next two clauses:
         \begin{enumerate}
           \item no shift-reduce conflict occurs: for all the candidates \(\langle q, \pi \rangle \in I\) such state \(q\) is final and for all the arcs \(I \xrightarrow{a} I^\prime\) tht go out from \(I\) with terminal label \(a\), it must hold \(a \notin \pi\)
           \item no reduce-reduce conflict occurs: for all the candidates \(\langle q, \pi \rangle, \langle r, \rho \rangle \in I\) such that states \(q\) and \(r\) are final, it must hold \(\pi \cap \rho = \emptyset\)
@@ -2576,6 +2583,212 @@ An \EBNF grammar or its machine net meets the condition \ELRo if the correspondi
 If the grammar is purely \textit{BNF}, then the previous condition in referred to as \(\textit{LR}(1)\) instead of \ELRo;
 conflicts never occur in the \textit{BNF} grammars.
 
+\subsubsection[Construction of ELR(1) parser]{Construction of \ELRo parsers}
+
+Given an \EBNF grammar, an \ELRo parser can be built by the following \(3\) steps:
+
+\begin{enumerate}
+  \item From the automaton net, a deterministic \FSA \textit{(called pilot automaton)} is built
+        \begin{enumerate}
+          \item a pilot state \textit{(named macro-state or \mstate)} includes a non empty set of \textit{candidates} \textit{(see Paragraph~\ref{par:candidates})}
+        \end{enumerate}
+  \item The pilot is examined to check the conditions for deterministic parsing by inspecting the components of each \mstate; the three types of conflicts are:
+        \begin{enumerate}
+          \item \textbf{shift-reduce}, when both a shift and a reduce move are possible with the same configuration
+          \item \textbf{reduce-reduce}, when two or more reductions are possibile
+          \item \textbf{convergence}, when two two different parser computations that share a candidate lead to the same \mstate
+        \end{enumerate}
+  \item if the previous test is passed, then the deterministic \PDA is built; the pilot \FSA must be enriched with features for pointer management, needed to handle stacks of unbounded length
+  \item the \PDA is encoded in a programming language
+\end{enumerate}
+
+\bigskip
+The pilot automaton \(\mathcal{P}\) is the \(5\)-tuple defined by:
+
+\begin{enumerate}
+  \item The set \(R\) of \mstates
+  \item The pilot alphabet as the union \(\Sigma \cup V\) of the terminal and non-terminal symbols, named grammar symbols
+  \item The initial \mstate \(I_0 = \textit{closure}\left( \left\langle 0_S, \dashv \right\rangle \right)\), as defined in Paragraph~\ref{par:closure}
+  \item The \mstate set \(R = \left\{ I_0, I_1, \ldots \right\}\) and the state-transition function \(\theta: R \times \Sigma \cup V \rightarrow R\) are computed starting from \(I_0\) as next specified
+\end{enumerate}
+
+Let \(\left\langle p_A, \rho \right\rangle, \ p_A \in Q, \rho \subseteq \Sigma \cup \left\{ \dashv \right\}\), be a candidate and be \(X\) be a grammar symbol.
+Then the \textbf{terminal shift} \textit{(or \textbf{non-terminal shift}, according to the nature of \(X\))} under \(X\), is:
+\[\begin{cases}
+    \theta \left( \left\langle p_A, \rho \right\rangle, X \right) = \left\langle q_A, \rho \right\rangle \quad & \text{if the arc} \ p_A \xRightarrow{X} q_A \ \text{exists} \\
+    \emptyset \quad                                                                                            & \text{otherwise}
+  \end{cases}\]
+
+For a set \(C\) of candidates, the shift under a symbol \(X\) is the union of the shifts of the candidates in \(C\):
+\[ \theta(C, X) = \bigcup_{\forall \ \text{candidate} \ \gamma \in C} \theta(\gamma, X) \]
+
+Finally, the algorithm to build the state set \(R\) and the state transition function \(\theta\) is shown in Code~\ref{alg:elro-pilot}.
+
+\begin{lstlisting}[caption={Algorithm to build the \ELRo pilot automaton}, label={alg:elro-pilot}]
+R_1 := { I_0 } // prepare the initial m-state I_0
+do
+  R := R_1 // update the m-state set R
+  for each m-state I $\in$ R and symbol X $\in$ \Sigma \cup V do
+    I_1 := closure($\theta$(I, X)) // compute the closure of the shift under X
+    if I_1 != $\emptyset$ then // if the shift is not empty
+      add arc I $\xrightarrow{\texttt{X}}$ I_1 to the graph of $\theta$
+      if I_1 $\notin$ R_1 then // if the new m-state is not already in R_1
+        add I_1 to R_1
+      end
+    end
+  end
+while R $\neq$ R_1 // repeat until R_1 does not change
+\end{lstlisting}
+
+\paragraph[Base, Closure and Kernel of m-state]{Base, Closure and Kernel of \mstate}
+\label{par:base-closure-kernel}
+
+For an \mstate \(I\), the set of candidates is assigned to two classes, named base and closure.
+
+The base includes the non-initial candidates:
+\[ I_{\text{base}} = \left\{ \left\langle q, \pi \right\rangle \in I \mid q \ \text{is not an initial state} \ \right\} \]
+Clearly, for the \mstate \(I^\prime\) computed in the algorithm, the base \(I^\prime_{\text{base}}\) coincides with the pairs computed by \(\theta(I, X)\).
+
+The closure contains the remaining candidates of \(I\):
+\[ I_{\text{closure}} = I \setminus I_{\text{base}} = \left\{ \left\langle q , \pi \right\rangle \in I \mid q \ \text{is an initial state} \ \right\} \]
+By definition, the base of the initial \mstate \(I_0\) is empty and all other \mstates have a non-empty base, while their closure may be empty.
+
+Finally, the kernel of an \mstate \(I\) is the projection on the first component of every candidate:
+\[ I_{\text{kernel}} = \left\{ q \in Q \mid \left\langle q, \pi \right\rangle \in I \right\} \]
+Two \mstates with the same kernel (their differ just for some look ahead set) are called kernel-equivalent.
+
+\bigskip
+In short:
+
+\begin{itemize}
+  \item The Base contains the the items obtained after a shift
+  \item The Closure contains the items obtained after a closure
+  \item The Kernel is the set of states without look ahead
+\end{itemize}
+
+\paragraph{Stack Content}
+\label{par:stack-content}
+
+Since for any given net \(\mathcal{M}\) there are finitely many different candidates, the number of \mstates is bounded and the number of candidates in any \mstate is always lower than \(\mid Q \mid\), by assuming that all the candidates with the same state are coalesced.
+Moreover we assume that the candidates in an \mstate are ordered, so that each one occurs at a position (or offset) which will be referred to by other \mstates using a pointer called candidate identifier (or cid).
+
+The stack elements are of two types, interleaving each other:
+
+\begin{enumerate}
+  \item grammar symbols, elements of \(\Sigma \cup V\)
+  \item stack \mstates (or sms), denoted by letter \(J\) and containing ordered set of \(3\)-tuples of the form:
+        \[ \left\langle q_A, \pi, \textit{cid} \right\rangle \ \text{where} \ \begin{cases}
+            q_A \in Q \quad                                                      & \text{is a state}           \\
+            \pi \subseteq \Sigma \cup \left\{ \dashv \right\} \quad              & \text{is a look ahead set}  \\
+            1 \leq \textit{cid} \leq | Q | \ \text{or} \ \text{cid} = \bot \quad & \text{candidate identifier}
+          \end{cases} \]
+        where \(\bot\) represent the \texttt{NIL} value for the cid pointer.
+        For readability, a cid value will be prefixed by the marker character \(\sharp\).
+\end{enumerate}
+
+A natural surjective mapping, denoted by \(\mu\), from the set of sms to the set of \mstates defined by \(\mu(J) = I\) if and only if deleting the third field from the stack candidates of \(J\), the result is \(I\).
+
+\subsubsection{Pushdown Algorithm}
+
+Let the current stack be
+\[ J[0] a_1 \, J[1] a_2 \ldots a_k \overbracket{J[k]}^{\text{top}} \]
+where \(a_i\) is a grammar symbol.
+
+The steps of the algorithm are shown in the following Paragraphs.
+
+\paragraph*{Initialization}
+
+The initial stack just contains the sms:
+\[ J_0 = \left\{ s \mid s = \left\langle q, \pi, \bot \right\rangle \ \text{for every candidate} \ \left\langle q, \pi \right\rangle \in I_0 \right\} \]
+thus \(\mu(J_0) = I_0\)
+
+\paragraph*{Shift}
+
+Let the top sms be \(J\) and \(I = \mu(J)\), let the current token be \(a \in \Sigma\) and assume that the \mstate \(I\) has transition \(\theta(I, a) = I^\prime\). The shift move performs the following two operations:
+\begin{enumerate}[label=\arabic*., ref=(\arabic*)]
+\item\label{enum:shift-move-1} push token \(a\) on stack and get the next token
+\item\label{enum:shift-move-2} push on stack the sms \(J^\prime\) computed as follows:
+\begin{gather*}
+  \begin{aligned}
+    J^\prime  = & \left\{ \left\langle q_A^\prime, \rho, \sharp j \right\rangle \mid \left\langle q_a, \rho, \sharp j \right\rangle \ \text{is at position} \ i \ \text{in} \ J \land q_A \xrightarrow{a} q_A^\prime \in \delta \right\} \\
+              \cup & \left\{ \left\langle 0_B, \sigma, \bot \right\rangle \mid \left\langle 0_B, \sigma  \right\rangle \in I_{\text{closure}}^\prime \right\}
+  \end{aligned}
+\end{gather*}
+thus \(\mu(J^\prime) = I^\prime\)
+\end{enumerate}
+
+\paragraph*{Reduction of non initial candidates}
+The \mstates corresponding to the current stack are  \(I[i] = \mu\left( J[i] \, 1 \leq i \leq k \right)\) and the current token is \(a\);
+assume that by inspecting \(I[k]\) the pilot chooses the reduction candidate \(c = \left\langle q_a, \pi \right\rangle \in I[k]\), where \(q_A\) is a final and non initial state.
+Let \(t_k = \left\langle q_A, \rho, \sharp i_k \right\rangle \in J[k]\) be the only candidate such that the current token \(a\) satisfies \(a \in \rho\).
+From \(i_k\) a cid starts, which links stack candidate \(t_k\) to a stack candidate \(t_{k-1} = \left\langle p_A, \rho, \sharp i_{k-1} \right\rangle \in J[k-1]\) until a stack candidate \(t_h \in J[h]\) is reached such that has a \texttt{NIL} cid and therefore its state is initial.
+
+The reduction move does as follows:
+
+\begin{enumerate}
+  \item grow the syntax forest by applying the following reduction
+  \[ a_{h+1} a_{h+2} \ldots a_k \rightsquigarrow A \]
+  \item pop the following stack symbols
+  \[ J[k] a_k \, J[k-1] a_{k-1} \ldots J[h+1] a_{h+1} \]
+  \item execute the non-terminal shift (see below)
+\end{enumerate}
+
+\paragraph*{Reduction of initial candidate}
+
+The reduction of initial candidates differs to the preceding case in the state of the chosen candidate \(c = \left\langle 0_A, \pi, \bot \right\rangle\) which is both final and initial;
+the parser move grows the syntax forest by the reduction \(\varepsilon \rightsquigarrow A\) and performs the non-terminal shift move corresponding to \(\theta(I[k], A) = I^\prime\).
+
+\paragraph*{Nonterminal shift}
+
+The non-terminal shift move is the same a s the shift move, but the shifted token is a non-terminal \(A \in V\).
+The only difference is that the parser does not read the next input token at line~\ref{enum:shift-move-2} of the shift move.
+
+\paragraph*{Acceptance}
+
+The parser accepts and halts when the stack is \(J_0\), the move is the non-terminal shift defined by \(\theta(I_0, S)\) and the current token is \(\dashv\).
+
+\subsubsection{Time complexity}
+
+While analysing a string \(x\) of length \(n = |x|\), the number of elements in the stack is \(\mathcal{O}(n+1)=\mathcal{O}(n)\).
+The number of total moves performed by the \PDA is the sum of:
+
+\begin{enumerate}
+  \item number of terminal shift moves: \(n_T\)
+  \item number of non-terminal shift moves: \(n_N\)
+  \item number of reductions: \(n_R\)
+\end{enumerate}
+
+Since \(n_T = n, n_N=n_R\) (for each reduction there's one non-terminal shift), the total number of moves is \(n_T + n_N + n_R = n +  \cdot n_R\).
+
+Furthermore:
+\begin{enumerate}
+  \item the number of reductions with one or more terminals is lower than \(n\)
+  \item the number of reductions of type \(A \rightarrow \varepsilon\) is lower than \(n\)
+  \item the number of reductions without any terminals is lower than \(n\)
+\end{enumerate}
+
+Thus the time complexity is \(\mathcal{O}(n)\).
+
+\subsubsection{Implementation via Vector Stack}
+
+The \PDA can be implemented using a vector stack: this solution is potentially faster, and offers the ability of accessing the items in the stack via their integer index.
+As seen before (Paragraph~\ref{par:stack-content}), the stack contains elements of two alternating types: grammar symbols and vector stack \mstates (or vsms).
+
+A vsms, denoted by \(J\), is a set of pairs, named vector-stack candidates in form \(\langle q_A, \text{elemid} \rangle\) differing from the previous definition of stack candidates because the second component is a positive integer named element identifier (elemeid) instead of the candidate identifier (cid);
+furthermore, the set is now ordered.
+Each elemid points back to the vector-stack element containing the initial state of the current machine, so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
+
+\textbf{Notable values:}
+\begin{itemize}
+  \item In a closure item, the value of elemid is the current stack element index
+  \item In a base item, the value of elemid is the same as the item before
+\end{itemize}
+
+
+\bigskip
+The surjective mapping from from vector-stack \mstates to pilot \mstates is denoted \(\mu\) as before.
+
+
 \subsection{Top down Syntax Analysis}
 \label{sec:top-down}
 
@@ -2585,14 +2798,14 @@ A machine net \(\mathcal{M}\) meets the \ELLo condition if the following conditi
 
 \begin{enumerate}
   \item there are no left recursive derivations
-  \item the net meets the \ELRo condition \textit{(Section~\ref{sec:elro-condition})}; it must not have either shift reduce, reduce reduce or convergence conflicts
+  \item the net meets the \ELRo condition \textit{(Section~\ref{sec:elro-condition})}; it must not have either shift-reduce, reduce-reduce or convergence conflicts
   \item the net has single transition property \textit{(STP)}
 \end{enumerate}
 
 \subsection{Complexity of parsing}
 
-While analysing a string \(x\), with \(n = |x|\) characters, the elements in the stack is \(\mathcal{O}(n)\).
-To determinize the number of moves of the \PDA, the following contributes must be added:
+While analysing a string \(x\), with \(n = |x|\) characters, the number of elements in the stack is \(\mathcal{O}(n)\).
+The number of total moves performed by the \PDA is the sum of:
 
 \begin{enumerate}
   \item number of terminal shift moves: \(n_T\)
@@ -2615,7 +2828,7 @@ The closure of languages under the set operations, Kleene star and concatenation
   \centering
   \bigskip
   \begin{tblr}{r|[1pt]c|c|c|c|c}
-    \textit{language family} & \textit{concatenation} & \textit{union} & \textit{intersection} & \textit{difference} & \textit{complement}  \\
+    \textit{language family} & \textit{concatenation} & \textit{union} & \textit{intersection} & \textit{difference} & \textit{complement} \\
     \hline
     \REG                     & \colorcmark            & \colorcmark    & \colorxmark           & \colorxmark         & \colorcmark         \\
     \CF                      & \colorcmark            & \colorcmark    & \colorxmark           & \colorxmark         & \colorxmark         \\
