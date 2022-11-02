@@ -68,6 +68,7 @@
     "Determinize",
     "distinguishability",
     "Dyck",
+    "elemid",
     "Greibach",
     "Kleene",
     "metasymbol",
@@ -91,6 +92,7 @@
     "tikztemp",
     "tradeoff",
     "undistinguishability",
-    "Unilinear"
+    "Unilinear",
+    "vsms"
   ]
 }

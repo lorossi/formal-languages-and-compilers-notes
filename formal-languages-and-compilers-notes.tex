@@ -439,16 +439,16 @@ The terminal in the \RP of a rule in \textit{operator form} is called \textit{op
   \bigskip
   \centering
   \begin{tabular}{l|c|r}
-    \textit{class}                           & \textit{description}                                               & \textit{model}                         \\
+    \textit{class}                           & \textit{description}                                                & \textit{model}                         \\
     \hline
-    \textit{terminal}                        & either \RP contains only terminals or it's the empty string        & \(\rightarrow u \mid \varepsilon\)     \\
-    \textit{empty} or \textit{null}          & \RP is the empty string                                            & \(\rightarrow \varepsilon\)            \\
-    \textit{initial} or \textit{axiomatic}   & \LP is the grammar axiom \(S\)                                     & \(S \rightarrow \alpha\)               \\
-    \textit{recursive}                       & \LP occurs in \RP                                                  & \(A \rightarrow \alpha A \beta\)       \\
-    \textit{left recursive}                  & \LP is the prefix of \RP                                           & \(A \rightarrow A \beta\)              \\
-    \textit{right recursive}                 & \LP is the suffix of \RP                                           & \(A \rightarrow \beta A\)              \\
+    \textit{terminal}                        & either \RP contains only terminals or it's the empty string         & \(\rightarrow u \mid \varepsilon\)     \\
+    \textit{empty} or \textit{null}          & \RP is the empty string                                             & \(\rightarrow \varepsilon\)            \\
+    \textit{initial} or \textit{axiomatic}   & \LP is the grammar axiom \(S\)                                      & \(S \rightarrow \alpha\)               \\
+    \textit{recursive}                       & \LP occurs in \RP                                                   & \(A \rightarrow \alpha A \beta\)       \\
+    \textit{left recursive}                  & \LP is the prefix of \RP                                            & \(A \rightarrow A \beta\)              \\
+    \textit{right recursive}                 & \LP is the suffix of \RP                                            & \(A \rightarrow \beta A\)              \\
     \textit{copy}                            & \RP consists of one non-terminal                                    & \(A \rightarrow B\)                    \\
-    \textit{identity}                        & \LP and \RP are the same                                           & \(A \rightarrow A\)                    \\
+    \textit{identity}                        & \LP and \RP are the same                                            & \(A \rightarrow A\)                    \\
     \textit{linear}                          & \RP contains at most one non-terminal                               & \(\rightarrow u B v \,|\, v\)          \\
     \textit{left-linear} or \textit{type 3}  & \RP contains at most one non-terminal as the \textit{prefix}        & \(\rightarrow B v \,|\, w\)            \\
     \textit{right-linear} or \textit{type 3} & \RP contains at most one non-terminal as the \textit{suffix}        & \(\rightarrow u B \,|\, w\)            \\
@@ -1672,7 +1672,7 @@ the language has then to be reversed.
   \begin{tblr}{c|c|c}
     \textit{\#} & \textit{Grammar}                                         & \textit{Automaton}                                \\
     \hline
-    \(1\)       & \textit{non-terminal alphabet} \(V = Q\)                  & \textit{state set} \(Q = V\)                      \\
+    \(1\)       & \textit{non-terminal alphabet} \(V = Q\)                 & \textit{state set} \(Q = V\)                      \\
     \(2\)       & \textit{axiom} \(S = q_0\)                               & \textit{initial state} \(q_0 = S\)                \\
     \(3\)       & \(p \rightarrow a q\) where \(a \in \Sigma, p, q \in V\) & \input{Images/figure-3.tikz}                      \\
     \(4\)       & \(p \rightarrow q\) where \(p, q \in V\)                 & \input{Images/figure-4.tikz}                      \\
@@ -2378,13 +2378,13 @@ Depending on the derivation being the leftmost or rightmost, and on the construc
 \begin{enumerate}
   \item \textbf{top-down parsers}: construct the \textbf{leftmost derivation} starting from the axiom, growing the root toward the leaves
         \begin{itemize}
-          \item each algorithm step corresponds to a derivation step
-          \item the syntax tree is built through expansions
+          \item each algorithm step corresponds to a \textbf{derivation} step
+          \item the syntax tree is built through \textbf{expansions}
         \end{itemize}
-  \item \textbf{bottom-up parsers}: construct the \textbf{rightmost derivation} starting from the leaves, growing the leaves toward the root
+  \item \textbf{bottom-up parsers}: construct the \textbf{rightmost derivation} starting from the leaves, growing them toward the root
         \begin{itemize}
-          \item each algorithm step corresponds to a a reduction
-          \item the syntax tree is built through reductions
+          \item each algorithm step corresponds to a a \textbf{reduction}
+          \item the syntax tree is built through \textbf{reductions}
         \end{itemize}
 \end{enumerate}
 
@@ -2396,26 +2396,26 @@ the \textbf{pointer} is a reference to a node in the syntax tree, and it is used
 
 The right derivation built by the bottom up parser is in reverse order, because the input string is read from left to right.
 
-The reduction operations transform the prefix of a phrase form into a string \(\alpha \in \left( V \cup \Sigma \right)^\ast\), called \textbf{viable prefix}, that may include the result of previous reductions (stored in the stack).
+The reduction operations transform the prefix of a phrase form into a string \(\alpha \in \left( V \cup \Sigma \right)^\ast\), called \textbf{viable prefix}, that may include the result of previous reductions \textit{(stored in the stack)}.
 
 At each step of the analysis, the parser must decide whether:
 
 \begin{itemize}
-  \item continue and read the next symbol via a shift operation
-  \item build a subtree for a portion of the viable prefix
+  \item continue and \textbf{read the next symbol} via a shift operation
+  \item \textbf{build a subtree} for a portion of the viable prefix
 \end{itemize}
 
-The choice is made basing on the symbols coming after the current one (lookahead).
+The choice is made basing on the symbols coming after the current one \textit{(lookahead)}.
 
 \bigskip
 In principle, syntax analysis would work as well from right to left by scanning the reversed source string;
-however reversing the scanning order may cause loss of determinism, as the \DET family is not closed under reflection (as shown in Table~\ref{tab:closure-det}).
+however reversing the scanning order may cause loss of determinism, as the \DET family is not closed under reflection \textit{(as shown in Table~\ref{tab:closure-det})}.
 
 Moreover, all existing languages are designed for left to right processing, as its reading direction matches the natural language direction \textit{(left to right)}.
 
 \subsection{Grammars as networks of Finite Automata}
 
-A grammar can be represented as a network of finite automata.
+A grammar can be represented as a \textbf{network of finite automata}.
 Despite looking like a useless mind experiment, it has several advantages:
 
 \begin{itemize}
@@ -2427,52 +2427,53 @@ Despite looking like a useless mind experiment, it has several advantages:
 
 \bigskip
 In a grammar, each non-terminal is the left part of one or more alternatives;
-if a grammar \(G\) is in the extended context-free form (see \textit{(Section~\ref{sec:free-grammars-extended-with-regular-expressions})}), a rule \RP may contain the union operator, which makes it possible to define each non-terminal by just one rule
+if a grammar \(G\) is in the extended context-free form \textit{(see Section~\ref{sec:free-grammars-extended-with-regular-expressions})}, a rule \RP may contain the union operator, which makes it possible to define each non-terminal by just one rule, for example:
 \[ A \rightarrow \alpha \quad \alpha \ \re \in \left( \Sigma \cup V \right)^\ast \]
 The the \re \(\alpha\) defines a regular language, which can be recognized by an automaton \(M_A\).
 In the trivial case, where \(\alpha\) contain just terminal symbols, \(M_A\) recognizes \(L_A(G)\) starting from non-terminal \(A\);
 generally, \(M_A\) recognizes \(L_A(G)\) starting from the initial state, and invoking the automaton \(M_{B}\) for each non-terminal \(B\) found in \(\alpha\) \textit{(for rules in form \(A \rightarrow B,\  B \rightarrow \beta\))}.
+
 The case where \(B = A\) is accepted; the resulting invocation is called \textit{recursive}.
 
 \subsubsection{Formal definition of the Automaton Network}
 
-Let \(\Sigma\), \(V\) and \(S\) be respectively the set of terminals, non-terminals and axiom of an \EBNF grammar \(G\).
-For each non-terminal \(A\) there is exactly one grammar rule \(A \rightarrow \alpha\) and the rule right part \(\alpha\) is a \re over alphabet \(\Sigma \cup V\)
+Let \(\Sigma\), \(V\) and \(S\) be respectively the set of \textbf{terminals}, \textbf{non-terminals} and \textbf{axiom} of an \EBNF grammar \(G\).
+For each non-terminal \(A\) there is exactly one grammar rule \(A \rightarrow \alpha\) and the rule right part \(\alpha\) is a \re over alphabet \(\Sigma \cup V\).
 
 \textbf{Denotations:}
 \begin{itemize}
-  \item \(S \rightarrow \sigma, \ A \rightarrow \alpha, \ B \rightarrow \beta, \ \ldots\) represent the grammar rules
-  \item \(R_S, \ R_A, \ R_B, \ \ldots\) represent the regular languages over alphabet \(\Sigma \cup V\) defined by the grammar rules \(\sigma, \ \alpha, \ \beta, \ \ldots\) respectively
-  \item \(M_S, \ M_A, \ M_B, \ \ldots\) represent the automata recognizing \(R_S, \ R_A, \ R_B, \ \ldots\) respectively
-  \item \(\mathcal{M}\) is the collection of all automata (the net)
-  \item \(Q_A = \left\{ 0_A, \ldots, q_A, \ldots \right\}\) is the state set of automaton \(M_A\), where \(0_A\) is the only initial state and its final state set is \(F_A \subseteq Q_A\)
-  \item the state set \(Q\) of a net \(\mathcal{M}\) is the union of all the states of the component machines \[Q = \displaystyle \bigcup_{M_A \in \mathcal{M}} Q_A\]
-  \item the names of the states are unique, so that \(q_A \in Q_A\) and \(q_B \in Q_B\) are different for \(A \neq B\)
-  \item the function \(\delta\) represent the transition for each individual automaton
-  \item for a state \(q_A\), the symbol \(R (M_A, q_A)\) \textit{(or \(R(q_A)\) for brevity)} denotes the regular language over alphabet \(\Sigma \cup V\) recognized by \(M_A\) starting from state \(q_A\). For the initial state, \(R(0_A) \equiv R_A\)
-  \item the set of terminal strings generated along the path of a machine, starting from state \(q_0\) and reaching a final state is called \(L(q)\)
+  \item \(S \rightarrow \sigma, \ A \rightarrow \alpha, \ B \rightarrow \beta, \ \ldots\) represent the \textbf{grammar rules}
+  \item \(R_S, \ R_A, \ R_B, \ \ldots\) represent the \textbf{regular languages} over alphabet \(\Sigma \cup V\) defined by the grammar rules \(\sigma, \ \alpha, \ \beta, \ \ldots\) respectively
+  \item \(M_S, \ M_A, \ M_B, \ \ldots\) represent the \textbf{automata} recognizing \(R_S, \ R_A, \ R_B, \ \ldots\) respectively
+  \item \(\mathcal{M}\) is the \textbf{collection} of all automata \textit{(the net)}
+  \item \(Q_A = \left\{ 0_A, \ldots, q_A, \ldots \right\}\) is the \textbf{state set} of automaton \(M_A\), where \(0_A\) is the only initial state and its final state set is \(F_A \subseteq Q_A\)
+  \item the state set \(Q\) of a net \(\mathcal{M}\) is the \textbf{union of all the states} of the component machines \[Q = \displaystyle \bigcup_{M_A \in \mathcal{M}} Q_A\]
+  \item the \textbf{names of the states are unique}, so that \(q_A \in Q_A\) and \(q_B \in Q_B\) are different for \(A \neq B\)
+  \item the function \(\delta\) represent the \textbf{transition} for each individual automaton
+  \item for a state \(q_A\), the symbol \(R (M_A, q_A)\) \textit{(or \(R(q_A)\) for brevity)} denotes the \textbf{regular language} over alphabet \(\Sigma \cup V\) recognized by \(M_A\) starting from state \(q_A\). For the initial state, \(R(0_A) \equiv R_A\)
+  \item the set of \textbf{terminal strings} generated along the path of a machine, starting from state \(q_0\) and reaching a final state is called \(L(q)\)
 \end{itemize}
 
 Furthermore, every every machine \(M_A\) must not have any arc entering the initial state \(0_A\); this requirement ensures that hte initial state is not visited twice.
 If this situation occurs in a machine, then a new initial state \(0_A\) is added, and an arc is added from \(0^\prime_A\) to \(0_A\).
 
-Automata satisfying this condition are called \textbf{normalized} or with initial state non recirculating \textit{(or non reentrant)}.
-It's not forbidden that the initial state is also a final state.
+Automata satisfying this condition are called \textbf{normalized} or with initial state non recirculating \textit{(or non reentrant)};
+this condition does not forbid the existence of initial states that are also final.
 
 \paragraph{Initials}
 
-The set of initials \(\Ini \subseteq \Sigma\) of a state \(q_A\) is defined as:
+The \textbf{set of initials} \(\Ini \subseteq \Sigma\) of a state \(q_A\) is defined as:
 \[ \Ini(q_A) = \Ini\left( L\left( q_A \right) \right) = \left\{ a \in \Sigma \mid a \Sigma^\ast \cap L\left( q_A \right) \neq \emptyset \right\} \]
 
 \bigskip
 \textbf{Observations}:
 \begin{itemize}
-  \item \Ini may not contain the null string \(\varepsilon\)
-  \item A set \(\Ini(q_A)\) is empty if and only if the empty string is the only generated string from \(q_A\): \(L\left( q_A \right) = \left\{ \varepsilon \right\}\)
+  \item \Ini may \textbf{not} contain the null string \(\varepsilon\)
+  \item A set \(\Ini(q_A)\) is \textbf{empty} if and only if the empty string is the only generated string from \(q_A\): \(L\left( q_A \right) = \left\{ \varepsilon \right\}\)
 \end{itemize}
 
 \bigskip
-Let symbol \(a\) be terminal, symbols \(A\) and \(B\) be non-terminals, and \(q_A\) and \(r_A\) be states of automata \(M_A\).
+Let symbol \(a\) be \textbf{terminal}, symbols \(A\) and \(B\) be \textbf{non-terminals}, and \(q_A\) and \(r_A\) be \textbf{states of automata} \(M_A\).
 Set \Ini si computed by applying the following logical clauses until a fixed point is reached:
 
 \begin{enumerate}
@@ -2484,7 +2485,7 @@ Set \Ini si computed by applying the following logical clauses until a fixed poi
 \paragraph{Candidates}
 \label{par:candidates}
 
-A pair \(\left\langle \textit{state}, \textit{token} \right\rangle\) is candidate \textit{(or item)}:
+A pair \(\left\langle \textit{state}, \textit{token} \right\rangle\) is a \textbf{candidate} \textit{(or item)}:
 more precisely, a candidate is a pair \(\left\langle q_B, a \right\rangle \in Q \times \left( \Sigma \cup \left\{ \dashv \right\} \right)\).
 
 The intended meaning is that token \(a\) is a legal look ahead for the current state \(q_B\) of machine \(M_B\).
@@ -2523,7 +2524,7 @@ For brevity, the singleton look ahead set \(\left\langle q, \left\{ b \right\} \
 \subsection{Bottom up Syntax Analysis}
 
 The formal conditions that allow a Bottom Up to be \textbf{deterministic} is named \(\textit{LR}(k)\), where the parameter \(k \geq 0\) represents the number of consecutive characters are inspected by the parser to decide the next action deterministically.
-Since the \EBNF grammars are considered and in common use \(k=1\), the condition is referred to as \ELRo.
+Since the \EBNF grammars are normally considered and \(k=1\) is a common value, the condition is referred to as \ELRo.
 The language family accepted by the parsers of type \(\textit{LR}(1)\) \textit{(or \ELRo)} is exactly the family \DET of deterministic context free languages.
 
 The \ELRo parsers implement a deterministic automaton equipped with a pushdown stack and with a set of internal states \textit{(called macro states or \mstates)} that consist of a set of candidates.
@@ -2533,9 +2534,9 @@ The automaton performs a series of moves of two types:
   \item \textbf{shift move}, which reads an incoming character \textit{(token)} and applies a state transition function to compute the next \mstate; the two of them are then pushed in the stack
   \item \textbf{reduction move}, applied as soon as the sequence of topmost stack symbols matches the recognizing path in a machine \(M_A\), under the condition that the current character is in the current look-ahead set
         \begin{itemize}[label=\(\rightarrow\)]
-          \item the fragment of the syntax tree computed so far grows
-          \item in order to update the stack, the topmost part \textit{(handle)} is popped
-          \item if more than one reduction can be chosen, a reduction-reduction conflict occurs
+          \item the fragment of the \textbf{syntax tree} computed so far \textbf{grows}
+          \item in order to update the stack, the topmost part \textit{(handle)} is \textbf{popped}
+          \item if more than one reduction can be chosen, a \textbf{reduction-reduction conflict} occurs
         \end{itemize}
 \end{itemize}
 
@@ -2543,11 +2544,11 @@ The \PDA accepts the input string if the last move reduces the stack to the init
 The latter condition can be expressed by saying that the special end marker character \(\dashv\) is the current input token.
 
 \bigskip
-The conditions for determinism are:
+The conditions for \textbf{determinism} are:
 
 \begin{enumerate}
-  \item in every parser configuration, if a shift move is permitted then a reduction move is impossible
-  \item in every configuration, at most one reduction move is possible
+  \item in every parser configuration, if \textbf{a shift move is permitted} then \textbf{a reduction move is impossible}
+  \item in every configuration, \textbf{at most one reduction move is possible}
 \end{enumerate}
 
 \subsubsection{Multiple transition property and convergence}
@@ -2556,9 +2557,10 @@ This condition may affect determinism;
 it occurs when two states within an \mstate have outgoing arcs labelled with the same grammar symbol.
 
 \bigskip
-A pilot \mstate \(I\) has the multiple transition property \textit{(MTP)} if it includes two candidates \(\langle q, \pi \rangle\) and \(\langle r. \rho\rangle\) with \(q \neq r\), such that for some grammar symbol \(X\) both transitions \(\delta(q, X)\) and \(\delta(r, X)\) are defined.
+A pilot \mstate \(I\) has the multiple transition property \textit{(MTP)} if it includes two candidates \(\langle q, \pi \rangle\) and \(\langle r, \rho\rangle\) with \(q \neq r\), such that for some grammar symbol \(X\) both transitions \(\delta(q, X)\) and \(\delta(r, X)\) are defined.
 
 Then the \mstate \(I\) and the transition \(\theta(I, X)\) are called \textbf{convergent} if it holds \(\delta(q, X) = \delta(r, X)\).
+
 A \textbf{convergent transition} has a \textbf{convergence conflict} if \(\pi \cap \rho \neq \emptyset\), meaning the two look ahead sets of the two candidates are not disjoint.
 
 \subsubsection[ELR(1) condition]{\ELRo condition}
@@ -2569,15 +2571,15 @@ to choose the correct reduction, the parser has to store additional informations
 The next conditions endure that all steps are deterministic.
 
 \bigskip
-An \EBNF grammar or its machine net meets the condition \ELRo if the corresponding pilot satisfies the following conditions:
+An \EBNF grammar or its machine net meets the condition \textbf{\ELRo} if the corresponding pilot satisfies the following conditions:
 
 \begin{itemize}
   \item Every \mstate \(I\) satisfies the next two clauses:
         \begin{enumerate}
-          \item no shift-reduce conflict occurs: for all the candidates \(\langle q, \pi \rangle \in I\) such state \(q\) is final and for all the arcs \(I \xrightarrow{a} I^\prime\) tht go out from \(I\) with terminal label \(a\), it must hold \(a \notin \pi\)
-          \item no reduce-reduce conflict occurs: for all the candidates \(\langle q, \pi \rangle, \langle r, \rho \rangle \in I\) such that states \(q\) and \(r\) are final, it must hold \(\pi \cap \rho = \emptyset\)
+          \item no \textbf{shift-reduce conflict} occurs: for all the candidates \(\langle q, \pi \rangle \in I\) such state \(q\) is final and for all the arcs \(I \xrightarrow{a} I^\prime\) tht go out from \(I\) with terminal label \(a\), it must hold \(a \notin \pi\)
+          \item no \textbf{reduce-reduce conflict} occurs: for all the candidates \(\langle q, \pi \rangle, \langle r, \rho \rangle \in I\) such that states \(q\) and \(r\) are final, it must hold \(\pi \cap \rho = \emptyset\)
         \end{enumerate}
-  \item No transition in the pilot graph has a convergence conflict
+  \item No transition in the pilot graph has a \textbf{convergence conflict}
 \end{itemize}
 
 If the grammar is purely \textit{BNF}, then the previous condition in referred to as \(\textit{LR}(1)\) instead of \ELRo;
@@ -2589,27 +2591,27 @@ Given an \EBNF grammar, an \ELRo parser can be built by the following \(3\) step
 
 \begin{enumerate}
   \item From the automaton net, a deterministic \FSA \textit{(called pilot automaton)} is built
-        \begin{enumerate}
+        \begin{itemize}
           \item a pilot state \textit{(named macro-state or \mstate)} includes a non empty set of \textit{candidates} \textit{(see Paragraph~\ref{par:candidates})}
-        \end{enumerate}
+        \end{itemize}
   \item The pilot is examined to check the conditions for deterministic parsing by inspecting the components of each \mstate; the three types of conflicts are:
         \begin{enumerate}
           \item \textbf{shift-reduce}, when both a shift and a reduce move are possible with the same configuration
           \item \textbf{reduce-reduce}, when two or more reductions are possibile
           \item \textbf{convergence}, when two two different parser computations that share a candidate lead to the same \mstate
         \end{enumerate}
-  \item if the previous test is passed, then the deterministic \PDA is built; the pilot \FSA must be enriched with features for pointer management, needed to handle stacks of unbounded length
-  \item the \PDA is encoded in a programming language
+  \item If the previous test is passed, then the deterministic \PDA is built; the pilot \FSA must be enriched with features for pointer management, needed to handle stacks of unbounded length
+  \item The \PDA can be encoded in a programming language
 \end{enumerate}
 
 \bigskip
 The pilot automaton \(\mathcal{P}\) is the \(5\)-tuple defined by:
 
 \begin{enumerate}
-  \item The set \(R\) of \mstates
-  \item The pilot alphabet as the union \(\Sigma \cup V\) of the terminal and non-terminal symbols, named grammar symbols
-  \item The initial \mstate \(I_0 = \textit{closure}\left( \left\langle 0_S, \dashv \right\rangle \right)\), as defined in Paragraph~\ref{par:closure}
-  \item The \mstate set \(R = \left\{ I_0, I_1, \ldots \right\}\) and the state-transition function \(\theta: R \times \Sigma \cup V \rightarrow R\) are computed starting from \(I_0\) as next specified
+  \item The \textbf{set} \(R\) of \mstates
+  \item The \textbf{pilot alphabet} as the union \(\Sigma \cup V\) of the terminal and non-terminal symbols, named grammar symbols
+  \item The \textbf{initial \mstate} \(I_0 = \textit{closure}\left( \left\langle 0_S, \dashv \right\rangle \right)\) \textit{(as defined in Paragraph~\ref{par:closure})}
+  \item The \textbf{\mstate set} \(R = \left\{ I_0, I_1, \ldots \right\}\) and the state-transition function \(\theta: R \times \Sigma \cup V \rightarrow R\) are computed starting from \(I_0\) as next specified
 \end{enumerate}
 
 Let \(\left\langle p_A, \rho \right\rangle, \ p_A \in Q, \rho \subseteq \Sigma \cup \left\{ \dashv \right\}\), be a candidate and be \(X\) be a grammar symbol.
@@ -2620,7 +2622,7 @@ Then the \textbf{terminal shift} \textit{(or \textbf{non-terminal shift}, accord
   \end{cases}\]
 
 For a set \(C\) of candidates, the shift under a symbol \(X\) is the union of the shifts of the candidates in \(C\):
-\[ \theta(C, X) = \bigcup_{\forall \ \text{candidate} \ \gamma \in C} \theta(\gamma, X) \]
+\[ \theta(C, X) = \bigcup_{\forall \, \text{candidate} \, \gamma \in C} \theta(\gamma, X) \]
 
 Finally, the algorithm to build the state set \(R\) and the state transition function \(\theta\) is shown in Code~\ref{alg:elro-pilot}.
 
@@ -2643,82 +2645,81 @@ while R $\neq$ R_1 // repeat until R_1 does not change
 \paragraph[Base, Closure and Kernel of m-state]{Base, Closure and Kernel of \mstate}
 \label{par:base-closure-kernel}
 
-For an \mstate \(I\), the set of candidates is assigned to two classes, named base and closure.
+For an \mstate \(I\), the set of candidates is categorized in \(2\) classes, named \textbf{base} and \textbf{closure}.
 
-The base includes the non-initial candidates:
+The \textbf{base} includes the non-initial candidates:
 \[ I_{\text{base}} = \left\{ \left\langle q, \pi \right\rangle \in I \mid q \ \text{is not an initial state} \ \right\} \]
 Clearly, for the \mstate \(I^\prime\) computed in the algorithm, the base \(I^\prime_{\text{base}}\) coincides with the pairs computed by \(\theta(I, X)\).
 
-The closure contains the remaining candidates of \(I\):
+The \textbf{closure} contains the remaining candidates of \(I\):
 \[ I_{\text{closure}} = I \setminus I_{\text{base}} = \left\{ \left\langle q , \pi \right\rangle \in I \mid q \ \text{is an initial state} \ \right\} \]
 By definition, the base of the initial \mstate \(I_0\) is empty and all other \mstates have a non-empty base, while their closure may be empty.
 
-Finally, the kernel of an \mstate \(I\) is the projection on the first component of every candidate:
+Finally, the \textbf{kernel} of an \mstate \(I\) is the projection on the first component of every candidate:
 \[ I_{\text{kernel}} = \left\{ q \in Q \mid \left\langle q, \pi \right\rangle \in I \right\} \]
-Two \mstates with the same kernel (their differ just for some look ahead set) are called kernel-equivalent.
+Two \mstates with the same kernel \textit{(differing just for some look ahead set)} are called kernel-equivalent.
 
 \bigskip
 In short:
 
 \begin{itemize}
-  \item The Base contains the the items obtained after a shift
-  \item The Closure contains the items obtained after a closure
-  \item The Kernel is the set of states without look ahead
+  \item The \textbf{Base} contains the the items obtained \textbf{after a shift}
+  \item The \textbf{Closure} contains the items obtained \textbf{after a closure}
+  \item The \textbf{Kernel} is the set of states \textbf{without look ahead}
 \end{itemize}
 
 \paragraph{Stack Content}
 \label{par:stack-content}
 
-Since for any given net \(\mathcal{M}\) there are finitely many different candidates, the number of \mstates is bounded and the number of candidates in any \mstate is always lower than \(\mid Q \mid\), by assuming that all the candidates with the same state are coalesced.
-Moreover we assume that the candidates in an \mstate are ordered, so that each one occurs at a position (or offset) which will be referred to by other \mstates using a pointer called candidate identifier (or cid).
+Since for any given net \(\mathcal{M}\) there are finitely many different candidates, the number of \mstates is bounded and the number of candidates in any \mstate is always lower than \(| Q |\), by assuming that all the candidates with the same state are \textit{merged}.
+Moreover we assume that the candidates in an \mstate are ordered, so that each one occurs at a position \textit{(or offset)} which will be referred to by other \mstates using a pointer called candidate identifier \textit{(or cid)}.
 
 The stack elements are of two types, interleaving each other:
 
 \begin{enumerate}
   \item grammar symbols, elements of \(\Sigma \cup V\)
-  \item stack \mstates (or sms), denoted by letter \(J\) and containing ordered set of \(3\)-tuples of the form:
-        \[ \left\langle q_A, \pi, \textit{cid} \right\rangle \ \text{where} \ \begin{cases}
-            q_A \in Q \quad                                                      & \text{is a state}           \\
-            \pi \subseteq \Sigma \cup \left\{ \dashv \right\} \quad              & \text{is a look ahead set}  \\
-            1 \leq \textit{cid} \leq | Q | \ \text{or} \ \text{cid} = \bot \quad & \text{candidate identifier}
+  \item stack \mstates \textit{(sms)}, denoted by letter \(J\) and containing ordered set of \(3\)-tuples of the form:
+        \[ \left\langle q_A, \pi, \textit{cid} \, \right\rangle \ \text{where} \ \begin{cases}
+            q_A \in Q \quad                                                        & \text{is a state}           \\
+            \pi \subseteq \Sigma \cup \left\{ \dashv \right\} \quad                & \text{is a look ahead set}  \\
+            1 \leq \textit{cid} \leq | Q | \ \text{or} \ \textit{cid} = \bot \quad & \text{candidate identifier}
           \end{cases} \]
-        where \(\bot\) represent the \texttt{NIL} value for the cid pointer.
-        For readability, a cid value will be prefixed by the marker character \(\sharp\).
+        where \(\bot\) represent the \texttt{NIL} value for the \textit{cid} pointer.
+        For readability, a \textit{cid} value will be prefixed by the marker character \(\sharp\).
 \end{enumerate}
 
-A natural surjective mapping, denoted by \(\mu\), from the set of sms to the set of \mstates defined by \(\mu(J) = I\) if and only if deleting the third field from the stack candidates of \(J\), the result is \(I\).
+A function \(\mu\) maps the set of \textit{sms} to the set of \mstates defined by \(\mu(J) = I\) if and only if deleting the third field \textit{(the cid)} from the stack candidates of \(J\), the result is exactly the candidates of \(I\).
 
 \subsubsection{Pushdown Algorithm}
 
-Let the current stack be
-\[ J[0] a_1 \, J[1] a_2 \ldots a_k \overbracket{J[k]}^{\text{top}} \]
-where \(a_i\) is a grammar symbol.
+Let the current stack be \(J[0] a_1 \, J[1] a_2 \, \ldots \, a_k J[k]\), where \(a_i\) is a grammar symbol and \(J[k]\) is the character on top.
 
 The steps of the algorithm are shown in the following Paragraphs.
 
 \paragraph*{Initialization}
 
-The initial stack just contains the sms:
+The initial stack just contains the \textit{sms}:
 \[ J_0 = \left\{ s \mid s = \left\langle q, \pi, \bot \right\rangle \ \text{for every candidate} \ \left\langle q, \pi \right\rangle \in I_0 \right\} \]
 thus \(\mu(J_0) = I_0\)
 
 \paragraph*{Shift}
 
-Let the top sms be \(J\) and \(I = \mu(J)\), let the current token be \(a \in \Sigma\) and assume that the \mstate \(I\) has transition \(\theta(I, a) = I^\prime\). The shift move performs the following two operations:
+Let the top \textit{sms} be \(J\) and \(I = \mu(J)\), let the current token be \(a \in \Sigma\) and assume that the \mstate \(I\) has transition \(\theta(I, a) = I^\prime\). The shift move performs the following two operations:
 \begin{enumerate}[label=\arabic*., ref=(\arabic*)]
-\item\label{enum:shift-move-1} push token \(a\) on stack and get the next token
-\item\label{enum:shift-move-2} push on stack the sms \(J^\prime\) computed as follows:
-\begin{gather*}
-  \begin{aligned}
-    J^\prime  = & \left\{ \left\langle q_A^\prime, \rho, \sharp j \right\rangle \mid \left\langle q_a, \rho, \sharp j \right\rangle \ \text{is at position} \ i \ \text{in} \ J \land q_A \xrightarrow{a} q_A^\prime \in \delta \right\} \\
-              \cup & \left\{ \left\langle 0_B, \sigma, \bot \right\rangle \mid \left\langle 0_B, \sigma  \right\rangle \in I_{\text{closure}}^\prime \right\}
-  \end{aligned}
-\end{gather*}
-thus \(\mu(J^\prime) = I^\prime\)
+  \item\label{enum:shift-move-1} push token \(a\) on stack and get the next token
+  \item\label{enum:shift-move-2} push on stack the \textit{sms} \(J^\prime\) computed as follows:
+  \begin{gather*}
+    \begin{aligned}
+      J^\prime  = & \left\{ \left\langle q_A^\prime, \rho, \sharp j \right\rangle \mid \left\langle q_a, \rho, \sharp j \right\rangle \ \text{is at position} \ i \ \text{in} \ J \land q_A \xrightarrow{a} q_A^\prime \in \delta \right\} \\
+      \cup        & \left\{ \left\langle 0_B, \sigma, \bot \right\rangle \mid \left\langle 0_B, \sigma  \right\rangle \in I_{\text{closure}}^\prime \right\}
+    \end{aligned}
+  \end{gather*}
 \end{enumerate}
+thus \(\mu(J^\prime) = I^\prime\)
 
 \paragraph*{Reduction of non initial candidates}
-The \mstates corresponding to the current stack are  \(I[i] = \mu\left( J[i] \, 1 \leq i \leq k \right)\) and the current token is \(a\);
+
+The \mstates corresponding to the current stack are \(I[i] = \mu\left( J[i] \right), \, 1 \leq i \leq k\) and the current token is \(a\);
 assume that by inspecting \(I[k]\) the pilot chooses the reduction candidate \(c = \left\langle q_a, \pi \right\rangle \in I[k]\), where \(q_A\) is a final and non initial state.
 Let \(t_k = \left\langle q_A, \rho, \sharp i_k \right\rangle \in J[k]\) be the only candidate such that the current token \(a\) satisfies \(a \in \rho\).
 From \(i_k\) a cid starts, which links stack candidate \(t_k\) to a stack candidate \(t_{k-1} = \left\langle p_A, \rho, \sharp i_{k-1} \right\rangle \in J[k-1]\) until a stack candidate \(t_h \in J[h]\) is reached such that has a \texttt{NIL} cid and therefore its state is initial.
@@ -2727,9 +2728,9 @@ The reduction move does as follows:
 
 \begin{enumerate}
   \item grow the syntax forest by applying the following reduction
-  \[ a_{h+1} a_{h+2} \ldots a_k \rightsquigarrow A \]
+        \[ a_{h+1} a_{h+2} \ldots a_k \rightsquigarrow A \]
   \item pop the following stack symbols
-  \[ J[k] a_k \, J[k-1] a_{k-1} \ldots J[h+1] a_{h+1} \]
+        \[ J[k] a_k \, J[k-1] a_{k-1} \ldots J[h+1] a_{h+1} \]
   \item execute the non-terminal shift (see below)
 \end{enumerate}
 
@@ -2772,22 +2773,20 @@ Thus the time complexity is \(\mathcal{O}(n)\).
 \subsubsection{Implementation via Vector Stack}
 
 The \PDA can be implemented using a vector stack: this solution is potentially faster, and offers the ability of accessing the items in the stack via their integer index.
-As seen before (Paragraph~\ref{par:stack-content}), the stack contains elements of two alternating types: grammar symbols and vector stack \mstates (or vsms).
+As seen before \textit{(Paragraph~\ref{par:stack-content})}, the stack contains elements of two alternating types: grammar symbols and vector stack \mstates \textit{(or vsms)}.
 
-A vsms, denoted by \(J\), is a set of pairs, named vector-stack candidates in form \(\langle q_A, \text{elemid} \rangle\) differing from the previous definition of stack candidates because the second component is a positive integer named element identifier (elemeid) instead of the candidate identifier (cid);
+A \textit{vsms}, denoted by \(J\), is a set of pairs, named vector-stack candidates in form \(\langle q_A, \, \texttt{elemid} \, \rangle\) differing from the previous definition of stack candidates because the second component is a positive integer named element identifier \textit{(\texttt{elemid})} instead of the candidate identifier \textit{(cid)};
 furthermore, the set is now ordered.
-Each elemid points back to the vector-stack element containing the initial state of the current machine, so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
+Each \texttt{elemid} points back to the vector-stack element containing the initial state of the current machine, so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
 
 \textbf{Notable values:}
 \begin{itemize}
-  \item In a closure item, the value of elemid is the current stack element index
-  \item In a base item, the value of elemid is the same as the item before
+  \item In a closure item, the value of \texttt{elemid} is the current stack element index
+  \item In a base item, the value of \texttt{elemid} is the same as the item before
 \end{itemize}
-
 
 \bigskip
 The surjective mapping from from vector-stack \mstates to pilot \mstates is denoted \(\mu\) as before.
-
 
 \subsection{Top down Syntax Analysis}
 \label{sec:top-down}
