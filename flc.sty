@@ -3,6 +3,7 @@
 
 \ProcessOptions\relax
 
+% various acronyms
 \newcommand{\re}{\shortfor{r.e.}}
 \newcommand{\RE}{\shortfor{RE}}
 \newcommand{\REG}{\shortfor{REG}}
@@ -13,17 +14,26 @@
 \newcommand{\BMC}{\shortfor{BMC}}
 \newcommand{\LOC}{\shortfor{LOC}}
 \newcommand{\DET}{\shortfor{DET}}
-
 \newcommand{\FSA}{\shortfor{FSA}}
 \newcommand{\PDA}{\shortfor{PDA}}
+\newcommand{\DPDA}{\shortfor{DPDA}}
+\newcommand{\PCFG}{\shortfor{PCFG}}
 
-\newcommand{\Ini}{\shortfor{Ini}}
-\newcommand{\Fin}{\shortfor{Fin}}
-\newcommand{\Dig}{\shortfor{Dig}}
-\newcommand{\Fol}{\shortfor{Fol}}
+% sets
+\def\setsShortName#1{\textit{#1}\hspace{0.1ex}}
+\newcommand{\Ini}{\setsShortName{Ini}}
+\newcommand{\Fin}{\setsShortName{Fin}}
+\newcommand{\Dig}{\setsShortName{Dig}}
+\newcommand{\Fol}{\setsShortName{Fol}}
+\newcommand{\Gui}{\setsShortName{Gui}}
 
-
-\newcommand{\ELRo}{\(\textit{ELR}(1)\)\xspace}
-\newcommand{\ELLo}{\(\textit{ELL}(1)\)\xspace}
+% fancy common symbols
+\newcommand{\elro}{\(\textit{ELR}(1)\)\xspace}
+\newcommand{\ello}{\(\textit{ELL}(1)\)\xspace}
 \newcommand{\mstate}{\(m\)-state\xspace}
 \newcommand{\mstates}{\(m\)-states\xspace}
+\newcommand{\nullable}{\textit{Nullable}\hspace{0.1ex}}
+
+% new arrows
+\newcommand{\xdashrightarrow}[1]{\stackrel{#1}{\dashrightarrow}}
+\newcommand{\xdashleftarrow}[1]{\stackrel{#1}{\dashleftarrow}}
