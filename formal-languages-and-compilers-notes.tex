@@ -2046,63 +2046,65 @@ therefore, \(M\) does not reach a final state either.
 
 \section{Pushdown automata and context free languages parsing}
 
-The algorithms for recognizing whether a string is a legal sentence requires more memory than the ones for regular languages.
-This Section will introduce the topic of free language parsing, via pushdown automata \textit{(in this Section)} and parsing \textit{(Section~\ref{sec:parsing})}.
+The algorithms for recognizing whether a string is a legal sentence require more memory than the ones for regular languages.
+The topic of free language parsing via pushdown automata \textit{(in Section~\ref{sec:pushdown-automaton})} and parsing \textit{(in Section~\ref{sec:parsing})} will be introduced.
 
 Normally, compilers and interpreters are built using a parser generator, which is a program that takes as input a grammar and produces a parser for that grammar.
 
-\bigskip
+\subsection{Pushdown automaton}
+\label{sec:pushdown-automaton}
+
 A \textbf{pushdown automaton} \textit{(or \PDA)} is a \FSA \textit{(see Section~\ref{sec:finite-automata})} that uses an \textit{unbounded stack} to store information about the current state of the computation.
 The stack is organized as a \texttt{LIFO} structure, where the last element inserted is the first one to be removed;
 it stores the symbols \(A_1, \ldots, A_k\) and often the a special symbol \(Z_0\) is used to denote its end:
-\[ Z_0 \vert \overbracket{A_1}^\text{bottom} A_2 \ldots \overbracket{A_k}^\text{top} \quad k \geq 0\]
+\[ Z_0 \mid \overbracket{A_1}^\text{bottom} A_2 \ldots \overbracket{A_k}^\text{top} \quad k \geq 0\]
 
-The input tape is read left to right and the currently read character is called \textbf{current}; the tape is often delimited on the right by a special end marker \(\dashv\);
-\[ a_1, \ldots, \overbracket{a_i}^{\text{current}} \ldots, a_n \dashv \quad n \geq 0 \]
+The input tape is read left to right and the currently read character is called \textbf{current}; the tape is often delimited on the right by a special end marker \(\dashv\):
+\[ a_1, \, \ldots, \overbracket{a_i}^{\text{current}} \ldots, \, a_n \dashv \quad n \geq 0 \]
 
 The following three operations are performed on the stack:
 
 \begin{itemize}
   \item \textbf{Pushing}: the symbol \(A\) is added to the top of the stack
         \begin{itemize}[label=\(\rightarrow\)]
-          \item several push operations \(\textit{push}(B_1), \ldots, \textit{push}(B_m)\) can be combined in one command \(\textit{push}(B_1, \ldots, B_m)\)
+          \item several push operations \(\textit{push}(B_1), \, \ldots, \, \textit{push}(B_m)\) can be combined in one command \(\textit{push}(B_1, \ldots, B_m)\)
         \end{itemize}
   \item \textbf{Popping}: the top symbol of the stack is removed \textit{(if present)}
   \item \textbf{Emptiness} test: the predicate empty is true if and only if \(k=0\) \textit{(the stack is empty)}
 \end{itemize}
 
-At each instant the machine configuration is specified by the remaining portion of the input string left to e read, the current state and the stack contents.
+At each instant the machine configuration is specified by the remaining portion of the input string left to read, the current state and the stack contents.
 Within a move, an automaton can:
 
 \begin{itemize}
-  \item read the current character, and shift the reading head or perform a move without reading \textit{(spontaneous move)}
+  \item read the current character and shift the reading head or perform a move without reading \textit{(spontaneous move)}
   \item read and pop the top symbol, or read the bottom \(Z_0\) if the stack is empty
   \item compute the next state from the current values of the state, character and top-of-stack symbol
   \item push zero, one or more symbols into the stack
 \end{itemize}
 
-\subsection{Formal definition of Pushdown Automaton}
+\subsubsection{Formal definition of Pushdown Automaton}
 \label{sec:formal-definition-pda}
 
 A pushdown automaton \(M\) is a \(7\)-tuple \(\langle Q, \Sigma, \Gamma, \delta, q_0, Z_0, F \rangle\) where:
 
 \begin{itemize}
-  \item \(Q\) is a finite set of states of the control units
+  \item \(Q\) is a finite set of \textbf{states} of the control units
   \item \(\Sigma\) is the input alphabet
-  \item \(\Gamma\) is the stack alphabet
-  \item \(\delta\) is the transition function
+  \item \(\Gamma\) is the \textbf{stack alphabet}
+  \item \(\delta\) is the \textbf{transition function}
         \begin{itemize}
           \item \(\delta: Q \times \left( \Sigma \cup \left\{ \varepsilon \right\} \right) \times \Gamma \rightarrow \wp \left( Q \times \Gamma^\ast \right)\)
           \item \(\varepsilon\) is caused by the spontaneous moves
           \item \(\wp\) is the power set operator
         \end{itemize}
-  \item \(q_0 \in Q\) is the initial state
-  \item \(Z_0 \in \Gamma\) is the bottom of the stack symbol
-  \item \(F \subseteq Q\) is the set of final states
+  \item \(q_0 \in Q\) is the \textbf{initial state}
+  \item \(Z_0 \in \Gamma\) is the bottom of the \textbf{stack symbol}
+  \item \(F \subseteq Q\) is the set of \textbf{final states}
 \end{itemize}
 
 \bigskip
-The \textbf{instantaneous configuration} of the machine \(M\) is a \(3\)-tuple \(\langle q, y, \eta\) where:
+The \textbf{instantaneous configuration} of the machine \(M\) is a \(3\)-tuple \(\langle q, y, \eta \rangle\) where:
 
 \begin{itemize}
   \item \(q \in Q\) is the \textbf{current state}
@@ -2113,7 +2115,7 @@ The \textbf{instantaneous configuration} of the machine \(M\) is a \(3\)-tuple \
   \item \(\eta\) is the \textbf{stack content}
 \end{itemize}
 
-The domain of the configuration is \(Q \times \Sigma^\ast \Gamma^+\).
+The domain of the configuration is \(Q \times \Sigma^\ast \times \Gamma^+\).
 Particular configurations are:
 
 \begin{itemize}
@@ -2134,7 +2136,7 @@ The \textbf{moves} are defined as:
 \textbf{Observations}:
 
 \begin{itemize}
-  \item The choice of the \(i\)-th action of \(n\) possibilities is not deterministic
+  \item The choice of the \(i\)-th action of \(n\) possibilities is not \textbf{deterministic}
   \item The reading head automatically shifts forward on input
   \item The top symbol is always popped, while the string pushed in the stack may be empty
   \item While any move performs a pop that erases the top symbol, the same symbol can be pushed again by the same move
@@ -2145,9 +2147,9 @@ The transition of a configuration from to the next one are possible if there exi
 \[ \left( q, y, \eta \right) \rightarrow \left( p, z, \lambda \right) \]
 The transition sequence is represented via the symbols:
 \[ \xrightarrow{+} \quad \text{and} \quad \xrightarrow{+} \]
-respectively the plus and the star operations applied to the single transition.
+respectively a sequence of one or more and zero or more moves.
 
-A string \(x\) is recognized \textit{(or accepted)} by final state if there exists a computation that entirely read the string adn terminates in a final state:
+A string \(x\) is \textbf{recognized} \textit{(or accepted)} \textbf{by final state} if there exists a computation that entirely read the string adn terminates in a final state:
 \[ (q_0, z, Z_0) \xrightarrow{\ast} (q, \varepsilon, \lambda) \quad q \in F, \lambda \in \Gamma^+ \]
 When the machine recognizes and halts, the stack contains some string \(\lambda\) not further specified, since the recognition modality is by final state;
 as such, the string \(\lambda\) is not necessarily empty.
@@ -2171,8 +2173,10 @@ The applied moves defined by their current and next configurations are shown in 
 \end{table}
 
 \bigskip
-Transition functions of pushdown automata are usually represented via a transition diagram (see Figure~\ref{fig:pushdown-automaton-transition-diagram}): the stack alphabet features \(3\) symbols \textit{\(\left( A, B, Z_0 \right)\)}.
-The arc \(q_0 \xrightarrow{\dfrac{a, \varepsilon}{A}} q_1\) denotes any reading move from the initial state \(q_0\) to the state \(q_1\) with the input symbol \(a\) and the stack top symbol \(A\).
+Transition functions of pushdown automata are usually represented via a transition diagram \textit{(see Figure~\ref{fig:pushdown-automaton-transition-diagram})}: the stack alphabet features \(3\) symbols \textit{\(\left( A, B, Z_0 \right)\)}.
+The arc \[ q_0 \xrightarrow{\dfrac{a, A}{\varepsilon}} q_1 \]
+denotes any reading move from the initial state \(q_0\) to the state \(q_1\) with the input symbol \(a\) and the stack top symbol \(A\);
+no symbol is pushed in the stack, hence the empty string \(\varepsilon\).
 
 \begin{figure}[htbp]
   \centering
@@ -2181,7 +2185,7 @@ The arc \(q_0 \xrightarrow{\dfrac{a, \varepsilon}{A}} q_1\) denotes any reading 
     \node[state] (q0) at (1, 0) {\(q_0\)};
     \node[state] (q1) at (4, 0) {\(q_1\)};
 
-    \path[->] (q0) edge node[above] {\(\dfrac{a, A}{\epsilon}\)} (q1);
+    \path[->] (q0) edge node[above] {\(\dfrac{a, A}{\varepsilon}\)} (q1);
   \end{tikzpicture}
   \caption{Pushdown automaton transition diagram}
   \label{fig:pushdown-automaton-transition-diagram}
@@ -2201,9 +2205,8 @@ The acceptance condition of a pushdown automaton can be:
 
 The two of them can be combined into recognition of \textbf{final state and empty stack}.
 
-For the family of nondeterministic pushdown automata, all three the acceptance modes are equivalent;
-acceptance by empty stack, by final state and combined
-have the same capacity with respect to language recognition.
+For the family of nondeterministic pushdown automata, all three the acceptance modes are equivalent:
+acceptance by empty stack, by final state and combined have the same capacity with respect to language recognition.
 
 \paragraph{Absence of Spontaneous Loops}
 
@@ -2211,8 +2214,8 @@ A \textbf{spontaneous loop} is a sequence of moves that starts from a configurat
 Any pushdown automaton can be converted into a an equivalent one:
 
 \begin{itemize}
-  \item without cycles of spontaneous moves
-  \item which can decide acceptance right after reading the last input symbol
+  \item \textbf{without cycles} of spontaneous moves
+  \item which can decide \textbf{acceptance} right after reading the last input symbol
 \end{itemize}
 
 \paragraph{Real Time Pushdown Automata}
@@ -2227,8 +2230,8 @@ For every context free language there exists a nondeterministic pushdown machine
 
 \subsubsection{From Grammar to Nondeterministic Pushdown Automaton}
 
-Given a grammar \(G = \left( V, \Sigma, P, S \right)\), Table~\ref{tab:grammar-to-pushdown-automaton} shows the construction of a nondeterministic pushdown automaton \(M\) that recognizes the language \(L(G)\). \texttt{cc} is the current character.
-As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denote non terminals, and letter \(A_i\) represents any symbol.
+Given a grammar \(G = \left( V, \Sigma, P, S \right)\), Table~\ref{tab:grammar-to-pushdown-automaton} shows the construction of a nondeterministic pushdown automaton \(M\) that recognizes the language \(L(G)\).
+As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denote non terminals, letter \(A_i\) represents any symbol, and \texttt{cc} represents the current symbol.
 
 \begin{table}[htbp]
   \centering
@@ -2287,7 +2290,7 @@ can now be proven via pushdown automaton.
 Given grammar \(G\) and automaton \(A\), a \textit{pushdown automata} \(M\) accepting \(L(G) \cap L(A)\) is constructed as follows:
 
 \begin{enumerate}
-  \item build an automaton \(N\) accepting \(L(G)\) via empty stack
+  \item build an automaton \(N\) accepting \(L(G)\) via \textbf{empty stack}
   \item build machine \(M\), product of \(N\) and \(A\), applying the known construction for finite automata adapted so that the product machine \(M\) manipulates the stack in the same way as \(N\)
 \end{enumerate}
 
@@ -2315,8 +2318,10 @@ While observing a pushdown automaton, three different nondeterministic situation
   \item \textbf{spontaneous moves}, if for some state \(q\) and symbol \(A\), the function \(\delta(q, \varepsilon, a)\) has two or more values
 \end{enumerate}
 
-If none of the three forms occurs in the transition function \(\delta\), then the pushdown machine is deterministic.
-The language recognized by a deterministic pushdown machine is called \textbf{deterministic}, and the family of such languages is called \DET.
+If none of the three forms occurs in the transition function \(\delta\), then the pushdown machine is \textbf{deterministic};
+sometimes deterministic \PDA are called \DPDA.
+
+The language recognized by a deterministic pushdown machine is called \textbf{deterministic} as well and the family of such languages is called \DET.
 
 The family of deterministic languages is a proper subfamily of context free languages:
 \[ \DET \subset \CF \]
@@ -2327,9 +2332,9 @@ Due to a direct consequence of this definition, a deterministic pushdown machine
 A grammar is called \textbf{simple deterministic} if it satisfies the next conditions:
 
 \begin{enumerate}
-  \item every rule \RP starts with a terminal character
+  \item every rule \RP starts with a \textbf{terminal character}
         \begin{itemize}
-          \item empty rules and rules starting with non-terminal symbols are not allowed
+          \item empty rules and rules starting with \textbf{non-terminal characters} are not allowed
         \end{itemize}
   \item for any non-terminal \(A\), there do no exist alternatives that start with the same character
         \begin{itemize}
@@ -3049,9 +3054,9 @@ In order to compute the prospect sets of the final states, it's necessary to com
 
 \begin{enumerate}
   \item If the graph includes any nonterminal shift arc \(q_i \xrightarrow{A} r_i\) (therefore also the call arc \(q_i \dashrightarrow 0_A\)), then the prospect set \(\pi_{0_A}\) for the initial state \(0_A\) of machine \(M_A\) is computed as:
-  \[ \pi_{0_A} \coloneqq \pi_{0_A} \cup \bigcup_{q_i \xrightarrow{A} r_i} \left(  \Ini \left( L(r_i) \right) \cup \pi_{q_i} \ \text{if} \ \nullable \left( L(r_i) \right) \ \text{else} \ \emptyset \right) \]
+        \[ \pi_{0_A} \coloneqq \pi_{0_A} \cup \bigcup_{q_i \xrightarrow{A} r_i} \left(  \Ini \left( L(r_i) \right) \cup \pi_{q_i} \ \text{if} \ \nullable \left( L(r_i) \right) \ \text{else} \ \emptyset \right) \]
   \item if the graph includes any terminal or nonterminal shift arc \(p_i \xrightarrow{X_i} q_i\), then the prospect set \(\pi_q\) of state \(q\) is computed as:
-  \[ \pi_q \coloneqq \bigcup_{p_i \xrightarrow{X_i} q} \pi_{p_i} \]
+        \[ \pi_q \coloneqq \bigcup_{p_i \xrightarrow{X_i} q} \pi_{p_i} \]
 \end{enumerate}
 
 The two sets of rules apply in an exclusive way to disjoints sets of nodes, because in a normalized machine no arc enters the initial state. To initialize the computation, the prospect state of the initial machine \(0_S\) is initialized as:
@@ -3062,18 +3067,17 @@ All other sets are initialized as empty.
 
 \begin{enumerate}
   \item For each call arc \(q_A \dashrightarrow 0_{A_1}\) associated with a nonterminal shift arc \(q_A \xrightarrow{A_1} r_A\), such that possibly other call arcs \(0_{A_1} \dashrightarrow 0_{B_i}\) depart from state \(0_{A_1}\), the guide set \(\Gui(q_A \dashrightarrow 0_{A_1})\) is computed as:
-  \[ \Gui(q_A \dashrightarrow 0_{A_1}) \coloneqq \bigcup \begin{cases}
-    \Ini\left( L(A_1) \right) \\
-    \textbf{if} \ \nullable(A_1) \ \textbf{then} \ \Ini\left( L(r_a) \right) \ \textbf{else} \ \emptyset \\
-    \textbf{if} \ \nullable(A_1) \land \nullable\left( L(r_A) \right) \ \textbf{then} \ \pi_{r_A} \ \textbf{else} \ \emptyset \\
-    \cup_{0_{A_1} \dashrightarrow 0_{B_i}} \Gui(0_{A_1} \dashrightarrow 0_{B_i})
-  \end{cases}\]
+        \[ \Gui(q_A \dashrightarrow 0_{A_1}) \coloneqq \bigcup \begin{cases}
+            \Ini\left( L(A_1) \right)                                                                                                 \\
+            \textbf{if} \ \nullable(A_1) \ \textbf{then} \ \Ini\left( L(r_a) \right) \ \textbf{else} \ \emptyset                      \\
+            \textbf{if} \ \nullable(A_1) \land \nullable\left( L(r_A) \right) \ \textbf{then} \ \pi_{r_A} \ \textbf{else} \ \emptyset \\
+            \cup_{0_{A_1} \dashrightarrow 0_{B_i}} \Gui(0_{A_1} \dashrightarrow 0_{B_i})
+          \end{cases}\]
   \item For a final state \(f_A \in F_A\), the guide set of the tagging dart equals the prospect set of the state:
-  \[ \Gui(f_A \rightarrow) \coloneqq \pi_{f_A} \]
+        \[ \Gui(f_A \rightarrow) \coloneqq \pi_{f_A} \]
   \item For a terminal shift arc \(q_A \xrightarrow{a} r_A, \ a \in \Sigma\), the guide set is the singleton set composed by the shifted terminal:
-  \[ \Gui(q_A \xrightarrow{a}) \coloneqq \left\{ a \right\} \]
+        \[ \Gui(q_A \xrightarrow{a}) \coloneqq \left\{ a \right\} \]
 \end{enumerate}
-
 
 \subsubsection{Increasing the Lookahead}
 
@@ -3083,44 +3087,6 @@ this is often a sufficient condition to obtain a deterministic parser.
 A grammar has the \(\textit{ELL}(k)\) property if there exists an integer \(k \geq 1\) such that, for every net machine and for every state, at most one choice among the outgoing arrows is compatible with the characters that may occur ahead of the current character, at distance less than or equal to \(k\).
 
 Formally, the elements of \(\textit{ELL}(k)\) guide sets are the strings of length up to \(k\) terminals.
-
-\clearpage
-\section{Stuff that I need to place somewhere because it seems useful}
-
-\subsection{Advantages of Top-down Parsers over Bottom-up Parsers}
-
-Advantages of the top-down parser:
-
-\begin{itemize}
-  \item \textbf{anticipated decision}
-  \begin{itemize}[label=\(\rightarrow\)]
-    \item each \mstate base has only a single item
-    \item the parser can decide which rule to apply to a phrase as soon as it finds the leftmost character of the rule, without waiting for the reduction
-  \end{itemize}
-  \item \textbf{no need for stack pointers}
-  \begin{itemize}[label=\(\rightarrow\)]
-    \item once the parser has decided which rule to apply, it can immediately start the reduction
-    \item there's no need to push on the stack the state path followed
-    \item it suffices to push on the stack the sequence of machines followed
-  \end{itemize}
-  \item \textbf{further simplification of the pilot}
-  \begin{itemize}[label=\(\rightarrow\)]
-    \item every \(m\)-node of the pilot graph that contains many candidates is split into as many nodes
-    \item the kernel-equivalent nodes are merged and their lookahead sets are combined into one
-    \item new arcs, named \textit{call arcs}, are added to the pilot graph: they represent the transfers of control from one machine to another one in the net
-    \item each call arc is labelled with a set of terminals, named \textit{guide set}, determining the parser decision to transfer control to the parsed machine
-  \end{itemize}
-\end{itemize}
-
-\bigskip
-
-\textbf{Simplification of a \ello Pilot:}
-\begin{itemize}
-  \item a call arc from state \(q_A\) to state \(0_B\) is added if and only if a machine \(M_A\) has a transition \(q_A \xrightarrow{B} r_A\)
-  \item Two or more initial states in the closure of a \mstate originate a \textbf{call chain}
-  \item Transitions with the same label from kernel-identical \mstates go into kernel-identical \mstates
-  \item The \mstate bases \textit{(with non initial states)} contain only one item, thanks to the \textit{STP}: they are into a one to one correspondence with the non-initial states of the machine net
-\end{itemize}
 
 \clearpage
 
@@ -3143,5 +3109,39 @@ The closure of languages under the set operations, Kleene star and concatenation
   \caption{Language Families closures}
   \label{tab:lang-closure}
 \end{table}
+
+\subsection{Parsing}
+
+\subsubsection{Advantages of Top-down Parsers over Bottom-up Parsers}
+
+\begin{itemize}
+  \item \textbf{anticipated decision}
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item each \mstate base has only a single item
+          \item the parser can decide which rule to apply to a phrase as soon as it finds the leftmost character of the rule, without waiting for the reduction
+        \end{itemize}
+  \item \textbf{no need for stack pointers}
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item once the parser has decided which rule to apply, it can immediately start the reduction
+          \item there's no need to push on the stack the state path followed
+          \item it suffices to push on the stack the sequence of machines followed
+        \end{itemize}
+  \item \textbf{further simplification of the pilot}
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item every \(m\)-node of the pilot graph that contains many candidates is split into as many nodes
+          \item the kernel-equivalent nodes are merged and their lookahead sets are combined into one
+          \item new arcs, named \textit{call arcs}, are added to the pilot graph: they represent the transfers of control from one machine to another one in the net
+          \item each call arc is labelled with a set of terminals, named \textit{guide set}, determining the parser decision to transfer control to the parsed machine
+        \end{itemize}
+\end{itemize}
+
+\subsection[Simplification of a ELL(1) Pilot]{Simplification of a \ello Pilot}
+
+\begin{itemize}
+  \item a call arc from state \(q_A\) to state \(0_B\) is added if and only if a machine \(M_A\) has a transition \(q_A \xrightarrow{B} r_A\)
+  \item Two or more initial states in the closure of a \mstate originate a \textbf{call chain}
+  \item Transitions with the same label from kernel-identical \mstates go into kernel-identical \mstates
+  \item The \mstate bases \textit{(with non initial states)} contain only one item, thanks to the \textit{STP}: they are into a one to one correspondence with the non-initial states of the machine net
+\end{itemize}
 
 \end{document}
