@@ -929,7 +929,7 @@ There are two forms of transformation:
 \end{itemize}
 
 \bigskip
-\textbf{Transformation of immediate left recursion:}
+\subparagraph*{Transformation of immediate left recursion:}
 consider all l-recursive alternatives of a non-terminal \(A\):
 \[ A \rightarrow A \beta_1 \mid A \beta_2 \mid \ldots \mid A \beta_h \quad h \geq 1 \]
 where no string \(\beta_i\) is empty and let the remaining alternatives of \(A\), needed to terminate the recursion, be:
@@ -1470,6 +1470,7 @@ A state \(p\) is distinguishable from a state \(q\) if and only if one of the fo
 \end{itemize}
 
 \textbf{Consequences:}
+
 \begin{itemize}[label=\(\Rightarrow\)]
   \item \(q_\textit{err}\) is distinguishable from every postaccessible state \(p\), because
         \begin{itemize}
@@ -2130,7 +2131,8 @@ The \textbf{moves} are defined as:
   \item \textbf{Nondeterministic} move: for any given triple (state, stack top, input symbol) there can be more than one possible move among reading and spontaneous
 \end{itemize}
 
-\textbf{Notes}
+\textbf{Observations}:
+
 \begin{itemize}
   \item The choice of the \(i\)-th action of \(n\) possibilities is not deterministic
   \item The reading head automatically shifts forward on input
@@ -2225,20 +2227,20 @@ For every context free language there exists a nondeterministic pushdown machine
 
 \subsubsection{From Grammar to Nondeterministic Pushdown Automaton}
 
-Given a grammar \(G = \left( V, \Sigma, P, S \right)\), Table~\ref{tab:grammar-to-pushdown-automaton} shows the construction of a nondeterministic pushdown automaton \(M\) that recognizes the language \(L(G)\). \(cc\) is the current character.
+Given a grammar \(G = \left( V, \Sigma, P, S \right)\), Table~\ref{tab:grammar-to-pushdown-automaton} shows the construction of a nondeterministic pushdown automaton \(M\) that recognizes the language \(L(G)\). \texttt{cc} is the current character.
 As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denote non terminals, and letter \(A_i\) represents any symbol.
 
 \begin{table}[htbp]
   \centering
   \bigskip
   \begin{tblr}{l|l|l}
-    \textit{\#} & \textit{grammar rule}                             & \textit{automaton rule}                                                                                                          \\
+    \textit{\#} & \textit{grammar rule}                             & \textit{automaton rule}                                                                                                                   \\
     \hline
-    \(1\)       & \(A \rightarrow B \, A_1 \ldots A_m, \ m \geq 0\) & if \(\text{top}=A\), then \textit{pop}; \textit{push}\(\left( A_m \ldots A_1 \, B \right)\)                                      \\
-    \(2\)       & \(A \rightarrow b \, A_1 \ldots A_m, \ m \geq 0\) & if \(cc=b\) and \(\text{top}=A\), then \textit{pop}; \textit{push}\(\left( A_m \ldots A_1 \right)\); \textit{shift} reading head \\
-    \(3\)       & \(A \rightarrow \varepsilon\)                     & if \(\text{top}=A\), then \textit{pop}                                                                                           \\
-    \(4\)       & for any character \(b \in \Sigma\)                & if \(cc=b\) and \(\text{top}=b\), then \textit{pop}; \textit{shift} reading head                                                 \\
-    \(5\)       & \textit{acceptance condition}                     & if \(cc = \dashv\) and the stack is \textit{empty}, then \textit{accept}                                                         \\
+    \(1\)       & \(A \rightarrow B \, A_1 \ldots A_m, \ m \geq 0\) & if \(\text{top}=A\), then \textit{pop}; \textit{push}\(\left( A_m \ldots A_1 \, B \right)\)                                               \\
+    \(2\)       & \(A \rightarrow b \, A_1 \ldots A_m, \ m \geq 0\) & if \(\texttt{cc}=b\) and \(\text{top}=A\), then \textit{pop}; \textit{push}\(\left( A_m \ldots A_1 \right)\); \textit{shift} reading head \\
+    \(3\)       & \(A \rightarrow \varepsilon\)                     & if \(\text{top}=A\), then \textit{pop}                                                                                                    \\
+    \(4\)       & for any character \(b \in \Sigma\)                & if \(\texttt{cc}=b\) and \(\text{top}=b\), then \textit{pop}; \textit{shift} reading head                                                 \\
+    \(5\)       & \textit{acceptance condition}                     & if \(\texttt{cc}=\dashv\) and the stack is \textit{empty}, then \textit{accept}                                                           \\
 
   \end{tblr}
   \caption{Grammar to Pushdown Automaton}
@@ -2248,6 +2250,7 @@ As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denot
 
 \bigskip
 \textbf{Rules comment}:
+
 \begin{enumerate}[label=\textbf{\#\arabic*.}, leftmargin=3em]
   \item To recognize \(A\), orderly recognize \(B \, A_1 \ldots A_m\)
   \item Character \(b\) is expected as next and is read, so it remains to orderly recognize \(A_1 \ldots A_m\)
@@ -2255,8 +2258,10 @@ As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denot
   \item Character \(b\) is expected as next and is read
   \item The input string has been entirely scanned and the stack is empty
 \end{enumerate}
+
 \bigskip
 \textbf{Rules details}:
+
 \begin{itemize}
   \item For rules of Form \(2\), the \RP of the rule starts with a terminal and the move is triggered on reading it
   \item Rules of Form \(1\) and \(3\), create spontaneous moves that do no check the current character
@@ -2392,9 +2397,9 @@ Depending on the derivation being the leftmost or rightmost, and on the construc
 In order to store the previous states in a stack of unbounded length, \textbf{pointers} are used;
 the \textbf{pointer} is a reference to a node in the syntax tree, and it is used to store the current state of the parser.
 
-\subsubsection{Bottom up analysis}
+\subsubsection{Bottom-up analysis}
 
-The right derivation built by the bottom up parser is in reverse order, because the input string is read from left to right.
+The right derivation built by the bottom-up parser is in reverse order, because the input string is read from left to right.
 
 The reduction operations transform the prefix of a phrase form into a string \(\alpha \in \left( V \cup \Sigma \right)^\ast\), called \textbf{viable prefix}, that may include the result of previous reductions \textit{(stored in the stack)}.
 
@@ -2441,6 +2446,7 @@ Let \(\Sigma\), \(V\) and \(S\) be respectively the set of \textbf{terminals}, \
 For each non-terminal \(A\) there is exactly one grammar rule \(A \rightarrow \alpha\) and the rule right part \(\alpha\) is a \re over alphabet \(\Sigma \cup V\).
 
 \textbf{Denotations:}
+
 \begin{itemize}
   \item \(S \rightarrow \sigma, \ A \rightarrow \alpha, \ B \rightarrow \beta, \ \ldots\) represent the \textbf{grammar rules}
   \item \(R_S, \ R_A, \ R_B, \ \ldots\) represent the \textbf{regular languages} over alphabet \(\Sigma \cup V\) defined by the grammar rules \(\sigma, \ \alpha, \ \beta, \ \ldots\) respectively
@@ -2467,6 +2473,7 @@ The \textbf{set of initials} \(\Ini \subseteq \Sigma\) of a state \(q_A\) is def
 
 \bigskip
 \textbf{Observations}:
+
 \begin{itemize}
   \item \Ini may \textbf{not} contain the null string \(\varepsilon\)
   \item A set \(\Ini(q_A)\) is \textbf{empty} if and only if the empty string is the only generated string from \(q_A\): \(L\left( q_A \right) = \left\{ \varepsilon \right\}\)
@@ -2488,7 +2495,7 @@ Set \Ini si computed by applying the following logical clauses until a fixed poi
 A pair \(\left\langle \textit{state}, \textit{token} \right\rangle\) is a \textbf{candidate} \textit{(or item)}:
 more precisely, a candidate is a pair \(\left\langle q_B, a \right\rangle \in Q \times \left( \Sigma \cup \left\{ \dashv \right\} \right)\).
 
-The intended meaning is that token \(a\) is a legal look ahead for the current state \(q_B\) of machine \(M_B\).
+The intended meaning is that token \(a\) is a legal lookahead for the current state \(q_B\) of machine \(M_B\).
 When the parsing operation begins, the initial state of the axiomatic machine \(M_S\) is encoded by the candidate \(\left\langle 0_S, \dashv \right\rangle\):
 it says that the end of text character \(\dashv\) is expected when the entire input is reduced to the axiom \(S\).
 
@@ -2512,27 +2519,27 @@ until a fixed point is reached.
 \bigskip
 The function closure computes the set of the machines that are reached from a given state \(q\) through one or more \textit{invocations}, without any intervening state transition.
 For each reachable machine \(M_B\), represented by the initial state \(0_B\), the function returns any input character \(b\) that can legally occur when the machine terminates;
-such a character is the part of the look ahead set.
+such a character is the part of the lookahead set.
 
 When the clause terminates, the closure of \(C\) contains a set of candidates, with some of them possibly associated with the same state \(q\) as follows:
 \[ \left\{ \langle q, a_1 \rangle, \ldots, \langle q, a_k \rangle \right\} = \left\langle q, \left\{ a_1, \ldots, a_k \right\} \right\rangle \]
-The collection \(\left\{ a_1, a_2, \ldots, a_k \right\}\) is called the \textbf{look ahead set} of the state \(q\) in the closure of \(C\);
+The collection \(\left\{ a_1, a_2, \ldots, a_k \right\}\) is called the \textbf{lookahead set} of the state \(q\) in the closure of \(C\);
 by construction, it's never empty.
 
-For brevity, the singleton look ahead set \(\left\langle q, \left\{ b \right\} \right\rangle\) is written \(\left\langle q, b \right\rangle\).
+For brevity, the singleton lookahead set \(\left\langle q, \left\{ b \right\} \right\rangle\) is written \(\left\langle q, b \right\rangle\).
 
-\subsection{Bottom up Syntax Analysis}
+\subsection{Bottom-up Syntax Analysis}
 
-The formal conditions that allow a Bottom Up to be \textbf{deterministic} is named \(\textit{LR}(k)\), where the parameter \(k \geq 0\) represents the number of consecutive characters are inspected by the parser to decide the next action deterministically.
-Since the \EBNF grammars are normally considered and \(k=1\) is a common value, the condition is referred to as \ELRo.
-The language family accepted by the parsers of type \(\textit{LR}(1)\) \textit{(or \ELRo)} is exactly the family \DET of deterministic context free languages.
+The formal conditions that allow a Bottom-up to be \textbf{deterministic} is named \(\textit{LR}(k)\), where the parameter \(k \geq 0\) represents the number of consecutive characters are inspected by the parser to decide the next action deterministically.
+Since the \EBNF grammars are normally considered and \(k=1\) is a common value, the condition is referred to as \elro.
+The language family accepted by the parsers of type \(\textit{LR}(1)\) \textit{(or \elro)} is exactly the family \DET of deterministic context free languages.
 
-The \ELRo parsers implement a deterministic automaton equipped with a pushdown stack and with a set of internal states \textit{(called macro states or \mstates)} that consist of a set of candidates.
+The \elro parsers implement a deterministic automaton equipped with a pushdown stack and with a set of internal states \textit{(called macro states or \mstates)} that consist of a set of candidates.
 The automaton performs a series of moves of two types:
 
 \begin{itemize}
   \item \textbf{shift move}, which reads an incoming character \textit{(token)} and applies a state transition function to compute the next \mstate; the two of them are then pushed in the stack
-  \item \textbf{reduction move}, applied as soon as the sequence of topmost stack symbols matches the recognizing path in a machine \(M_A\), under the condition that the current character is in the current look-ahead set
+  \item \textbf{reduction move}, applied as soon as the sequence of topmost stack symbols matches the recognizing path in a machine \(M_A\), under the condition that the current character is in the current lookahead set
         \begin{itemize}[label=\(\rightarrow\)]
           \item the fragment of the \textbf{syntax tree} computed so far \textbf{grows}
           \item in order to update the stack, the topmost part \textit{(handle)} is \textbf{popped}
@@ -2552,6 +2559,7 @@ The conditions for \textbf{determinism} are:
 \end{enumerate}
 
 \subsubsection{Multiple transition property and convergence}
+\label{sec:multiple-transition-property-and-convergence}
 
 This condition may affect determinism;
 it occurs when two states within an \mstate have outgoing arcs labelled with the same grammar symbol.
@@ -2561,9 +2569,22 @@ A pilot \mstate \(I\) has the multiple transition property \textit{(MTP)} if it 
 
 Then the \mstate \(I\) and the transition \(\theta(I, X)\) are called \textbf{convergent} if it holds \(\delta(q, X) = \delta(r, X)\).
 
-A \textbf{convergent transition} has a \textbf{convergence conflict} if \(\pi \cap \rho \neq \emptyset\), meaning the two look ahead sets of the two candidates are not disjoint.
+A \textbf{convergent transition} has a \textbf{convergence conflict} if \(\pi \cap \rho \neq \emptyset\), meaning the two lookahead sets of the two candidates are not disjoint.
 
-\subsubsection[ELR(1) condition]{\ELRo condition}
+\paragraph{Single transition property}
+\label{par:single-transition-property}
+
+The same pilot \mstate \(I\) has the \textbf{single transition property} \textit{(STP)} if it does not have the \textit{MTP}.
+
+\bigskip
+For a given grammar, the \textit{STP} condition has \(2\) important consequences:
+
+\begin{enumerate}
+  \item The range of parsing choices at any time is restricted to \(1\)
+  \item The presence of convergent arcs in the pilot is automatically excluded
+\end{enumerate}
+
+\subsubsection[ELR(1) condition]{\elro condition}
 \label{sec:elro-condition}
 
 Since two or more paths can lead to the same final state, two or more reductions may be applied when the parsers enters \mstate \(I\);
@@ -2571,7 +2592,7 @@ to choose the correct reduction, the parser has to store additional informations
 The next conditions endure that all steps are deterministic.
 
 \bigskip
-An \EBNF grammar or its machine net meets the condition \textbf{\ELRo} if the corresponding pilot satisfies the following conditions:
+An \EBNF grammar or its machine net meets the condition \textbf{\elro} if the corresponding pilot satisfies the following conditions:
 
 \begin{itemize}
   \item Every \mstate \(I\) satisfies the next two clauses:
@@ -2582,12 +2603,12 @@ An \EBNF grammar or its machine net meets the condition \textbf{\ELRo} if the co
   \item No transition in the pilot graph has a \textbf{convergence conflict}
 \end{itemize}
 
-If the grammar is purely \textit{BNF}, then the previous condition in referred to as \(\textit{LR}(1)\) instead of \ELRo;
+If the grammar is purely \textit{BNF}, then the previous condition in referred to as \(\textit{LR}(1)\) instead of \elro;
 conflicts never occur in the \textit{BNF} grammars.
 
-\subsubsection[Construction of ELR(1) parser]{Construction of \ELRo parsers}
+\subsubsection[Construction of ELR(1) parser]{Construction of \elro parsers}
 
-Given an \EBNF grammar, an \ELRo parser can be built by the following \(3\) steps:
+Given an \EBNF grammar, an \elro parser can be built by the following \(3\) steps:
 
 \begin{enumerate}
   \item From the automaton net, a deterministic \FSA \textit{(called pilot automaton)} is built
@@ -2626,7 +2647,7 @@ For a set \(C\) of candidates, the shift under a symbol \(X\) is the union of th
 
 Finally, the algorithm to build the state set \(R\) and the state transition function \(\theta\) is shown in Code~\ref{alg:elro-pilot}.
 
-\begin{lstlisting}[caption={Algorithm to build the \ELRo pilot automaton}, label={alg:elro-pilot}]
+\begin{lstlisting}[caption={Algorithm to build the \elro pilot automaton}, label={alg:elro-pilot}]
 R_1 := { I_0 } // prepare the initial m-state I_0
 do
   R := R_1 // update the m-state set R
@@ -2657,7 +2678,7 @@ By definition, the base of the initial \mstate \(I_0\) is empty and all other \m
 
 Finally, the \textbf{kernel} of an \mstate \(I\) is the projection on the first component of every candidate:
 \[ I_{\text{kernel}} = \left\{ q \in Q \mid \left\langle q, \pi \right\rangle \in I \right\} \]
-Two \mstates with the same kernel \textit{(differing just for some look ahead set)} are called kernel-equivalent.
+Two \mstates with the same kernel \textit{(differing just for some lookahead set)} are called kernel-equivalent.
 
 \bigskip
 In short:
@@ -2665,7 +2686,7 @@ In short:
 \begin{itemize}
   \item The \textbf{Base} contains the the items obtained \textbf{after a shift}
   \item The \textbf{Closure} contains the items obtained \textbf{after a closure}
-  \item The \textbf{Kernel} is the set of states \textbf{without look ahead}
+  \item The \textbf{Kernel} is the set of states \textbf{without lookahead}
 \end{itemize}
 
 \paragraph{Stack Content}
@@ -2681,7 +2702,7 @@ The stack elements are of two types, interleaving each other:
   \item stack \mstates \textit{(sms)}, denoted by letter \(J\) and containing ordered set of \(3\)-tuples of the form:
         \[ \left\langle q_A, \pi, \textit{cid} \, \right\rangle \ \text{where} \ \begin{cases}
             q_A \in Q \quad                                                        & \text{is a state}           \\
-            \pi \subseteq \Sigma \cup \left\{ \dashv \right\} \quad                & \text{is a look ahead set}  \\
+            \pi \subseteq \Sigma \cup \left\{ \dashv \right\} \quad                & \text{is a lookahead set}   \\
             1 \leq \textit{cid} \leq | Q | \ \text{or} \ \textit{cid} = \bot \quad & \text{candidate identifier}
           \end{cases} \]
         where \(\bot\) represent the \texttt{NIL} value for the \textit{cid} pointer.
@@ -2690,19 +2711,20 @@ The stack elements are of two types, interleaving each other:
 
 A function \(\mu\) maps the set of \textit{sms} to the set of \mstates defined by \(\mu(J) = I\) if and only if deleting the third field \textit{(the cid)} from the stack candidates of \(J\), the result is exactly the candidates of \(I\).
 
-\subsubsection{Pushdown Algorithm}
+\paragraph{Bottom-up Parser Construction}
+\label{par:parser-algorithm-bottom-up}
 
 Let the current stack be \(J[0] a_1 \, J[1] a_2 \, \ldots \, a_k J[k]\), where \(a_i\) is a grammar symbol and \(J[k]\) is the character on top.
 
 The steps of the algorithm are shown in the following Paragraphs.
 
-\paragraph*{Initialization}
+\subparagraph*{Initialization}
 
 The initial stack just contains the \textit{sms}:
 \[ J_0 = \left\{ s \mid s = \left\langle q, \pi, \bot \right\rangle \ \text{for every candidate} \ \left\langle q, \pi \right\rangle \in I_0 \right\} \]
 thus \(\mu(J_0) = I_0\)
 
-\paragraph*{Shift}
+\subparagraph*{Shift}
 
 Let the top \textit{sms} be \(J\) and \(I = \mu(J)\), let the current token be \(a \in \Sigma\) and assume that the \mstate \(I\) has transition \(\theta(I, a) = I^\prime\). The shift move performs the following two operations:
 \begin{enumerate}[label=\arabic*., ref=(\arabic*)]
@@ -2717,9 +2739,11 @@ Let the top \textit{sms} be \(J\) and \(I = \mu(J)\), let the current token be \
 \end{enumerate}
 thus \(\mu(J^\prime) = I^\prime\)
 
-\paragraph*{Reduction of non initial candidates}
+\subparagraph*{Reduction of non initial candidates}
 
-The \mstates corresponding to the current stack are \(I[i] = \mu\left( J[i] \right), \, 1 \leq i \leq k\) and the current token is \(a\);
+The \mstates corresponding to the current stack are
+\[ I[i] = \mu\left( J[i] \right), \, 1 \leq i \leq k \]
+while the current token is \(a\);
 assume that by inspecting \(I[k]\) the pilot chooses the reduction candidate \(c = \left\langle q_a, \pi \right\rangle \in I[k]\), where \(q_A\) is a final and non initial state.
 Let \(t_k = \left\langle q_A, \rho, \sharp i_k \right\rangle \in J[k]\) be the only candidate such that the current token \(a\) satisfies \(a \in \rho\).
 From \(i_k\) a cid starts, which links stack candidate \(t_k\) to a stack candidate \(t_{k-1} = \left\langle p_A, \rho, \sharp i_{k-1} \right\rangle \in J[k-1]\) until a stack candidate \(t_h \in J[h]\) is reached such that has a \texttt{NIL} cid and therefore its state is initial.
@@ -2734,17 +2758,17 @@ The reduction move does as follows:
   \item execute the non-terminal shift (see below)
 \end{enumerate}
 
-\paragraph*{Reduction of initial candidate}
+\subparagraph*{Reduction of initial candidate}
 
 The reduction of initial candidates differs to the preceding case in the state of the chosen candidate \(c = \left\langle 0_A, \pi, \bot \right\rangle\) which is both final and initial;
 the parser move grows the syntax forest by the reduction \(\varepsilon \rightsquigarrow A\) and performs the non-terminal shift move corresponding to \(\theta(I[k], A) = I^\prime\).
 
-\paragraph*{Nonterminal shift}
+\subparagraph*{Nonterminal shift}
 
 The non-terminal shift move is the same a s the shift move, but the shifted token is a non-terminal \(A \in V\).
 The only difference is that the parser does not read the next input token at line~\ref{enum:shift-move-2} of the shift move.
 
-\paragraph*{Acceptance}
+\subparagraph*{Acceptance}
 
 The parser accepts and halts when the stack is \(J_0\), the move is the non-terminal shift defined by \(\theta(I_0, S)\) and the current token is \(\dashv\).
 
@@ -2779,7 +2803,9 @@ A \textit{vsms}, denoted by \(J\), is a set of pairs, named vector-stack candida
 furthermore, the set is now ordered.
 Each \texttt{elemid} points back to the vector-stack element containing the initial state of the current machine, so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
 
+\bigskip
 \textbf{Notable values:}
+
 \begin{itemize}
   \item In a closure item, the value of \texttt{elemid} is the current stack element index
   \item In a base item, the value of \texttt{elemid} is the same as the item before
@@ -2788,32 +2814,313 @@ Each \texttt{elemid} points back to the vector-stack element containing the init
 \bigskip
 The surjective mapping from from vector-stack \mstates to pilot \mstates is denoted \(\mu\) as before.
 
-\subsection{Top down Syntax Analysis}
+\subsection{Top-down Syntax Analysis}
 \label{sec:top-down}
 
-A simpler yet flexible top down parsing method, called \ELLo, can be applied to \ELRo grammars with additional conditions.
+Top-down parsing is a strategy in which the parser tries to match the input string with the grammar rules starting from the root of the grammar \textit{(the axiom)}, expanding each \RP via recursive descent.
+This strategy requires making hypothesis about the parse tree structure and then verifying if the basic rules of the grammar are satisfied.
 
-A machine net \(\mathcal{M}\) meets the \ELLo condition if the following conditions are satisfied:
+\bigskip
+The analysis procedure is driven by the machine network, without the need of a pilot graph, as the machine itself can work as a pilot for the \PDA;
+however the final net needs annotations to choose the correct transition when in doubt.
+The syntax analyser can recognize early which rule it should apply to a phrase, as soon as it finds the leftmost character of the rule.
 
-\begin{enumerate}
-  \item there are no left recursive derivations
-  \item the net meets the \ELRo condition \textit{(Section~\ref{sec:elro-condition})}; it must not have either shift-reduce, reduce-reduce or convergence conflicts
-  \item the net has single transition property \textit{(STP)}
+\subsubsection[ELL(1) Condition]{\ello Condition}
+
+A simple yet flexible top-down parsing method, called \ello, can be applied to \elro grammars with additional conditions.
+A machine net \(\mathcal{M}\) meets the \ello condition if the following conditions are satisfied:
+
+\begin{enumerate}[label=\arabic*., ref=(\arabic*)]
+  \item\label{enum:ell1-condition-1} there are \textbf{no left recursive} derivations \textit{(Section~\ref{sec:left-right-derivation})}
+  \item\label{enum:ell1-condition-2} the net meets the \elro condition \textit{(Section~\ref{sec:elro-condition})}; it must not have either \textbf{shift-reduce}, \textbf{reduce-reduce} or \textbf{convergence conflicts}
+  \item\label{enum:ell1-condition-3} the net has \textbf{single transition property} \textit{(STP)} \textit{(Paragraph~\ref{par:single-transition-property})} for each state
 \end{enumerate}
 
-\subsection{Complexity of parsing}
+\bigskip
+\textbf{Observations:}
 
-While analysing a string \(x\), with \(n = |x|\) characters, the number of elements in the stack is \(\mathcal{O}(n)\).
-The number of total moves performed by the \PDA is the sum of:
+\begin{itemize}
+  \item condition \ref{enum:ell1-condition-1} excludes grammars with non immediate left recursion
+  \item the requirements are not completely independent from each other: certain types of left-recursive grammars violate clause \ref{enum:ell1-condition-2} and \ref{enum:ell1-condition-3}
+  \item condition \ref{enum:ell1-condition-1} could be further restricted, since a grammar with left recursion can be converted to a grammar without it.
+\end{itemize}
+
+\subsubsection[Step by Step derivation of ELL(1) Parsers]{Step by Step derivation of \ello Parsers}
+
+Starting from bottom-up parsers, a \ello parser can be derived step by step, via a series of transformations.
+
+The \textit{STP} condition permits to reduce greatly the number of \mstates, down to the number of net states;
+furthermore, convergent arcs disappear and consequently the chain of stack pointers can be eliminated from the parser.
+
+By requiring that the grammar is not left-recursive, a parser via a \textbf{parser control flow graph} \textit{(or PCFG)} is built.
+The latter is isomorphic to the machine net, and can be used to generate the parser.
+
+The final result is a top-down predictive parser able to build the syntax tree as it proceeds.
+
+\paragraph{Single Transition Property and Pilot Compaction}
+% TODO page 290-
+%! I DON'T understand a single flying fuck of all of this
+
+Kernel identical \mstates can be merged into a single \mstate, obtaining a smaller pilot behaving exactly as the original one.
+This operation does not work under \elro condition but it's correct under the \textit{STP} hypothesis.
+
+The following algorithm defines the merging operation, which coalesces two kernel-identical \mstates \(I_1, I_2\) into a single \mstate.
+
+\subparagraph*{Operation \texttt{merge}(\(I_1, I_2\))}
 
 \begin{enumerate}
-  \item number of terminal shift moves: \(n_T\)
-  \item number of non-terminal shift moves: \(n_N\)
-  \item number of reduction moves: \(n_R\)
+  \item replace \mstates \(I_1, I_2\) with a new kernel identical \mstate \(I_{1,2}\), having as the lookahead set the union of the corresponding ones in the merged \mstates
+        \[ \langle p, \pi \rangle \in I_{1, 2} \iff \langle p, \pi_1 \rangle \in I_1 \quad \text{and} \quad \langle p, \pi_2 \rangle \in I_2 \quad \text{and} \quad \pi = \pi_1 \cup \pi_2 \]
+  \item \mstate \(I_{1,2}\) is the new target of all arcs in \(I_1\) and \(I_2\)
+        \[ I \xrightarrow{X} I_{1,2} \iff I \xrightarrow{X} I_1 \quad \text{or} \quad I \xrightarrow{X} I_2 \]
+  \item for each pair of arcs leaving \(I_1\) and \(I_2\) with the same label \(X\), the target \mstates are merged
+        \[ \text{if} \ \theta(I_1, X) \neq \theta(I_2, X) \quad \text{then call} \ \texttt{merge}(\theta(I_1, X), \theta(I_2, X)) \]
 \end{enumerate}
 
-Since \(n_T = n, n_N = n, n_R \leq n\), the total number of moves is \(\mathcal{O}(n)\);
-this is also the complexity of the parsing algorithm.
+The operation then terminates, producing a graph with fewer nodes.
+By applying \texttt{merge} to the members of every equivalence class, then new new graph called \textbf{compact pilot} is built.
+
+The compact pilot is denoted by \(\mathcal{C}\).
+
+\subparagraph*{Candidate Identifier}
+
+Thanks to the \textit{STP} property, the algorithm shown in Paragraph~\ref{par:parser-algorithm-bottom-up} \textit{(\nameref{par:parser-algorithm-bottom-up})} can be simplified to remove the need for \textit{cid} and stack pointers:
+they were used find the reach of a non empty reduction move into the stack, popping elements until the chain reached the end \textit{(the \textit{cid} had value \texttt{NIL})}.
+
+\subparagraph*{Parser Control Flow Graph - \PCFG}
+
+The pilot graph \(\mathcal{C}\) can be made isomorphic to the original machine net \(\mathcal{M}\), thus obtaining a graph called \textbf{parser control flow graph} \textit{(PCFG)} representing the blueprint of the parser code.
+
+\bigskip
+\textbf{Steps of the build}:
+
+\begin{enumerate}
+  \item every \(m\)-node of \(\mathcal{C}\) containing \(n\) candidates is split in \(n\) different nodes
+  \item the kernel-equivalent nodes are merged into one and the original lookahead sets are combined
+  \item new arcs (named call arcs) are added to the graph, representing the transfers of control from a machine to another
+  \item each call arc is labelled with a set of terminals (named guide sets), which will determine the parser decision to transfer control to the target machine
+\end{enumerate}
+
+\bigskip
+Every node of the \PCFG, denoted by \(\mathcal{F}\), is identified and denoted by a state \(q\) of machine net \(\mathcal{M}\).
+Every final node \(f_A\) additionally contains a set of \(\pi\) of terminals, named prospect set;
+such nodes are therefore associated to the pair \(\langle A, \pi \rangle\).
+
+The prospect set is the union of the lookahead sets \(\pi_i\) of evert candidate \(\langle f_A, \pi_1\rangle\) existing in the compact pilot graph \(\mathcal{C}\) as follows:
+\[ \pi = \bigcup_{\forall \, \langle f_A, \pi_i \rangle \in \mathcal{C}} \pi_i \]
+
+\bigskip
+The arcs of pilot \(\mathcal{F}\) are of two types, shift and call, represented respectively by the symbols \(\rightarrow\) and \(\dashrightarrow\):
+
+\begin{enumerate}
+  \item there exists in \(\mathcal{F}\) a shift arc \(q_A \xrightarrow{X} r_A\) with \(X\) either terminal or nonterminal if the same arc is in the machine \(M_A\)
+  \item there exists in \(\mathcal{F}\) a call arc \(q_A \xdashrightarrow{\gamma_1} 0_{A_1}\) where \(A_1\) is a nonterminal possibly different from \(A\), if arc \(q_A \xrightarrow{A_1} r_A\) is in the machine \(M_A\)
+        \begin{itemize}[label=\(\rightarrow\)]
+          \item necessary condition \(1\): \mstate \(K\) of pilot \(\mathcal{C}\) contains candidates \(\langle q_A, \pi \rangle\) and \(\langle 0_{A_1}, \rho\rangle\)
+          \item necessary condition \(2\): the next \mstate \(\theta(K, A_1)\) of pilot \(\mathcal{C}\) contains candidates \(\langle r_A, \pi_{r_A} \rangle\)
+        \end{itemize}
+\end{enumerate}
+
+\bigskip
+The call arc label is called guide set:
+
+\begin{enumerate}
+  \item for every call arc \(q_A \xdashrightarrow{\gamma_1} 0_{A_1}\) associated to a nonterminal shift arc \(q_A \xrightarrow{A_1} r_A\), a terminal \(b\) is in the guide set \(\gamma_1\), also written as \(b \in \Gui(q_A \dashrightarrow 0_{A_1})\), if and only if one of the following conditions hold:
+        \begin{align}
+           & b \in \Ini\left( L(0_{A_1}) \right) \label{eq:call-arc-condition-1}                                                                                              \\
+           & A_1 \ \text{is nullable and} \ b \in \Ini\left( L(r_A) \right) \label{eq:call-arc-condition-2}                                                                   \\
+           & A_1, \, L(r_A) \ \text{are both nullable and} \ b \in \pi_{r_A} \label{eq:call-arc-condition-3}                                                                  \\
+           & \exists \ \text{in} \ \mathcal{F} \ \text{a call arc} \ 0_{A_1} \xdashrightarrow{\gamma_2} 0_{A_2} \ \text{and} \ b \in \gamma_2 \label{eq:call-arc-condition-4}
+        \end{align}
+  \item for every terminal shift arc \(p \xrightarrow{a} q\) with \(a \in \Sigma\), the guide set \(\gamma\) is the singleton set \(\{a\}\):
+        \[ \Gui(p \xrightarrow{a} q) \coloneqq \left\{ a \right\} \]
+  \item for every arrow that tags a final node containing candidate \(\langle f_A, \pi \rangle\) with \(f_A\) final:
+        \[ \Gui(f_A \rightarrow ) \coloneqq \pi \]
+\end{enumerate}
+
+Guide sets are normally represented as arc labels enclosed within braces.
+
+Relations \ref{eq:call-arc-condition-1}, \ref{eq:call-arc-condition-2}, \ref{eq:call-arc-condition-3} are not recursive, and consider that:
+
+\begin{enumerate}
+  \item[\ref{eq:call-arc-condition-1}] \(b\) is generated by \(M_{A_1}\) and called by \(M_A\)
+  \item[\ref{eq:call-arc-condition-2}] \(b\) is generated by \(M_A\) starting from state \(r_A\)
+  \item[\ref{eq:call-arc-condition-3}] \(b\) is a terminal following \(M_A\)
+\end{enumerate}
+
+Relation \ref{eq:call-arc-condition-4} is recursive and traverses the net as far as the chain of call sites activated;
+it induces the set inclusion relation \(\gamma_1 \supseteq \gamma_2\) between two any concatenated calls \(q_A \xdashrightarrow{\gamma_1} 0_{A_1} \xdashrightarrow{\gamma_2} 0_{A_2}\).
+
+\subparagraph*{Disjointness of guide sets}
+
+\begin{enumerate}[label=\textbf{\Alph*.}, ref=(\Alph*)]
+  \item\label{enum:disjointess-guide-sets-1} For every node \(q\) of the \PCFG of a grammar \(G\) that satisfies the \ello condition, the guide sets of anu two arcs originating from \(q\) are disjoint
+  \item\label{enum:disjointess-guide-sets-2} If the guide sets of a \PCFG are disjoin, the the machine net satisfies the \ello condition
+\end{enumerate}
+
+\bigskip
+Statement~\ref{enum:disjointess-guide-sets-1} says that, for the same state, membership in different guide sets is exclusive;
+statement~\ref{enum:disjointess-guide-sets-2} says that, if the guide sets are disjoint, the machine net satisfies the \ello condition.
+
+This condition can also be checked directly on the \PCFG, without needing to build the \elro pilot \textit{(Section~\ref{sec:direct-contruction-pcfg})}.
+
+\paragraph{Top-down Predictive Parser construction}
+\label{par:top-down-predictive-parser-construction}
+
+There are two kinds of top-down predictive parsers:
+as deterministic pushdown automaton (\DPDA) or as recursive syntactic procedures;
+both are easily obtainable from the \PCFG.
+
+In this Paragraph the focus will be on the former.
+
+\subparagraph*{Characteristics of the \DPDA}
+\begin{itemize}
+  \item The stack top identifies the state of the active machine
+  \item The inner stack elements refer to return states of suspended machines, in order of suspension
+  \item It allows \(4\) move types:
+        \begin{enumerate}
+          \item a scan move, associated with a terminal shift arc, reads the current token \texttt{cc} as the corresponding machine would do
+          \item a call move, associated with a call arc, checks the enabling predicate, saves on stack the return state and switches to the invoked machine without consuming token \texttt{cc}
+          \item a return move, triggered when the active machine enters a final state, the prospect set of which includes token \texttt{cc}
+          \item a recognizing move, terminating the parsing process
+        \end{enumerate}
+\end{itemize}
+
+\subsubsection[Construction of the ELL(1) Parser]{Construction of the \ello Parser}
+
+\begin{itemize}
+  \item The stack elements are the states of \PCFG \(\mathcal{F}\)
+  \item The stack is initialized with element \(\langle 0_S \rangle\)
+  \item Let \(\langle q_A \rangle\) be the top of stack element, meaning the that the active machine \(M_A\) is in state \(q_A\)
+\end{itemize}
+
+The different move types are defined in the following Subparagraphs.
+
+\subparagraph*{scan move}
+
+if the shift arc \(q_A \xrightarrow{\texttt{cc}} r_A\) exists, then scan the next token and replace the stack top by \(\langle r_A\rangle\).
+The currently active machine does not change.
+
+\subparagraph*{call move}
+
+if there exists a call arc \(q_A \xdashrightarrow{\gamma} 0_B\) such that \(\texttt{cc} \in \gamma\), let \(q_A \xrightarrow{B} r_A\) be the corresponding nonterminal shift arc;
+then pop, push element \(\langle r_A \rangle\) and push element \(\langle 0_B \rangle\).
+
+\subparagraph*{return move}
+
+if \(q_A\) is a final state and token \texttt{cc} is in the prospect set associated with \(q_A\), then pop.
+
+\subparagraph*{recognition move}
+
+If \(M_A\) is the axiom machine, \(q_A\) is the final state and \(\texttt{cc} = \dashv\), then accept and halt.
+
+In any other case, reject the string and halt.
+
+\paragraph{Procedural interpretation}
+
+The top-down parsing algorithm can be seen as a sequence of procedures:
+each machine \(M\) in the net is a sub procedure, corresponding to the set of nonterminals.
+A machine state is the same as a program point inside the procedure code, a nonterminal label on an arc is the same as a procedure call, the return state corresponds to the program point after the procedure call, and bifurcation states represent conditional statements.
+The analogy can go further: a machine invocation is a procedure call, and the guide set is the set of arguments passed to the procedure call.
+
+\bigskip
+All the arcs in the \PCFG, excluding the nonterminal shifts, can be viewed as conditionals instructions:
+they are enabled if the current character \texttt{cc} is in the guide set \(\Gui(a)\) of the arc \(a\).
+
+As such:
+
+\begin{itemize}
+  \item a terminal shift arc labelled as \(\left\{ a \right\}\) is enabled by predicate \(\texttt{cc} \in \left\{ a \right\}\), simplified as \(\texttt{cc}=a\)
+  \item a call arc labelled with set \(\gamma\) represents the procedure invocation conditioned by predicate \(\texttt{cc} \in \gamma\)
+  \item a final node arrow labelled with set \(\pi\) represents a conditional return \texttt{from procedure} instruction to be executed if \(\texttt{cc}=\pi\)
+  \item the remaining \PCFG arcs are nonterminal shifts, representing unconditional \texttt{return from procedure} instructions
+\end{itemize}
+
+\subsubsection{Direct construction of the \PCFG}
+\label{sec:direct-contruction-pcfg}
+
+The \PCFG can be directly built from the machine net, without having to build the \elro pilot..
+
+A set of recursive equations is used to compute the prospect and guide set of all the states and arcs of the \PCFG;
+the equation are instructions to be executed iteratively to compute the sets.
+In order to compute the prospect sets of the final states, it's necessary to compute the prospect sets of all the other states, eventually discarding them.
+
+\paragraph*{Equations for the prospect sets}
+
+\begin{enumerate}
+  \item If the graph includes any nonterminal shift arc \(q_i \xrightarrow{A} r_i\) (therefore also the call arc \(q_i \dashrightarrow 0_A\)), then the prospect set \(\pi_{0_A}\) for the initial state \(0_A\) of machine \(M_A\) is computed as:
+  \[ \pi_{0_A} \coloneqq \pi_{0_A} \cup \bigcup_{q_i \xrightarrow{A} r_i} \left(  \Ini \left( L(r_i) \right) \cup \pi_{q_i} \ \text{if} \ \nullable \left( L(r_i) \right) \ \text{else} \ \emptyset \right) \]
+  \item if the graph includes any terminal or nonterminal shift arc \(p_i \xrightarrow{X_i} q_i\), then the prospect set \(\pi_q\) of state \(q\) is computed as:
+  \[ \pi_q \coloneqq \bigcup_{p_i \xrightarrow{X_i} q} \pi_{p_i} \]
+\end{enumerate}
+
+The two sets of rules apply in an exclusive way to disjoints sets of nodes, because in a normalized machine no arc enters the initial state. To initialize the computation, the prospect state of the initial machine \(0_S\) is initialized as:
+\[ \pi_{0_S} \coloneqq \left\{ \dashrightarrow \right\} \]
+All other sets are initialized as empty.
+
+\paragraph*{Equations for the guide sets}
+
+\begin{enumerate}
+  \item For each call arc \(q_A \dashrightarrow 0_{A_1}\) associated with a nonterminal shift arc \(q_A \xrightarrow{A_1} r_A\), such that possibly other call arcs \(0_{A_1} \dashrightarrow 0_{B_i}\) depart from state \(0_{A_1}\), the guide set \(\Gui(q_A \dashrightarrow 0_{A_1})\) is computed as:
+  \[ \Gui(q_A \dashrightarrow 0_{A_1}) \coloneqq \bigcup \begin{cases}
+    \Ini\left( L(A_1) \right) \\
+    \textbf{if} \ \nullable(A_1) \ \textbf{then} \ \Ini\left( L(r_a) \right) \ \textbf{else} \ \emptyset \\
+    \textbf{if} \ \nullable(A_1) \land \nullable\left( L(r_A) \right) \ \textbf{then} \ \pi_{r_A} \ \textbf{else} \ \emptyset \\
+    \cup_{0_{A_1} \dashrightarrow 0_{B_i}} \Gui(0_{A_1} \dashrightarrow 0_{B_i})
+  \end{cases}\]
+  \item For a final state \(f_A \in F_A\), the guide set of the tagging dart equals the prospect set of the state:
+  \[ \Gui(f_A \rightarrow) \coloneqq \pi_{f_A} \]
+  \item For a terminal shift arc \(q_A \xrightarrow{a} r_A, \ a \in \Sigma\), the guide set is the singleton set composed by the shifted terminal:
+  \[ \Gui(q_A \xrightarrow{a}) \coloneqq \left\{ a \right\} \]
+\end{enumerate}
+
+
+\subsubsection{Increasing the Lookahead}
+
+In order to pragmatically obtain a deterministic top-down parser when the grammar is not \ello is to increase the lookahead of the current character and examine the following ones;
+this is often a sufficient condition to obtain a deterministic parser.
+
+A grammar has the \(\textit{ELL}(k)\) property if there exists an integer \(k \geq 1\) such that, for every net machine and for every state, at most one choice among the outgoing arrows is compatible with the characters that may occur ahead of the current character, at distance less than or equal to \(k\).
+
+Formally, the elements of \(\textit{ELL}(k)\) guide sets are the strings of length up to \(k\) terminals.
+
+\clearpage
+\section{Stuff that I need to place somewhere because it seems useful}
+
+\subsection{Advantages of Top-down Parsers over Bottom-up Parsers}
+
+Advantages of the top-down parser:
+
+\begin{itemize}
+  \item \textbf{anticipated decision}
+  \begin{itemize}[label=\(\rightarrow\)]
+    \item each \mstate base has only a single item
+    \item the parser can decide which rule to apply to a phrase as soon as it finds the leftmost character of the rule, without waiting for the reduction
+  \end{itemize}
+  \item \textbf{no need for stack pointers}
+  \begin{itemize}[label=\(\rightarrow\)]
+    \item once the parser has decided which rule to apply, it can immediately start the reduction
+    \item there's no need to push on the stack the state path followed
+    \item it suffices to push on the stack the sequence of machines followed
+  \end{itemize}
+  \item \textbf{further simplification of the pilot}
+  \begin{itemize}[label=\(\rightarrow\)]
+    \item every \(m\)-node of the pilot graph that contains many candidates is split into as many nodes
+    \item the kernel-equivalent nodes are merged and their lookahead sets are combined into one
+    \item new arcs, named \textit{call arcs}, are added to the pilot graph: they represent the transfers of control from one machine to another one in the net
+    \item each call arc is labelled with a set of terminals, named \textit{guide set}, determining the parser decision to transfer control to the parsed machine
+  \end{itemize}
+\end{itemize}
+
+\bigskip
+
+\textbf{Simplification of a \ello Pilot:}
+\begin{itemize}
+  \item a call arc from state \(q_A\) to state \(0_B\) is added if and only if a machine \(M_A\) has a transition \(q_A \xrightarrow{B} r_A\)
+  \item Two or more initial states in the closure of a \mstate originate a \textbf{call chain}
+  \item Transitions with the same label from kernel-identical \mstates go into kernel-identical \mstates
+  \item The \mstate bases \textit{(with non initial states)} contain only one item, thanks to the \textit{STP}: they are into a one to one correspondence with the non-initial states of the machine net
+\end{itemize}
 
 \clearpage
 
