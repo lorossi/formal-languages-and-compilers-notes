@@ -51,7 +51,7 @@ If you aren't feeling it, send me a message via email or open a discussion on Gi
 ### The thing you wrote does not make any sense! Can you fix it?
 
 Sometimes I forget how to write as English is not my primary languages and the sentences lose all meaning.
-If you spot one, follow the same steps as [above](#you-made-a-mistake)
+If you spot one, follow the same steps as [above](#you-made-a-mistake-how-can-that-be-fixed)
 
 ### Why are you doing this?
 
