@@ -61,6 +61,7 @@
     "abovesep",
     "auxlock",
     "belowsep",
+    "Breveglieri",
     "Brzozowski",
     "buildtree",
     "cleanstyle",
@@ -75,6 +76,7 @@
     "Kleene",
     "metasymbol",
     "metasymbols",
+    "Morzenti",
     "nonambiguous",
     "nonleft",
     "nonnullable",
@@ -85,6 +87,7 @@
     "powerset",
     "pushdown",
     "reentrant",
+    "Reghizzi",
     "semidecidable",
     "Sethi",
     "SPPF",
@@ -98,6 +101,7 @@
     "tradeoff",
     "undistinguishability",
     "Unilinear",
+    "Verlag",
     "vsms"
   ]
 }
