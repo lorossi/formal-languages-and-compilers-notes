@@ -1,0 +1,43 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=blank] (0) at (0, 0) {\(D_0\)};
+		\node [style=blank] (1) at (0, -6) {\(D_i\)};
+		\node [style=blank] (2) at (-7, -6) {\(D_1\)};
+		\node [style=blank] (3) at (6, -6) {\(D_r\)};
+		\node [style=right align] (6) at (-1.25, 0.25) {\footnotesize\shortstack[r]{parent\\syntesized}};
+		\node [style=left align] (7) at (1.25, 0.25) {\footnotesize\shortstack[l]{parent\\inherited}};
+		\node [style=none] (8) at (-1, -0.75) {};
+		\node [style=none] (9) at (-1, 1.25) {};
+		\node [style=none] (10) at (1, 1.25) {};
+		\node [style=none] (11) at (1, -0.75) {};
+		\node [style=none] (12) at (-8.5, -7) {};
+		\node [style=none] (13) at (-8.5, -5) {};
+		\node [style=none] (14) at (-8, -5) {};
+		\node [style=none] (15) at (-8, -7) {};
+		\node [style=none] (16) at (7, -7) {};
+		\node [style=none] (17) at (7, -5) {};
+		\node [style=none] (18) at (7.5, -5) {};
+		\node [style=none] (19) at (7.5, -7) {};
+		\node [style=right align] (20) at (-1.25, -6) {\footnotesize\shortstack[r]{child\\syntesized}};
+		\node [style=left align] (21) at (1.25, -6) {\footnotesize\shortstack[l]{child\\inherited}};
+		\node [style=none] (22) at (-1, -7) {};
+		\node [style=none] (23) at (-1, -5) {};
+		\node [style=none] (24) at (1, -5) {};
+		\node [style=none] (25) at (1, -7) {};
+		\node [style=none] (26) at (-5.5, -6) {\ldots};
+		\node [style=none] (27) at (4.75, -6) {\ldots};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=dashed] (2) to (0);
+		\draw [style=dashed] (0) to (1);
+		\draw [style=dashed] (0) to (3);
+		\draw [style=orange arrow] (8.center) to (9.center);
+		\draw [style=blue arrow] (10.center) to (11.center);
+		\draw [style=orange arrow] (12.center) to (13.center);
+		\draw [style=blue arrow] (14.center) to (15.center);
+		\draw [style=orange arrow] (16.center) to (17.center);
+		\draw [style=blue arrow] (18.center) to (19.center);
+		\draw [style=orange arrow] (22.center) to (23.center);
+		\draw [style=blue arrow] (24.center) to (25.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
