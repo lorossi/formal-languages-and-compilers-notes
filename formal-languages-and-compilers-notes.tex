@@ -1840,17 +1840,17 @@ The elimination of spontaneous moves is divided in \(4\) steps:
 
 \begin{enumerate}
   \item transitive closure of \(\varepsilon\)-moves
-        \begin{figure}[h]
+        \begin{figure}[ht]
           \centering
           \input{Images/figure-6.tikz}
         \end{figure}
   \item backward propagation of scanning moves over \(\varepsilon\)-moves
-        \begin{figure}[h]
+        \begin{figure}[ht]
           \centering
           \input{Images/figure-7.tikz}
         \end{figure}
   \item backward propagation of the finality condition for final states reached by \(\varepsilon\)-moves
-        \begin{figure}[h]
+        \begin{figure}[ht]
           \centering
           \input{Images/figure-8.tikz}
         \end{figure}
@@ -2255,7 +2255,7 @@ Particular configurations are:
   \end{itemize}
 \end{definition}
 
-\subparagraph*{Observations:}
+\subparagraph*{Notes}
 
 \begin{itemize}
   \item The choice of the \(i\)-th action of \(n\) possibilities is not \textbf{deterministic}
@@ -2630,7 +2630,8 @@ this condition does not forbid the existence of initial states that are also fin
   \[ \Ini(q_A) = \Ini\left( L\left( q_A \right) \right) = \left\{ a \in \Sigma \mid a \Sigma^\ast \cap L\left( q_A \right) \neq \emptyset \right\} \]
 \end{definition}
 
-\subparagraph*{Observations}
+\subparagraph*{Notes}
+
 \begin{itemize}
   \item \Ini may \textbf{not} contain the null string \(\varepsilon\)
   \item A set \(\Ini(q_A)\) is \textbf{empty} if and only if the empty string is the only generated string from \(q_A\): \(L\left( q_A \right) = \left\{ \varepsilon \right\}\)
@@ -3006,7 +3007,7 @@ A machine net \(\mathcal{M}\) meets the \ello condition if the following conditi
 \end{enumerate}
 
 \bigskip
-\subparagraph*{Observations:}
+\subparagraph*{Notes}
 
 \begin{itemize}
   \item condition \ref{enum:ell1-condition-1} excludes grammars with non immediate left recursion
