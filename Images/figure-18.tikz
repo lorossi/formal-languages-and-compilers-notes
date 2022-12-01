@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=clear textbox] (0) at (0, 0) {scanner description};
+		\node [style=textbox] (1) at (0, -3) {\texttt{flex}};
+		\node [style=clear textbox] (6) at (0, -6) {scanner \texttt{C} source};
+		\node [style=textbox] (11) at (0, -9) {\texttt{cc}};
+		\node [style=textbox] (12) at (0, -12) {scanner executable};
+		\node [style=clear textbox, anchor=east] (14) at (-5, -12) {input stream};
+		\node [style=clear textbox, anchor=west] (15) at (5, -12) {output};
+		\node [style=none] (16) at (-4, 1) {};
+		\node [style=none] (17) at (4, 1) {};
+		\node [style=none] (18) at (-4, -7) {};
+		\node [style=none] (19) at (4, -7) {};
+		\node [style=none] (20) at (-10, -10.5) {};
+		\node [style=none] (21) at (-10, -13.5) {};
+		\node [style=none] (22) at (8.5, -10.5) {};
+		\node [style=none] (23) at (8.5, -13.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=big arrow] (0) to (1);
+		\draw [style=big arrow] (1) to (6);
+		\draw [style=big arrow] (6) to (11);
+		\draw [style=big arrow] (11) to (12);
+		\draw [style=big arrow] (14) to (12);
+		\draw [style=big arrow] (12) to (15);
+		\draw [style=dashed arrow] (17.center)
+			 to (16.center)
+			 to (18.center)
+			 to (19.center)
+			 to cycle;
+		\draw [style=dashed arrow] (21.center)
+			 to (20.center)
+			 to (22.center)
+			 to (23.center)
+			 to cycle;
+	\end{pgfonlayer}
+\end{tikzpicture}

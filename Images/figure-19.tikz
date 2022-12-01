@@ -1,0 +1,52 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=clear textbox] (0) at (0, 0) {scanner description (\texttt{.l})};
+		\node [style=textbox] (1) at (0, -3) {\texttt{flex}};
+		\node [style=textbox] (2) at (0, -6) {scanner \texttt{C} source};
+		\node [style=none] (3) at (-4.5, 1.5) {};
+		\node [style=none] (4) at (4.5, 1.5) {};
+		\node [style=none] (5) at (4.5, -7.5) {};
+		\node [style=none] (6) at (-4.5, -7.5) {};
+		\node [style=clear textbox] (14) at (16, 0) {parser description (\texttt{.y})};
+		\node [style=textbox] (15) at (16, -3) {\texttt{bison}};
+		\node [style=textbox] (16) at (16, -6) {parser \texttt{C} source};
+		\node [style=none] (17) at (11.5, 1.5) {};
+		\node [style=none] (18) at (20.5, 1.5) {};
+		\node [style=none] (19) at (20.5, -7.5) {};
+		\node [style=none] (20) at (11.5, -7.5) {};
+		\node [style=textbox] (21) at (8, -11) {\texttt{cc}};
+		\node [style=textbox] (22) at (8, -15) {parser executable};
+		\node [style=clear textbox, anchor=east] (23) at (2, -15) {input stream};
+		\node [style=clear textbox, anchor=west] (24) at (15, -15) {output};
+		\node [style=none] (25) at (-3, -13.5) {};
+		\node [style=none] (26) at (-3, -16.5) {};
+		\node [style=none] (27) at (18, -13.5) {};
+		\node [style=none] (28) at (18, -16.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=dashed] (3.center)
+			 to (4.center)
+			 to (5.center)
+			 to [in=360, out=180] (6.center)
+			 to cycle;
+		\draw [style=dashed] (17.center)
+			 to (18.center)
+			 to (19.center)
+			 to [in=360, out=180] (20.center)
+			 to cycle;
+		\draw [style=big arrow] (0) to (1);
+		\draw [style=big arrow] (1) to (2);
+		\draw [style=big arrow] (14) to (15);
+		\draw [style=big arrow] (15) to (16);
+		\draw [style=big arrow] (2) to (21);
+		\draw [style=big arrow] (16) to (21);
+		\draw [style=big arrow] (21) to (22);
+		\draw [style=big arrow] (23) to (22);
+		\draw [style=big arrow] (22) to (24);
+		\draw [style=dashed arrow] (25.center)
+			 to (26.center)
+			 to (28.center)
+			 to (27.center)
+			 to cycle;
+	\end{pgfonlayer}
+\end{tikzpicture}

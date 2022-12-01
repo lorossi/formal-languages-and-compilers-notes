@@ -96,7 +96,7 @@ A big thank you to everyone who helped me!
 
 \subsubsection{Operations on languages}
 
-\textbf{Operations} are typically defined on languages by applying them to each string in the language.
+\textbf{Operations} are typically defined in languages by applying them to each string in the language.
 
 \begin{itemize}
   \item \textbf{Reflection} of a language \(L\): \(L^R\)
@@ -209,7 +209,7 @@ It's also called the \textbf{Kleene star}.
 \subparagraph*{Consequences}
 
 \begin{itemize}
-  \item It represent the union of all the powers of the language \(L\)
+  \item It represents the union of all the powers of the language \(L\)
   \item Every string of the star language can be chopped into substrings that are in the original language \(L\)
   \item The star language \(L^\ast\) can be equal to the base language \(L\)
   \item If \(\Sigma\) is the base language, then \(\Sigma^\ast\) is the universal language
@@ -228,7 +228,7 @@ The union does not include the first power \(L^0\).
   \[ L^+ = \bigcup_{h=1}^{\infty} L^h = L^1 \bigcup L^2 \bigcup \ldots \]
 \end{definition}
 
-\subparagraph*{Consequences:}
+\subparagraph*{Consequences}
 
 \begin{itemize}
   \item It can be derived from the star operator: \(L^+ = L \cdot L^\ast\)
@@ -254,7 +254,7 @@ It can be defined in many ways, but this course will focus on the following \(3\
 
 A language over an alphabet \(\Sigma = \{a_1, a_2, \ldots, a_n\}\) is \textbf{regular} if it can be expressed by applying for a finite number of times the operations of \textit{concatenation} (\(\cdot\)), \textit{union} (\(\cup\)), and \textit{star} (\(\ast\)) starting by unitary languages \(\{a_1\}, \{a_2\} \ldots \{a_n\}\) or the empty string \(\varepsilon\).
 
-More precisely, a regular expression is a string \(r\) containing the terminal characters of \(\Sigma\) and the aforementioned operators, in accordance with the following rules:
+More precisely, a regular expression is a string \(r\) containing the terminal characters of \(\Sigma\) and the aforementioned operators, under the following rules:
 
 \begin{enumerate}
   \item \(r = \varepsilon\), empty or null string
@@ -280,14 +280,14 @@ Since every finite language is regular, it can be proven that
 \[ \textit{FIN} \subseteq \REG \]
 as every finite language is the union of a finite number of strings \(x_1, x_2, \ldots, x_n\), where each \(x_i\) is a regular expression \textit{(a concatenation of a finite number of alphabet symbols)}:
 \[ \left(x_1 \cup x_2 \cup \ldots \cup x_k \right) = \left({a_1}_1 {a_1}_2 \ldots {a_1}_n \cup \ldots \cup {a_k}_1 {a_k}_2 \ldots {a_k}_m \right) \]
-Since family \REG includes non finite languages too, the inclusion is \textbf{proper:}
+Since family \REG includes non-finite languages too, the inclusion is \textbf{proper:}
 \[ \textit{FIN} \subset \REG \]
 
 \subsubsection{Derivation of a Language from a Regular Expression}
 
 In order to \textbf{derivate} a language from a regular expression, it's necessary to follow the rules of the regular expression itself.
 This may lead to multiple choices, as star and crosses operators offer multiple possibilities;
-by making a choice, a new \re defining a less general language \textit{(albeit contained in the original one)} is obtained.
+by making a choice, a new \re, defining a less general language \textit{(albeit contained in the original one)} is obtained.
 
 A regular expression is a \textbf{choice} of another by if:
 
@@ -334,12 +334,12 @@ A phrase of a regular language can be obtained through different choices used in
 
 \paragraph{Ambiguity of Regular Expressions}
 
-A sentence, and the \re that derives it is said to be \textbf{ambiguous} if and only if it can be obtained by structurally different derivations.
-Derivations are structurally different if they differ not only in the order of the choices, but also in the choices themselves.
+A sentence and the \re that derives it is said to be \textbf{ambiguous} if and only if it can be obtained by structurally different derivations.
+Derivations are structurally different if they differ not only in the order of the choices but also in the choices themselves.
 
 \begin{definition}[Numbered Regular Expression]
   A \textbf{Numbered Regular Expression} \textit{(numbered \re)} is a \re where each choice is numbered.
-  Numbered \re are used to distinguish between structurally different derivations, thus determining the ambiguity of a \re.
+  Numbered \re is used to distinguish between structurally different derivations, thus determining the ambiguity of a \re itself.
 \end{definition}
 
 \subparagraph*{Sufficient conditions for ambiguity}
@@ -350,7 +350,7 @@ A \re \(e\) is ambiguous if the language of the numbered version \(e^\prime\) in
 
 In order to use regular expressions in practice, it is convenient to add the basic operators of union, concatenation, and star and the derived operators of power and cross to the already defined set of operators.
 
-Moreover the following operators are added for convenience:
+Moreover, the following operators are added for convenience:
 
 \begin{itemize}
   \item \textbf{Repetition} from \(k \geq 0\) to \(n > k\) times \([a]^n_k = a^k \cup a^{k+1} \cup \ldots \cup a^n\)
@@ -448,9 +448,9 @@ Where the strings \(\alpha_1, \alpha_2, \ldots, \alpha_n\) are called \textbf{al
 
 In order to avoid confusions, metasymbols \(\rightarrow\), \(|\), \(\cup\) and \(\varepsilon\) \textbf{should not be used} for terminal or non-terminal symbols;
 moreover, the terminal and non-terminal alphabets should be \textbf{disjoint} \textit{(\(\Sigma \cap V = \emptyset\))}.
-The metasymbol \(\rightarrow\) is used to separate the left part from the right part of a rule and it's different from the \(\Rightarrow\) symbol, used to represent the derivation relation \textit{(or rule rewriting)}.
+The meta symbol \(\rightarrow\) is used to separate the left part from the right part of a rule and it's different from the \(\Rightarrow\) symbol, used to represent the derivation relation \textit{(or rule rewriting)}.
 
-The \textbf{axiom} \(S\) is used to start the derivation process and it's the only non-terminal symbol that can be used as left part of a rule.
+The \textbf{axiom} \(S\) is used to start the derivation process and it's the only non-terminal symbol that can be used as the left part (\LP) of a rule.
 
 \bigskip
 Normally, these conventions are adopted:
@@ -526,8 +526,7 @@ In general, the \textbf{language generated} or defined by a grammar \(G\) \textb
 If the non-terminal is the axiom \(S\), then the \textbf{language generated} by \(G\) is:
 \[ L_S(G) = L(G) = \left\{x \in \Sigma^\ast \, \middle| \, S \xRightarrow{+} x \right\} \]
 
-\bigskip
-Furthermore:
+\subparagraph*{Additional forms}
 
 \begin{itemize}
   \item If \(A \xRightarrow{\ast} \alpha, \ \alpha \in (V \cup \Sigma)\), then \(\alpha\) is called \textbf{string form} generated by \(G\)
@@ -564,7 +563,7 @@ the following algorithm describes how to do it.
 The \textbf{Grammar Cleaning Algorithm} is based on the following two steps:
 
 % slide 12, page 39
-\begin{enumerate}[label=step \arabic*., ref=(step \arabic*), labelindent=1em, leftmargin=*, widest=step 2.]
+\begin{enumerate}[label=step \arabic*., ref=(step \arabic*), labelindent=2em, leftmargin=*, widest=7]
   \item compute the \textit{set} \(\text{def} \subseteq V\) of the well defined \textbf{non-terminals}
         \begin{itemize}
           \item \text{def} is initialized with the \textbf{non-terminals} that occur in the \textbf{terminal rules} \textit{(the rules having a terminal as their \RP)}
@@ -573,9 +572,9 @@ The \textbf{Grammar Cleaning Algorithm} is based on the following two steps:
                 \[ \text{def} \coloneqq \text{def} \cup \left\{ B \mid (B \rightarrow D_1 \ldots D_n) \in P \land \, \forall \, i \, D_i \in \left(\Sigma \cup \text{def} \,\right)\right\} \]
                 \begin{itemize}
                   \item each symbol \(D_i, 1 \leq i \leq n\) is either a \textbf{terminal in \(\Sigma\)} or a \textbf{non-terminal in def} already
-                  \item at each iteration, two possibile outcomes are possible:
+                  \item at each iteration, two possible outcomes are possible:
                         \begin{enumerate}
-                          \item a new non-terminal is found that occurs as \LP of a rule having as \RP a string of terminals or well defined non-terminals
+                          \item a new non-terminal is found that occurs as \LP of a rule having as \RP a string of terminals or well-defined non-terminals
                           \item the termination condition is reached, as no new non-terminal is found
                         \end{enumerate}
                 \end{itemize}
@@ -589,9 +588,9 @@ The \textbf{Grammar Cleaning Algorithm} is based on the following two steps:
 \end{enumerate}
 
 \bigskip
-Often another requirement is added for cleanliness of a grammar: it must not allow \textbf{circular derivations} \(A \xRightarrow{+} A\), as they are not essential and produce \textbf{ambiguity} \textit{(discussed in Section~\ref{sec:grammar-ambiguity})}.
+Often another requirement is added for the cleanliness of a grammar: it must not allow \textbf{circular derivations} \(A \xRightarrow{+} A\), as they are not essential and produce \textbf{ambiguity} \textit{(discussed in Section~\ref{sec:grammar-ambiguity})}.
 
-Such derivation are not essential because if a string \(x\) is generated via a circular derivation such as
+Such derivations are not essential because if a string \(x\) is generated via a circular derivation such as
 \[ A \Rightarrow A \Rightarrow A \Rightarrow x \]
 it can also be obtained by a non-circular derivation
 \[ A \Rightarrow x \]
@@ -599,7 +598,7 @@ it can also be obtained by a non-circular derivation
 \subsection{Recursion and Language Infinity}
 
 An essential property of technical languages is to be infinite, as a language that can only produce a limited set of strings is not useful.
-In order to generate an infinite number of string via a finite set of rules, the grammar has to derive strings of unbounded length:
+In order to generate an infinite number of strings via a finite set of rules, the grammar has to derive strings of unbounded length:
 this feature needs \textbf{recursion} in the grammar rules, and it's formally introduced in Definition~\ref{def:recursion}.
 
 \begin{definition}[Recursion]
@@ -618,10 +617,10 @@ A formal definition of language infinity is shown in \ref{def:language-infinity}
 \end{definition}
 
 \bigskip
-The definitions introduce a sufficient and a necessary condition for the language to be infinite:
+The definitions introduce a sufficient and necessary condition for the language to be infinite:
 
 \begin{itemize}
-  \item \textbf{Necessary condition:} if no recursive derivation is possible, every derivation has limited length and the language is finite
+  \item \textbf{Necessary condition:} if no recursive derivation is possible, every derivation has a limited length and the language is finite
   \item \textbf{Sufficient condition:} if the language has a rule \(A \xRightarrow{n} x A y\), then it holds \(A \xRightarrow{+} x^m A y^m\) for any \(m \geq 1\) with \(x, y \in \Sigma+\) (not empty because grammar is not circular)
         \begin{itemize}
           \item \textbf{cleanliness} condition of \(G\) \textbf{implies} \(S \xRightarrow{\ast} uAv\) (as \(A\) is reachable from \(S\))
@@ -641,7 +640,7 @@ In other words:
 
 \subsection{Syntax Trees and Canonical Derivations}
 
-A \textbf{syntax tree} \textit{(shown in Figure~\ref{subfig:syntax-tree})} is an oriented, sorted sorted graph with no cycles, such that for each pair of nodes \(A\) and \(B\) there is at most one edge from \(A\) to \(B\).
+A \textbf{syntax tree} \textit{(shown in Figure~\ref{subfig:syntax-tree})} is an oriented, sorted graph with no cycles, such that for each pair of nodes \(A\) and \(B\) there is at most one edge from \(A\) to \(B\).
 
 \subparagraph*{Properties}
 
@@ -653,7 +652,7 @@ A \textbf{syntax tree} \textit{(shown in Figure~\ref{subfig:syntax-tree})} is an
   \item the \textbf{subtree} with root \(N\) is the tree having \(N\) as its root, including all its descendants
 \end{itemize}
 
-Furthermore, two subtypes of syntax trees exists:
+Furthermore, two subtypes of syntax trees exist:
 
 \begin{itemize}
   \item \textbf{skeleton tree} \textit{(Figure~\ref{subfig:skeleton-tree})}, where only the frontier and the structure are shown
@@ -704,20 +703,20 @@ The definition of \textbf{Left and Right Derivation} is shown in Definition~\ref
   it's called \textbf{left} \textit{(leftmost)} \textbf{derivation} \textbf{or} \textbf{right} \textit{(rightmost)} \textbf{derivation} if it holds \(\delta_i \in \Sigma^\ast\) or \(\eta_i \in \Sigma^\ast\), respectively, for every \(0 \leq i \leq p-1\) \textit{(every left or right part of the \RP is composed only by terminals)}.
 \end{definition}
 
-In other words, at each step a left derivation \textit{(or a right one)} expands the rightmost \textit{(or leftmost)} non-terminal.
+In other words, at each step, a left derivation \textit{(or a right one)} expands the rightmost \textit{(or leftmost)} non-terminal.
 A letter \(l\) or \(r\) may be subscripted to the arrow sign \textit{(\(\Rightarrow\))}, to explicitly indicate the direction of the derivation.
-Other derivations that are neither left or right exist, either because the non-terminal expanded is not always leftmost or rightmost, or because the expansion is sometimes leftmost and sometimes rightmost.
+Other derivations that are neither left nor right exist, either because the non-terminal expanded is not always leftmost or rightmost, or because the expansion is sometimes leftmost and sometimes rightmost.
 
 Every sentence of a context-free grammar can be generated by a left derivation and a right one;
-this property does not hold for other grammars \textit{(such as context sensitive grammars)}.
-Therefore, each rules of a language in the \CF family can be transformed in either left or right derivations.
+this property does not hold for other grammars \textit{(such as context-sensitive grammars)}.
+Therefore, each rule of a language in the \CF family can be transformed in either left or right derivations.
 
 \subsubsection{Regular composition of free languages}
 
 If the basic operations of regular languages \textit{(union, concatenation, star and cross)} are applied to context-free languages, the result is still a member of the \CF family.
 
 Let \(G_1 = \left(\Sigma_1, V_1, P_1, S_1 \right)\) and \(G_2 = \left(\Sigma_2, V_2, P_2, S_2 \right)\) be two context-free grammars, defining respectively the languages \(L_1\) and \(L_2\).
-Let's firstly assume that their non terminal sets are disjoint, so that \(V_1 \cap V_2 = \emptyset\) and that symbol \(S\), the axiom that is going to be used to build the new grammars, is not used by either \(G_1\) or \(G_2\) \textit{(\(S \notin (V_1 \cup V_2)\))}.
+Let's firstly assume that their non-terminal sets are disjoint, so that \(V_1 \cap V_2 = \emptyset\) and that symbol \(S\), the axiom that is going to be used to build the new grammars, is not used by either \(G_1\) or \(G_2\) \textit{(\(S \notin (V_1 \cup V_2)\))}.
 
 \begin{itemize}
   \item \textbf{Union:} the grammar \(G\) of language \(L_1 \cup L_2\) contains all the rules of \(G_1\) and \(G_2\), plus the initial rules \(S \Rightarrow S_1 \,|\, S_2 \). In formula:
@@ -734,15 +733,15 @@ Moreover, the mirror language of \(L(G)\), \(L(G)^R\), can be generated by a gra
 \subsection{Grammar ambiguity}
 \label{sec:grammar-ambiguity}
 
-In natural language, the common linguistic phenomenon ambiguity shows up when a sentence has two or more meanings.
+In natural language, the common linguistic phenomenon of ambiguity shows up when a sentence has two or more meanings.
 Ambiguity can be:
 
 \begin{itemize}
   \item \textbf{semantic}, whenever a phrase contains a word that has two or more meanings
-  \item \textbf{syntactic}, \textit{(or structural)} whenever a phrase has different meaning depending on the structure assigned
+  \item \textbf{syntactic}, \textit{(or structural)} whenever a phrase has a different meaning depending on the structure assigned
 \end{itemize}
 
-Likewise, a sentence \(x\) of a grammar \(G\) is syntactically ambiguous if it generated by two or more syntax trees;
+Likewise, a sentence \(x\) of a grammar \(G\) is syntactically ambiguous if it is generated by two or more syntax trees;
 the grammar \(G\) is called ambiguous too.
 
 Definitions \ref{def:degree-of-ambiguity-sentence} and \ref{def:degree-of-ambiguity-grammar} introduce the degree of ambiguity of a sentence and a grammar, respectively.
@@ -760,21 +759,21 @@ Definitions \ref{def:degree-of-ambiguity-sentence} and \ref{def:degree-of-ambigu
 \end{definition}
 
 \bigskip
-Determining that a if a grammar is ambiguous is an important problem.
-Sadly, it's and undecidable characteristic: there is no general algorithm that, given any free grammar, terminates \textit{(in a finite number of steps)} with the correct answer.
-However, the absence of ambiguity in a specific grammar can be shown on a case by case basis, using inductive reasoning on a finite number of cases.
+Determining if a grammar is ambiguous is an important problem.
+Sadly, it's an undecidable characteristic: there is no general algorithm that, given any free grammar, terminates \textit{(in a finite number of steps)} with the correct answer.
+However, the absence of ambiguity in a specific grammar can be shown on a case-by-case basis, using inductive reasoning on a finite number of cases.
 
 The best approach to prevent the problem is to act in the design phase, by avoiding the ambiguous forms \textit{(explained in the following Section)}.
 
 \subsubsection{Catalog of Ambiguous Forms and remedies}
 
-In the following Paragraphs \textit{(\ref{par:ambiguity-from-bilateral-recursion} to \ref{par:other-causes-of-ambiguity})}, common source of ambiguities and their respective solutions will be illustrated.
+In the following Paragraphs \textit{(\ref{par:ambiguity-from-bilateral-recursion} to \ref{par:other-causes-of-ambiguity})}, a common source of ambiguities and their respective solutions will be illustrated.
 
 \paragraph{Ambiguity from Bilateral Recursion}
 \label{par:ambiguity-from-bilateral-recursion}
 
-A non-terminal symbol \(A\) is bilaterally recursive if it is both \textbf{left and right recursive}, for example \(A \xRightarrow{+} A \gamma\) and \(A \xRightarrow{+} \beta A\).
-The cases where the two derivations are produced by the same rule of by different rules have to be treated separately:
+A non-terminal symbol \(A\) is bilaterally recursive if it is both \textbf{left and right recursive}, for example, \(A \xRightarrow{+} A \gamma\) and \(A \xRightarrow{+} \beta A\).
+The cases where the two derivations are produced by the same rule or by different rules have to be treated separately:
 
 \begin{itemize}
   \item Bilateral recursion \textbf{from the same rule:} \(E \rightarrow E + E \mid i\)
@@ -792,7 +791,7 @@ The cases where the two derivations are produced by the same rule of by differen
                   A  \rightarrow aA \mid \varepsilon \\
                   B  \rightarrow bB \mid \varepsilon
                 \end{cases}\)
-          \item solution 2: the rules force an order in the generation
+          \item solution 2: the rules force order in the generation
                 \(\begin{cases}
                   S \rightarrow aS \mid X \\
                   X \rightarrow Xb \mid c
@@ -806,8 +805,8 @@ If two languages \(L_1 = L(G_1)\) and \(L_2 = L(G_2)\) share some sentence, as \
 The sentence \(x \in L_1 \cap L_2\) is generated via two different trees, using respectively the rules of \(G_1\) or \(G_2\).
 On the contrary, sentences \(y \in L_1 \setminus L_2\) and \(z \in L_2 \setminus L_1\) are non ambiguous.
 
-In order to fix this ambiguity, disjoint set of rules for \(L_1 \cap L_2\), \(L_1 \setminus L_2\), and \(L_2 \setminus L_1\) must be provided.
-There is not a general method to achieve this goal, so it has to be done in a case by case basis.
+In order to fix this ambiguity, a disjoint set of rules for \(L_1 \cap L_2\), \(L_1 \setminus L_2\), and \(L_2 \setminus L_1\) must be provided.
+There is no general method to achieve this goal, so it has to be done on a case-by-case basis.
 
 \paragraph{Inherent ambiguity}
 
@@ -830,8 +829,8 @@ then the string \(u^\prime v z^{\prime \prime}\) is generated by two different d
 \[S \Rightarrow S_1 S_2 \xRightarrow{+} u^\prime S_2 \xRightarrow{+} u^\prime v z^{\prime \prime}\]
 \[S \Rightarrow S_1 S_2 \xRightarrow{+} u^\prime v S_2 \xRightarrow{+} u^\prime v z^{\prime \prime}\]
 
-To remove such ambiguity, the operation of moving a string from suffix of \(L_1\) to prefix of \(L_2\) \textit{(and vice versa)} should be prevented.
-A simple solution is to introduce a new terminal as a separator between the two languages, for example \(\#\), such that the concatenation \(L_1 \# L_2\) is easily defined without ambiguity by a grammar with the initial rule \(S \rightarrow S_1 \# S_2\).
+To remove such ambiguity, the operation of moving a string from the suffix of \(L_1\) to the prefix of \(L_2\) \textit{(and vice versa)} should be prevented.
+A simple solution is to introduce a new terminal as a separator between the two languages, for example, \(\#\), such that the concatenation \(L_1 \# L_2\) is easily defined without ambiguity by a grammar with the initial rule \(S \rightarrow S_1 \# S_2\).
 
 \paragraph{Other causes of ambiguity}
 \label{par:other-causes-of-ambiguity}
@@ -854,7 +853,7 @@ Other causes of ambiguity are:
 
 It's not enough for a grammar to generate correct sentences as it should also assign a suitable meaning to them;
 this property is called \textbf{structural adequacy}.
-Thanks to this definition, equivalence of grammars can be refined in two different ways:
+Thanks to this definition, the equivalence between grammars can be refined in two different ways:
 \textbf{weak equivalence} and \textbf{strong equivalence}.
 
 The next two Definitions \textit{(\ref{def:weak-equivalence}~and~\ref{def:strong-equivalence})} will introduce the two equivalence relations and will show how they can be used to prove the structural adequacy of a grammar.
@@ -877,7 +876,7 @@ The next two Definitions \textit{(\ref{def:weak-equivalence}~and~\ref{def:strong
   \end{enumerate}
 \end{definition}
 
-The condition~\ref{enum:strong-equivalence-2} has to be formulated in accordance with the intended application;
+The condition~\ref{enum:strong-equivalence-2} has to be formulated per the intended application;
 a plausible formulation is:
 \textit{two syntax trees are structurally similar if the corresponding condensed skeleton trees are equal}.
 
@@ -888,7 +887,7 @@ As a consequence, it may happen that grammars \(G\) and \(G^\prime\) are not str
 
 \bigskip
 The notion of \textbf{structural equivalence} can be generalized by requiring that the two corresponding trees should be easily mapped into one another by some simple transformation.
-This idea can be realized in various way;
+This idea can be realized in different ways;
 for example, one possibility is to have a bijective correspondence between the subtrees of one tree and the subtrees of the other.
 
 \subsection{Grammar Normal Forms and Transformation}
@@ -896,7 +895,7 @@ for example, one possibility is to have a bijective correspondence between the s
 While normal forms are not strictly necessary for the definition of a grammar, they are used to simplify formal statements and theorem works as they constrain the rules without reducing the family of languages that can be generated by them.
 
 In applied works, however, normal formal grammars are usually not a good choice because they are larger and less readable;
-in order to simplify them, a number of transformations can be applied,
+in order to simplify them, several transformations can be applied,
 They will be presented in the following Sections \textit{(\ref{sec:non-terminal-expansion}~to~\ref{sec:conversion-to-greibach-and-real-time-normal-form})}
 
 \subsubsection{Nonterminal Expansion}
@@ -925,7 +924,7 @@ A non-terminal \(A\) is \textbf{nullable} if it can derive the empty string;
 i.e. there exists a derivation \(A \xRightarrow{+} \varepsilon\).
 
 Consider the set \(\textit{Null} \subseteq V\) of nullable non-terminals.
-It is composed by the following logical clauses, to be applied until a fixed point is reached:
+It is composed of the following logical clauses, to be applied until a fixed point is reached:
 
 \[
   A \in \textit{Null} \Rightarrow
@@ -938,7 +937,7 @@ It is composed by the following logical clauses, to be applied until a fixed poi
 
 Where:
 
-\begin{enumerate}[label=row \arabic*., leftmargin=*, widest=row 1., labelindent=1em]
+\begin{enumerate}[label=row \arabic*., leftmargin=*, widest*=6, labelindent=2em]
   \item for each rule \(\in P\) add as alternatives those obtained by deleting, in the \RP, the nullable non-terminals
   \item remove all empty rules \(A \rightarrow \varepsilon\), except for \(A=S\)
   \item clean the grammar and remove any circularity
@@ -955,12 +954,12 @@ For example, related to programming languages, the rules
 introduce three different subcategories of the iterative phrase: \texttt{while}, \texttt{for} and \texttt{repeat}.
 
 Copy rules factorize common parts, reducing the grammar size while reducing the readability;
-furthermore they don't have any practical utility.
-Removing these rules create shorter syntax trees: this is a common tradeoff in the design of formal grammars.
+furthermore, they don't have any practical utility.
+Removing these rules create shorter syntax trees: this is a common tradeoff in the design of a formal grammar.
 
 For a grammar \(G\) and a non-terminal \(A\), the set \(\textit{Copy}\,(A) \subseteq V\) is defined as the set of \(A\) and all the non-terminals that are immediate of transitive copies of \(A\):
 \[ \textit{Copy}\,(A) = \left\{ B \in V \, \middle| \, \exists \text{ a derivation } A \xRightarrow{\ast} B \right\} \]
-Assuming that \(G\) is in nonnullable normal form and that the axiom \(S\) does not occur in any \RP,
+Assuming that \(G\) is in non-nullable normal form and that the axiom \(S\) does not occur in any \RP,
 to compute the set \textit{Copy} the following logical clauses have to be applied until a fixed point is reached:
 \begin{itemize}
   \item \(A \in \textit{Copy}\,(A)\), initialization
@@ -972,21 +971,21 @@ Finally construct the rule set \(P^\prime\) of a new grammar \(G^\prime\), equiv
   \item \(P^\prime \coloneqq P^\prime \cup \left\{ A \rightarrow \alpha \, \middle| \, \alpha \in \left( \left( \Sigma \cup V \right)^\ast \setminus V \right) \land \left( B \rightarrow \alpha \right) \in P \land B \in \textit{Copy}\,(A) \right\}\)
 \end{itemize}
 
-The effect is that a non immediate \textit{(multi step)} derivation \(A \xRightarrow{+} B \xRightarrow{+} \alpha\) of \(G\) shrinks to the immediate \textit{(one step)} derivation \(A \Rightarrow \alpha\) of \(G^\prime\) while keeping all the original non copy rules.
+The effect is that a non-immediate \textit{(multi step)} derivation \(A \xRightarrow{+} B \xRightarrow{+} \alpha\) of \(G\) shrinks to the immediate \textit{(one step)} derivation \(A \Rightarrow \alpha\) of \(G^\prime\) while keeping all the original non copy rules.
 
 \bigskip
-If, contrary to the hypothesis, \(G\) contains nullable terminals, the definition of set \textit{Copy} and its computation must also consider the derivations in form \(A \xRightarrow{+} BC \xRightarrow{+} B\) where non-terminal \(C\) is nullable.
+If contrary to the hypothesis, \(G\) contains nullable terminals, the definition of set \textit{Copy} and its computation must also consider the derivations in form \(A \xRightarrow{+} BC \xRightarrow{+} B\) where non-terminal \(C\) is nullable.
 
 \subsubsection{Conversion of Left Recursion to Right Recursion}
 \label{sec:conversion-of-left-recursion-to-right-recursion}
 
-Another normal form, called nonleft-recursive, is characterized by the absence of left-recursive rules of derivations \textit{(l-recursions)}.
+Another normal form, called non left-recursive, is characterized by the absence of left-recursive rules of derivations \textit{(l-recursions)}.
 This form is needed for \textbf{top-down parsers}, to be studied later \textit{(Section~\ref{sec:top-down})}.
 
 There are two forms of transformation:
 \begin{itemize}
   \item \textbf{Immediate}, explained in this Paragraph
-  \item \textbf{Non immediate}, explained in the book and not treated in the course due to its complexity
+  \item \textbf{Non-immediate}, explained in the book and not treated in the course due to its complexity
 \end{itemize}
 
 \subparagraph*{Transformation of immediate left recursion}
@@ -1017,7 +1016,7 @@ In the \textbf{Chomsky Normal Form} \textit{(or CNF)} only two types of rules ar
 \end{enumerate}
 
 Moreover, if the language contains the empty string, there exists the axiomatic rule \(S \rightarrow \varepsilon\), but the axiom \(S\) is not allowed in any rule \RP.
-With such constraints, any internal node of a syntax tree may have either who non-terminal siblings or one terminal sibling.
+With such constraints, any internal node of a syntax tree may have either non-terminal siblings or one terminal sibling.
 
 In order to convert a grammar \(G\) into \textit{CNF} form, the following steps are performed:
 
@@ -1042,35 +1041,35 @@ In order to convert a grammar \(G\) into \textit{CNF} form, the following steps 
 
 In the \textbf{real-time normal form}, every rule starts with a terminal:
 \[A \rightarrow a \alpha \ \text{where} \ a \in \Sigma \ \text{and} \ \alpha \in \left( \Sigma \cup V \right)^\ast \]
-A special case of real time form is the \textbf{Greibach normal form:}
+A special case of real-time form is the \textbf{Greibach normal form:}
 \[ A \rightarrow a \alpha \ \text{where} \ a \in \Sigma \ \text{and} \ \alpha \in V^\ast \]
 
-Every rules starts with a terminal, followed by zero or more non-terminals;
+Every rule starts with a terminal, followed by zero or more non-terminals;
 both form exclude the empty string \(\varepsilon\) from the language.
 
 The \textit{real time} designation will be later understood \textit{(Section~\ref{sec:pushdown-automaton})} as a property of the pushdown automaton that can recognize the language:
 at each step, the automaton reads and consumes an input character.
 Therefore, the total number of steps equals the length of the input string to be recognized.
 
-In order so simplify a grammar, it can be converted in \textit{Greibach} or \textit{real time} normal form.
+In order to simplify a grammar, it can be converted in \textit{Greibach} or \textit{real time} normal form.
 However, such conversion will not be discussed in this course.
 
 \subsection{Free Grammars Extended with Regular Expressions - \EBNF}
 \label{sec:free-grammars-extended-with-regular-expressions}
 
-The legibility of a \re can be combined with the expressiveness of a grammar via the \textbf{extended context-free grammar} \textit{(\EBNF)} notation, that uses the best parts of each formalism.
-Very simply, a rule \RP can be a \re over terminals and non terminals.
-The right part \(\alpha\) of an extended rule \(A \rightarrow \alpha\) of a grammar \(G\) is a \re which, in general, derives an infinite set of string;
-each of them can be viewed as the right part of a non extended rule with infinitely many alternatives.
+The legibility of a \re can be combined with the expressiveness of a grammar via the \textbf{extended context-free grammar} \textit{(\EBNF)} notation, which uses the best parts of each formalism.
+Very simply, a rule \RP can be a \re over terminals and non-terminals.
+The right part \(\alpha\) of an extended rule \(A \rightarrow \alpha\) of a grammar \(G\) is a \re which, in general, derives an infinite set of strings;
+each of them can be viewed as the right part of a non-extended rule with infinitely many alternatives.
 
 Consider a grammar \(G\) and its rule \(A \rightarrow \alpha\), where \(\alpha\) is a \re possibly containing the choice operators of star, cross, union, and option.
 Let \(\alpha^\prime\) a string that derives from \(\alpha\), according to the definition of \re derivation, and does not contain any choice operator.
 For every pair of strings \(\delta, \eta\), there exists a one step derivation:
 \[ \delta A \eta \xRightarrow[G]{} \delta \alpha^\prime \eta \]
 
-Then it's possible to define a multi step derivation that starts from the axiom and produces a terminal string, and consequently can define the language generated by a \EBNF grammar, in the same manner as for basic grammars.
+Then it's possible to define a multi-step derivation that starts from the axiom and produces a terminal string and consequently can define the language generated by a \EBNF grammar, in the same manner as for basic grammars.
 
-The tree generated by a \EBNF grammar is generally shorter and broader than the one generated by its non extended counterpart.
+The tree generated by a \EBNF grammar is generally shorter and broader than the one generated by its non-extended counterpart.
 
 It can be shown that regular languages are a special case of context-free languages:
 they are generated by grammars with strong constraints on the rules form.
@@ -1115,7 +1114,7 @@ refer to Definition~\ref{def:context-free-grammar} \textit{(Page~\pageref{def:co
   This family of grammars gives evidence to some fundamental properties and leads to a straightforward construction of the automaton that recognizes the strings of a regular language.
 \end{definition}
 
-All of its rules have form:
+All of its rules have the form:
 \[A \rightarrow uBv \quad \text{ with } u, v \in \Sigma^\ast, B \in \left(V \cup \varepsilon\right) \]
 that is, there's at most one non-terminal in the \RP of a rule.
 The family of linear grammar is still more powerful than the family of \RE.
@@ -1131,14 +1130,14 @@ The rules of the following form are called respectively \textbf{right-linear} an
   \item left-linear rule: \(A \rightarrow Bu \) where \(u \in \Sigma^\ast\) and \(B \in \left( V \cup \varepsilon \right)\)
 \end{itemize}
 
-Both cases are linear and obtained by deleting on either side of of the two terminal strings that embrace non-terminal \(B\) in a linear grammar.
-A grammar where the rules are either right of left-linear is termed unilinear or of type 3.
+Both cases are linear and obtained by deleting on either side of the two terminal strings that embrace non-terminal \(B\) in a linear grammar.
+A grammar where the rules are either right or left-linear is termed \textbf{unilinear} \textit{(or of type 3)}.
 
 Regular expressions can be translated into unilinear grammars via finite state automata.
 
 \subsubsection{Linear Language Equations}
 
-It's possible to define a \textbf{linear language} as a set of linear equations with regular languages as solution.
+It's possible to define a \textbf{linear language} as a set of linear equations with regular languages as a solution.
 the rules illustrated in Section~\ref{sec:from-re-to-cf} \textit{(\nameref{tab:re-to-cf})} will be used to create the equations.
 
 For simplicity, consider a grammar \(G = \langle V, \Sigma, R, S \rangle\) in strictly right-linear with all the terminal rules empty \textit{(e.g. \(A \rightarrow \varepsilon\))}.
@@ -1157,7 +1156,7 @@ Every rule can be transcribed into a linear equation that has as unknowns the la
 Let \(n = |V|\) be the number of non-terminals of grammar \(G\).
 Each non-terminal \(A_i\) is defined by a set of alternatives:
 \[ A_i \rightarrow a A_1 \mid b A_1 \mid \ldots \mid a A_n \mid b A_n \mid \ldots \mid A_1 \mid \ldots \mid A_n \mid \varepsilon \]
-where some of the alternatives are empty. The rule \(A_i \rightarrow A_i\) is never present since the language is non circular.
+where some of the alternatives are empty. The rule \(A_i \rightarrow A_i\) is never present since the language is non-circular.
 
 Then the set of corresponding linear equations is:
 \[ L_{A_i} = a L_{A_1} \cup b L_{A_1} \cup \ldots \cup a L_{A_n} \cup b L_{A_n} \cup \ldots \cup L_{A_1} \cup \ldots \cup L_{A_n} \cup \varepsilon \]
@@ -1167,11 +1166,11 @@ This system of \(n\) equations in \(n\) unknowns can be solved via substitution 
 
 \begin{definition}[Arden identity]
   \label{def:arden-identity}
-  The equation in the unknown language \(X= K X \cup L\) where \(K\) is a non empty language and \(L\) is any language, has only one and unique solution, provided by the \textbf{Arden Identity:}
+  The equation in the unknown language \(X= K X \cup L\) where \(K\) is a non-empty language and \(L\) is any language, has only one unique solution, provided by the \textbf{Arden Identity:}
   \[ X = K^\ast L \]
 \end{definition}
 
-It's simple to see that language \(K^\ast L\) is a solution of the equation \(X = K X \cup L\), since by substituting it for the unknown in both sides, the equation turns into the identity:
+It's simple to see that language \(K^\ast L\) is a solution of the equation \(X = K X \cup L\) since by substituting it for the unknown on both sides, the equation turns into the identity:
 \[ K^\ast K = (K K^\ast L) \cup L \]
 
 \subsection{Comparison of Regular and Context-Free Grammars}
@@ -1183,15 +1182,22 @@ regular languages \textit{(and therefore unilinear grammars and regular expressi
 
 First of all, recall that in order to generate an infinite language, a grammar has to be recursive, as only a derivation such as \(A \xRightarrow{+} u A v\) can be iterated for an unbounded number of times \(n\) producing a string \(u^n A v^n\).
 
-Let \(G\) be a unilinear grammar.
-For any sufficiently long sentence \(x\), longer than some constant dependent only on the grammar, it's possible to find a factorization \(x = tuv\) where \(u \neq \varepsilon\) such that for every \(n \geq 0\), the string \(t u^n v\) is in the language.
+\begin{theorem}[Pumping Lemma]
+  Let \(G\) be a unilinear grammar.
+  For any sufficiently long sentence \(x\), longer than some constant dependent only on the grammar, it's possible to find a factorization \(x = tuv\) where \(u \neq \varepsilon\) such that for every \(n \geq 0\), the string \(t u^n v\) is in the language.
+\end{theorem}
 
-It can be said that the given sentence can be \textit{pumped} by injecting the substring \(u\) for arbitrarily many times.
+It can be said that the given sentence can be \textit{pumped} by injecting the substring \(u\) arbitrarily many times.
 
-\subparagraph*{Proof}
+\begin{proof}
+  Consider a strictly right-linear grammar and let \(k\) be the number of non-terminal symbols.
+  The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the same non-terminal label \(A\) \textit{(illustrated in Figure~\ref{fig:pumping-strings-syntax-tree})}
 
-Consider a strictly right-linear grammar and let \(k\) be the number of non-terminal symbols.
-The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the same non-terminal label \(A\) \textit{(illustrated in Figure~\ref{fig:pumping-strings-syntax-tree})}
+  Consider the factorization into \(t = a_1 a_2 \ldots\), \(u = b_1 b_2 \ldots\), and \(b = c_1 c_2 \ldots c_m\).
+  Therefore, there is recursive derivation:
+  \[S \xRightarrow{+} t A \xRightarrow{+} tuA \xRightarrow{+} tuv \]
+  that can be repeated to generate the string \(tu^+ v\).
+\end{proof}
 
 \begin{figure}[htbp]
   \centering
@@ -1202,15 +1208,10 @@ The syntax tree of any sentence \(x\) of length \(k\) has two nodes with the sam
   \bigskip
 \end{figure}
 
-Consider the factorization into \(t = a_1 a_2 \ldots\), \(u = b_1 b_2 \ldots\), and \(b = c_1 c_2 \ldots c_m\).
-Therefore, there is recursive derivation:
-\[S \xRightarrow{+} t A \xRightarrow{+} tuA \xRightarrow{+} tuv \]
-that can be repeated to generate the string \(tu^+ v\).
-
 \subsubsection{Role of Self-nesting Derivations}
 
 Since the \REG family is strictly included within the \CF family \textit{(as \(\REG \subset \CF\))}, the focus of this Section is what makes some languages not regular.
-Typical non regular languages, such as the Dyck language, the palindromes, and two power language have a common feature:
+Typical non-regular languages, such as the Dyck language, the palindromes, and two power languages have a common feature:
 a \textbf{recursive derivation that is neither left nor right-linear}.
 Such a derivation has the form:
 \[ A \xRightarrow{+} \alpha A \beta \quad \alpha \neq \varepsilon \land \beta \neq \varepsilon \]
@@ -1225,18 +1226,18 @@ Therefore:
 while the opposite does not necessarily hold.
 
 \bigskip
-This introduces a big limitation to the family of languages generated via \re, as all sufficiently long sentences necessarily contain two substrings that can be repeated for an unbounded number of times, thus generating self nested structures.
+This introduces a big limitation to the family of languages generated via \re, as all sufficiently long sentences necessarily contain two substrings that can be repeated an unbounded number of times, thus generating self-nested structures.
 
 \subsubsection{Closure properties of \REG and \CF families}
 \label{sec:closure-properties-reg-and-cf}
 
-Languages operations can be used to combine existing languages into new one;
+Languages operations can be used to combine existing languages into a new one;
 when the result of an operation does not belong to the original family it cannot be generated with the same type of grammar.
 
 Therefore, the closure of the \REG and \CF families is here explained, keeping in mind that:
 
 \begin{itemize}
-  \item a \textbf{non membership} \textit{(such as \(\overline{L} \notin \CF\))} means that the left term does not always belong to the family, while some of the complement of the language may belong to the family
+  \item a \textbf{non-membership} \textit{(such as \(\overline{L} \notin \CF\))} means that the left term does not always belong to the family, while some of the complement of the language may belong to the family
   \item the \textbf{reversal} of a language \(L(G)\) is generated by the mirror grammar, which is obtained by reversing the right rule parts of the original grammar \(G\)
   \item if a language is \textbf{left-linear}, its mirror is \textbf{right-linear}, and vice versa
   \item the symbol \(\oplus\) is used as a symbol for \textbf{union} \textit{(normally represented as \(\cup\) or \(cdot\))}
@@ -1259,12 +1260,12 @@ The closure of the two families is shown in Table~\ref{tab:closure-regular-cf}.
 \end{table}
 
 The properties of the \REG closure are easily proven via finite state automata.
-The reflection and star properties of \CF have already been shown, while: % TODO add references
+The reflection and star properties of \CF have already been shown while: % TODO add references
 
 \begin{itemize}
   \item \CF is \textbf{not closed under complement} because it is closed under union but not under intersection
   \item the closure of \CF under union can be proven by defining suitable grammars
-  \item the non closure of \CF under intersection can be proven by using finite state automata
+  \item the non-closure of \CF under intersection can be proven by using finite state automata
 \end{itemize}
 
 \bigskip
@@ -1275,12 +1276,12 @@ This property is shown in Section~\ref{sec:intersection-of-regular-and-context-f
 
 \subsection{Chomsky classification of Grammars}
 
-Context-free grammars cover the main constructs occurring in technical languages, such as hierarchical lists and nested structures, but fail with other syntactic structures as simple as the replica language or the three power language.
+Context-free grammars cover the main constructs occurring in technical languages, such as hierarchical lists and nested structures, but fails with other syntactic structures as simple as the replica language or the three-power language.
 
 American linguist \textit{Noam Chomsky} proposed a categorization of languages based on the complexity of their grammars, which is still used today;
 such categorization is called the \textbf{Chomsky hierarchy} and is shown in Table~\ref{tab:chomsky-hierarchy}.
 
-A relation between language families is shown in Figure~\ref{fig:chomsky-hierarchy}.
+The relation between language families is shown in Figure~\ref{fig:chomsky-hierarchy}.
 
 \begin{table}[htbp]
   \bigskip
@@ -1288,7 +1289,7 @@ A relation between language families is shown in Figure~\ref{fig:chomsky-hierarc
   \begin{tblr}{colspec={l|l|l|l}, row{1}={font=\itshape}, column{1}={font=\itshape}}
     grammar & rule form                                                                                                                                                                                      & family                 & model              \\
     \hline
-    type 0  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^+\)                                                                                                           & recursively enumerable & turing machine     \\
+    type 0  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^+\)                                                                                                           & recursively enumerable & Turing machine     \\
     type 1  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^*\)                                                                                                           & context sensitive      & linear bounded     \\
     type 2  & \(A \rightarrow \alpha\) with \(A \in V\) and \(\alpha \in \left( \Sigma \cup V \right)^\ast\)                                                                                                 & context-free           & pushdown automaton \\
     type 3  & \(\begin{cases}A \rightarrow uB \ & \textit{(right)} \\ A \rightarrow Bu  \  & \textit{(left)} \end{cases}\) with \(\begin{cases}A \in V \\ u \in \Sigma^\ast \\ B \in \left( V \cup \left\{ \varepsilon \right\} \right)\end{cases}\) & regular                & finite automaton   \\
@@ -1327,7 +1328,7 @@ The language of recognized is then denoted of \(L(\alpha)\) and is the set of th
 \[ L(\alpha) = \left\{ x \in \Sigma^\ast \mid \alpha(x) = \texttt{yes} \right\}\]
 The algorithm itself is assumed to always terminate for every input string, making the recognition problem decidable;
 however, it if does not terminate for a specific string \(x\), then \(x\) is not part of the language \(L(\alpha)\).
-If this happens, the membership problem semidecidable and the language \(L\) is recursively enumerable.
+If this happens, the membership problem is semidecidable and the language \(L\) is recursively enumerable.
 
 \subsection{Recognizing Automaton}
 \label{sec:recognizing-automaton}
@@ -1348,7 +1349,7 @@ The control unit has a limited store size, represented by a finite set of states
 the input and memory tape have unbounded size.
 In order to represent the start and the end of the data written in the tape, the symbols \(\vdash, \dashv\) are respectively used.
 
-The input \textit{(or read only)} tape contains the given input or source string, one character per cell, while the memory tape can be written to and read from.
+The input \textit{(or read-only)} tape contains the given input or source string, one character per cell, while the memory tape can be written to and read from.
 The automaton can perform the following actions:
 
 \begin{itemize}
@@ -1394,7 +1395,7 @@ At any time, the future behaviour of the machine depends on the \textbf{instanta
 After being \inlinequote{turned on}, the machine performs a computation \textit{(a sequence of moves)} that leads to new configurations.
 If more than one move is possible for a certain configuration, the change is called \textbf{non-deterministic};
 otherwise, it's \textbf{deterministic}.
-Non deterministic automaton represent an algorithm that may explore alternative paths in some situations.
+Non deterministic automata represent an algorithm that may explore alternative paths in some situations.
 
 A configuration is \textbf{final} if the control unit is in a state specified as terminal while the input head is on the terminator \(\dashv\).
 Sometimes an additional constraint is added to the final configuration: the memory tape may contain a specific symbol or string.
@@ -1404,9 +1405,9 @@ The source string \(x\) is \textbf{accepted} if the automaton, starting in the i
 a nondeterministic automaton may reach a final configuration by different computations.
 The language \textbf{accepted} or \textbf{recognized} by the machine is the set of accepted strings.
 
-A computation terminates either on when the machine has entered a final configuration or when no move can be applied to the current configuration.
-In the latter case, the string is not accepted by the computation, but may be accepted by another, non deterministic, computation.
-Two automata accepting the same language are called equivalent;
+A computation terminates either when the machine has entered a final configuration or when no move can be applied to the current configuration.
+In the latter case, the string is not accepted by the computation but may be accepted by another, non deterministic, computation.
+Two automata accepting the same language are called \textbf{equivalent};
 they can belong to different classes of automata or have different complexities.
 
 \bigskip
@@ -1450,9 +1451,9 @@ A formal definition is shown in \textit{(\ref{def:deterministic-automaton})}.
 The transition function encodes the moves of the automaton \(M\): the meaning of \(\delta(q, a) = r\) is that the automaton moves from state \(q\) to state \(r\) when it reads \(a\) from the input tape.
 This move is also sometimes denoted the symbol: \[q \xrightarrow{a} r\]
 
-The automaton processes a non empty string \(x\) by making a series of moves, one for each symbol in the string.
+The automaton processes a non-empty string \(x\) by making a series of moves, one for each symbol in the string.
 If the value \(\delta(q, a)\) is \textbf{undefined} \textit{(\(\delta(q, a) = \varepsilon\))}, automaton \(M\) stops and enters an error state;
-the strings that was being processed is rejected.
+the strings that were being processed are rejected.
 
 The function \(\delta\) can be applied recursively as follows:
 \[ \delta(q, ya) = \delta \left(  \delta \left( q, y \right) a \right) \quad a \in \Sigma, y \in \Sigma^\ast \]
@@ -1461,12 +1462,12 @@ Therefore, the same transition function is defined inductively as:
     \delta^\ast\left( q, \varepsilon \right) = q \quad                                                                   & \textit{base case}      \\
     \delta^\ast\left( q, xa \right) = \delta \left( \delta^\ast (q, x), a \right), x \in \Sigma^\ast, a \in \Sigma \quad & \textit{inductive step}
   \end{cases}\]
-For brevity, with an abuse of notation, \(\delta\) is also used to denote the function \(\delta^\ast\).
+For brevity, with abuse of notation, \(\delta\) is also used to denote the function \(\delta^\ast\).
 
 There is a univocal correspondence between the values of \(\delta\) and the paths in the state transition graph of the automaton: \(\delta(q, y) = q^\prime\) if and only if there exists a path from node \(q\) to node \(q^\prime\), such that the concatenated labels of the path arcs make string \(y\);
-\(y\) is the label of the path, while the path itself represent a computation the automaton.
+\(y\) is the label of the path, while the path itself represents a computation of the automaton.
 
-A \textbf{string} is \textbf{recognized} \textit{(or accepted)} by automaton \(M\) if it is the label of a path fom the initial state to a final.
+A \textbf{string} is \textbf{recognized} \textit{(or accepted)} by automaton \(M\) if it is the label of a path from the initial state to a final.
 The empty string \(\varepsilon\) is accepted by \(M\) if the initial state is also a final state.
 
 The language \(L(M)\) \textbf{or accepted} \textit{(or accepted)} by automaton \(M\) is the set of all strings accepted by \(M\):
@@ -1502,7 +1503,7 @@ The state transition function \(\delta\) can be made total by adding the error s
 \label{sec:clean-automaton}
 
 An automaton may contain useless parts that do not contribute to the acceptance of any string: they are best eliminated, as they just bloat the machine by making it more complex.
-This concept holds for all classes of automata, including non deterministic ones.
+This concept holds for all classes of automata, including non-deterministic ones.
 
 A state is called:
 \begin{itemize}
@@ -1511,7 +1512,7 @@ A state is called:
   \item \textbf{post-accessible} if a final state can be reached from it
 \end{itemize}
 
-By using these definition, a state can then be:
+By using these definitions, a state can then be:
 \begin{itemize}
   \item \textbf{useful} if it is accessible and post-accessible
   \item \textbf{useless} otherwise
@@ -1522,8 +1523,8 @@ An automaton is \textbf{clean} \textit{(or minimal)} if all its states are \text
 
 \begin{property}[Equivalent Clean Automaton]
   \label{prop:minimal-automaton}
-  For every finite automaton there exists an equivalent clean automaton.
-  The cleanliness condition can be reached by identifying useless states, deleting them and all its incident arcs.
+  For every finite automaton, there exists an equivalent clean automaton.
+  The cleanliness condition can be reached by identifying useless states, deleting them and all their incident arcs.
 \end{property}
 
 \begin{definition}[Indistiguishable states]
@@ -1539,7 +1540,7 @@ The new set of states is the quotient set with respect to the equivalence class.
 
 \subsubsection{Automaton Clearing Algorithm}
 
-Computing the undistinguishability relation directly from the definition is a undecidable problem, as it would require computing the whole accepted language which may be infinite.
+Computing the indistinguishability relation directly from the definition is an undecidable problem, as it would require computing the whole accepted language which may be infinite.
 
 The distinguishability relation can be computed through its inductive Definition \ref{def:distinguishability-inductive}.
 
@@ -1568,13 +1569,13 @@ In fact, if \(\exists \, a\) such that \(\delta(p, a) = p^\prime\), with \(p^\pr
 
 \paragraph{Minimal Automaton Construction}
 
-The minimal automaton \(M^\prime\), equivalent to the given automaton \(M\), has for states the equivalence of the undistinguishability relation.
+The minimal automaton \(M^\prime\), equivalent to the given automaton \(M\), has for states the equivalence of the indistinguishability relation.
 Machine \(M^\prime\) contains the arc:
 \[ \overbracket{\left[ \ldots, p_r, \ldots  \right]}^{C_1} \xrightarrow{b} \overbracket{\left[ \ldots, q_s, \ldots  \right]}^{C_2} \]
 between the equivalence classes \(C_1\) and \(C_2\) if and only if machine \(M\) contains the arc \(p_r \xrightarrow{b} q_s\), between two states, respectively, belonging to the two classes.
 The same arc of \(M^\prime\) may derive from several arcs of \(M\).
 
-The minimization procedure provides a proof of the existence and unicity of a minimum automaton equivalent to any given one;
+The minimization procedure provides proof of the existence and unicity of a minimum automaton equivalent to any given one;
 this procedure does not hold for non deterministic automata.
 
 State minimization provides a method for checking deterministic automata equivalence:
@@ -1653,7 +1654,7 @@ For two of them there is an analogy with the corresponding grammar:
   \item \textbf{spontaneous} moves - grammar with copy rule \(A \rightarrow \varepsilon\)
 \end{itemize}
 
-\subsubsection{Motivations for nondeterminism in finite state automata}
+\subsubsection{Motivations for non determinism in finite state automata}
 
 While seemingly a nuisance, nondeterminism introduces many useful side effects in the grammar generations.
 A few motivations are:
@@ -1691,7 +1692,7 @@ As before, a computation of length \(n\) is a series of \(n\) transitions such t
 \[ q_0 \xrightarrow{a_1} q_1 \xrightarrow{a_2} q_2 \ldots \xrightarrow{a_n} q_n \quad \text{or} \quad q_0 \xrightarrow{a_1 a_2 \ldots a_n} q_n \]
 where the computation label is the string \(a_1 a_2 \ldots a_n\).
 
-A computation is successful is the first state \(q_0\) is \textbf{initial} and the last state \(q_n\) is \textbf{final}.
+A computation is successful if the first state \(q_0\) is \textbf{initial} and the last state \(q_n\) is \textbf{final}.
 A string \(x\) is \textbf{or accepted} \textit{(or accepted)} by the automaton if it's the label of a successful computation.
 
 The empty string \(\varepsilon\) is accepted if and only if it holds \(q_i \in I\) and \(q_i \in F\) \textit{(an initial state must be also final)}.
@@ -1727,7 +1728,7 @@ i.e. the set computed by function delta must contain a final state for a string 
 Another kind of nondeterministic behaviour occurs when an automaton changes state \textbf{without reading a character}, performing a \textbf{spontaneous move}, represented by an \(\varepsilon\)-arc.
 
 The number of steps \textit{(and the time complexity)} of the computation can exceed the length of the input string, because of the presence of \(\varepsilon\)-arcs.
-As a consequence the algorithm no longer works in real time, despite having still a linear complexity;
+As a consequence the algorithm no longer works in real-time, despite having still a linear complexity;
 the assumption that no cycle of spontaneous moves happens in the computation holds with every machine and string.
 
 The family of languages recognized by such nondeterministic automata is called \textbf{finite-state}.
@@ -1748,8 +1749,8 @@ Any computation of this new automaton accepts \textit{(or rejects)} a string if 
 
 \paragraph{Ambiguity of Automata}
 
-An automata is ambiguous if it accepts a string with two different computations;
-as a direct consequences, every deterministic automaton is not ambiguous \textit{(or unambiguous)}.
+An automaton is ambiguous if it accepts a string with two different computations;
+as a direct consequence, every deterministic automaton is not ambiguous \textit{(or unambiguous)}.
 
 Since there's a one-to-one correspondence between automata and unilinear grammars, the ambiguity of an automaton is equivalent to the ambiguity of the grammar that generates it.
 
@@ -1785,12 +1786,12 @@ The pair of alternatives \(p \rightarrow a q \mid ar\) corresponds to a pair of 
 A copy rule matches a spontaneous move  \textit{(rule \(4\))};
 finally, a final rule matches a final state \textit{(rule \(5\))}.
 
-Every grammar derivation matches a machine computation, and vice versa:
+Every grammar derivation matches a machine computation and vice versa:
 as such, a language is recognized \textit{(or accepted)} by a finite automaton if and only if it's generated by a unilinear grammar.
 
 \subsubsection{Correspondence between Grammars and Automata}
 
-In real world applications it's sometimes needed to compute the \re for the language defined by a machine.
+In real-world applications, it's sometimes needed to compute the \re for the language defined by a machine.
 
 Since an automaton is easily converted into a right-linear grammar, the \re of the language can be computed by solving linear simultaneous equations.
 The next direct elimination method, named \BMC after \textit{Brzozowski} and \textit{McCluskey}, is often more convenient.
@@ -1805,7 +1806,7 @@ The next direct elimination method, named \BMC after \textit{Brzozowski} and \te
 
   An equivalent automaton, called generalized, is built by allowing the arc tables to be not just terminal characters but also regular languages (\textit{a label can be a \re}).
 
-  The idea is to eliminate the internal states one by one, while compensating it by introducing new arcs labelled with an \re, util only the initial an final states remain;
+  The idea is to eliminate the internal states one by one while compensating them by introducing new arcs labelled with an \re until only the initial and final states remain;
   then the label of arc \(i \rightarrow t\) is the \re of the language.
 \end{definition}
 
@@ -1813,14 +1814,14 @@ The next direct elimination method, named \BMC after \textit{Brzozowski} and \te
 \label{sec:elimination-of-nondeterminism}
 
 While, as already discussed, nondeterminism might be useful while designing a machine, it's often necessary to eliminate it in order to obtain a more efficient design;
-thanks to the following property, an algorithm that eliminates nondeterminism can be easily implemented.
+thanks to the following property, an algorithm that eliminates non determinism can be easily implemented.
 
 \begin{property}[Equivalence of Deterministic and Nondeterministic automata]
   Every nondeterministic automaton can be transformed into a deterministic one;
   every unilinear grammar admits an equivalent nonambiguous grammar.
 \end{property}
 
-The determinization of a finite automaton is conceptually separated in two phases:
+The determinization of a finite automaton is conceptually separated into two phases:
 
 \begin{enumerate}
   \item elimination of spontaneous moves \textit{(\(\varepsilon\)-moves)}, thus obtaining generally deterministic machine
@@ -1836,7 +1837,7 @@ The determinization of a finite automaton is conceptually separated in two phase
 
 \paragraph{Elimination of Spontaneous Moves}
 
-The elimination of spontaneous moves is divided in \(4\) steps:
+The elimination of spontaneous moves is divided into \(4\) steps:
 
 \begin{enumerate}
   \item transitive closure of \(\varepsilon\)-moves
@@ -1919,7 +1920,7 @@ In this construction, each component machine is assumed to have only one initial
 If not, a new initial state is added, with \(\varepsilon\) arcs going from it to the old initial states, and a new final state is added, with \(\varepsilon\) arcs going from the old final states to it.
 
 The Thompson method incorporates the mapping rules between \re and automata schematized in Table~\ref{tab:right-unilinear-grammar-automaton} \textit{(described in Section~\ref{sec:correspondence-between-automata-and-grammars})} and the rules shown in Table~\ref{tab:thompson-rules}.
-Such machines have many nondeterministic bifurcations, with outgoing \(\varepsilon\)-arcs.
+Such machines have many non deterministic bifurcations, with outgoing \(\varepsilon\)-arcs.
 
 \begin{table}[htbp]
   \bigskip
@@ -1945,7 +1946,7 @@ The validity of this method comes from it being a reformulation of the closure p
 
 \subsubsection{Local languages}
 
-In order to justify the use of the next method, it's necessary to to define the family of local languages \textit{(also called locally testable or \LOC)}, a subset of regular languages.
+In order to justify the use of the next method, it's necessary to define the family of local languages \textit{(also called locally testable or \LOC)}, a subset of regular languages.
 
 The \LOC family is a proper subfamily of the \REG family
 \[ \LOC \subset \REG \quad \LOC \neq \REG \]
@@ -1988,7 +1989,7 @@ Thanks to the previous definitions, it's possible to define the \textbf{Local La
 \end{definition}
 
 \bigskip
-In other words, the non empty phrases of language \(L\) are defined precisely by sets \Ini, \Fin, \Dig.
+In other words, the non-empty phrases of language \(L\) are defined precisely by sets \Ini, \Fin, \Dig.
 Not every language is local, but it should be clear that every language \(L\) satisfies the previous condition if the equality (\(=\)) is replaced by an inclusion (\(\subset\));
 by definition, every sentence starts and ends with a character respectively from \(\Ini(L)\) and \(\Fin(L)\) and its digrams are contained in \(\Dig(L)\), but such conditions may be also satisfied by other strings that do not belong to the language.
 
@@ -1996,7 +1997,7 @@ The definition provides a necessary condition for a language to be local and the
 
 \paragraph{Automata Recognizing Local Languages}
 
-The interest for languages in the \LOC family spawns from the simplicity of their recognizers:
+The interest in languages in the \LOC family spawns from the simplicity of their recognizers:
 they need to scan the string from left to right, checking that:
 
 \begin{enumerate}
@@ -2010,7 +2011,7 @@ The recognizer of the local language specified by sets \Ini, \Fin, \Dig is a det
 
 \begin{itemize}
   \item The \textbf{initial state} \(q_0\) is unique
-  \item The \textbf{non initial state set} is \(\Sigma\) - each non initial state is identified by a terminal character
+  \item The \textbf{non-initial state set} is \(\Sigma\) - each non-initial state is identified by a terminal character
   \item The \textbf{final state set} is \Fin, while no other state is final
         \begin{itemize}[label=\(\rightarrow\)]
           \item if \(\varepsilon \in L\), then \(q_0\) is also final
@@ -2030,7 +2031,7 @@ a stricter accepting condition for a language \(L\) is that it's accepted by a m
 \subsubsection{Berry and Sethi Method}
 
 The \textbf{Berry and Sethi} \textit{(or BS)} method derives a deterministic automaton that recognizes the language specified by the \re.
-It works by combining the steps to build normalize local automaton and the following determinization of such automaton.
+It works by combining the steps to build a normalised local automaton and the following determinization of such an automaton.
 
 Let \(e\) be a \re of alphabet \(\Sigma\) and let \(e^\prime \dashv\) be its numbered version over \(\Sigma_N\) terminated by the end marker.
 For each symbol \(a \in e^\prime\), the set of Followers of \(a\) (or \(\Fol(a)\)) is defined as the set of symbols in every string \(s \in L(e^\prime \dashv)\) that immediately follow \(a\):
@@ -2038,7 +2039,7 @@ For each symbol \(a \in e^\prime\), the set of Followers of \(a\) (or \(\Fol(a)\
 hence \( \dashv \, \in \Fol(a) \, \forall \, a \in \Fin(e^\prime) \).
 
 The algorithm \textit{(shown in Code~\ref{lst:berry-sethi-algorithm})} tags each state with a subset of \(\Sigma_N \cup \left\{ \dashv \right\}\).
-A state is created marked as unvisited, and upon examination it is marked as visited to prevent multiple examinations.
+A state is created and marked as unvisited, and upon examination, it is marked as visited to prevent multiple examinations.
 The final states are those containing the end marker \(\dashv\).
 
 \subparagraph*{Input}
@@ -2079,7 +2080,7 @@ The algorithm is defined in the following steps.
 
 \subparagraph*{Input}
 a non deterministic automaton \(N = \langle Q, \Sigma, \delta, q_0, F \rangle\).
-Note that every form of nondeterminism is allowed.
+Note that every form of non determinism is allowed.
 
 \subparagraph*{Output}
 a deterministic automaton \(M = \langle Q, \Sigma, \delta, q_0, F \rangle\).
@@ -2099,10 +2100,10 @@ Let \(L\) and \(L^\prime\) be two regular languages. Their complement \(\overlin
 It's possible to build a recognizer for the complement of a regular language \(L\) with the following steps.
 
 \bigskip
-\subparagraph*{Input:}
+\subparagraph*{Input}
 a deterministic finite state automaton \(M\).
 
-\subparagraph*{Output:}
+\subparagraph*{Output}
 a deterministic finite state automaton \(M^\prime\) that recognizes the complement of \(L(M)\).
 
 \begin{enumerate}
@@ -2155,7 +2156,7 @@ The final state set \(F\) of \(M\) is the product \(F = F^\prime \times F^{\prim
 
 \bigskip
 In order to justify the correctness of the product construction, consider any string \(x \in L(M^\prime) \cap L(M^{\prime\prime})\).
-Since string \(x\) is accepted by a computation of \(M^\prime\) and by a computation of \(M^{\prime\prime}\), it is also accepted by the one of the machine \(M\) that traverse the state pairs respectively traversed by the two computations.
+Since string \(x\) is accepted by a computation of \(M^\prime\) and by a computation of \(M^{\prime\prime}\), it is also accepted by one of the machine \(M\) that traverses the state pairs respectively traversed by the two computations.
 
 Conversely, if \(x\) is not in the intersection, at least one of the computations by \(M^\prime\) or \(M^{\prime\prime}\) does not accept \(x\) \textit{(as it does not reach a final state)};
 therefore, \(M\) does not reach a final state either.
@@ -2192,7 +2193,7 @@ The following three operations are performed on the stack:
   \item \textbf{Emptiness} test: the predicate empty is true if and only if \(k=0\) \textit{(the stack is empty)}
 \end{itemize}
 
-At each instant the machine configuration is specified by the remaining portion of the input string left to read, the current state and the stack contents.
+At each instant, the machine configuration is specified by the remaining portion of the input string left to read, the current state and the stack contents.
 Within a move, an automaton can:
 
 \begin{itemize}
@@ -2231,7 +2232,7 @@ A formal definition of a Pushdown Automaton is shown in \ref{def:pushdown-automa
     \item \(q \in Q\) is the \textbf{current state}
     \item \(y \in \Sigma\) is the \textbf{unread portion} of the input string
           \begin{itemize}
-            \item the input string is composed by characters or tokens
+            \item the input string is composed of characters or tokens
           \end{itemize}
     \item \(\eta\) is the \textbf{stack content}
   \end{itemize}
@@ -2265,7 +2266,7 @@ Particular configurations are:
 \end{itemize}
 
 \bigskip
-The transition of a configuration from to the next one are possible if there exists the transition between the current configuration and the next one:
+The transition of a configuration to the next one is possible if there exists the transition between the current configuration and the next one:
 \[ \left( q, y, \eta \right) \rightarrow \left( p, z, \lambda \right) \]
 The transition sequence is represented via the symbols:
 \[ \xrightarrow{+} \quad \text{and} \quad \xrightarrow{+} \]
@@ -2277,7 +2278,6 @@ When the machine recognizes and halts, the stack contains some string \(\lambda\
 as such, the string \(\lambda\) is not necessarily empty.
 
 \bigskip
-
 The applied moves defined by their current and next configurations are shown in Table~\ref{tab:pushdown-automaton-moves}.
 
 \begin{table}[htbp]
@@ -2327,13 +2327,13 @@ The acceptance condition of a pushdown automaton can be:
 
 The two of them can be combined into recognition of \textbf{final state and empty stack}.
 
-For the family of nondeterministic pushdown automata, all three the acceptance modes are equivalent:
-acceptance by empty stack, by final state and combined have the same capacity with respect to language recognition.
+For the family of nondeterministic pushdown automata, all three acceptance modes are equivalent:
+acceptance by empty stack, by final state and combined, have the same capacity with respect to language recognition.
 
 \paragraph{Absence of Spontaneous Loops}
 
 A \textbf{spontaneous loop} is a sequence of moves that starts from a configuration and returns to the same configuration without reading any input symbol.
-Any pushdown automaton can be converted into a an equivalent one:
+Any pushdown automaton can be converted into an equivalent one:
 
 \begin{itemize}
   \item \textbf{without cycles} of spontaneous moves
@@ -2348,12 +2348,12 @@ this definition applies both to deterministic and non deterministic machines.
 In particular, a Pushdown Automaton has the \textbf{real time property} if the transition function \(\delta\) is such that for all the states \(q \in Q\) and for all the stack symbols \(A \in \Gamma\), the value of \(\delta(q, \varepsilon, A)\) is undefined;
 in other words, the domain of the transition function is \(Q \times \Sigma \times \Gamma\) and not \(Q \times \left( \Sigma \cup \left\{ \varepsilon \right\} \right) \times \Gamma\).
 
-For every context-free language there exists a nondeterministic pushdown machine that has the real time property and recognizes the language.
+For every context-free language, there exists a nondeterministic pushdown machine that has the real-time property and recognizes the language.
 
 \subsubsection{From Grammar to Nondeterministic Pushdown Automaton}
 
 Given a grammar \(G = \left( V, \Sigma, P, S \right)\), Table~\ref{tab:grammar-to-pushdown-automaton} shows the construction of a nondeterministic pushdown automaton \(M\) that recognizes the language \(L(G)\).
-As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denote non terminals, letter \(A_i\) represents any symbol, and \textit{cc} represents the current symbol.
+As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denote non-terminals, letter \(A_i\) represents any symbol, and \textit{cc} represents the current symbol.
 
 \begin{table}[htbp]
   \centering
@@ -2375,7 +2375,7 @@ As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denot
 
 \subparagraph*{Rules comment}
 
-\begin{enumerate}[label=\#\arabic*., labelindent=1em, leftmargin=*, widest*=2]
+\begin{enumerate}[label=\#\arabic*., labelindent=2em, leftmargin=*, widest*=2]
   \item To recognize \(A\), orderly recognize \(B \, A_1 \ldots A_m\)
   \item Character \(b\) is expected as next and is read, so it remains to orderly recognize \(A_1 \ldots A_m\)
   \item The empty string deriving from \(A\) is recognized
@@ -2387,8 +2387,8 @@ As before, letter \(b\) denotes a terminal symbol, letters \(A\) and \(B\) denot
 
 \begin{itemize}
   \item For rules of Form \(2\), the \RP of the rule starts with a terminal and the move is triggered on reading it
-  \item Rules of Form \(1\) and \(3\), create spontaneous moves that do no check the current character
-  \item Rules of Form \(4\) checks that a terminal surfacing the stack to matches the current character
+  \item Rules of Form \(1\) and \(3\), create spontaneous moves that do not check the current character
+  \item Rules of Form \(4\) checks that a terminal surfacing the stack matches the current character
   \item Rules of Form \(5\) accepts the string if the stack is empty upon reading the end marker \(\dashv\)
 \end{itemize}
 
@@ -2430,7 +2430,7 @@ The machine thus built:
 \subsubsection{Deterministic Pushdown Automata and Languages}
 
 \textbf{Deterministic recognizers} \textit{(and their corresponding languages)} are widely adopted in compilers thanks to their computational efficiency.
-While observing a pushdown automaton, three different nondeterministic situations can be found, namely the uncertainty between:
+While observing a pushdown automaton, three different non deterministic situations can be found, namely the uncertainty between:
 
 \begin{enumerate}
   \item \textbf{reading moves} if, for a state \(q\), a character \(a\) and a stack symbol \(A\), the transition function \(\delta\) has two or more values
@@ -2448,7 +2448,7 @@ Due to a direct consequence of this definition, a deterministic pushdown machine
 
 \paragraph{Deterministic Pushdown Automata and Deterministic Language}
 
-If a language is accepted by a deterministic automaton, each sentence is recognized with exactly one computation and it's provable that the language is generated by a non ambiguous grammar.
+If a language is accepted by a deterministic automaton, each sentence is recognized with exactly one computation and it's provable that the language is generated by a non-ambiguous grammar.
 
 \begin{property}[Deterministic Pushdown Automata and Deterministic Language]
   Let \(M\) be a \DPDA and \(L(M)\) the language recognized by \(M\).
@@ -2512,14 +2512,14 @@ Table~\ref{tab:closure-det} shows the closure properties of the \DET family of l
   \bigskip
 \end{table}
 
-A procedure to determine if a given \CF grammar is also in the \DET family will be shown later. % TODO add reference
+A procedure to determine if a given \CF grammar is also in the \DET family will be shown later. % TODO add a reference
 
 \subsection{Parsing}
 \label{sec:parsing}
 
-\textbf{Parsing}, also called \textit{Syntax Analysis}, is the process of analysing a string of symbols according to a grammar, with the objective of determining a derivation \textit{(or syntax)} tree;
-an analyser is simply a recognizer capable of recording a derivation tree, reading the input and eventually stopping on a error or accepting the string.
-If the source string is a ambiguous, the result of the analysis is a set of derivation trees, also called tree forest.
+\textbf{Parsing}, also called \textit{Syntax Analysis}, is the process of analysing a string of symbols according to a grammar, intending to determine a derivation \textit{(or syntax)} tree;
+an analyser is simply a recognizer capable of recording a derivation tree, reading the input and eventually stopping on an error or accepting the string.
+If the source string is ambiguous, the result of the analysis is a set of derivation trees, also called tree forest.
 
 As studied before \textit{(Section~\ref{sec:left-right-derivation})}
 the same syntax tree corresponds to many derivations, notably the leftmost and rightmost ones, as well as to less relevant others.
@@ -2533,7 +2533,7 @@ Depending on the derivation being the leftmost or rightmost, and on the construc
         \end{itemize}
   \item \textbf{bottom-up parsers}: construct the \textbf{rightmost derivation} starting from the leaves, growing them toward the root
         \begin{itemize}
-          \item each algorithm step corresponds to a a \textbf{reduction}
+          \item each algorithm step corresponds to a \textbf{reduction}
           \item the syntax tree is built through \textbf{reductions}
         \end{itemize}
 \end{enumerate}
@@ -2546,7 +2546,7 @@ the \textbf{pointer} is a reference to a node in the syntax tree, and it is used
 
 \subparagraph*{Bottom-up}
 
-The right bottom-up parser builds a derivation in reverse order, because the input string is read from right to left.
+The right bottom-up parser builds a derivation in reverse order because the input string is read from right to left.
 The reduction operations transform the prefix of a phrase form into a string \(\alpha \in \left( V \cup \Sigma \right)^\ast\), called \textbf{viable prefix}, that may include the result of previous reductions \textit{(stored in the stack)}.
 
 At each step of the analysis, the parser must decide whether:
@@ -2556,17 +2556,17 @@ At each step of the analysis, the parser must decide whether:
   \item \textbf{build a subtree} for a portion of the viable prefix
 \end{itemize}
 
-The choice is made basing on the symbols coming after the current one \textit{(lookahead)}.
+The choice is made based on the symbols coming after the current one \textit{(lookahead)}.
 
 \bigskip
 In principle, syntax analysis would work as well from right to left by scanning the reversed source string;
-however reversing the scanning order may cause loss of determinism, as the \DET family is not closed under reflection \textit{(as shown in Table~\ref{tab:closure-det})}.
+however reversing the scanning order may cause a loss of determinism, as the \DET family is not closed under reflection \textit{(as shown in Table~\ref{tab:closure-det})}.
 
-Moreover, all existing languages are designed for left to right processing, as its reading direction matches the natural language direction \textit{(left to right)}.
+Moreover, all existing languages are designed for left-to-right processing, as their reading direction matches the natural language direction \textit{(left to right)}.
 
 \subparagraph*{Top-down}
 
-The top-down parser builds a derivation in the natural order, because the input string is read from left to right.
+The top-down parser builds a derivation in the natural order because the input string is read from left to right.
 The parsing procedure starts from the axiom \textit{(the root of the syntax tree)} and it grows the tree by expanding the non-terminals \textit{(the leaves of the syntax tree)}.
 
 \subsection{Grammars as networks of Finite Automata}
@@ -2577,17 +2577,17 @@ Despite looking like a useless mind experiment, it has several advantages:
 \begin{itemize}
   \item Offers a pictorial representation of the grammar
   \item Gives evidence of similarities between parsers
-  \item Allows to handle grammars with regular expressions
+  \item Allows handling grammars with regular expressions
   \item Maps recursive descent parser implementations
 \end{itemize}
 
 \bigskip
-In a grammar, each non-terminal is the left part of one or more alternatives;
+In grammar, each non-terminal is the left part of one or more alternatives;
 if a grammar \(G\) is in the extended context-free form \textit{(see Section~\ref{sec:free-grammars-extended-with-regular-expressions})}, a rule \RP may contain the union operator, which makes it possible to define each non-terminal by just one rule, for example:
 \[ A \rightarrow \alpha \quad \alpha \ \re \in \left( \Sigma \cup V \right)^\ast \]
 The \re \(\alpha\) defines a regular language, which can be recognized by an automaton \(M_A\).
 In the trivial case, where \(\alpha\) contain just terminal symbols, \(M_A\) recognizes \(L_A(G)\) starting from non-terminal \(A\);
-generally, \(M_A\) recognizes \(L_A(G)\) starting from the initial state, and invoking the automaton \(M_{B}\) for each non-terminal \(B\) found in \(\alpha\) \textit{(for rules in form \(A \rightarrow B,\  B \rightarrow \beta\))}.
+generally, \(M_A\) recognizes \(L_A(G)\) starting from the initial state and invoking the automaton \(M_{B}\) for each non-terminal \(B\) found in \(\alpha\) \textit{(for rules in form \(A \rightarrow B,\  B \rightarrow \beta\))}.
 
 The case where \(B = A\) is accepted; the resulting invocation is called \textit{recursive}.
 
@@ -2639,7 +2639,7 @@ this condition does not forbid the existence of initial states that are also fin
 
 \bigskip
 Let symbol \(a\) be \textbf{terminal}, symbols \(A\) and \(B\) be \textbf{non-terminals}, and \(q_A\) and \(r_A\) be \textbf{states of automata} \(M_A\).
-Set \Ini si computed by applying the following logical clauses until a fixed point is reached:
+Set \Ini is computed by applying the following logical clauses until a fixed point is reached:
 
 \begin{enumerate}
   \item \(\exists \ \text{arc} \ q_A \xrightarrow{a} r_A\)
@@ -2682,7 +2682,7 @@ In order to calculate the candidates for a given grammar or machine net, a funct
 \bigskip
 The function closure computes the set of the machines that are reached from a given state \(q\) through one or more \textit{invocations}, without any intervening state transition.
 For each reachable machine \(M_B\), represented by the initial state \(0_B\), the function returns any input character \(b\) that can legally occur when the machine terminates;
-such a character is the part of the lookahead set.
+such a character is part of the lookahead set.
 
 When the clause terminates, the closure of \(C\) contains a set of candidates, with some of them possibly associated with the same state \(q\) as follows:
 \[ \left\{ \langle q, a_1 \rangle, \ldots, \langle q, a_k \rangle \right\} = \left\langle q, \left\{ a_1, \ldots, a_k \right\} \right\rangle \]
@@ -2694,7 +2694,7 @@ For brevity, the singleton lookahead set \(\left\langle q, \left\{ b \right\} \r
 
 \subsection{Bottom-up Parsing}
 
-The formal conditions that allow a Bottom-up to be \textbf{deterministic} is named \(\textit{LR}(k)\), where the parameter \(k \geq 0\) represents the number of consecutive characters are inspected by the parser to decide the next action deterministically.
+The formal conditions that allow a Bottom-up to be \textbf{deterministic} are named \(\textit{LR}(k)\), where the parameter \(k \geq 0\) represents the number of consecutive characters inspected by the parser to decide the next action deterministically.
 Since the \EBNF grammars are normally considered and \(k=1\) is a common value, the condition is referred to as \elro.
 The language family accepted by the parsers of type \(\textit{LR}(1)\) \textit{(or \elro)} is exactly the family \DET of deterministic context-free languages.
 
@@ -2738,10 +2738,9 @@ The conditions for \textbf{determinism} are:
 
 A \textbf{convergent transition} has a \textbf{convergence conflict} if \(\pi \cap \rho \neq \emptyset\), meaning the two lookahead sets of the candidates are not disjoint.
 
-\bigskip
 \begin{definition}[Single Transition Property]
   \label{def:single-transition-property}
-The same pilot \mstate \(I\) has the \textbf{single transition property} \textit{(STP)} if it does not have the \textit{MTP}.
+  The same pilot \mstate \(I\) has the \textbf{single transition property} \textit{(STP)} if it does not have the \textit{MTP}.
 \end{definition}
 
 For a given grammar, the \textit{STP} condition has \(2\) important consequences:
@@ -2754,8 +2753,8 @@ For a given grammar, the \textit{STP} condition has \(2\) important consequences
 \subsubsection[ELR(1) condition]{\elro condition}
 \label{sec:elro-condition}
 
-Since two or more paths can lead to the same final state, two or more reductions may be applied when the parsers enters \mstate \(I\);
-to choose the correct reduction, the parser has to store additional informations on the stack.
+Since two or more paths can lead to the same final state, two or more reductions may be applied when the parsers enter \mstate \(I\);
+to choose the correct reduction, the parser has to store additional information on the stack.
 The next definitions \textit{(\ref{def:elro-condition} and \ref{def:lro-condition})} ensure that all steps are deterministic.
 
 \begin{definition}[\elro condition]
@@ -2764,7 +2763,7 @@ The next definitions \textit{(\ref{def:elro-condition} and \ref{def:lro-conditio
   \begin{itemize}
     \item Every \mstate \(I\) satisfies the next two clauses:
           \begin{enumerate}
-            \item no \textbf{shift-reduce conflict} occurs: for all the candidates \(\langle q, \pi \rangle \in I\) such state \(q\) is final and for all the arcs \(I \xrightarrow{a} I^\prime\) tht go out from \(I\) with terminal label \(a\), it must hold \(a \notin \pi\)
+            \item no \textbf{shift-reduce conflict} occurs: for all the candidates \(\langle q, \pi \rangle \in I\) such state \(q\) is final and for all the arcs \(I \xrightarrow{a} I^\prime\) that go out from \(I\) with terminal label \(a\), it must hold \(a \notin \pi\)
             \item no \textbf{reduce-reduce conflict} occurs: for all the candidates \(\langle q, \pi \rangle, \langle r, \rho \rangle \in I\) such that states \(q\) and \(r\) are final, it must hold \(\pi \cap \rho = \emptyset\)
           \end{enumerate}
     \item No transition in the pilot graph has a \textbf{convergence conflict}
@@ -2789,14 +2788,14 @@ Given an \EBNF grammar, an \elro parser can be built by the following \(3\) step
   \item The pilot is examined to check the conditions for deterministic parsing by inspecting the components of each \mstate; the three types of conflicts are:
         \begin{enumerate}[label=\Alph*.]
           \item \textbf{shift-reduce}, when both a shift and a reduce move are possible with the same configuration
-          \item \textbf{reduce-reduce}, when two or more reductions are possibile
-          \item \textbf{convergence}, when two two different parser computations that share a candidate lead to the same \mstate
+          \item \textbf{reduce-reduce}, when two or more reductions are possible
+          \item \textbf{convergence}, when two different parser computations that share a candidate lead to the same \mstate
         \end{enumerate}
   \item If the previous test is passed, then the deterministic \PDA is built; the pilot \FSA must be enriched with features for pointer management, needed to handle stacks of unbounded length
   \item The \PDA can be encoded in a programming language
 \end{enumerate}
 
-The definition of pilot automaton is given in \ref{def:pilot-automaton}.
+The definition of the pilot automaton is given in \ref{def:pilot-automaton}.
 
 \begin{definition}[Pilot automaton]
   \label{def:pilot-automaton}
@@ -2865,8 +2864,8 @@ An additional set, \textbf{kernel} also exists.
 \paragraph{Stack Content}
 \label{par:stack-content}
 
-Since for any given net \(\mathcal{M}\) there are finitely many different candidates, the number of \mstates is bounded and the number of candidates in any \mstate is always lower than \(| Q |\), by assuming that all the candidates with the same state are \textit{merged}.
-Moreover it's safe to assume that the candidates in an \mstate are ordered, so that each one occurs at a position \textit{(or offset)} which will be referred to by other \mstates using a pointer called candidate identifier \textit{(or cid)}.
+Since for any given net \(\mathcal{M}\), there are finitely many different candidates, the number of \mstates is bounded and the number of candidates in any \mstate is always lower than \(| Q |\), by assuming that all the candidates with the same state are \textit{merged}.
+Moreover, it's safe to assume that the candidates in an \mstate are ordered, so that each one occurs at a position \textit{(or offset)} which will be referred to by other \mstates using a pointer called candidate identifier \textit{(or cid)}.
 
 The stack elements are of two types, interleaving each other:
 
@@ -2892,13 +2891,11 @@ Let the current stack be \(J[0] a_1 \, J[1] a_2 \, \ldots \, a_k J[k]\), where \
 The steps of the algorithm are shown in the following Subparagraphs.
 
 \subparagraph*{Initialization}
-
 The initial stack just contains the \textit{sms}:
 \[ J_0 = \left\{ s \mid s = \left\langle q, \pi, \bot \right\rangle \ \text{for every candidate} \ \left\langle q, \pi \right\rangle \in I_0 \right\} \]
 thus \(\mu(J_0) = I_0\)
 
 \subparagraph*{Shift}
-
 Let the top \textit{sms} be \(J\) and \(I = \mu(J)\), let the current token be \(a \in \Sigma\) and assume that the \mstate \(I\) has transition \(\theta(I, a) = I^\prime\). The shift move performs the following two operations:
 \begin{enumerate}[label=\arabic*., ref=(\arabic*)]
   \item\label{enum:shift-move-1} push token \(a\) on stack and get the next token
@@ -2910,9 +2907,9 @@ Let the top \textit{sms} be \(J\) and \(I = \mu(J)\), let the current token be \
 \end{enumerate}
 thus \(\mu(J^\prime) = I^\prime\)
 
-\subparagraph*{Reduction of non initial candidates}
+\subparagraph*{Reduction of non-initial candidates}
 
-The \mstates corresponding to the current stack are
+The \mstates corresponding to the current stack are:
 \[ I[i] = \mu\left( J[i] \right), \, 1 \leq i \leq k \]
 while the current token is \(a\);
 assume that by inspecting \(I[k]\) the pilot chooses the reduction candidate \(c = \left\langle q_a, \pi \right\rangle \in I[k]\), where \(q_A\) is a final and non initial state.
@@ -2922,16 +2919,16 @@ From \(i_k\) a cid starts, which links stack candidate \(t_k\) to a stack candid
 The reduction move does as follows:
 
 \begin{enumerate}
-  \item grow the syntax forest by applying the following reduction
+  \item grows the syntax forest by applying the following reduction
         \[ a_{h+1} a_{h+2} \ldots a_k \rightsquigarrow A \]
-  \item pop the following stack symbols
+  \item pops the following stack symbols
         \[ J[k] a_k \, J[k-1] a_{k-1} \ldots J[h+1] a_{h+1} \]
-  \item execute the non-terminal shift (see below)
+  \item executes the non-terminal shift (see below)
 \end{enumerate}
 
 \subparagraph*{Reduction of initial candidate}
 
-The reduction of initial candidates differs to the preceding case in the state of the chosen candidate \(c = \left\langle 0_A, \pi, \bot \right\rangle\) which is both final and initial;
+The reduction of initial candidates differs from the preceding case in the state of the chosen candidate \(c = \left\langle 0_A, \pi, \bot \right\rangle\) which is both final and initial;
 the parser move grows the syntax forest by the reduction \(\varepsilon \rightsquigarrow A\) and performs the non-terminal shift move corresponding to \(\theta(I[k], A) = I^\prime\).
 
 \subparagraph*{Nonterminal shift}
@@ -2940,7 +2937,6 @@ The non-terminal shift move is the same as the shift move, but the shifted token
 The only difference is that the parser does not read the next input token at line~\ref{enum:shift-move-2} of the shift move.
 
 \subparagraph*{Acceptance}
-
 The parser accepts and halts when the stack is \(J_0\), the move is the non-terminal shift defined by \(\theta(I_0, S)\) and the current token is \(\dashv\).
 
 \subsubsection{Time complexity}
@@ -2967,12 +2963,12 @@ Thus the time complexity is \(\mathcal{O}(n)\).
 
 \subsubsection{Implementation via Vector Stack}
 
-The \PDA can be implemented using a vector stack: this solution is potentially faster, and offers the ability of accessing the items in the stack via their integer index.
+The \PDA can be implemented using a vector stack: this solution is potentially faster and offers the ability to access the items in the stack via their integer index.
 As seen before \textit{(Paragraph~\ref{par:stack-content})}, the stack contains elements of two alternating types: grammar symbols and vector stack \mstates \textit{(or vsms)}.
 
 A \textit{vsms}, denoted by \(J\), is a set of pairs, named vector-stack candidates in form \(\langle q_A, \, \texttt{elemid} \, \rangle\) differing from the previous definition of stack candidates because the second component is a positive integer named element identifier \textit{(\texttt{elemid})} instead of the candidate identifier \textit{(cid)};
 furthermore, the set is now ordered.
-Each \texttt{elemid} points back to the vector-stack element containing the initial state of the current machine, so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
+Each \texttt{elemid} points back to the vector-stack element containing the initial state of the current machine so that when a reduction move is performed, the length of the string to be reduced (and the reduction handle) can be obtained directly without inspecting the stack elements below the top one.
 
 \subparagraph*{Notable values}
 
@@ -2982,17 +2978,17 @@ Each \texttt{elemid} points back to the vector-stack element containing the init
 \end{itemize}
 
 \bigskip
-The surjective mapping from from vector-stack \mstates to pilot \mstates is denoted \(\mu\) as before.
+The surjective mapping from vector-stack \mstates to pilot \mstates is denoted \(\mu\) as before.
 
 \subsection{Top-down Parsing}
 \label{sec:top-down}
 
 Top-down parsing is a strategy in which the parser tries to match the input string with the grammar rules starting from the root of the grammar \textit{(the axiom)}, expanding each \RP via recursive descent.
-This strategy requires making hypothesis about the parse tree structure and then verifying if the basic rules of the grammar are satisfied.
+This strategy requires making a hypothesis about the parse tree structure and then verifying if the basic rules of the grammar are satisfied.
 
 \bigskip
-The analysis procedure is driven by the machine network, without the need of a pilot graph, as the machine itself can work as a pilot for the \PDA;
-however the final net needs annotations to choose the correct transition when in doubt.
+The analysis procedure is driven by the machine network, without the need for a pilot graph, as the machine itself can work as a pilot for the \PDA;
+however, the final net needs annotations to choose the correct transition when in doubt.
 The syntax analyser can recognize early which rule it should apply to a phrase, as soon as it finds the leftmost character of the rule.
 
 \subsubsection[ELL(1) Condition]{\ello Condition}
@@ -3006,13 +3002,12 @@ A machine net \(\mathcal{M}\) meets the \ello condition if the following conditi
   \item\label{enum:ell1-condition-3} the net has \textbf{single transition property} \textit{(STP)} \textit{(Definition~\ref{def:single-transition-property})} for each state
 \end{enumerate}
 
-\bigskip
 \subparagraph*{Notes}
 
 \begin{itemize}
   \item condition \ref{enum:ell1-condition-1} excludes grammars with non immediate left recursion
   \item the requirements are not completely independent from each other: certain types of left-recursive grammars violate clause \ref{enum:ell1-condition-2} and \ref{enum:ell1-condition-3}
-  \item condition \ref{enum:ell1-condition-1} could be further restricted, since a grammar with left recursion can be converted to a grammar without it.
+  \item condition \ref{enum:ell1-condition-1} could be further restricted since a grammar with left recursion can be converted to a grammar without it.
 \end{itemize}
 
 \subsubsection[Step by Step derivation of ELL(1) Parsers]{Step by Step derivation of \ello Parsers}
@@ -3020,10 +3015,10 @@ A machine net \(\mathcal{M}\) meets the \ello condition if the following conditi
 Starting from bottom-up parsers, a \ello parser can be derived step by step, via a series of transformations.
 
 The \textit{STP} condition permits to reduce greatly the number of \mstates, down to the number of net states;
-furthermore, convergent arcs disappear and consequently the chain of stack pointers can be eliminated from the parser.
+furthermore, convergent arcs disappear and consequently, the chain of stack pointers can be eliminated from the parser.
 
 By requiring that the grammar is not left-recursive, a parser via a \textbf{parser control flow graph} \textit{(or PCFG)} is built.
-The latter is isomorphic to the machine net, and can be used to generate the parser.
+The latter is isomorphic to the machine net and can be used to generate the parser.
 
 The final result is a top-down predictive parser able to build the syntax tree as it proceeds.
 
@@ -3046,14 +3041,14 @@ The following algorithm defines the merging operation, which coalesces two kerne
 \end{enumerate}
 
 The operation then terminates, producing a graph with fewer nodes.
-By applying \texttt{merge} to the members of every equivalence class, then new new graph called \textbf{compact pilot} is built.
+By applying \texttt{merge} to the members of every equivalence class, then new graph called \textbf{compact pilot} is built.
 
 The compact pilot is denoted by \(\mathcal{C}\).
 
 \subparagraph*{Candidate Identifier}
 
 Thanks to the \textit{STP} property, the algorithm shown in Paragraph~\ref{par:parser-algorithm-bottom-up} \textit{(\nameref{par:parser-algorithm-bottom-up})} can be simplified to remove the need for \textit{cid} and stack pointers:
-they were used find the reach of a non empty reduction move into the stack, popping elements until the chain reached the end \textit{(the \textit{cid} had value \texttt{NIL})}.
+they were used to find the reach of a non-empty reduction move into the stack, popping elements until the chain reached the end \textit{(the \textit{cid} had value \texttt{NIL})}.
 
 \subparagraph*{Parser Control Flow Graph - \PCFG}
 
@@ -3065,7 +3060,7 @@ The pilot graph \(\mathcal{C}\) can be made isomorphic to the original machine n
   \item every \(m\)-node of \(\mathcal{C}\) containing \(n\) candidates is split in \(n\) different nodes
   \item the kernel-equivalent nodes are merged into one and the original lookahead sets are combined
   \item new arcs (named call arcs) are added to the graph, representing the transfers of control from a machine to another
-  \item each call arc is labelled with a set of terminals (named guide sets), which will determine the parser decision to transfer control to the target machine
+  \item each call arc is labelled with a set of terminals \textit{(named guide sets)}, which will determine the parser decision to transfer control to the target machine
 \end{enumerate}
 
 \bigskip
@@ -3082,7 +3077,7 @@ The arcs of pilot \(\mathcal{F}\) are of two types, shift and call, represented 
 \begin{enumerate}
   \item there exists in \(\mathcal{F}\) a shift arc \(q_A \xrightarrow{X} r_A\) with \(X\) either terminal or nonterminal if the same arc is in the machine \(M_A\)
   \item there exists in \(\mathcal{F}\) a call arc \(q_A \xdashrightarrow{\gamma_1} 0_{A_1}\) where \(A_1\) is a nonterminal possibly different from \(A\), if arc \(q_A \xrightarrow{A_1} r_A\) is in the machine \(M_A\)
-        \begin{enumerate}[label=\(\rightarrow\) necessary condition \arabic*., leftmargin=*, labelindent=1em, widest*=24]
+        \begin{enumerate}[label=\(\rightarrow\) necessary condition \arabic*., leftmargin=*, labelindent=2em, widest*=24]
           \item \mstate \(K\) of pilot \(\mathcal{C}\) contains candidates \(\langle q_A, \pi \rangle\) and \(\langle 0_{A_1}, \rho\rangle\)
           \item the next \mstate \(\theta(K, A_1)\) of pilot \(\mathcal{C}\) contains candidates \(\langle r_A, \pi_{r_A} \rangle\)
         \end{enumerate}
@@ -3121,7 +3116,7 @@ it induces the set inclusion relation \(\gamma_1 \supseteq \gamma_2\) between tw
 \subparagraph*{Disjointness of guide sets}
 
 \begin{enumerate}[label=\arabic*., ref=(\arabic*)]
-  \item\label{enum:disjointess-guide-sets-1} For every node \(q\) of the \PCFG of a grammar \(G\) that satisfies the \ello condition, the guide sets of anu two arcs originating from \(q\) are disjoint
+  \item\label{enum:disjointess-guide-sets-1} For every node \(q\) of the \PCFG of a grammar \(G\) that satisfies the \ello condition, the guide sets of any two arcs originating from \(q\) are disjoint
   \item\label{enum:disjointess-guide-sets-2} If the guide sets of a \PCFG are disjoin, the machine net satisfies the \ello condition
 \end{enumerate}
 
@@ -3135,20 +3130,20 @@ This condition can also be checked directly on the \PCFG, without needing to bui
 \label{par:top-down-predictive-parser-construction}
 
 There are two kinds of top-down predictive parsers:
-as deterministic pushdown automaton (\DPDA) or as recursive syntactic procedures;
+as a deterministic pushdown automaton (\DPDA) or as recursive syntactic procedures;
 both are easily obtainable from the \PCFG.
 
-In this Paragraph the focus will be on the former.
+In this Paragraph, the focus will be on the former.
 
 \subparagraph*{Characteristics of the \DPDA}
 \begin{itemize}
   \item The stack top identifies the state of the active machine
-  \item The inner stack elements refer to return states of suspended machines, in order of suspension
+  \item The inner stack elements refer to the return states of suspended machines, in order of suspension
   \item It allows \(4\) move types:
         \begin{enumerate}
           \item a scan move, associated with a terminal shift arc, reads the current token \textit{cc} as the corresponding machine would do
-          \item a call move, associated with a call arc, checks the enabling predicate, saves on stack the return state and switches to the invoked machine without consuming token \textit{cc}
-          \item a return move, triggered when the active machine enters a final state, the prospect set of which includes token \textit{cc}
+          \item a call move, associated with a call arc, checks the enabling predicate, saves on the stack the return state and switches to the invoked machine without consuming token \textit{cc}
+          \item a return move triggered when the active machine enters a final state, the prospect set of which includes token \textit{cc}
           \item a recognizing move, terminating the parsing process
         \end{enumerate}
 \end{itemize}
@@ -3158,7 +3153,7 @@ In this Paragraph the focus will be on the former.
 \begin{itemize}
   \item The stack elements are the states of \PCFG \(\mathcal{F}\)
   \item The stack is initialized with element \(\langle 0_S \rangle\)
-  \item Let \(\langle q_A \rangle\) be the top of stack element, meaning the that the active machine \(M_A\) is in state \(q_A\)
+  \item Let \(\langle q_A \rangle\) be the top of stack element, meaning that the active machine \(M_A\) is in state \(q_A\)
 \end{itemize}
 
 The different move types are defined in the following Subparagraphs.
@@ -3186,7 +3181,7 @@ In any other case, reject the string and \texttt{halt}.
 \paragraph{Procedural interpretation}
 
 The top-down parsing algorithm can be seen as a sequence of procedures:
-each machine \(M\) in the net is a sub procedure, corresponding to the set of nonterminals.
+each machine \(M\) in the net is a sub-procedure, corresponding to the set of nonterminals.
 A machine state is the same as a program point inside the procedure code, a nonterminal label on an arc is the same as a procedure call, the return state corresponds to the program point after the procedure call, and bifurcation states represent conditional statements.
 The analogy can go further: a machine invocation is a procedure call, and the guide set is the set of arguments passed to the procedure call.
 
@@ -3206,10 +3201,10 @@ As such:
 \subsubsection{Direct construction of the \PCFG}
 \label{sec:direct-contruction-pcfg}
 
-The \PCFG can be directly built from the machine net, without having to build the \elro pilot..
+The \PCFG can be directly built from the machine net, without having to build the \elro pilot.
 
 A set of recursive equations is used to compute the prospect and guide set of all the states and arcs of the \PCFG;
-the equation are instructions to be executed iteratively to compute the sets.
+the equations are instructions to be executed iteratively to compute the sets.
 In order to compute the prospect sets of the final states, it's necessary to compute the prospect sets of all the other states, eventually discarding them.
 
 \paragraph*{Equations for the prospect sets}
@@ -3221,7 +3216,7 @@ In order to compute the prospect sets of the final states, it's necessary to com
         \[ \pi_q \coloneqq \bigcup_{p_i \xrightarrow{X_i} q} \pi_{p_i} \]
 \end{enumerate}
 
-The two sets of rules apply in an exclusive way to disjoints sets of nodes, because in a normalized machine no arc enters the initial state. To initialize the computation, the prospect state of the initial machine \(0_S\) is initialized as:
+The two sets of rules apply in an exclusive way to disjoints sets of nodes because in a normalized machine no arc enters the initial state. To initialize the computation, the prospect state of the initial machine \(0_S\) is initialized as:
 \[ \pi_{0_S} \coloneqq \left\{ \dashrightarrow \right\} \]
 All other sets are initialized as empty.
 
@@ -3252,7 +3247,7 @@ Formally, the elements of \(\textit{ELL}(k)\) guide sets are the strings of leng
 
 \subsection{Syntax Analysis of Nondeterministic Grammars}
 
-The \textbf{Earley} method \textit{(also called \textbf{tabular} method)} deals with any grammar type, including ambiguous and nondeterministic ones.
+The \textbf{Earley} method \textit{(also called \textbf{tabular} method)} deals with any grammar type, including ambiguous and non deterministic ones.
 It works by building in parallel all the possible derivations of the string prefix scanned so far, without having to implement a lookahead;
 furthermore, it does not need a stack since a vector of sets is used to store the current state of the parsing process.
 
@@ -3288,33 +3283,30 @@ the final Earley vector will contain all the possible derivations of the input s
 
 Three different operations can be applied to the current element of the vector \(E[i]\):
 closure, terminal shift and nonterminal shift.
-They resemble the operations the similar \elro parser \textit{(Section~\ref{par:parser-algorithm-bottom-up})} and are presented in the next subparagraphs.
+They resemble the operations of the similar \elro parser \textit{(Section~\ref{par:parser-algorithm-bottom-up})} and are presented in the next subparagraphs.
 
 \subparagraph*{Closure}
-
 Applies to a pair with a state from where an arc with a nonterminal label \(X\) originates.
 Suppose that the pair \(\langle p, j \rangle\) is in the element \(E[i]\) and that the net has an arc \(p \xrightarrow{X} q\) with a nonterminal label \(X\) and a \textit{(non relevant)} destination state \(q\).
 The operation adds a new pair \(\langle 0_X, i \rangle\) to the same element \(E[i]\):
 the state of this pair is the initial one \(0_X\) of machine \(M_X\) of that nonterminal \(X\), and the pointer has value \(i\), which means that the pair is created at step \(i\) starting from a pair already in the element \(E[i]\).
 
-The effect of this operation is to add the current element \(E[i]\) all the pairs with the initial states of the machines that can recognize a substring starting from the next character \(x_{i+1}\) and ending at the current character \(x_i\).
+The effect of this operation is to add the current element \(E[i]\) to all the pairs with the initial states of the machines that can recognize a substring starting from the next character \(x_{i+1}\) and ending at the current character \(x_i\).
 
 \subparagraph*{Terminal Shift}
-
-Applies to a pair with a sate from where a terminal shift arc originates.
+Applies to a pair with a state from where a terminal shift arc originates.
 Suppose that arc \(\langle p, j \rangle\) is in element \(E[i-1]\) and that the net has arc \(p \xrightarrow{x_i} q\) labelled by the current token \(x_i\).
 The operation writes into element \(E[i]\) the pair \(\langle q, j \rangle\), where the state is the destination of the arc and the point equals that of the pair in \(E[i-1]\), to which the terminal shift arc is attached.
 The next token will be \(x_{i+1}\) \textit{(the first one after the current)}.
 
 \subparagraph*{Nonterminal Shift}
-
 This operation is triggered by the presence of a final pair \(\langle f_X, j \rangle\) in the current element \(E[i]\), where \(f_X \in F_X\) is a final state of machine \(M_X\) of nonterminal \(X\);
 such a pair is called \textbf{enabling}.
 In order to shift, it's necessary to locate the element \(E[j]\) and shift the corresponding nonterminal:
 the parser searches for a pair \(\langle p, l \rangle\) such that the net contains an arc \(p \xrightarrow{X} q\), with a label that matches the machine of state \(f_X\) in the enabling pair.
 The pointer \(l\) is in the interval \(\left[ 0, j \right]\).
 
-It's certain that the operation will find at least one such pair and the nonterminal shift applies to it.
+The operation will certainly find at least one such pair and the nonterminal shift applies to it.
 Then the operation writes the pair \(\langle q, l\rangle\) into \(E[i]\); if more than one pair is found, the operation is applied to all of them.
 
 \paragraph{Earley's Algorithm}
@@ -3339,7 +3331,7 @@ completion(E, i) // $0 \leq i \leq n$
 \end{lstlisting}
 
 The completion procedure adds new pairs to the current vector element \(E[i]\) by applying the closure and nonterminal shifts as long as new pairs are added.
-The outer loop \textit{(\texttt{do-while})} is executed at least once, because the closure operation is always applied.
+The outer loop \textit{(\texttt{do-while})} is executed at least once because the closure operation is always applied.
 Finally, note that this operation processes the nullable nonterminals by applying to them a combination of closures and nonterminal shifts.
 
 \begin{lstlisting}[caption={\texttt{terminalshift} procedure}, label={lst:earley-terminalshift}]
@@ -3349,10 +3341,10 @@ terminalshift(E, i, x_i) // $1 \leq i \leq n$
   end
 \end{lstlisting}
 
-The terminalshift procedure adds to the current vector element \(E[i]\) all the pairs that can be reached from the pairs in \(E[i-1]\) by a terminal shift, scanning token \(x_i\), \(1 \leq 1 \leq n\).
+The \texttt{terminalshift} procedure adds to the current vector element \(E[i]\) all the pairs that can be reached from the pairs in \(E[i-1]\) by a terminal shift, scanning token \(x_i\), \(1 \leq 1 \leq n\).
 It may fail to add any pair to the element, that will remain empty;
 a nonterminal that exclusively generates the empty string \(\varepsilon\) never undergoes a terminal shift.
-Finally, notice that the procedure works correctly even when the element \(E[i]\) or its predecessor \(E[i-1]\) are empty.
+Finally, notice that the procedure works correctly even when the element \(E[i]\), or its predecessor \(E[i-1]\), is empty.
 
 The full algorithm for the Earley parser is presented in Code~\ref{lst:earley-algorithm}.
 
@@ -3374,7 +3366,6 @@ while (i <= n and E[i-1] != $\emptyset$) do
 end
 \end{lstlisting}
 
-\bigskip
 The algorithm can be summarized into the following steps:
 \begin{enumerate}
   \item the initial pair \(\langle 0_S, 0 \rangle\) is added to the first element \(E[0]\) of the vector.
@@ -3387,7 +3378,6 @@ The algorithm can be summarized into the following steps:
   \item the loop iterates as far as the last element \(E[n]\), terminating when the vector is finished or the previous element \(E[i-1]\) is empty
 \end{enumerate}
 
-\bigskip
 \begin{property}[Acceptance condition]
   When the Earley algorithm terminates, the string \(x\) is accepted if and only if the last element \(E[n]\) of vector \(E\) contains a final axiomatic pair \(\langle f_S, 0 \rangle\), with \(f_S \in F_S\)
 \end{property}
@@ -3396,7 +3386,7 @@ The algorithm can be summarized into the following steps:
 Assuming that each basic operation has cost \(\mathcal{O}(1)\), that the grammar is fixed and \(x\) is a string, the overall complexity of the algorithm can be calculated by considering the following contributes:
 
 \begin{enumerate}
-  \item A vector element \(E[i]\) contains a number of pairs \(\langle q, j \rangle\) that is linearly limited \(i\), as the number of states in the machine net is constant and \(j \leq i\). As such, the number of pairs in \(E[i]\) is bounded by \(n\): \[ |E(i)| = \mathcal{O}(n) \]
+  \item A vector element \(E[i]\) contains several pairs \(\langle q, j \rangle\) that are linearly limited by \(i\), as the number of states in the machine net is constant and \(j \leq i\). As such, the number of pairs in \(E[i]\) is bounded by \(n\): \[ |E(i)| = \mathcal{O}(n) \]
   \item For a pair \(\langle p, j \rangle\) checked in the element \(E[i-1]\), the terminal shift operation adds one pair to \(E[i]\). As such, for the whole \(E[i-1]\), the \texttt{terminalshift} operation needs no more than \(n\) steps: \[ \texttt{terminalshift} = \mathcal{O}(n) \]
   \item The \texttt{completion} procedure iterates the operations of closure and nonterminal shift as long as they can add some new pair. Two operations can be performed on the whole set \(E[i]\):
         \begin{enumerate}
@@ -3446,7 +3436,7 @@ The code is shown in Code~\ref{lst:buildtree}.
 
 \begin{lstlisting}[caption={\texttt{buildtree} procedure}, label={lst:buildtree}]
 // X is a nonterminal, f is a final state f of M_X, i and j are integers
-// return as parenthesized string the syntax tree rooted at node S
+// return as a parenthesized string the syntax tree rooted at node S
 // node X will contain a list C of terminal and nonterminals child nodes
 // either list C will remain empty, or it will be filled from right to left
 buildtree(X, f, i, j)
@@ -3465,7 +3455,7 @@ buildtree(X, f, i, j)
       and $\exists$ p $\in$ Q_X such that
         ($\langle$ p, j $\rangle \in$ E[k] and $\langle$ e, h $\rangle$ $\in$ E[h] and net has p $\xrightarrow{Y}$ q)
       then:
-        // recursively built thd subtree of node Y
+        // recursively built the subtree of node Y
         // concatenate the result to the list C of child nodes of X
         C := C $\cup$ buildtree(Y, q, k, j)
     end
@@ -3476,10 +3466,9 @@ buildtree(X, f, i, j)
   return (C)x // return the parenthesized string of the tree rooted at X
 \end{lstlisting}
 
-\bigskip
 Essentially, \texttt{buildtree} walks back on a computation path in machine \(M_X\) and jointly scans back the Earley vector \(E\) from \(E[n]\) to \(E[0]\);
 during the walk, it recovers the terminal and nonterminal shift operations to identify the \textbf{children of the same node} \(X\).
-In this way, the procedure reconstruct in reverse order the shift operations performed by the Earley parser.
+In this way, the procedure reconstructs in reverse order the shift operations performed by the Earley parser.
 
 The \texttt{while} loop runs zero or more times, recovering .\textbf{one shift per iteration}
 The \textbf{first} condition in the loop recovers a \textbf{terminal shift} appending the related leaf to the tree, while the \textbf{second} one recovers a \textbf{nonterminal shift} and recursively calls itself to build the subtree of the related nonterminal node.
@@ -3488,16 +3477,16 @@ If the parent nonterminal \(X\) immediately generates the \textbf{empty string} 
 
 Function \texttt{buildtree} uses two local variables in the \texttt{while} loop the current state \(q\) of the machine \(M_X\) and the current index \texttt{k} of the Earley vector element \(E[k]\), both updated at each iteration:
 initially, \(q\) is \textbf{final}; at the end of the algorithm, \(q\) is the \textbf{initial} state \(0_X\) of the machine \(M_X\).
-At each iteration the current state \(q\) is shifted to the previous state \(p\) and the current index \(k\) is shifted from \(i\) to \(j\), through jumps of different lengths.
+At each iteration, the current state \(q\) is shifted to the previous state \(p\) and the current index \(k\) is shifted from \(i\) to \(j\), through jumps of different lengths.
 Sometimes \(k\) may stay in the same position: this happens if and only if the function processes a series of nonterminals that end up generating the \textbf{empty string \(\varepsilon\)}.
 
 The two \texttt{if} conditions are \textbf{mutually exclusive} if the grammar is \textbf{not ambiguous}:
-the first one is true if the child is a leaf; the other if the child has its own subtree.
+the first one is true if the child is a leaf; the other is true if the child has its own subtree.
 
 \subparagraph*{Computation complexity of \texttt{buildtree}}
 
-Assuming that the grammar is unambiguous, clean and devoid of circular derivations, fora string of length \(n\) the number of tree nodes is linearly bounded by \(n\).
-The basic operations are those of checking if the state or the pointer of a pair, and of concatenating a leaf or a node to the tree; both of them are executed in constant time.
+Assuming that the grammar is unambiguous, clean and devoid of circular derivations, for a string of length \(n\) the number of tree nodes is linearly bounded by \(n\).
+The basic operations are those of checking the state or the pointer of a pair, and of concatenating a leaf or a node to the tree; both of them are executed in constant time.
 
 The total complexity can be estimated as follows:
 
@@ -3534,7 +3523,7 @@ The total time complexity of the algorithm is:
 \subparagraph*{Optimization via lookahead}
 
 The items in the sets \(E[k], \ \forall \, k\) of the Earley vector can be extended by including a lookahead, computed in the same way as \elro parsers:
-by siding a lookahead to each time, the Earley algorithm avoids to put into each set the items that correspond to choices that cannot succeed.
+by siding a lookahead each time, the Earley algorithm avoids putting into each set the items that correspond to choices that cannot succeed.
 
 This technique may cause an increase in the number of items in the vector itself for some grammars, and as such its use is not always beneficial.
 
@@ -3543,7 +3532,7 @@ This technique may cause an increase in the number of items in the vector itself
 Ambiguous grammars deserve interest in the processing of natural languages:
 the difficult part is representing all the possible syntax trees related to a string, the number of which can grow exponentially with respect to its length.
 
-This can be done by using a \textbf{Shared Packed Parse Forest} \textit{(SPPF)}, a graph type more general than the tree built that still takes a worst case cubic time for building.
+This can be done by using a \textbf{Shared Packed Parse Forest} \textit{(SPPF)}, a graph type more general than the tree built that still takes a worst-case cubic time for building.
 
 \clearpage
 
@@ -3551,7 +3540,7 @@ This can be done by using a \textbf{Shared Packed Parse Forest} \textit{(SPPF)},
 
 Generally speaking, a \textbf{translation} is a function \textit{(or a mapping)} from a \textit{source language} to a \textit{target language}.
 Two approaches are normally used:
-via coupled grammars or via a transducer \textit{(an automaton similar to an acceptor with the ability of producing output)}.
+via coupled grammars or via a transducer \textit{(an automaton similar to an acceptor with the ability to produce output)}.
 
 Such methods can be called \textbf{purely syntactic translations}:
 they extend and complete the language definition and the parsing method studied so far; however, they are not able to provide a semantic interpretation \textit{(the meaning)} of the input string.
@@ -3559,7 +3548,7 @@ An opposing method is called \textbf{attribute grammar model}, and it takes adva
 
 \bigskip
 The difference between \textbf{syntax} and \textbf{semantics} is that the former is concerned with the \textbf{form} of a sentence, while the latter is concerned with its \textbf{meaning}.
-In computer science, however, the difference comes from the domain of of the entities and operations that are permitted by each of them:
+In computer science, however, the difference comes from the domain of the entities and operations that are permitted by each of them:
 
 \begin{itemize}
   \item \textbf{syntax} uses the concepts and operations of \textbf{formal language theory} and represents \textbf{algorithms as automata}
@@ -3590,13 +3579,13 @@ In computer science, however, the difference comes from the domain of of the ent
           \item \textbf{translation grammar}: a purely syntactic translation method that uses pushdown transducers on top of a parsing method
           \item \textbf{translation regular expression}: a purely syntactic translation method that uses a finite transducer enriched with an output function
         \end{itemize}
-  \item \textbf{Syntax directed method}: a method that applies local transformations to the source text, such as replacing a a character with a string in accordance with the transliteration table
+  \item \textbf{Syntax directed method}: a method that applies local transformations to the source text, such as replacing a character with a string following the transliteration table
         \begin{itemize}
-          \item \textbf{syntax directed semantic translation}: a semiformal approach based on a combination of syntax rules and semantic functions
+          \item \textbf{syntax directed semantic translation}: a semi-formal approach based on a combination of syntax rules and semantic functions
         \end{itemize}
 \end{itemize}
 
-It's worth to further expand the definition of \textbf{syntax directed semantic translation}:
+It's worth to further expanding the definition of \textbf{syntax directed semantic translation}:
 
 \begin{itemize}
   \item the \textbf{syntactic representation} of the language is used to drive the semantic analysis
@@ -3611,7 +3600,6 @@ It's worth to further expand the definition of \textbf{syntax directed semantic 
         \end{enumerate}
 \end{itemize}
 
-\bigskip
 \subparagraph*{Analogies of Formal Language and translation Theory}
 
 \begin{itemize}
@@ -3650,11 +3638,11 @@ The union of the application of the function \(\tau\) to all the source strings 
 \[ L_2 = \bigcup_{x \in L_1} \tau(x) \]
 
 Generally speaking, \(\rho\) is \textbf{partially defined}, as some strings in the source alphabet might not have a translation in the target alphabet;
-in order to make the function total is to add a special value \texttt{error} where the application of function \(\tau\) to string \(x\) is undefined.
+in order to make the function total it's necessary to add a special value \texttt{error} where the application of function \(\tau\) to string \(x\) is undefined.
 
 A particular case occurs when every source string has no more than one image, and the corresponding translation function is:
 \[ \tau : \Sigma^\ast \rightarrow \Delta^\ast \]
-This case is important as it's the one that allows to define the \textbf{inverse translation} \(\tau^{-1}\):
+This case is important as it's the one that allows defining the \textbf{inverse translation} \(\tau^{-1}\):
 a function that maps a target string on the set of corresponding source strings:
 \[ \tau^{-1} : \Delta^\ast \rightarrow \wp\left( \Sigma^\ast \right) \qquad \tau^{-1}(y) = \left\{ x \in \Sigma^\ast \mid y \in \tau(x) \right\} \]
 Similarly, the inverse translation relation \(\rho^{-1}\) is obtained by swapping the corresponding source and target strings:
@@ -3667,10 +3655,10 @@ Depending on the mathematical properties of \(\tau\), the following cases arise 
   \item \textbf{total}: every source string has one or more images
   \item \textbf{partial}: one or more source strings do not have any image
   \item \textbf{single-valued}: no string has two distinct images
-  \item \textbf{multi-valued}: one or more source string have more than one image
+  \item \textbf{multi-valued}: one or more source strings have more than one image
   \item \textbf{injective}: distinct source strings have distinct images
         \begin{itemize}[label=\(\rightarrow\)]
-          \item an alternative definition is that every target string corresponds to at most one source string: in only in this case the inverse translation \(\tau^{-1}\) is single valued
+          \item an alternative definition is that every target string corresponds to at most one source string: if only, in this case, the inverse translation \(\tau^{-1}\) is single-valued
         \end{itemize}
   \item \textbf{surjective}: the image of the translation coincides with the range; every string over the target alphabet is the mage of at least one source string
         \begin{itemize}[label=\(\rightarrow\)]
@@ -3680,18 +3668,18 @@ Depending on the mathematical properties of \(\tau\), the following cases arise 
         \begin{itemize}[label=\(\rightarrow\)]
           \item only in this case the inverse translation is \textit{bijective} as well
         \end{itemize}
-\end{enumerate}
+\end{enumerate}`'
 
 \subsubsection{Transliteration}
 
 The \textbf{transliteration} \textit{(or alphabetic homomorphism)} is the simplest form of translation:
-each source character is transliterated to a target character or to a string.
+each source character is transliterated to a target character or a string.
 The translation defined by an \textit{alphabetic homomorphism} is single-valued, while this property does not necessarily apply to the inverse function.
 
 Let \(\square\) be any Greek letter.
 Then:
 \[ h^{-1}\left( \square \right) = \left\{ \alpha, \, \ldots, \, \omega \right\} \]
-If the homomorphism erases a letter \textit{(maps it to the empty string)} the inverse translation is \textbf{multi-valued} because any string made of erasable characters can be inserted in ay text position.
+If the homomorphism erases a letter \textit{(maps it to the empty string)} the inverse translation is \textbf{multi-valued} because any string made of erasable characters can be inserted in any text position.
 If the inverse function is \textbf{single valued} too, then the transliteration is bijective and it's possible to reconstruct the source string from a given target string.
 
 \bigskip
@@ -3705,7 +3693,7 @@ A formal definition of Translation Grammar and Translation relation is shown in 
 
 \begin{definition}[Translation grammar]
   \label{def:translation-grammar}
-  A translation grammar \(G_T = \left( V, \Sigma, \Delta, P, S \right)\) is a context free grammar that has as terminal alphabet a set \(C \subseteq \Sigma^\ast \Delta^\ast\) of pairs \(\left( u, v \right)\) of source/target strings, also written as fraction \(\frac{u}{v}\)
+  A translation grammar \(G_T = \left( V, \Sigma, \Delta, P, S \right)\) is a context-free grammar that has as terminal alphabet a set \(C \subseteq \Sigma^\ast \Delta^\ast\) of pairs \(\left( u, v \right)\) of source/target strings, also written as fraction \(\frac{u}{v}\)
 \end{definition}
 
 \begin{definition}[Translation relation]
@@ -3718,7 +3706,7 @@ A formal definition of Translation Grammar and Translation relation is shown in 
 \subsubsection{Ambiguity of Source Grammar and Translation}
 
 As already observed, if the source grammar is \textbf{ambiguous}, a \textbf{sentence admits two different syntax trees}, each corresponding to a different target syntax tree.
-If the source grammar is not ambiguous, the translation can still be \textbf{multi valued}, if in the translation scheme different target rules are associated to the same source rule.
+If the source grammar is not ambiguous, the translation can still be \textbf{multi valued}, if in the translation scheme different target rules are associated with the same source rule.
 
 The next Property \textit{(\ref{prop:unambiguity-conditions-for-translations})} gives a sufficient for avoiding ambiguity in the translation grammar.
 
@@ -3731,14 +3719,14 @@ The next Property \textit{(\ref{prop:unambiguity-conditions-for-translations})} 
     \item No two rules of target grammar \(G_2\) correspond to the same rule of source grammar \(G_1\)
   \end{enumerate}
 
-  The translation specified by grammar \(G_\tau\) is single valued and defines a translation function.
+  The translation specified by grammar \(G_\tau\) is single-valued and defines a translation function.
 \end{property}
 
 \subsubsection{Translation Grammar and Pushdown Automata}
 % book page 397
 
-Much as the recognizer of a context free grammar, a transducer implementing a translation grammar needs a stack of unbounded length.
-A \textbf{pushdown transducer}, also known a \textit{IO automaton} is like a pushdown automaton, enriched with the capability to output zero or more characters at each move.
+Much like the recognizer of context-free grammar, a transducer implementing a translation grammar needs a stack of unbounded length.
+A \textbf{pushdown transducer}, also known as a \textit{IO automaton} is like a pushdown automaton, enriched with the capability to output zero or more characters at each move.
 A formal definition is shown in \textit{(\ref{def:pushdown-transducer})}.
 
 \begin{definition}[IO automaton]
@@ -3759,7 +3747,7 @@ A formal definition is shown in \textit{(\ref{def:pushdown-transducer})}.
 
 The function \(\delta\) is defined in the domain \(Q \times \left( \Sigma \cup \left\{ \varepsilon \right\} \right) \times \Gamma\) and has the set \(Q \times \Gamma^\ast \times \Delta^\ast\) as codomain.
 
-The meaning of the function is the following: if the current status, input character, and stack top are respectively \(q^\prime, a, Z\) and it holds \(\delta\left(q^\prime, a, Z\right) = \left( q^{\prime\prime}, \gamma, y \right)\), then the automaton reads \(a\) from input and \(Z\) from the stack top, enters the state \(q^{\prime\prime}\), pushes the string \(\gamma\) on the stack, and outputs the string \(y\).
+The meaning of the function is the following: if the current status, input character, and stack top are respectively \(q^\prime, a, Z\) and it holds \(\delta\left(q^\prime, a, Z\right) = \left( q^{\prime\prime}, \gamma, y \right)\), then the automaton reads \(a\) from input and \(Z\) from the stack top, enters the state \(q^{\prime\prime}\), pushes the string \(\gamma\) on the stack and outputs the string \(y\).
 
 If the automaton recognizes the string by empty stack, then the set of final states coincides with \(Q\).
 
@@ -3779,7 +3767,7 @@ The \textbf{instantaneous configuration} of the pushdown transducer is defined a
 When a \textbf{move} is executed, a transition from a configuration to the next one occurs, denoted as \(\left( q, x, \eta, \omega \right) \mapsto \left( p, y, \lambda, z \right)\).
 A computation is a chain of zero or more transitions, denoted by \(\xmapsto{\ast}\).
 
-The two possible moves depend on the current and next configuration, and are shown in Table~\ref{tab:pushdown-transducer-moves}.
+The two possible moves depend on the current and next configuration and are shown in Table~\ref{tab:pushdown-transducer-moves}.
 
 \begin{table}[htbp]
   \centering
@@ -3801,7 +3789,7 @@ The initial configuration and string acceptance conditions are the same describe
 \subsubsection{From Translation Grammar to Pushdown Transducer}
 
 Translation schemes and pushdown transducers are two ways of representing language transformations:
-the former is a models suitable for the specification of the translation, while the latter is a model suitable for the implementation of the translation.
+the former is a model suitable for the specification of the translation, while the latter is a model suitable for the implementation of the translation.
 Their equivalence is stated in Property~\ref{prop:translation-grammar-to-pushdown-transducer}.
 
 \begin{property}[Equivalence of translation grammar and pushdown transducer]
@@ -3834,8 +3822,8 @@ In order to simplify the rules, all the following hypotheses are made in the for
 Let \(C\) be the \textbf{set of the pairs} of type \(\frac{\varepsilon}{v}\) with \(v \in \Delta^+\) and of type \(\frac{b}{w}\) with \(b \in \Sigma\) and \(w \in \Delta^\ast\) occurring is some rule of the translation grammar.
 
 The rules for constructing the transducer moves are shown in Table~\ref{tab:pushwdown-transducer-construction-algorithm}.
-Initially the stack contains the axiom \(S\) and the reading head is positioned on the first character of the source string.
-At each step, the automaton \textit{(nondeterministically)} chooses an applicable rule and executes the corresponding move.
+Initially, the stack contains the axiom \(S\) and the reading head is positioned on the first character of the source string.
+At each step, the automaton \textit{(non deterministically)} chooses an applicable rule and executes the corresponding move.
 
 Note that this automaton does not need necessarily states, but they will be added later to improve the execution.
 
@@ -3884,9 +3872,9 @@ Note that this automaton does not need necessarily states, but they will be adde
 
 \subsubsection{Syntax Analysis with Online Translation}
 
-A pushdown transducer created with the algorithm shown in Paragraph~\ref{par:predictive-pushdown-tansducer-construction-algorithm} is often nondeterministic an generally not suitable for a compiler.
-A more efficient transducer can be built in a direct way:
-a syntactic analyser is transformed in the corresponding syntactic transducer.
+A pushdown transducer created with the algorithm shown in Paragraph~\ref{par:predictive-pushdown-tansducer-construction-algorithm} is often non deterministic and generally not suitable for a compiler.
+A more efficient transducer can be built directly:
+a syntactic analyser is transformed into the corresponding syntactic transducer.
 
 Given a transduction grammar, suppose that the underlying source grammar allows the construction of a deterministic syntax analyser.
 To compute the transduction, the syntax tree built by the analyser is directly translated as it's built.
@@ -3908,7 +3896,7 @@ The transducer can also be designed via a set of recursive procedures.
 
 \subsubsection{Regular Translation}
 
-A regular \textit{(or rational)} translation expression \textit{(or \rte in in short)} is a regular expression with union, concatenation, star operator, and cross operator that has as arguments some string pairs \(\left( u, v \right)\), also written as \(\frac{u}{v}\), where terms \(u\) and \(v\) are possibly empty strings, respectively, on the source and on the target alphabet
+A regular \textit{(or rational)} translation expression \textit{(or \rte in short)} is a regular expression with the union, concatenation, star operator, and cross operator that has as arguments some string pairs \(\left( u, v \right)\), also written as \(\frac{u}{v}\), where terms \(u\) and \(v\) are possibly empty strings, respectively, on the source and on the target alphabet
 
 \begin{definition}[Regular Translation Expression]
   \label{def:regular-translation-expression}
@@ -3928,10 +3916,9 @@ however, not every translation relation that has two regular sets as its source 
 \subsubsection{Two Input automaton}
 
 Since the set \(C\) of pairs occurring in an \rte can be viewed as a new terminal alphabet, the regular language over \(C\) can be recognized via an \FSA.
-The concept of \textbf{two input automaton} is a method used to define the translation and to build the translation function in a rigorous way;
-it allows to deal with lexical and syntactic translation in a unified way.
+The concept of \textbf{two input automaton} is a method used to define the translation and to build the translation function rigorously;
+it allows for dealing with lexical and syntactic translation in a unified way.
 
-\bigskip
 \begin{definition}[2I automaton]
   A \textbf{finite automaton with two inputs} \textit{(or 2I automaton)} is defined by a set of states \(Q\), the initial state \(Q_0 \in Q\) and a set \(F \subseteq Q\) of final states.
   The transition function \(\delta\) is defined as follows:
@@ -4007,15 +3994,15 @@ The \textbf{Nivat Theorem} states some properties of the transition relation.
 
 \subsubsection{Sequential Transducer}
 
-\textbf{Sequential Transducers} are automaton used to efficiently compute the translation in real time, while reading the input tape.
+\textbf{Sequential Transducers} are automaton used to efficiently compute the translation in real-time while reading the input tape.
 At last, when the input is finished, the automaton may append a finite piece of text that depends on the final state reached.
 
-A formal Definition is shown in \textit{(\ref{def:sequential-transducer})}.
+A formal definition is shown in \textit{(\ref{def:sequential-transducer})}.
 
 \begin{definition}[Sequential Transducer]
   \label{def:sequential-transducer}
   A \textbf{sequential transducer} or \textit{IO-automaton} \(T\) is a deterministic machine defined by a set \(Q\) of states, a source alphabet \(\Sigma\) and a target alphabet \(\Delta\), an initial state \(q_0\) and a set \(F \subseteq Q\) of final states.
-  Furthermore, there are three single valued functions:
+  Furthermore, there are three single-valued functions:
 
   \begin{enumerate}
     \item The state transition function \(\delta\) computes the next state
@@ -4036,7 +4023,7 @@ For a source string \(x\), the translation \(\tau(x)\) computed by the sequentia
 \[ \left\{ yz \in \Delta^\ast \, \middle\vert \, \exists \ \text{a computation labelled} \ \dfrac{x}{y} \ \text{ending in} \ r \in F \land z = \phi\left( r, \dashv \right) \right\} \]
 
 \bigskip
-The machine is deterministic because the input automaton \(\langle Q, \Sigma, \delta, q_0, F \rangle\) belonging to \(T\) is deterministic, and the output and final functions \(\eta\) and \(\phi\) are single valued.
+The machine is deterministic because the input automaton \(\langle Q, \Sigma, \delta, q_0, F \rangle\) belonging to \(T\) is deterministic, and the output and final functions \(\eta\) and \(\phi\) are single-valued.
 
 The condition that the subjacent input automaton is deterministic does not ensure by itself that the translation is single-valued, because between two states of the sequential transducer \(T\) there may be two arcs labelled \(\frac{a}{b}\) and \(\frac{a}{c}\) which cause the output not to be unique.
 
@@ -4045,7 +4032,7 @@ the composition of two sequential functions is a sequential function.
 
 \paragraph{Two opposite passes}
 
-Given a single valued translation specified by a regular translation expression or by a \textit{2I automaton}, it's not always possible to implement the translation bia a sequential transducer such as a deterministic \textit{IO-automaton}.
+Given a single-valued translation specified by a regular translation expression or by a \textit{2I automaton}, it's not always possible to implement the translation via a sequential transducer such as a deterministic \textit{IO-automaton}.
 
 However, in such cases the translation can be implemented via \textbf{two cascaded} \textit{(deterministic)} \textbf{sequential passes}, each one being one way but scanning the string in opposite directions:
 
@@ -4056,15 +4043,15 @@ However, in such cases the translation can be implemented via \textbf{two cascad
 
 \subsection{Semantic Translation}
 
-None of the previously described syntactic translation methods is able to handle compute slightly more complicated translations, such as the translation of the conversion of a number from binary to decimal;
+None of the previously described syntactic translation methods can handle slightly more complicated translations, such as the translation of the conversion of a number from binary to decimal;
 they rely on devices that are too elementary to achieve such goals.
 
-In order to make this kind of translations, a more powerful approach is needed, which is the \textbf{syntax-directed translation}.
+In order to make this kind of translation, a more powerful approach is needed, which is the \textbf{syntax-directed translation}.
 The term \textit{directed} marks the difference from the purely syntactic methods explored in the previous Sections.
 
 A semantic technique includes tree-walking procedures, which move along the syntax tree and compute some variables called \textbf{semantic attributes}:
 they represent the \textit{meaning} (\textit{or semantic}) of a certain source text.
-It's important to notice that a syntax directed method is not a formal model, because attribute computing procedures are not formalized.
+It's important to notice that a syntax-directed method is not a formal model because attribute computing procedures are not formalized.
 
 A syntax-directed compiler performs two cascaded phases:
 
@@ -4073,7 +4060,7 @@ A syntax-directed compiler performs two cascaded phases:
   \item\label{enum:syntax-directed-compiler-phase-2} \textbf{Semantic evaluation} or semantic analysis
 \end{enumerate}
 
-Phase~\ref{enum:syntax-directed-compiler-phase-1} computes a syntax tree, usually condensed into a abstract syntax tree, containing the essential information for the next phase.
+Phase~\ref{enum:syntax-directed-compiler-phase-1} computes a syntax tree, usually condensed into an abstract syntax tree, containing the essential information for the next phase.
 The semantic phase \textit{\ref{enum:syntax-directed-compiler-phase-2}} consists in applying a set of \textbf{semantic functions} on each node of the tree until all attributes have been evaluated;
 the set of evaluated attribute values is the \textbf{meaning} \textit{(or translation)} and it will be found in the root of the tree.
 
@@ -4082,13 +4069,13 @@ the decoupling of the two phases allows the compiler designer to create them wit
 
 \subsection{Attribute Grammars}
 
-The meaning of a sentence is a set of attributes values, computed by the semantic functions and assigned to the nodes of the syntax tree.
+The meaning of a sentence is a set of attribute values, computed by the semantic functions and assigned to the nodes of the syntax tree.
 The syntax-directed translator contains the definition of the semantic functions, which are associated with the grammar rules.
 The set of grammar rules and associated semantic functions is called an \textbf{attribute grammar}.
 
 For simplicity, the attribute grammar is defined with respect to an \textbf{abstract syntax}:
 a grammar that may be simpler than the real one, with the downside of being often ambiguous.
-However, this ambiguity does not prevent a single valued translation, as the parser will pass to the semantic evaluator only one syntax tree.
+However, this ambiguity does not prevent a single-valued translation, as the parser will pass to the semantic evaluator only one syntax tree.
 
 Simpler compilers may combine the two phases into a single pass via a unique syntax \textit{(the one of the language)}.
 
@@ -4134,7 +4121,7 @@ A formal definition of attribute grammar is shown in~\ref{def:attribute-grammar}
             \item The right attributes \(\delta_0\) and left attributes \(\sigma_i\) with \(i \geq 1\) are called \textbf{external} for production \(p\) because they are defined by functions supported by other productions
           \end{itemize}
     \item Some attributes can be initialized with constant values or with values computed by external functions.
-          This is often the case for the so called lexical attributes, those associated with terminal symbols.
+          This is often the case for the so-called lexical attributes, those associated with terminal symbols.
           For such attributes, the grammar does not specify a computation rule.
   \end{enumerate}
 \end{definition}
@@ -4147,7 +4134,7 @@ the attribute evaluation program can be automatically constructed from the funct
 To prepare for such construction, the functional dependencies are formalized in progressively less abstract ways via directed graphs:
 
 \begin{definition}[Dependence Graph of a Semantic function]
-  the nodes of this graph are the arguments and result of the function considered, and there is an arc from each argument to the result.
+  the nodes of this graph are the arguments and results of the function considered, and there is an arc from each argument to the result.
 \end{definition}
 \begin{definition}[Dependence Graph of a Production \(p\)]
   this graph, denoted by \(\textit{dep}_p\), collects the dependence graphs for all the functions supported by the production considered.
@@ -4157,9 +4144,8 @@ To prepare for such construction, the functional dependencies are formalized in 
 \end{definition}
 
 \bigskip
-
 A grammar is called \textbf{acyclic} \textit{(or loop-free)} if the dependence graph of the tree is acyclic for every sentence.
-A Property relative the correctness is given in \ref{prop:correctness-attribute-grammar}.
+A Property relative to the correctness is given in \ref{prop:correctness-attribute-grammar}.
 
 \begin{property}[Correct Attribute Grammar]
   \label{prop:correctness-attribute-grammar}
@@ -4168,7 +4154,7 @@ A Property relative the correctness is given in \ref{prop:correctness-attribute-
 \end{property}
 
 Under the acyclicity condition, the equations can be ordered in such a way that each semantic function is applied after the functions that compute its arguments;
-this produces a value for the solution, since the functions are total.
+this produces a value for the solution since the functions are total.
 The solution thus obtained is unique, as in a system of linear equations.
 
 In order to provide a total order of nodes, the topological ordering method can be used.
@@ -4196,12 +4182,12 @@ Then, in order to visit the subtree \(t_N\) rooted at node \(N\), it recursively
           \item before entering and evaluating a subtree \(t_N\), it computes the right attributes of node \(N\) \textit{(the root of the subtree)}
                 \begin{itemize}[label=\(\rightarrow\)]
                   \item the attributes are then passed as input parameters of the procedure that implements the visit
-                  \item procedure calls with input parameters passing passing are the \inlinequote{descending phase} of the visit
+                  \item procedure calls with input parameters passing are the \inlinequote{descending phase} of the visit
                 \end{itemize}
           \item at the end of visit of subtree \(t_N\), it computes the left attributes of node \(N\)
                 \begin{itemize}[label=\(\rightarrow\)]
                   \item the attributes are the output parameters of the procedure that implements the visit
-                  \item procedure return and output parameter passing are the \inlinequote{ascending phase} of the visit
+                  \item procedure return an output parameter passing are the \inlinequote{ascending phase} of the visit
                 \end{itemize}
         \end{itemize}
 \end{enumerate}
@@ -4245,7 +4231,7 @@ The next definition states the conditions that make a grammar suitable for one-s
 
 \subparagraph*{Explanation of the conditions}
 
-\begin{enumerate}[labelindent=15pt, leftmargin=*, widest=(A)]
+\begin{enumerate}
   \item[\ref{enum:one-sweep-grammar-condition-1}] necessary for the grammar to be acyclic
   \item[\ref{enum:one-sweep-grammar-condition-2}] if such a path existed, it would be impossible to compute the right attribute \(\rho_i\) before visiting the subtree \(t_i\), because the value of the left attribute \(\lambda_i\) is computed at the end of the visit of \(t_i\) (against the order of the depth-first visit)
   \item[\ref{enum:one-sweep-grammar-condition-3}] the value of attribute \(\rho_i\) would not be available when the visit of the subtree \(t_i\) is started
@@ -4254,7 +4240,7 @@ The next definition states the conditions that make a grammar suitable for one-s
 
 \paragraph{Construction of the One-Sweep Evaluator}
 
-The procedure visits the subtrees, computes and returns the left attributes of the root of the subtree.
+The procedure visits the subtrees, computes, and returns the left attributes of the root of the subtree.
 For each production \(p : D_0 \rightarrow D_1 D_2 \ldots D_r, \ r \geq 0\):
 
 \begin{enumerate}
@@ -4271,8 +4257,8 @@ The three orders \textit{TOS}, \textit{TOR} and \textit{TOL} prescribe how to ar
 \subsubsection{Combined Syntax and Semantic Analisys}
 
 It's possible to combine syntax tree construction and attribute computation, trusting the parser with the duty to invoke the semantic functions.
-In the following consideration, a pure \textit{BNF} grammar is assumed, as using the \EBNF productions would make it more complicate to specify the correspondence between syntax symbols and attributes.
-There are three typical situation for the analysis, depending on the nature of source language, shown in Table~\ref{tab:combined-syntax-and-semantic-analysis}.
+In the following consideration, a pure \textit{BNF} grammar is assumed, as using the \EBNF productions would make it more complicated to specify the correspondence between syntax symbols and attributes.
+There are three typical situations for the analysis, depending on the nature of the source language, shown in Table~\ref{tab:combined-syntax-and-semantic-analysis}.
 
 \begin{table}[htbp]
   \centering
@@ -4289,19 +4275,19 @@ There are three typical situation for the analysis, depending on the nature of s
   \bigskip
 \end{table}
 
-\paragraph{Lexical Analisys with Attribute Evaluation}
+\paragraph{Lexical Analysis with Attribute Evaluation}
 
 The \textbf{lexical analyser} \textit{(or scanner)} segments the source text into the lexical elements, called \textbf{lexemes} \textit{(or tokens)}, such as identifiers, integers and strings;
-lexemes are are the smallest substrings that can be invested with some semantic meaning.
+lexemes are the smallest substrings that can be invested with some semantic meaning.
 Each technical language uses a finite set of lexical classes, represented by regular formal language, like a regular expression or a set of strings.
 
-Technical languages have two different level of syntactic specifications:
+Technical languages have two different levels of syntactic specifications:
 \begin{itemize}
   \item \textbf{lexical} \textit{(lower)}, defining the form of the lexemes
   \item \textbf{syntactic} \textit{(higher)}, assuming that the lexemes are given, and considering them as terminal symbols of the grammar
 \end{itemize}
 
-Some lexemes may carry a meaning, like a semantic attribute, that is computed by the lexical analyser.
+Some lexemes may carry meaning, like a semantic attribute, that is computed by the lexical analyser.
 
 \subparagraph{Attributed Recursive Descent Translator}
 
@@ -4312,7 +4298,7 @@ Assuming that a syntax is suitable for deterministic top-down parsing \textit{(a
   \item the top-down parser constructs the tree in the natural order
 \end{itemize}
 
-In order to combine the two procedures is necessary to exclude any functional dependency that would make the two procedures to visit the tree in different orders, as stated in Definition~\ref{def:l-condition}.
+In order to combine the two procedures is necessary to exclude any functional dependency that would make the two procedures visit the tree in different orders, as stated in Definition~\ref{def:l-condition}.
 
 \begin{definition}[L-condition]
   \label{def:l-condition}
@@ -4343,8 +4329,8 @@ The next Property \textit{(\ref{def:attribute-grammar-and-deterministic-parsing}
 
 \subsection{Static Analysis}
 
-The static analysis is a technique used by compilers to check some properties of the source code, before the compilation phase.
-The different analysis are categorized according to the purpose of the check, for example:
+Static analysis is a technique used by compilers to check some properties of the source code, before the compilation phase.
+The different analyses are categorized according to the purpose of the check, for example:
 
 \begin{itemize}
   \item \textbf{verification}, to examine the program correctness
@@ -4357,12 +4343,12 @@ It's convenient to view this graph as describing the state-transition function o
 static analysis is performed by analysing it, using various techniques.
 
 It's important to notice that the control-flow graph does not represent the entire source language, but only the source code of a single program:
-static flow analysis must not be confused with the syntax driven translation.
+static flow analysis must not be confused with syntax-driven translation.
 
 \subsubsection{Program as an Automaton}
 
-The control-flow graph is a an abstraction of a program, that can be represented by a \FSA;
-its component are now described.
+The control-flow graph is an abstraction of a program, that can be represented by a \FSA;
+its component is now described.
 
 \begin{itemize}
   \item Each \textbf{node} represent an instruction
@@ -4411,19 +4397,19 @@ Furthermore, language \(L\) is \textbf{local} \textit{(Definition~\ref{def:local
 
 \subparagraph*{Conservative approximation}
 
-The automaton is able to specify only an approximation of the valid execution path of a program.
-Not all paths are really executable by the program, as no syntax analysis is performed one the conditions selecting the successors nodes in conditional instructions.
+The automaton can specify only an approximation of the valid execution path of a program.
+Not all paths are executable by the program, as no syntax analysis is performed on the conditions selecting the successor's nodes in conditional instructions.
 For example, consider the following instruction.
 \[ 1: \texttt{if} \ a^2 \geq 0 \ \texttt{then} \ 2: \ \textit{instruction}_2 \ \texttt{else} \ 3: \ \textit{instruction}_3 \]
 The formal language accepted by the automaton contains two paths:
 \[ \left\{ 1 \, 2, \ 1 \, 3 \right\} \]
-despite the fact that the second path is not executable, as the condition is always true.
+even though the second path is not executable, as the condition is always true.
 
 As a consequence, static analysis may sometimes reach pessimistic conclusions \textit{(it may discover never executed code paths)}.
 It's not decidable whether a path of a control-flow graph will ever be executed by the program, as the problem can be reduced to the halting problem.
 
-The decision to analyze all recognized path is a conservative approximation to program analysis:
-it might diagnose non existing errors or erroneously assign resources, but real errors will never be missed.
+The decision to analyze all recognized paths is a conservative approximation to program analysis:
+it might diagnose non-existing errors or erroneously assign resources, but real errors will never be missed.
 The method is then defined as \textbf{error safe}, despite being possibly inefficient.
 
 A usual hypothesis in static analysis is that the automaton is clean \textit{(Section~\ref{sec:clean-automaton}, page~\pageref{sec:clean-automaton})}, and every instruction is on a path from the entry point to the exit point.
@@ -4471,15 +4457,15 @@ language \(L(A)\) contains a sentence \(x = u p v q w\), where:
 \begin{itemize}
   \item \(u, \ w\) are arbitrary sequences of instructions \textit{(possibly empty)}
   \item \(p\) is any instruction
-  \item \(v\) is a possibly empty instruction sequence not containing a a definition of \(a\)
+  \item \(v\) is a possibly empty instruction sequence not containing a definition of \(a\)
   \item \(q\) is an instruction that uses \(a\)
 \end{itemize}
 
 The above conditions are formalized by the equation:
 \[ u, w \in I^\ast \land p \in I \land v \in \left( I \setminus D\left( a \right) \right) \land q \in U\left( a \right) \]
-The set difference contains all the instructions that do noe define \(a\), while \(q\) uses \(a\).
+The set difference contains all the instructions that do not define \(a\), while \(q\) uses \(a\).
 The set of all strings \(x\) that meet this condition, defined as \(L_p\), is a subset of the language \(L(A)\) recognized by the automaton.
-Language \(L_p\) is regular, because it can be defined by the following intersection:
+Language \(L_p\) is regular because it can be defined by the following intersection:
 \[ L_p = L(A) \cap R_p \]
 where \(R_p\) is the regular language defined by the regular expression:
 \[ R_p = I^\ast p \left( I \setminus D \left( a \right) \right)^\ast U \left( a \right) I^\ast \]
@@ -4489,7 +4475,7 @@ To check if a variable is a live-out of node \(p\), it is sufficient to check if
 to achieve that goal it's sufficient to build the recognizer as the product of machine \(A\) and the recognizer of \(R_p\).
 If no path connecting the input node to the final node exists, then \(L_p\) is empty.
 
-Such a procedure is however not efficient, considering the big number of variables and instructions in real world programs;
+Such a procedure is however not efficient, considering the big number of variables and instructions in real-world programs;
 a more efficient technique is the \textbf{data-flow analysis}.
 This method examines all paths from any instruction to another instruction that uses the same variable.
 
@@ -4517,7 +4503,7 @@ Each unknown is a set of variables, and the solution to be computed is a pair of
 
 To solve the system of equations, the following iteration is used, by taking the empty set as the initial approximation \textit{(\(i=0\))} for every unknown:
 \[ \forall \, p \in I \quad \text{live}_\text{in}\left( p \right) = \emptyset \quad \text{live}_\text{out} \left( p \right) = \emptyset \]
-At any iteration \(i\), for each equation of the system in \ref{def:data-flow-equations}, the unknowns in the right hand side are replaced with the values computed in the previous iteration;
+At any iteration \(i\), for each equation of the system in \ref{def:data-flow-equations}, the unknowns in the right-hand side are replaced with the values computed in the previous iteration;
 the new iteration \(i + 1\) is then calculated.
 
 The iteration stops when the values computed in the last iteration are equal to those computed in the previous iteration \textit{(a fixed point is reached)};
@@ -4527,8 +4513,8 @@ A finite number of iterations is always sufficient to compute the least fixed po
 
 \begin{itemize}
   \item every set \(\text{live}_\text{in}\left( p \right)\) and \(\text{live}_\text{out}\left( p \right)\) is finite \textit{(the number of variables is finite)}
-  \item every iteration step either increases the cardinality of the above sets of variables or leaves them unchanged, as the equation are monotonic
-  \item when the solution does not change any more, the algorithm terminates
+  \item every iteration step either increases the cardinality of the above sets of variables or leaves them unchanged, as the equation is monotonic
+  \item when the solution does not change anymore, the algorithm terminates
 \end{itemize}
 
 \paragraph{Application of Liveness Analysis}
@@ -4543,13 +4529,13 @@ Conversely, if two variables do not \textbf{interfere}, then they can be stored 
 
 \subparagraph*{Useless instructions}
 
-An instruction defining a variable is \textbf{useless} is the value assigned to the variable is never used by any instruction:
+An instruction defining a variable is \textbf{useless} is the value assigned to the variable that is never used by any instruction:
 the value is not live-out for the defining instruction.
 Therefore, to verify that the definition of a variable \(a\) by instruction \(p\) is useless, it is sufficient to check if \(\text{live}_\text{out}\left( p \right) \not\subseteq \left\{ a \right\}\).
 
 \subsubsection{Reaching Definition Analysis}
 
-Another basic applied type of static analysis is the search for variable definition that reach a given instruction.
+Another basic applied type of static analysis is the search for a variable definition that reaches a given instruction.
 
 Consider an instruction that assigns a constant value to variable \(a\).
 The compiler examines the program to see if the same constant can be replaced for the variable in the instructions using \(a\), with the advantage of:
@@ -4578,7 +4564,7 @@ Given an automaton \(A\) with instruction set \(I\), the Definition~\ref{def:rea
   \begin{itemize}
     \item \(u, \ w\) are arbitrary sequence of instructions \textit{(possibly empty)}
     \item \(p\) is any instruction
-    \item \(v\) is a sequence of instructions that does not contain any definition of \(a\) \textit{(possibly empty)}
+    \item \(v\) is a sequence of instructions that do not contain any definition of \(a\) \textit{(possibly empty)}
     \item \(q\) is an instruction that defines \(a\)
   \end{itemize}
 
@@ -4612,7 +4598,7 @@ For any other node \(p \in I\):
 \]
 
 Similarly to the liveness equations \textit{(Definition~\ref{def:variable-liveness})}, the reaching definition system can be solved by iteration until the computed solution converges to a fixed point;
-initially all sets are empty.
+initially, all sets are empty.
 
 \bigskip
 The set \(\text{out}^\prime\) denotes the elements of \(\text{out}\) reaching the exit node starting from node \(q\), but with their subscripts deleted.
@@ -4665,8 +4651,509 @@ A formal definition of badly initialized variables is given in~\ref{def:badly-in
   \[ \exists \, q \in \text{pred}(p) \ \text{such that} \ use(p) \nsubseteq \text{out}^\prime(q) \]
 \end{definition}
 
-The condition says that there exists a node \(q\) predecessor of \(p\) such that the definitions of reaching its exit does not include all the variables used in \(p\).
-Therefore, when the program execution runa on a path through \(q\), one or more variables used in \(p\) don't have a value.
+The condition says that there exists a node \(q\) predecessor of \(p\) such that the definition of reaching its exit does not include all the variables used in \(p\).
+Therefore, when the program execution runs on a path through \(q\), one or more variables used in \(p\) don't have a value.
+
+\clearpage
+
+\section{Laboratory}
+
+The laboratory has the following requirements:
+
+\begin{enumerate}
+  \item Familiarity of the \clang programming language
+  \item Being able to use a standard \texttt{UNIX} compilation toolchain
+  \item Know how a \clang \texttt{struct} is represented in memory
+\end{enumerate}
+
+\subsection{Regular Expressions}
+
+The \texttt{POSIX} compatible regular expression library is a standard library of the \clang programming language.
+It contains an extended set of functions to build and manipulate regular expressions.
+
+Table~\ref{tab:basic-character-sets} shows the basic character sets used in regular expressions, Table~\ref{tab:regular-expression-composition-rules} shows the composition rules of regular expressions, and Table~\ref{tab:regular-expression-utilities} shows some useful sets of characters.
+
+\begin{table}[htbp]
+  \centering
+  \bigskip
+  \begin{tblr}{colspec={c|l}, row{1}={font=\itshape}}
+    syntax                            & matches                                       \\
+    \hline
+    \texttt{x}                        & the character \texttt{x}                      \\
+    \texttt{.}                        & any character except newline                  \\
+    \texttt{[x,y,z]}                  & any character in the set \texttt{x, y, z}     \\
+    \texttt{[\textasciicircum x,y,z]} & any character not in the set \texttt{x, y, z} \\
+    \texttt{[a-z]}                    & any character in the range \texttt{a-z}       \\
+    \texttt{[\textasciicircum a-z]}   & any character not in the range \texttt{a-z}   \\
+  \end{tblr}
+  \caption{Basic character sets}
+  \label{tab:basic-character-sets}
+  \bigskip
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \bigskip
+  \begin{tblr}{colspec={c|l}, row{1}={font=\itshape}}
+    syntax                & matches                                                              \\
+    \hline
+    \texttt{R}            & the regular expression \texttt{R}                                    \\
+    \texttt{R S}          & the concatenation of \texttt{R} and \texttt{S}                       \\
+    \texttt{R\textbar{}S} & the alternation of \texttt{R} and \texttt{S}                         \\
+    \texttt{R*}           & zero or more occurrences of \texttt{R}                               \\
+    \texttt{R+}           & one or more occurrences of \texttt{R}                                \\
+    \texttt{R?}           & zero or one occurrence of \texttt{R}                                 \\
+    \texttt{R\{n\}}       & exactly \texttt{n} occurrences of \texttt{R}                         \\
+    \texttt{R\{n,\}}      & at least \texttt{n} occurrences of \texttt{R}                        \\
+    \texttt{R\{n,m\}}     & at least \texttt{n} and at most \texttt{m} occurrences of \texttt{R} \\
+  \end{tblr}
+  \caption{Composition of Regular Expressions}
+  \label{tab:regular-expression-composition-rules}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \bigskip
+  \begin{tblr}{colspec={c|l}, row{1}={font=\itshape}}
+    syntax                      & matches                                                                                         \\
+    \hline
+    \texttt{(R)}                & capture group or override precedence                                                            \\
+    \texttt{\textasciicircum R} & match at the beginning of the line                                                              \\
+    \texttt{R\$}                & match at the end of the line                                                                    \\
+    \texttt{\textbackslash t}   & tab character                                                                                   \\
+    \texttt{\textbackslash n}   & newline character                                                                               \\
+    \texttt{\textbackslash w}   & a word (same as \texttt{[a-zA-Z0-9\_]})                                                         \\
+    \texttt{\textbackslash d}   & a digit (same as \texttt{[0-9]})                                                                \\
+    \texttt{\textbackslash s}   & a whitespace character (same as \texttt{[ \textbackslash t \textbackslash s \textbackslash n]}) \\
+    \texttt{\textbackslash W}   & a non-word character                                                                            \\
+    \texttt{\textbackslash D}   & a non-digit character                                                                           \\
+    \texttt{\textbackslash S}   & a non-whitespace character                                                                      \\
+  \end{tblr}
+  \caption{Regular expression utilities}
+  \label{tab:regular-expression-utilities}
+  \bigskip
+\end{table}
+
+\subsection{Lexical Analysis}
+
+The purpose of the lexical analysis is:
+
+\begin{enumerate}
+  \item to \textbf{recognize} the tokens of the language
+  \item to \textit{(possibly)} \textbf{decorate} the tokes with additional informations
+\end{enumerate}
+
+Such analysis is performed through a scanner, which is a big \FSA.
+Since coding a scanner is a hard task, scanner generators based on regular expressions such as \flex are used.
+
+In a compiler, the scanner prepares the input for the parser:
+
+\begin{enumerate}
+  \item it detects the tokens of the language
+  \item it cleans the input
+  \item it adds information to the tokens
+\end{enumerate}
+
+\subparagraph*{Words}
+Words cannot be enumerated in artificial languages, as there are too many of them \textit{(despite being bounded)}.
+However, technical words are simpler than natural words:
+
+\begin{itemize}
+  \item Their structure is simple
+  \item They follow specific rules
+  \item They are \textit{(normally)} a regular language
+\end{itemize}
+
+\begin{property}[\clang identifiers]
+  \label{prop:c-identifiers}
+  \hfill
+  \begin{enumerate}
+    \item The \textbf{first} character must be a \textbf{letter} or an \textbf{underscore}
+    \item The \textbf{following} characters must be \textbf{letters}, \textbf{digits} or \textbf{underscores}
+  \end{enumerate}
+\end{property}
+
+\subparagraph*{\flex}
+\flex is a lexical analyser generator:
+
+\begin{itemize}
+  \item[\(\rightarrow\)] as \textbf{input} it takes a specification file of the scanner
+  \item[\(\leftarrow\)] as \textbf{output} it generates a \clang source code file implementing the scanner
+\end{itemize}
+
+The workflow of \flex \textit{(illustrated in Figure~\ref{fig:flex-workflow})} is the following:
+
+\begin{enumerate}
+  \item The \textbf{specification} file is \textbf{written}
+  \item The \textbf{specification} file is \textbf{compiled} with \texttt{FLEX}
+  \item The \textbf{generated} \clang source code file is \textbf{compiled} with \texttt{cc}
+\end{enumerate}
+
+\begin{figure}[htbp]
+  \centering
+  \bigskip
+  \tikzfig{figure-18.tikz}
+  \caption{Workflow of \flex}
+  \label{fig:flex-workflow}
+  \bigskip
+\end{figure}
+
+The generated parsers implement a nondeterministic \FSA, later made deterministic via the Berry-Sethi algorithm, which tries to match all possible tokens at the same time;
+as soon as one is recognized:
+
+\begin{enumerate}
+  \item The semantic action is executed
+  \item The stream skips past the end of the token
+  \item The automaton reboots
+\end{enumerate}
+
+\subsubsection{Specification File}
+
+A \flex file is structured in three sections, separated by the \texttt{\%\%} token:
+
+\begin{itemize}
+  \item the \textbf{definitions}: declare useful \re
+  \item the \textbf{rules}: bind \re combinations to actions
+  \item the \textbf{user code}: \clang code
+\end{itemize}
+
+\subparagraph*{Definitions}
+A definition associates a name with a set of characters;
+\re can be used to define character sets, with quotes \textit{(symbol \texttt{"})} used for literal strings.
+They are recalled by putting their names in curly braces \textit{(symbol \texttt{\{\}})}.
+Definitions behave like \clang macros.
+
+\subparagraph*{Rules}
+A rule represents a full token to be recognized:
+
+\begin{itemize}
+  \item the \textbf{token} is described by a \re
+  \item it exploits definitions to be more readable
+  \item it defines a \textbf{semantic action} to be made at each match
+        \begin{itemize}
+          \item semantic actions are executed \textbf{every time the rules matches} and can access the matched string
+          \item global variables:
+                \begin{itemize}[label=\texttt{>}]
+                  \item \texttt{\textbf{char} *yytext} contains the \textbf{matched string}
+                  \item \texttt{\textbf{int} yyleng} contains the \textbf{length of the matched string}
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+Simple applications put the business logic inside the semantic actions;
+more complex applications that use a separate parser \textit{(for example compilers)} do the following:
+
+\begin{enumerate}
+  \item \textbf{assign} a \textbf{value} to the recognized token
+  \item \textbf{return} the token \textbf{type}
+\end{enumerate}
+
+\subparagraph*{User Code}
+
+User \clang code is copied to the generated scanner \textbf{as is}.
+
+Arbitrary code can be put inside definitions and rules sections by escaping from the \flex syntax within \texttt{\%\{} and \texttt{\%\}}.
+This feature is usually used for header inclusions, global variables, and function definitions.
+
+\subsubsection{Generated Scanner}
+
+While \flex generates a scanner, \textbf{it is not a scanner itself};
+the generated scanner is a \clang source code file called \texttt{lex.yy.c}, exporting the following variables and functions:
+
+\begin{itemize}[label=\texttt{>}]
+  \item \texttt{\textbf{FILE} *yyin}: the input file
+        \begin{itemize}
+          \item it can assume the value \texttt{stdin} to read from the standard input
+        \end{itemize}
+  \item \texttt{\textbf{int} yylex(\textbf{void})}
+        \begin{itemize}
+          \item it parses the input until:
+                \begin{enumerate}
+                  \item a semantic function returns; the return value is the same as the one in the action
+                  \item the file ends; the return value is \texttt{0}
+                \end{enumerate}
+        \end{itemize}
+  \item \texttt{\textbf{void} yyerror(\textbf{char} *msg)}
+        \begin{itemize}
+          \item prints an error message
+        \end{itemize}
+  \item \texttt{\textbf{int} yywrap(\textbf{void})}
+        \begin{itemize}
+          \item it is called when the end of the file is reached
+          \item it allows opening a new file and continue scanning from there
+          \item return values:
+                \begin{itemize}
+                  \item \texttt{0}: continue scanning
+                  \item \texttt{1}: stop scanning
+                \end{itemize}
+          \item it can be disabled with the instruction \texttt{\%\%option noyywrap} in the specification file
+        \end{itemize}
+\end{itemize}
+
+\subparagraph*{Behaviour}
+Important behaviours of the scanner:
+
+\begin{itemize}
+  \item \textbf{Longest matching rule} - if the scanner matches \textbf{more than one string}, the rules that generates the \textbf{longest} one is chosen
+  \item \textbf{First rule} - if the scanner matches\textbf{ more than one string with the same length}, the \textbf{first} one is chosen
+  \item \textbf{Default action} - if the scanner finds no rule, the next character in input is considered matched implicitly and printed to the standard output
+\end{itemize}
+
+\subsubsection{Multiple scanners}
+
+In order to support multiple scanners, rules can be marked with the same name of the associated scanner \textit{(the start condition)};
+special actions are used to switch between scanners.
+
+A start condition \texttt{S} is used to mark rules with as a prefix like \texttt{<S>RULE};
+it marks rules as active when the scanner is running the scanner \texttt{S}.
+
+\begin{itemize}
+  \item The \texttt{*} start condition matches every start condition
+  \item The initial start condition is called \texttt{INITIAL}
+  \item The start conditions are stored as integers
+  \item The current start condition is stored in the variable \texttt{YY\_START}
+\end{itemize}
+
+\bigskip
+Start conditions can be:
+
+\begin{itemize}[label=\texttt{>}]
+  \item \textbf{exclusive} - declared as \texttt{\%x S;}
+        \begin{itemize}
+          \item \textbf{disables unmarked rules} when the scanner is in the start condition \texttt{S}
+        \end{itemize}
+  \item \textbf{inclusive} - declared as \texttt{\%s S;}
+        \begin{itemize}
+          \item \textbf{enables unmarked rules} when the scanner is in the start condition \texttt{S}
+          \item the \texttt{INITIAL} condition is inclusive
+        \end{itemize}
+\end{itemize}
+
+Command \texttt{BEGIN(S)} switches to the start condition \texttt{S};
+command \texttt{ECHO} copies the content of the matched string \texttt{yytext} to the standard output.
+
+\subsection{Syntactic Analysis - \bison}
+
+The purpose of the Syntactic Analysis is:
+
+\begin{enumerate}
+  \item identify the grammar structures of the input
+  \item verify the syntactic correctness of the input
+  \item build a derivation tree of the input
+\end{enumerate}
+
+It's important to notice that syntactic analysis does not determine the meaning of the input \textit{(that is the task of semantic analysis)}.
+The syntactic analysis is performed over a stream of terminal symbols \textit{(tokens)} generated by the lexical analysis;
+nonterminal symbols are only generated through the reduction of grammar rules.
+
+\subparagraph*{\bison}
+
+\bison is the standard tool used to generate \textit{LR} parsers and is designed to work with \flex;
+the generated parsers use the \textit{LALR\((1)\)} algorithm, a variant of \textit{LR\((1)\)}.
+
+Features of the parser:
+
+\begin{itemize}
+  \item the pilot automaton is described by a \FSA
+  \item the parsing stack is used to keep the parsers state at runtime
+  \item it acts as a typical shift-reduce parser
+\end{itemize}
+
+\subsubsection{Specification File}
+
+A \bison file is structured in four sections, separated by the \texttt{\%\%} token:
+
+\begin{itemize}
+  \item the \textbf{prologue}: include headers, global variables, and function definitions
+  \item the \textbf{definitions}: declare tokens, operator precedence, nonterminal types
+  \item the \textbf{rules}: declare the grammar rules
+  \item the \textbf{user code}: \clang code
+\end{itemize}
+
+\subparagraph*{Definitions}
+Different syntactic elements can be defined inside the definitions section:
+\begin{itemize}
+  \item tokens, via the \texttt{\%token} keyword
+        \begin{itemize}
+          \item each token is assigned a numbers
+          \item the lexer uses said numbers to identify tokens
+        \end{itemize}
+  \item grammar rules, in the \textit{BNF} notation
+        \begin{itemize}
+          \item if not specified, the \LP of the first rule is the axiom
+          \item rules are specified via the syntax
+        \end{itemize}
+\end{itemize}
+
+Just like \flex, \bison allows specifying semantic actions in grammar rules;
+semantic action is expressed in \clang instructions are can be specified at the end of each rule alternative.
+They are executed when the rule they are associated with has been completely recognized:
+the order of execution of the actions is bottom-up with respect to the syntactic tree.
+
+\begin{lstlisting}[morekeywords={RULE_LP, RULE_RP, SEMANTIC_ACTION}, caption={Definition section of a \bison file}, label={lst:bison-definition-section}]
+[ RULE_LP ] : [ RULE_RP ] [ ... ]
+              [ { SEMANTIC_ACTION } ]
+            | [ ... ]
+            ;
+\end{lstlisting}
+
+Semantic actions can also be placed in the middle of a rule;
+however, \bison normalizes the grammar in order to have only actions only at the end of each rule.
+
+\subparagraph*{Semantic values}
+
+By associating a variable to each token \textit{(or non-terminal)} parsed, it is possible to keep track of what each of them represents.
+
+\begin{itemize}
+  \item \textbf{tokens}: the value is assigned in the lexer
+  \item \textbf{nonterminals}: the value is assigned in the semantic action
+\end{itemize}
+
+The \texttt{\%union} declarator specifies the entire collection of possible data types:
+
+\begin{itemize}
+  \item type specification for terminals \textit{(tokens)} is done in the token declaration
+  \item type specification for non-terminals is done in the special \texttt{\%type} instruction
+\end{itemize}
+
+\begin{lstlisting}[language=C, morekeywords={token, option_t}, caption={Semantic value declaration}, label={lst:bison-semantic-value-declaration}]
+%union {
+  [ c_type ] [ VARIABLE_NAME ];
+  [ ... ]
+}
+
+[ %token <c_type> TOKEN_NAME ]
+[ ... ]
+
+[ %type <c_type> NON_TERMINAL_NAME ]
+[ ... ]
+\end{lstlisting}
+
+\subparagraph*{About the \texttt{union} type}
+\texttt{union} is a type of compound data defined by \clang, not by \bison;
+the latter uses this data structure to associate multiple types with semantic values.
+
+Unions are like the \texttt{struct} type, but assigning a value to one item invalidates all the others:
+that's because unlike \texttt{struct} (that allocate their items sequentially), unions allocate their items in the same memory location.
+
+\subparagraph*{Accessing semantic values}
+The semantic value of each grammar symbol in a production is stored in a variable called \textit{\$i}, where \textit{i} is the position of the symbol in the production.
+
+\begin{itemize}
+  \item \texttt{\$\$} corresponds to the semantic value of the rule itself
+  \item Mid-rule actions count in the numbering
+  \item Mid-rule actions have additional restrictions:
+        \begin{itemize}
+          \item the variable \texttt{\$\$} cannot be used since it points to the semantic value of the action itself
+          \item it's not possible to access values of symbols that come later
+        \end{itemize}
+\end{itemize}
+
+\begin{lstlisting}[language=C, mathescape=false, caption={Semantic value usage}, label={lst:bison-semantic-value-usage}]
+section : LSQUARE // $1
+        | ID // $2
+        | RSQUARE // $3
+        | { printf("section: %s", $2); } // $4
+        | options // $5
+        | { $$ = create_sections($2, $5); }
+        ;
+// $$ contains the value of section
+\end{lstlisting}
+
+\subparagraph*{Interface}
+
+The generated parser is a \clang file ending with the \texttt{.tab.c} extension, as well as a header file ending with the \texttt{.tab.h} extension.
+The main parsing instruction is \texttt{\textbf{int} yyparse(\textbf{void})}, the same as the \texttt{yyparse} function in \flex;
+however, compared to the latter, \bison provides a \texttt{yylval} global variable containing the semantic value of the last token returned by the lexer:
+its type is the one specified in the \texttt{\%union} declaration.
+
+\subsubsection{Integration of \flex and \bison}
+
+Steps to integrate \flex and \bison:
+
+\begin{itemize}
+  \item In the \textbf{\flex source}:
+        \begin{enumerate}[series=flex-bison-enum, label=step \arabic*., ref=(step \arabic*), leftmargin=*, labelindent=2em, widest*=6]
+          \item include the \texttt{.tab.h} header file
+          \item assign the semantic value of the token to the correct member of the \texttt{yylval} variable
+          \item return the token identifiers declared in the \bison file
+        \end{enumerate}
+  \item In the \textbf{\bison source}:
+        \begin{enumerate}[resume*=flex-bison-enum]
+          \item declare and implement the \texttt{main()} function
+        \end{enumerate}
+  \item When \textbf{compiling}:
+        \begin{enumerate}[resume*=flex-bison-enum]
+          \item\label{enum:flex-bison-command-1} generate the \flex scanner by invoking \flex
+          \item\label{enum:flex-bison-command-2} generate the \bison parser by invoking \bison
+          \item\label{enum:flex-bison-command-3} compile the \clang file produced by bison and flex together
+        \end{enumerate}
+\end{itemize}
+
+The command lines to execute \ref{enum:flex-bison-command-1} to \ref{enum:flex-bison-command-3} are shown in \ref{lst:flex-bison-command-lines}; an illustration of the workflow is shown in \ref{fig:flex-bison-workflow}.
+
+\begin{lstlisting}[language=bash, caption={Command lines to execute \ref{enum:flex-bison-command-1} to \ref{enum:flex-bison-command-3}}, label={lst:flex-bison-command-lines}]
+flex scanner.l
+bison parser.y
+cc -o out lex.yy.c parser.tab.c
+\end{lstlisting}
+
+\begin{figure}[htbp]
+  \centering
+  \bigskip
+  \tikzfig{figure-19.tikz}
+  \caption{Workflow of \flex and \bison}
+  \label{fig:flex-bison-workflow}
+  \bigskip
+\end{figure}
+
+\paragraph{Precedence and Associativity Declarations in \bison}
+
+\subparagraph*{Precedence}
+\bison allows specifying the precedence of operators in a grammar, via the \texttt{\%precedence} instruction in the \textbf{definitions} section of the file.
+It lists the tokens in order of \textbf{growing precedence}, grouping them by line:
+
+\begin{itemize}
+  \item[\(\downarrow\)] tokens that come \textbf{first} have the \textbf{lowest precedence}
+  \item[\(\uparrow\)] tokens that come \textbf{last} have the \textbf{highest precedence}
+  \item[\(\leftrightarrow\)] tokens listed in the \textbf{same line} have the \textbf{same precedence}.
+\end{itemize}
+
+\subparagraph*{Associativity}
+The associativity of an operator can be expressed by replacing the \texttt{\%precedence} instruction with one of the following:
+
+\begin{itemize}[label=\texttt{>}]
+  \item \textbf{\texttt{\%left}} for left associativity
+  \item \textbf{\texttt{\%right}} for right associativity
+  \item \textbf{\texttt{\%nonassoc}} for non-associativity
+\end{itemize}
+
+\begin{lstlisting}[language=C, morekeywords={precedence, left, right, nonassoc}, caption={Precedence and Associativity declaration}, label={lst:bison-precedence-associativity-declaration}]
+[ %precedence | %left | %right | %nonassoc ] TOKEN [ TOKEN ... ] // lowest
+[ ... ]
+[ %precedence | %left | %right | %nonassoc ] TOKEN [ TOKEN ... ] // highest
+\end{lstlisting}
+
+\subsubsection{Notes}
+
+It's important to notice that the produced program does not compute the value of the expressions in the input file;
+it just produces \clang code that computes the value of the expressions.
+The computation happens when the \clang code is compiled and executed:
+since \texttt{cc} is only a compiler, no computation happens in this stage.
+
+In an \textbf{interpreter}, execution of the  parsed commands happens immediately after the parsing phase;
+in a \textbf{compiler}, commands are rewritten in another language without being executed.
+The definitions of parse time and compile time are shown in \ref{def:compile-time} and \ref{def:run-time}.
+
+\begin{definition}[Compile Time]
+  \label{def:compile-time}
+  Compile time computation is the computation performed in the compiler to produce the compiled output
+\end{definition}
+
+\begin{definition}[Run Time]
+  \label{def:run-time}
+  Run time computation is the computation performed by the compiled output when executed
+\end{definition}
 
 \clearpage
 
@@ -4721,7 +5208,7 @@ The closure of languages under the set operations, Kleene star and concatenation
   \item A call arc from state \(q_A\) to state \(0_B\) is added if and only if a machine \(M_A\) has a transition \(q_A \xrightarrow{B} r_A\)
   \item Two or more initial states in the closure of a \mstate originate a \textbf{call chain}
   \item Transitions with the same label from kernel-identical \mstates go into kernel-identical \mstates
-  \item The \mstate bases \textit{(with non initial states)} contain only one item, thanks to the \textit{STP}: they are into a one to one correspondence with the non-initial states of the machine net
+  \item The \mstate bases \textit{(with non-initial states)} contain only one item, thanks to the \textit{STP}: they are into a one-to-one correspondence with the non-initial states of the machine net
 \end{itemize}
 
 \subsection{Translation}
@@ -4745,5 +5232,11 @@ Given a language \(L\) and a transducer \(\tau\), the closure of the two of them
   \label{tab:translation-closure}
   \bigskip
 \end{table}
+
+\subsection{\bison}
+
+\subsubsection{Notes on \bison}
+
+Usually, the needed associativity is \textbf{\texttt{left}}.
 
 \end{document}
