@@ -1,17 +1,17 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=none] (0) at (0, 0) {\textit{regular}};
-		\node [style=none] (1) at (0, 1.75) {\textit{context free}};
-		\node [style=none] (2) at (0, 3) {\textit{context sensitive}};
-		\node [style=none] (3) at (0, 4.75) {\textit{recursively enumerable}};
+		\node [style=none] (1) at (0, 2) {\textit{context free}};
+		\node [style=none] (2) at (0, 3.75) {\textit{context sensitive}};
+		\node [style=none] (3) at (0, 5.75) {\textit{recursively enumerable}};
 		\node [style=none] (6) at (-2, 0) {};
 		\node [style=none] (7) at (2, 0) {};
-		\node [style=none] (8) at (-3.25, 0.5) {};
-		\node [style=none] (9) at (3.25, 0.5) {};
-		\node [style=none] (12) at (4.75, 1) {};
-		\node [style=none] (13) at (-4.75, 1) {};
-		\node [style=none] (16) at (-6.75, 2) {};
-		\node [style=none] (17) at (6.75, 2) {};
+		\node [style=none] (8) at (-4, 0.5) {};
+		\node [style=none] (9) at (4, 0.5) {};
+		\node [style=none] (12) at (6.25, 1) {};
+		\node [style=none] (13) at (-6.25, 1) {};
+		\node [style=none] (16) at (-9, 2) {};
+		\node [style=none] (17) at (9, 2) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [style=solid] (7.center)
