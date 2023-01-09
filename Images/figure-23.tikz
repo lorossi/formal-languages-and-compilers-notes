@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=textbox, minimum width=60px] (0) at (0, -2.75) {front-end};
+		\node [style=textbox, minimum width=60px] (1) at (0, -5.75) {middle-end};
+		\node [style=textbox, minimum width=60px] (2) at (0, -8.75) {back-end};
+		\node [style=clear textbox] (3) at (0, 0) {source language};
+		\node [style=clear textbox] (4) at (0, -11.75) {target language};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=solid arrow] (3) to (0);
+		\draw [style=solid arrow] (0) to (1);
+		\draw [style=solid arrow] (1) to (2);
+		\draw [style=solid arrow] (2) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}

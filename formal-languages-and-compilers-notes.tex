@@ -1,10 +1,10 @@
 \documentclass[english]{article}
-\usepackage{notestemplate}
+\usepackage[title={Formal Languages and Compilers}, date={2022/2023}]{notestemplate}
 \usepackage{flc}
 
 \begin{document}
 
-\makecover{Formal Languages and Compilers}{2022/2023}
+\makecover
 
 \section*{About the notes}
 
@@ -1297,11 +1297,11 @@ The relation between language families is shown in Figure~\ref{fig:chomsky-hiera
   \bigskip
   \centering
   \begin{tblr}{colspec={l|l|l|l}, row{1}={font=\itshape}, column{1}={font=\itshape}}
-    grammar & rule form                                                                                                                                                                                      & family                 & model              \\
+    grammar & rule form                                                                                                                                                                                          & family                 & model              \\
     \hline
-    type 0  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^+\)                                                                                                           & recursively enumerable & Turing machine     \\
-    type 1  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^*\)                                                                                                           & context sensitive      & linear bounded     \\
-    type 2  & \(A \rightarrow \alpha\) with \(A \in V\) and \(\alpha \in \left( \Sigma \cup V \right)^\ast\)                                                                                                 & context-free           & pushdown automaton \\
+    type 0  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^+\)                                                                                                               & recursively enumerable & Turing machine     \\
+    type 1  & \(\beta \rightarrow \alpha\) with \(\alpha, \beta\in\left( \Sigma \cup V \right)^*\)                                                                                                               & context sensitive      & linear bounded     \\
+    type 2  & \(A \rightarrow \alpha\) with \(A \in V\) and \(\alpha \in \left( \Sigma \cup V \right)^\ast\)                                                                                                     & context-free           & pushdown automaton \\
     type 3  & \(\begin{cases}A \rightarrow uB \ & \textit{(right)} \\ A \rightarrow Bu  \  & \textit{(left)} \end{cases}\) with \(\begin{cases}A \in V \\ u \in \Sigma^\ast \\ B \in \left( V \cup \left\{ \varepsilon \right\} \right)\end{cases}\) & regular                & finite automaton   \\
   \end{tblr}
   \caption{Chomsky hierarchy}
@@ -2207,7 +2207,7 @@ The following three operations are performed on the stack:
   \item \textbf{Pushing}: the symbol \(A\) is added to the top of the stack
         \begin{itemize}[label=\(\rightarrow\)]
           \item several push operations \(\textit{push}(B_1), \, \,\ldots\, , \, \textit{push}(B_m)\) can be combined in one command:
-          \[ \textit{push}(B_1, \,\ldots\, , B_m) \]
+                \[ \textit{push}(B_1, \,\ldots\, , B_m) \]
         \end{itemize}
   \item \textbf{Popping}: the top symbol of the stack is removed \textit{(if present)}
   \item \textbf{Emptiness} test: the predicate empty is true if and only if \(k=0\) \textit{(the stack is empty)}
@@ -2299,7 +2299,7 @@ The applied moves defined by their current and next configurations are shown in 
 \begin{table}[htbp]
   \centering
   \bigskip
-  \begin{tblr}{colspec={l|l|l}, row{1}={font=\itshape}}
+  \begin{tblr}{colspec={c|c|l}, row{1}={font=\itshape}}
     current configuration            & next configuration                    & applied move                                                                                \\
     \hline
     \(\left( q, az, \eta Z \right)\) & \(\left( p, z, \eta \gamma \right)\)  & reading move \(\delta(q, a, Z) = \left\{ (p, \gamma) , \rightarrow \right\}\)               \\
@@ -3676,8 +3676,8 @@ Alternatively, the translation can be formalized by taking the set of all the im
 
 \begin{gather*}
   \begin{aligned}
-    \tau    & : \Sigma^\ast \rightarrow \wp \left( \Delta^\ast \right)               \\
-    \tau&(x)  = \left\{ y \in \Delta^\ast \mid \left( x, y \right) \in \rho \right\}
+    \tau & : \Sigma^\ast \rightarrow \wp \left( \Delta^\ast \right)                    \\
+    \tau & (x)  = \left\{ y \in \Delta^\ast \mid \left( x, y \right) \in \rho \right\}
   \end{aligned}
 \end{gather*}
 
@@ -3887,23 +3887,23 @@ Note that this automaton does not need necessarily states, but they will be adde
   \centering
   \bigskip
   \begin{tblr}{colspec={c|l|l|l}, rows={abovesep+=2pt, belowsep+=2pt}, cells={valign=m}, row{1}={halign=m}, column{1}={mode=math}, rulesep=4pt}
-    \textit{\#} & \textit{rule}                                                 &                                                 & \textit{comment}   \\
+    \textit{\#} & \textit{rule}                                                 &                                                     & \textit{comment}   \\
     \hline
-    1           & {\(A \rightarrow \frac{\varepsilon}{v} B A_1 \,\ldots\, A_n\)                                                                                      \\ \(n \geq 0\) \\ \(v \in \Delta^+\), \(B \in V\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{top} = A\) then \textit{write} \((v)\) \\ \textit{pop} \\ \textit{push} \(A_n \,\ldots\, A_1 B\)} & {\textit{emit} the target string \(v\) \\ \textit{push} on stack the prediction string \\ \hspace{0.5em} \(B A_1 \,\ldots\, A_n\)} \\
+    1           & {\(A \rightarrow \frac{\varepsilon}{v} B A_1 \,\ldots\, A_n\)                                                                            \\ \(n \geq 0\) \\ \(v \in \Delta^+\), \(B \in V\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{top} = A\) then \textit{write} \((v)\) \\ \textit{pop} \\ \textit{push} \(A_n \,\ldots\, A_1 B\)} & {\textit{emit} the target string \(v\) \\ \textit{push} on stack the prediction string \\ \hspace{0.5em} \(B A_1 \,\ldots\, A_n\)} \\
     \hline
-    2           & {\(A \rightarrow \frac{b}{w} B A_1 \,\ldots\, A_n\)                                                                                                \\ \(n \geq 0\) \\ \(b \in \Sigma\), \(w \in \Delta^\ast\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{cc} = b \land \textit{top} = A\) then \(\textit{write}(w)\) \\ \textit{pop} \\ \textit{push} \(\left( A_n \,\ldots\, A_1 \right)\) \\ advance the reading head} & {char \(b\) was next expected and \\ \hspace{0.5em} has been read \\ \textit{emit} the target string \(w\) \\ \textit{push} the prediction string \(A_1 \,\ldots\, A_n\)} \\
+    2           & {\(A \rightarrow \frac{b}{w} B A_1 \,\ldots\, A_n\)                                                                                      \\ \(n \geq 0\) \\ \(b \in \Sigma\), \(w \in \Delta^\ast\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{cc} = b \land \textit{top} = A\) then \(\textit{write}(w)\) \\ \textit{pop} \\ \textit{push} \(\left( A_n \,\ldots\, A_1 \right)\) \\ advance the reading head} & {char \(b\) was next expected and \\ \hspace{0.5em} has been read \\ \textit{emit} the target string \(w\) \\ \textit{push} the prediction string \(A_1 \,\ldots\, A_n\)} \\
     \hline
-    3           & {\(A \rightarrow B A_1, \,\ldots\, A_n\)                                                                                                           \\ \(n \geq 0\) \\ \(b \in \Sigma\), \(w \in \Delta^\ast\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{top} = A\) then \textit{pop} \\ \textit{push} \(\left( A_n \,\ldots\, A_1 B \right)\)} & {\textit{push} the prediction string \(B A_1 \,\ldots\, A_n\)} \\
+    3           & {\(A \rightarrow B A_1, \,\ldots\, A_n\)                                                                                                 \\ \(n \geq 0\) \\ \(b \in \Sigma\), \(w \in \Delta^\ast\) \\ \(A_i \in \left( C \cup V \right)\)} & {if \(\textit{top} = A\) then \textit{pop} \\ \textit{push} \(\left( A_n \,\ldots\, A_1 B \right)\)} & {\textit{push} the prediction string \(B A_1 \,\ldots\, A_n\)} \\
     \hline
-    4           & {\(A \rightarrow \frac{\varepsilon}{v}\)                                                                                                           \\ \(v \in \Delta^+\)}  & {if \textit{top} \(= A\) then write \(\left( v \right)\) \\ \textit{pop}} & \textit{emit} the target string \(v\) \\
+    4           & {\(A \rightarrow \frac{\varepsilon}{v}\)                                                                                                 \\ \(v \in \Delta^+\)}  & {if \textit{top} \(= A\) then write \(\left( v \right)\) \\ \textit{pop}} & \textit{emit} the target string \(v\) \\
     \hline
-    5           & \(A \rightarrow \varepsilon\)                                 & if \textit{top} \(= A\) then \textit{pop}                     &                  & \\
+    5           & \(A \rightarrow \varepsilon\)                                 & if \textit{top} \(= A\) then \textit{pop}           &                  & \\
     \hline
-    6           & {for every pair                                                                                                                                    \\ \(\frac{\varepsilon}{v} \in C\)} & {if \textit{top} \(= \frac{\varepsilon}{v}\) then write \(\left( v \right)\) \\\textit{pop}} & {the past prediction \(\frac{\varepsilon}{v}\) is now  \\ completed by writing \(v\)} \\
+    6           & {for every pair                                                                                                                          \\ \(\frac{\varepsilon}{v} \in C\)} & {if \textit{top} \(= \frac{\varepsilon}{v}\) then write \(\left( v \right)\) \\\textit{pop}} & {the past prediction \(\frac{\varepsilon}{v}\) is now  \\ completed by writing \(v\)} \\
     \hline
-    7           & {for every pair                                                                                                                                    \\ \(\frac{b}{w} \in C\)} & {if \(\textit{cc} = b \land \textit{top} = \frac{b}{w}\) then \textit{write} \(\left( w \right)\) \\ \textit{pop} \\ \textit{advance} the reading head} & {the past prediction \(\frac{b}{w}\) is now  \\ completed by writing \(w\)} \\
+    7           & {for every pair                                                                                                                          \\ \(\frac{b}{w} \in C\)} & {if \(\textit{cc} = b \land \textit{top} = \frac{b}{w}\) then \textit{write} \(\left( w \right)\) \\ \textit{pop} \\ \textit{advance} the reading head} & {the past prediction \(\frac{b}{w}\) is now  \\ completed by writing \(w\)} \\
     \hline
-    8           &                                                               & {if \(\textit{cc} = \dashv \ \land\) stack is empty \\ then accept  \texttt{halt}} & {the string has been translated}
+    8           &                                                               & {if \(\textit{cc} = \dashv \ \land\) stack is empty                      \\ then accept  \texttt{halt}} & {the string has been translated}
   \end{tblr}
   \caption{Construction algorithm for a predictive pushdown transducer}
   \label{tab:pushwdown-transducer-construction-algorithm}
@@ -4756,7 +4756,7 @@ Table~\ref{tab:basic-character-sets} shows the basic character sets used in regu
     syntax                & matches                                                              \\
     \hline
     \texttt{R}            & the regular expression \texttt{R}                                    \\
-    \texttt{R S}           & the concatenation of \texttt{R} and \texttt{S}                       \\
+    \texttt{R S}          & the concatenation of \texttt{R} and \texttt{S}                       \\
     \texttt{R\textbar{}S} & the alternation of \texttt{R} and \texttt{S}                         \\
     \texttt{R*}           & zero or more occurrences of \texttt{R}                               \\
     \texttt{R+}           & one or more occurrences of \texttt{R}                                \\
@@ -4773,19 +4773,19 @@ Table~\ref{tab:basic-character-sets} shows the basic character sets used in regu
   \centering
   \bigskip
   \begin{tblr}{colspec={c|l}, row{1}={font=\itshape}}
-    syntax                      & matches                                                                                         \\
+    syntax                      & matches                                                                                                  \\
     \hline
-    \texttt{(R)}                & capture group or override precedence                                                            \\
-    \texttt{\textasciicircum R} & match at the beginning of the line                                                              \\
-    \texttt{R\$}                & match at the end of the line                                                                    \\
-    \texttt{\textbackslash t}   & tab character                                                                                   \\
-    \texttt{\textbackslash n}   & newline character                                                                               \\
-    \texttt{\textbackslash w}   & a word (same as \texttt{[a-zA-Z0-9\_]})                                                         \\
-    \texttt{\textbackslash d}   & a digit (same as \texttt{[0-9]})                                                                \\
-    \texttt{\textbackslash s}   & a whitespace character (same as \texttt{[ \textbackslash t \textbackslash s \textbackslash n]}) \\
-    \texttt{\textbackslash W}   & a non-word character                                                                            \\
-    \texttt{\textbackslash D}   & a non-digit character                                                                           \\
-    \texttt{\textbackslash S}   & a non-whitespace character                                                                      \\
+    \texttt{(R)}                & capture group or override precedence                                                                     \\
+    \texttt{\textasciicircum R} & match at the beginning of the line                                                                       \\
+    \texttt{R\$}                & match at the end of the line                                                                             \\
+    \texttt{\textbackslash t}   & tab character                                                                                            \\
+    \texttt{\textbackslash n}   & newline character                                                                                        \\
+    \texttt{\textbackslash w}   & a word \textit{(same as \texttt{[a-zA-Z0-9\_]})}                                                         \\
+    \texttt{\textbackslash d}   & a digit \textit{(same as \texttt{[0-9]})   }                                                             \\
+    \texttt{\textbackslash s}   & a whitespace character \textit{(same as \texttt{[\textbackslash{}t\textbackslash{}s\textbackslash{}n]})} \\
+    \texttt{\textbackslash W}   & a non-word character                                                                                     \\
+    \texttt{\textbackslash D}   & a non-digit character                                                                                    \\
+    \texttt{\textbackslash S}   & a non-whitespace character                                                                               \\
   \end{tblr}
   \caption{Regular expression utilities}
   \label{tab:regular-expression-utilities}
@@ -4801,15 +4801,15 @@ The purpose of the lexical analysis is:
   \item to \textit{(possibly)} \textbf{decorate} the tokes with additional informations
 \end{enumerate}
 
-Such analysis is performed through a scanner, which is a big \FSA.
+Such analysis is performed through a \textbf{scanner}, which basically is just a big \FSA.
 Since coding a scanner is a hard task, scanner generators based on regular expressions such as \flex are used.
 
 In a compiler, the scanner prepares the input for the parser:
 
 \begin{enumerate}
-  \item it detects the tokens of the language
-  \item it cleans the input
-  \item it adds information to the tokens
+  \item it \textbf{detects} the tokens of the language
+  \item it \textbf{cleans} the input
+  \item it \textbf{adds} information to the tokens
 \end{enumerate}
 
 \subparagraph*{Words}
@@ -4831,7 +4831,7 @@ However, technical words are simpler than natural words:
   \end{enumerate}
 \end{property}
 
-\subparagraph*{\flex}
+\subsection{\flex}
 \flex is a lexical analyser generator:
 
 \begin{itemize}
@@ -4860,9 +4860,9 @@ The generated parsers implement a nondeterministic \FSA, later made deterministi
 as soon as one is recognized:
 
 \begin{enumerate}
-  \item The semantic action is executed
-  \item The stream skips past the end of the token
-  \item The automaton reboots
+  \item The \textbf{semantic action} is executed
+  \item The \textbf{stream} skips past the end of the token
+  \item The \textbf{automaton} reboots
 \end{enumerate}
 
 \subsubsection{Specification File}
@@ -4891,7 +4891,7 @@ A rule represents a full token to be recognized:
         \begin{itemize}
           \item semantic actions are executed \textbf{every time the rules matches} and can access the matched string
           \item global variables:
-                \begin{itemize}[label=\texttt{>}]
+                \begin{itemize}[label=\textbf{\texttt{>}}]
                   \item \texttt{\textbf{char} *yytext} contains the \textbf{matched string}
                   \item \texttt{\textbf{int} yyleng} contains the \textbf{length of the matched string}
                 \end{itemize}
@@ -4918,7 +4918,7 @@ This feature is usually used for header inclusions, global variables, and functi
 While \flex generates a scanner, \textbf{it is not a scanner itself};
 the generated scanner is a \clang source code file called \texttt{lex.yy.c}, exporting the following variables and functions:
 
-\begin{itemize}[label=\texttt{>}]
+\begin{itemize}[label=\textbf{\texttt{>}}]
   \item \texttt{\textbf{FILE} *yyin}: the input file
         \begin{itemize}
           \item it can assume the value \texttt{stdin} to read from the standard input
@@ -4966,16 +4966,16 @@ A start condition \texttt{S} is used to mark rules with as a prefix like \texttt
 it marks rules as active when the scanner is running the scanner \texttt{S}.
 
 \begin{itemize}
-  \item The \texttt{*} start condition matches every start condition
-  \item The initial start condition is called \texttt{INITIAL}
-  \item The start conditions are stored as integers
-  \item The current start condition is stored in the variable \texttt{YY\_START}
+  \item The \texttt{*} start condition matches \textbf{every} start condition
+  \item The initial start condition is called \textbf{\texttt{INITIAL}}
+  \item The start conditions are stored as \textbf{integers}
+  \item The current start condition is stored in the variable \textbf{\texttt{YY\_START}}
 \end{itemize}
 
 \bigskip
 Start conditions can be:
 
-\begin{itemize}[label=\texttt{>}]
+\begin{itemize}[label=\textbf{\texttt{>}}]
   \item \textbf{exclusive} - declared as \texttt{\%x S;}
         \begin{itemize}
           \item \textbf{disables unmarked rules} when the scanner is in the start condition \texttt{S}
@@ -4992,12 +4992,12 @@ command \texttt{ECHO} copies the content of the matched string \texttt{yytext} t
 
 \subsection{Syntactic Analysis - \bison}
 
-The purpose of the Syntactic Analysis is:
+The purpose of the \textbf{Syntactic Analysis} is:
 
 \begin{enumerate}
-  \item identify the grammar structures of the input
-  \item verify the syntactic correctness of the input
-  \item build a derivation tree of the input
+  \item \textbf{identify} the grammar structures of the input
+  \item \textbf{verify} the syntactic correctness of the input
+  \item \textbf{build} a derivation tree of the input
 \end{enumerate}
 
 It's important to notice that syntactic analysis does not determine the meaning of the input \textit{(that is the task of semantic analysis)}.
@@ -5031,15 +5031,15 @@ A \bison file is structured in four sections, separated by the \texttt{\%\%} tok
 \subparagraph*{Definitions}
 Different syntactic elements can be defined inside the definitions section:
 \begin{itemize}
-  \item tokens, via the \texttt{\%token} keyword
+  \item \textbf{tokens}, via the \texttt{\%token} keyword
         \begin{itemize}
           \item each token is assigned a numbers
           \item the lexer uses said numbers to identify tokens
         \end{itemize}
-  \item grammar rules, in the \textit{BNF} notation
+  \item \textbf{grammar} rules, in the \textit{BNF} notation
         \begin{itemize}
-          \item if not specified, the \LP of the first rule is the axiom
-          \item rules are specified via the syntax
+          \item if not specified, the \LP of the first rule is the \textbf{axiom}
+          \item rules are specified via the \textbf{syntax}
         \end{itemize}
 \end{itemize}
 
@@ -5048,12 +5048,14 @@ semantic action is expressed in \clang instructions are can be specified at the 
 They are executed when the rule they are associated with has been completely recognized:
 the order of execution of the actions is bottom-up with respect to the syntactic tree.
 
-\begin{lstlisting}[morekeywords={RULE_LP, RULE_RP, SEMANTIC_ACTION}, caption={Definition section of a \bison file}, label={lst:bison-definition-section}]
+\begin{onepage}
+  \begin{lstlisting}[caption={Definition section of a \bison file}, label={lst:bison-definition-section}]
 [ RULE_LP ] : [ RULE_RP ] [ ... ]
               [ { SEMANTIC_ACTION } ]
             | [ ... ]
             ;
 \end{lstlisting}
+\end{onepage}
 
 Semantic actions can also be placed in the middle of a rule;
 however, \bison normalizes the grammar in order to have only actions only at the end of each rule.
@@ -5067,14 +5069,15 @@ By associating a variable to each token \textit{(or non-terminal)} parsed, it is
   \item \textbf{nonterminals}: the value is assigned in the semantic action
 \end{itemize}
 
-The \texttt{\%union} declarator specifies the entire collection of possible data types:
+The \textbf{\texttt{\%union}} declarator specifies the entire collection of possible data types:
 
 \begin{itemize}
-  \item type specification for terminals \textit{(tokens)} is done in the token declaration
-  \item type specification for non-terminals is done in the special \texttt{\%type} instruction
+  \item type specification for \textbf{terminals} \textit{(tokens)} is done in the \textbf{token declaration
+  \item type specification for }non-terminals is done in the special \textbf{\texttt{\%type} instruction}
 \end{itemize}
 
-\begin{lstlisting}[language=C, morekeywords={token, option_t}, caption={Semantic value declaration}, label={lst:bison-semantic-value-declaration}]
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Semantic value declaration}, label={lst:bison-semantic-value-declaration}]
 %union {
   [ c_type ] [ VARIABLE_NAME ];
   [ ... ]
@@ -5086,19 +5089,20 @@ The \texttt{\%union} declarator specifies the entire collection of possible data
 [ %type <c_type> NON_TERMINAL_NAME ]
 [ ... ]
 \end{lstlisting}
+\end{onepage}
 
 \subparagraph*{About the \texttt{union} type}
 \texttt{union} is a type of compound data defined by \clang, not by \bison;
 the latter uses this data structure to associate multiple types with semantic values.
 
 Unions are like the \texttt{struct} type, but assigning a value to one item invalidates all the others:
-that's because unlike \texttt{struct} (that allocate their items sequentially), unions allocate their items in the same memory location.
+that's because unlike \texttt{struct} \textit{(that allocate their items sequentially)}, unions allocate their items in the same memory location.
 
 \subparagraph*{Accessing semantic values}
-The semantic value of each grammar symbol in a production is stored in a variable called \textit{\$i}, where \textit{i} is the position of the symbol in the production.
+The semantic value of each grammar symbol in a production is stored in a variable called \texttt{\$i}, where \texttt{i} is the position of the symbol in the production.
 
 \begin{itemize}
-  \item \texttt{\$\$} corresponds to the semantic value of the rule itself
+  \item \texttt{\$\$} corresponds to the \textbf{semantic value} of the rule itself
   \item Mid-rule actions count in the numbering
   \item Mid-rule actions have additional restrictions:
         \begin{itemize}
@@ -5107,16 +5111,18 @@ The semantic value of each grammar symbol in a production is stored in a variabl
         \end{itemize}
 \end{itemize}
 
-\begin{lstlisting}[language=C, mathescape=false, caption={Semantic value usage}, label={lst:bison-semantic-value-usage}]
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Semantic value usage}, label={lst:bison-semantic-value-usage}]
 section : LSQUARE // $1
         | ID // $2
         | RSQUARE // $3
         | { printf("section: %s", $2); } // $4
         | options // $5
-        | { $$ = create_sections($2, $5); }
+        | { $$ = create_sections($2, $5); } // $6
         ;
 // $$ contains the value of section
 \end{lstlisting}
+\end{onepage}
 
 \subparagraph*{Interface}
 
@@ -5150,11 +5156,13 @@ Steps to integrate \flex and \bison:
 
 The command lines to execute \ref{enum:flex-bison-command-1} to \ref{enum:flex-bison-command-3} are shown in \ref{lst:flex-bison-command-lines}; an illustration of the workflow is shown in \ref{fig:flex-bison-workflow}.
 
-\begin{lstlisting}[language=bash, caption={Command lines to execute \ref{enum:flex-bison-command-1} to \ref{enum:flex-bison-command-3}}, label={lst:flex-bison-command-lines}]
+\begin{onepage}
+  \begin{lstlisting}[language=bash, caption={Command lines to execute \ref{enum:flex-bison-command-1} to \ref{enum:flex-bison-command-3}}, label={lst:flex-bison-command-lines}]
 flex scanner.l
 bison parser.y
 cc -o out lex.yy.c parser.tab.c
 \end{lstlisting}
+\end{onepage}
 
 \begin{figure}[htbp]
   \centering
@@ -5180,17 +5188,19 @@ It lists the tokens in order of \textbf{growing precedence}, grouping them by li
 \subparagraph*{Associativity}
 The associativity of an operator can be expressed by replacing the \texttt{\%precedence} instruction with one of the following:
 
-\begin{itemize}[label=\texttt{>}]
+\begin{itemize}[label=\textbf{\texttt{>}}]
   \item \textbf{\texttt{\%left}} for left associativity
   \item \textbf{\texttt{\%right}} for right associativity
   \item \textbf{\texttt{\%nonassoc}} for non-associativity
 \end{itemize}
 
-\begin{lstlisting}[language=C, morekeywords={precedence, left, right, nonassoc}, caption={Precedence and Associativity declaration}, label={lst:bison-precedence-associativity-declaration}]
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Precedence and Associativity declaration}, label={lst:bison-precedence-associativity-declaration}]
 [ %precedence | %left | %right | %nonassoc ] TOKEN [ TOKEN ... ] // lowest
 [ ... ]
 [ %precedence | %left | %right | %nonassoc ] TOKEN [ TOKEN ... ] // highest
 \end{lstlisting}
+\end{onepage}
 
 \subsubsection{Notes}
 
@@ -5212,6 +5222,1233 @@ The definitions of parse time and compile time are shown in \ref{def:compile-tim
   \label{def:run-time}
   Run time computation is the computation performed by the compiled output when executed
 \end{definition}
+
+\subsection{Compilers}
+
+The purpose of a \textbf{compiler} is to translate a program written in a certain language into a semantically equivalent program written in another language.
+Each compiler is written in a pipeline, where each stage applies a transformation to the input program and produces an output program;
+each stage has its purpose:
+
+\begin{minipage}[m]{0.695\textwidth}
+  \begin{enumerate}[leftmargin=*, labelindent=1em, widest*=11]
+    \item[\textbf{front-end:}] converts from \textbf{source language} into an \textbf{intermediate form}
+    \item[\textbf{middle-end:}] performs \textbf{optimizations} on the intermediate form
+    \item[\textbf{back-end:}] converts from the \textbf{intermediate form} into \textbf{target language}
+  \end{enumerate}
+\end{minipage}
+\begin{minipage}[m]{0.3\textwidth}
+  \centering
+  \tikzfig{figure-23.tikz}
+\end{minipage}
+
+\subsection{\acse}
+
+\acse is a simple compiler that:
+
+\begin{itemize}
+  \item[\(\rightarrow\)] as \textbf{input} accepts a \clang like \textbf{source language} called \lance
+  \item[\(\leftarrow\)] as \textbf{output} emits a \texttt{RISC}-like \textbf{assembly language} called \mace
+\end{itemize}
+
+It's bundled with two tools:
+
+\begin{enumerate}
+  \item \texttt{asm}, an \textbf{assembler} \textit{(from assembly to machine code)}
+  \item \mace, a \textbf{simulator} for the machine code
+        \begin{itemize}
+          \item it \textbf{emulates} a fictional machine called \mace
+          \item it won't be used in this course
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{\lance}
+
+\lance is the source language recognized by \acse.
+It offers a very small subset of \texttt{C99} instructions, including:
+
+\begin{itemize}[label=\textbf{\texttt{>}}]
+  \item standard set of \textbf{arithmetic/logic/comparison operators}
+  \item reduced set of \textbf{control flow} statements \textit{(only \texttt{while}, \texttt{do-while}, \texttt{if})}
+  \item only one \textbf{scalar} type \textit{(\texttt{int})}
+  \item only one \textbf{aggregate} type \textit{(arrays of \texttt{int})}
+  \item \textbf{no functions}
+  \item \textbf{reading} and \textbf{writing} to standard input/output via the functions:
+        \begin{itemize}
+          \item \texttt{read(var)} to \textbf{read an integer} from \textbf{standard input} and store it in \texttt{var}
+          \item \texttt{write(var)} to \textbf{write} the value of \texttt{var} to \textbf{standard output}
+        \end{itemize}
+\end{itemize}
+
+A \lance source file is composed of two sections:
+
+\begin{enumerate}
+  \item \textbf{variable} declarations
+  \item \textbf{program} body as a list of statements
+\end{enumerate}
+
+\subsubsection{Compilation Process}
+
+\acse compilation is performed in steps:
+
+\subparagraph*{Front-end}
+\begin{enumerate}
+  \item the source code is \textbf{tokenized} by a \flex-generated scanner
+  \item the stream of tokens is \textbf{parsed} by a \bison-generated parser
+  \item the code is \textbf{translated} to a temporary intermediate representation by the semantic actions of the parser
+\end{enumerate}
+
+\subparagraph*{Middle-end}
+There's no middle-end in \acse; the intermediate representation is directly piped to the back end without any optimization.
+
+\subparagraph*{Back-end}
+\begin{enumerate}
+  \item the \textbf{intermediate representation} is normalized to account for physical limitations of the \mace machine
+  \item each instruction is printed out producing the \mace assembly code
+\end{enumerate}
+
+\paragraph{Intermediate Representation}
+
+The \textbf{Intermediate Representation} \texttt{(IR)} is the data representation used in a compiler to represent the program.
+In \acse it is composed of two main parts:
+
+\begin{enumerate}
+  \item the \textbf{instruction list}
+        \begin{itemize}[label=\textbf{\texttt{>}}]
+          \item instructions are \texttt{RISC}-like assembly
+          \item all the syntactic details are abstracted
+          \item latter analysis of the program is simpler
+        \end{itemize}
+  \item the \textbf{variable table}
+\end{enumerate}
+
+The data is stored in an unbounded number of registers in an unbounded number of memory locations.
+
+\subparagraph*{Registers}
+Registers are the variables of intermediate language.
+All registers have the same type \textit{(32-bit signed integer)}; the instruction using the register is responsible for the interpretation of the value as a pointer.
+
+There are two special registers:
+\begin{enumerate}[label=\textbf{\texttt{>}}]
+  \item \textbf{zero} \textit{(\texttt{R0})} always containing the value \texttt{0}
+        \begin{itemize}[label=\textbf{\texttt{>}}]
+          \item each write to \texttt{R0} is \textbf{ignored}
+        \end{itemize}
+  \item \textbf{\texttt{PSW}}, also called \textbf{status word}, implicitly read and written by the arithmetic instructions; contains flags that are used by other instructions:
+        \begin{itemize}[label=\textbf{\texttt{>}}]
+          \item\texttt{N}, set if the result of the last arithmetic operation is \textbf{negative}
+          \item\texttt{Z}, set if the result of the last arithmetic operation is \textbf{zero}
+          \item\texttt{C}, set if the last arithmetic operation needed a \textbf{carry}
+          \item\texttt{V}, set if the last arithmetic operation \textbf{overflowed}
+        \end{itemize}
+\end{enumerate}
+
+\subparagraph*{Immediates}
+Immediates are constant values encoded directly in the instruction.
+
+\subparagraph*{Labels}
+Labels are constant pointers to a given memory location.
+They are used both for conditional jumps and for pointing to the location of statically allocated data;
+the actual address is computed by the assembler.
+
+\subsubsection{Instructions}
+
+\textbf{Instruction formats} and \textbf{Addressing modes} are shown respectively in Tables~\ref{tab:instructions-format} and~\ref{tab:addressing-modes}.
+
+The \textbf{conditional jump instructions} are shown in Table~\ref{tab:jump-instructions}. All the flags checked are part of the \texttt{PSW} register;
+Table~\ref{tab:numerical-branch-instructions} shows the j\textbf{ump instructions that allow direct numerical comparison}.
+The instructions displayed in the latter need a \texttt{SUB} operation before the branch; refer to Code~\ref{code:conditional-jump} for an example.
+
+\begin{table}[htbp]
+  \bigskip
+  \centering
+  \begin{tblr}{colspec={c|l|l}, row{1}={font=\itshape}, column{1}={font=\itshape}, cell{2-5}{3}={font=\ttfamily}}
+    type    & operands                                                  & example        \\ \hline
+    ternary & 1 destination and 2 source registers                      & ADD R3, R1, R2 \\
+    binary  & 1 destination and 1 source registers, 1 immediate operand & ADD R3 R1 \#4  \\
+    unary   & 1 destination register, 1 address operand                 & LOAD R1 L0     \\
+    jump    & 1 address operand                                         & BEQ L0         \\
+  \end{tblr}
+  \caption{Instructions Format}
+  \label{tab:instructions-format}
+  \bigskip
+\end{table}
+
+\begin{table}[htbp]
+  \bigskip
+  \centering
+  \begin{tblr}{colspec={l|c|l}, row{1}={font=\itshape}, column{1}={font=\itshape}, cell{2-6}{2}={font=\ttfamily}}
+    type              & syntax     & notes                                            \\ \hline
+    register direct   & R<n>       & \texttt{n} is a register number                  \\
+    register indirect & (R<n>)     & the data contained in the \texttt{n}-th register \\
+    symbolic address  & L<n>       & \texttt{n} is a label number                     \\
+                      & <label id> & the name of the label is explicitly used         \\
+    immediate         & \#<value>  & \texttt{value} is a constant integer             \\
+  \end{tblr}
+  \caption{Addressing Modes}
+  \label{tab:addressing-modes}
+  \bigskip
+\end{table}
+
+\begin{table}
+  \bigskip
+  \centering
+  \begin{tblr}{colspec={c|c|c}, column{1,3}={font=\ttfamily}, row{1}={font=\itshape}}
+    instruction & branch condition & test \\
+    \hline
+    BT          & always           & -    \\
+    BF          & never            & -    \\
+    BPL         & if positive      & !N   \\
+    BMI         & if negative      & N    \\
+    BNE         & if not zero      & !Z   \\
+    BEQ         & if zero          & Z    \\
+    BVC         & if no overflow   & !V   \\
+    BVS         & if overflow      & V    \\
+    BCC         & if no carry      & !C   \\
+    BCS         & if carry         & C    \\
+  \end{tblr}
+  \caption{Conditional jump instructions}
+  \label{tab:jump-instructions}
+  \bigskip
+\end{table}
+
+\begin{table}
+  \bigskip
+  \centering
+  \begin{tblr}{colspec={c|c|c}, column{1,3}={font=\ttfamily}, row{1}={font=\itshape}}
+    instruction & branch condition    & test                                 \\
+    \hline
+    BNE         & if not equal        & !Z                                   \\
+    BEQ         & if equal            & Z                                    \\
+    BGE         & if greater or equal & (N \&\& V) || (!N \&\& !V)           \\
+    BLT         & if less than        & (N \&\& !V) || (!N \&\& V)           \\
+    BGT         & if greater than     & (!Z \&\& (N \&\& V) || (!N \&\& !V)) \\
+    BLE         & if less or equal    & (Z || (N \&\& !V) || (!N \&\& V))    \\
+  \end{tblr}
+  \caption{Numerical branch instructions}
+  \label{tab:numerical-branch-instructions}
+  \bigskip
+\end{table}
+
+\begin{onepage}
+  \begin{lstlisting}[caption={Conditional jump example}, label={code:conditional-jump}]
+SUBI R0 R2 #3 // the value is saved in R0 to be discarded
+BGT L0 // branches if R2 < 3
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Variable Table}
+
+The \textbf{variable table} contains the list of all the variables declared in the program.
+A variable can be a scalar or an \textbf{array}:
+
+\begin{itemize}
+  \item \textbf{scalars} have a register containing where they are \textbf{stored} and an initial \textbf{value}
+  \item \textbf{arrays} have a \textbf{size} and a \textbf{label} to a memory location where they will be \textbf{stored}
+\end{itemize}
+
+Each variable has a unique identifier equal to the name of the variable itself.
+
+\subsubsection{\lance grammar}
+
+A \lance source file is split into two sections:
+
+\begin{enumerate}
+  \item \textbf{variable declarations}, where the root-nonterminal is called \texttt{var\_declarations}
+  \item \textbf{list of statements}, where the root-nonterminal is called \texttt{statements}
+\end{enumerate}
+
+A statement is a syntactic unit of an imperative programming language that expresses some actions to be carried out.
+They can be classified as:
+
+\begin{itemize}
+  \item \textbf{Simple} statements, which are the basic statements of the language and cannot be further decomposed
+  \item \textbf{Compound} statements, which are statements that can be decomposed into simpler statements
+\end{itemize}
+
+The basic grammar rules expressed in \textit{BNF} are shown in Code~\ref{code:lance-bnf-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={\lance grammar in BNF}, label={code:lance-bnf-grammar}]
+program : var_declarations statements
+var_declarations : var_declaration var_declarations
+                 | empty
+statements : statement statement
+           | empty
+code_block : statement
+           | LBRACKET statements RBRACKET
+var_declaration : ...
+statement : ...
+\end{lstlisting}
+\end{onepage}
+
+The simplest statement is \texttt{return}: it exists the program.
+In \texttt{asm} is translated into a \texttt{HALT} instruction;
+a \bison example is shown in Code~\ref{code:bison-return}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={\bison return}, label={code:bison-return}]
+statement : /* ... */
+          | control_statement
+          | /* ... */
+;
+
+control_statement : /* ... */
+                  | return_statement SEMI
+;
+
+return_statement : RETURN
+                 {
+                    /* insert an HALT instruction */
+                    gen_halt_instruction(program);
+                 }
+;
+\end{lstlisting}
+\end{onepage}
+
+The function \texttt{gen\_halt\_instruction} is a standard \clang function.
+It's defined in \texttt{axe\_gencode.h} and it's implemented in \texttt{axe\_gencode.c};
+it generates an \texttt{HALT} instruction and inserts it into a linked list called \textbf{program list} placed inside the global \texttt{program} structure.
+
+The implementation of said function in \clang is shown in Code~\ref{code:asm-return}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={\texttt{asm} return in \clang}, label={code:asm-return}]
+void gen_halt_instruction(t_program_infos *program) {
+  t_axe_instruction *inst = malloc(sizeof(t_axe_instruction));
+  inst->opcode = HALT;
+  program->instructions = addLast(program->instructions, inst);
+}
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{The Program instance}
+
+The instruction list is contained in a \textbf{global structure} called \textbf{\texttt{program}}.
+Its declaration happens at the top of the \texttt{Acse.y} file;
+it contains the intermediate representation of the program being compiled as well as other contextual informations.
+
+Its definition is shown in Code~\ref{code:program-struct}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={\texttt{program} structure}, label={code:program-struct}]
+typedef struct t_program_infos {
+  t_list *variables;
+  t_list *instructions;
+  /* ... */
+  int current_register;
+} t_program_infos;
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{The Variable instance}
+
+The syntax of variable declarations is similar to the \clang one; its grammar is shown in Code~\ref{code:variable-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Variable grammar}, label={code:variable-grammar}]
+variable_declaration : TYPE declarator_list SEMI
+declarator_list : declarator
+                | declarator COMMA declarator_list
+declarator : IDENTIFIER
+           | IDENTIFIER LBRACKET expression RBRACKET
+           | IDENTIFIER ASSIGN NUMBER
+\end{lstlisting}
+\end{onepage}
+
+\paragraph*{Variable identifiers}
+
+The token for variable identifiers is called \texttt{IDENTIFIER}:
+its semantic value is a \clang string with the name of the variable.
+Such string is dynamically allocated by the lexer: it must be freed in the semantic actions.
+
+Code~\ref{code:variable-identifiers-Acse-y} shows the \texttt{Acse.y} file where the token is defined and Code~\ref{code:variable-identifiers-Acse-lex} shows the \texttt{Acse.lex} file where the token is recognized.
+Code~\ref{code:strdup} shows the implementation of the \clang \texttt{strdup()} function.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Content of \texttt{Acse.y} file}, label={code:variable-identifiers-Acse-y}]
+%union {
+  ...
+  char *string;
+  ...
+}
+
+%token <string> IDENTIFIER
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Content of \texttt{Acse.lex} file}, label={code:variable-identifiers-Acse-lex}]
+ID [a-zA-Z_][a-zA-Z0-9_]*
+%%
+{ID} {
+  yylval.string = strdup(yytext);
+  return IDENTIFIER;
+}
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={\texttt{stdrup()} function}, label={code:strdup}]
+char *strdup(const char *s) {
+  char *d = malloc(strlen(s) + 1);   // Space for length plus nul
+  if (d == NULL) return NULL;        // No memory
+  strcpy(d,s);                       // Copy the characters
+  return d;                          // Return the new string
+}
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Variable creation}
+
+Each declared variable must be added to the \texttt{variable} list: it associates the register or memory location where the variable or array \textit{(respectively)} is stored with its name.
+The function to add a variable to the list is shown in Code~\ref{code:add-variable}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Add variable to the list}, label={code:add-variable}]
+void createVariable(
+  t_program_infos *program,
+  char *id, // the variable identifier
+  int type, // type (always INTEGER_TYPE)
+  int isArray, // 1 if the variable is an array, 0 otherwise
+  int arraySize, // the size of the array (if isArray == 1)
+  int init_value // the initial value of the variable (if isArray == 0)
+);
+// the identifier is freed by the function
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Variable access}
+
+Creating a variable only tells \acse that it exists;
+no space is reserved for it in the memory.
+The compiler knows where its value will be found at runtime.
+
+In \acse all every \textbf{variable} is stored in a \textbf{register}.
+The signature of the function used is shown in Code~\ref{code:get-variable};
+it returns the identifier of the register where the variable is stored.
+
+The register identifier is the number of the register: register \texttt{R<n>} is identified by the number \texttt{n}.
+Make sure to never do arithmetic on the register identifier: it is not a pointer to the register.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Get variable from the list}, label={code:get-variable}]
+int get_symbol_location(
+  t_program_infos *program,
+  char *id // the variable identifier
+  int genLoad // always 0
+);
+// returns the identifier of the register containing the variable
+// the identifier is not freed by the function
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Variable assignment}
+
+To assign a value to a variable, the compiler must first load the value in a register;
+an instruction to assign a value to that register is then generated.
+
+The \texttt{read} statement assigns a value to a variable:
+at runtime, the value will be read from the standard input via the \texttt{READ} instruction.
+The variable identifier is then freed.
+
+The grammar of the \texttt{read} statement is shown in Code~\ref{code:read-grammar}.
+the family of functions \texttt{gen\_xxx\_instruction()} allows to generate ternary instructions.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Read grammar}, label={code:read-grammar}]
+statement : /* ... */
+          | read_write_statement SEMI
+          | /* ... */
+;
+read_write_statement : read_statement
+                     | write_statement
+                     | /* ... */
+;
+read_statement : READ LPAREN IDENTIFIER RPAREN
+               {
+                int location;
+                location = get_symbol_location(program, $3, 0);
+                gen_read_instruction(program, location);
+                free($3);
+               }
+;
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Sharing variables between semantic actions}
+
+Generally speaking, sometimes it's necessary to declare a variable that is accessible to multiple sematic actions.
+There are several way to achieve this goal:
+
+\begin{enumerate}
+  \item Use a \textbf{global variable}
+        \begin{itemize}
+          \item[\cmarkthin] Easy to implement
+          \item[\xmarkthin] Doesn't work when the semantic actions are nested
+        \end{itemize}
+  \item Use a \textbf{global stack}
+        \begin{itemize}
+          \item[\cmarkthin] Works with nested semantic actions
+          \item[\xmarkthin] Requires a lot of boilerplate code
+        \end{itemize}
+  \item Re purpose a symbol's \textbf{semantic value} as a variable
+        \begin{itemize}
+          \item[\cmarkthin] Works with nested semantic actions
+          \item[\cmarkthin] Fairly easy to implement
+          \item[\xmarkthin] Does not work when the variable must be accessed from multiple rules \textit{(in this case, fall back to the global stack)}
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{Constant}
+
+The token for constant integers is called \texttt{NUMBER}:
+its semantic value is the integer value that appears in the \lance source code.
+
+Code~\ref{code:variable-constant-integers-Acse-y} shows the \texttt{Acse.y} file where the token is defined and Code~\ref{code:variable-constant-integers-Acse-lex} shows the \texttt{Acse.lex} file where the token is recognized.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Content of \texttt{Acse.y} file}, label={code:variable-constant-integers-Acse-y}]
+%union {
+  ...
+  int number;
+  ...
+}
+
+%token <number> NUMBER
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Content of \texttt{Acse.lex} file}, label={code:variable-constant-integers-Acse-lex}]
+DIGIT [0-9]+
+%%
+{DIGIT}+ {
+  yylval.number = atoi(yytext); // atoi() is a standard C function converting ASCII to INTEGER
+  return NUMBER;
+}
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Expressions}
+
+In \lance, expressions appear in:
+
+\begin{itemize}
+  \item Right-hand-side \textit{(RHS)} of assignments
+  \item Array indices
+  \item Conditions in control statements
+\end{itemize}
+
+Almost all \clang operators are supported in \lance:
+
+\begin{itemize}
+  \item basic \textbf{arithmetic} operators: \texttt{+}, \texttt{-}, \texttt{*}, \texttt{/}
+  \item \textbf{bitwise} operators: \texttt{\&}, \texttt{|}, \texttt{<<}, \texttt{>>}
+  \item \textbf{logical} operators: \texttt{\&\&}, \texttt{||}, \texttt{!}
+  \item comparison operators: \texttt{==}, \texttt{!=}, \texttt{<}, \texttt{>}, \texttt{<=}, \texttt{>=}
+\end{itemize}
+
+The grammar of expressions is shown in Code~\ref{code:expression-grammar}, and the operator precedence is shown in Code~\ref{code:expression-precedence}.
+Note that:
+
+\begin{itemize}
+  \item operators \texttt{\&} and \texttt{|} have \textbf{lower precedence} than comparisons
+  \item unary \texttt{MINUS} does not work well since it is left associative and has the same priority as \texttt{PLUS}
+        \begin{itemize}
+          \item to fix this behaviour, additional parentheses around the expression are required
+          \item \texttt{- 1 * 2} must be written as \texttt{(- 1) * 2}
+        \end{itemize}
+\end{itemize}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Expression grammar}, label={code:expression-grammar}]
+exp : NUMBER
+    | IDENTIFIER
+    | NOT_OP exp // NOT_OP !
+    | exp AND_OP exp // AND_OP &
+    | exp OR_OP exp // OR_OP ||
+    | exp PLUS exp // PLUS +
+    | exp MINUS exp // MINUS -
+    | exp MUL_OP exp // MUL_OP *
+    | exp DIV_OP exp // DIV_OP /
+    | exp LT exp // LT <
+    | exp GT exp // GT >
+    | exp EQ exp // EQ ==
+    | exp NOTEQ exp // NOTEQ !=
+    | exp LTEQ exp // LTEQ <=
+    | exp GTEQ exp // GTEQ >=
+    | exp SHL_OP exp // SHL_OP <<
+    | exp SHR_OP exp // SHR_OP >>
+    | exp ANDAND exp // ANDAND &&
+    | LPAR exp RPAR // LPAR (, RPAR )
+    | MINUS exp // the ambiguity of MINUS arises here
+;
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Expression precedence}, label={code:expression-precedence}]
+%left OROR
+%left ANDAND
+%left OR_OP
+%left AND_OP
+%left EQ NOTEQ
+%left LT GT LTEQ GTEQ
+%left SHL_OP SHR_OP
+%left PLUS MINUS
+%left MUL_OP DIV_OP
+%right NOT_OP
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Semantic Actions}
+
+\paragraph{Temporary Registers}
+
+The intermediate language can only represent operations between \(2\) registers at most;
+for more complex expressions, \textbf{temporary registers} are used.
+Those are not associated with variables and are used to store \textbf{intermediate results}.
+
+\acse provides a function to retrieve a register identifier never seen before in the translated intermediate representation;
+it will be used as a temporary register.
+The implementation of said function is shown in Code~\ref{code:register-identifier}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Register identifier}, label={code:register-identifier}]
+int getNewRegister(t_program_infos *program) {
+  int result;
+  result = program->current_register;
+  program->current_register++;
+  return result;
+}
+// nothing is added to the list of instructions
+\end{lstlisting}
+\end{onepage}
+
+Retrieving a new temporary register does not generate any instruction in the intermediate representation:
+book-keeping of register identifiers is done by the \acse compiler \textit{(at compile time)}.
+In theory, all infinite registers exist \textit{a priori} in the intermediate representation;
+the only executed operation is deciding which register identifier is used for a given expression.
+
+\paragraph{Constant assignment}
+
+The instructions to put a constant in a register are:
+
+\begin{itemize}[label=\textbf{\texttt{>}}]
+  \item \texttt{gen\_load\_immediate()}, which creates a new register and puts the constant in it
+  \item \texttt{gen\_move\_immediate()}, which puts the constant in any register
+\end{itemize}
+
+Both their implementations are shown in Code~\ref{code:constant-assignment}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Constant assignment}, label={code:constant-assignment}]
+// put a constant in a new register
+int gen_load_immediate(t_program_infos *program, int imm) {
+  int imm_register;
+  imm_register = getNewRegister(program);
+  gen_move_immediate(program, imm_register, imm);
+
+  return imm_register;
+}
+// put a constant in any register
+void gen_move_immediate(t_program_infos *program, int dest, int imm) {
+  gen_addi_instruction(program, dest, 0, imm);
+}
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Code Generation}
+
+\subparagraph*{Basic code generation for Expressions}
+
+The code generation for expressions is shown in Code~\ref{code:expression-code-generation-grammar}:
+\begin{itemize}
+  \item constants are placed in new temporary registers
+  \item registers associated with variables are used directly
+  \item the register identifier of the subexpressions is used for the parentheses
+\end{itemize}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Expression code generation grammar}, label={code:expression-code-generation-grammar}]
+exp : NUMBER
+    {
+      $$ = getNewRegister(program);
+      gen_addi_instruction(program, $$, REG_0, $1);
+    }
+    | IDENTIFIER
+    {
+      $$ = get_symbol_location(program, $1, 0);
+      free($1);
+    }
+    | LPAR exp RPAR
+    {
+      $$ = $2;
+    }
+    | /* ... */
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Basic code generation for Operators}
+
+Many operators directly translate into a single \mace instruction;
+Code~\ref{code:operator-code-generation} shows the code generation for some of them.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Operator code generation}, label={code:operator-code-generation}]
+exp : /* ... */
+    | exp PLUS exp
+    {
+      $$ = getNewRegister(program);
+      gen_add_instruction(program, $$, $1, $3, CG_DIRECT_ALL);
+    }
+    | exp AND_OP exp
+    {
+      $$ = getNewRegister(program);
+      gen_andb_instruction(program, $$, $1, $3, CG_DIRECT_ALL);
+    }
+    | exp OROR exp
+    {
+      $$ = getNewRegister(program);
+      gen_orl_instruction(program, $$, $1, $3, CG_DIRECT_ALL);
+    }
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Code generation for Comparison Operators}
+
+Comparison operators require more complex code sequences using the set instructions:
+\texttt{SLT}, \texttt{SGT}, \texttt{SLE}, \texttt{SGE} and \texttt{SEQ}.
+They implement the same logic as branching, but instead of jumping they set a register to \texttt{1} or \texttt{0}.
+
+Code~\ref{code:comparison-operator-code-generation} shows the code generation for some comparison operators.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Comparison operator code generation}, label={code:comparison-operator-code-generation}]
+exp : /* ... */
+    | exp LT exp
+    {
+      $$ = getNewRegister(program);
+      gen_sub_instruction(program, REG_0, $1, $3, CG_DIRECT_ALL);
+      gen_slt_instruction(program, $$);
+    }
+    | exp GT exp
+    {
+      $$ = getNewRegister(program);
+      gen_sub_instruction(program, REG_0, $1, $3, CG_DIRECT_ALL);
+      gen_sgt_instruction(program, $$);
+    }
+    | /* ... */
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Constant Folding}
+
+\acse implements a \textbf{constant folding} optimization:
+instead of computing constant expressions at runtime, it computes them at compile time.
+This makes the execution of the program faster at the expense of a longer compilation time.
+
+For example, the expression:
+\begin{center}
+  \texttt{a + 3 * 4 - 2 + c}
+\end{center}
+Is evaluated at compile time and replaced by the constant:
+\begin{center}
+  \texttt{a + 10 + c}
+\end{center}
+
+Running code at compile time is permitted only when the result does not change the behaviour of the program in any observable circumstance;
+the process of computing an expression value is invisible to the programmer and the compiled program will work in the same way.
+
+\paragraph{Implementation of Constant Folding}
+
+The idea is to have a double meaning for the semantic value of \texttt{exp}:
+\begin{itemize}
+  \item the \textbf{register identifier} of the expression
+  \item the \textbf{constant value} of the expression
+\end{itemize}
+
+In each action, the operands are checked:
+
+\begin{itemize}
+  \item if \textbf{both} are constant
+        \begin{enumerate}
+          \item the result is computed at \textbf{compile time}
+          \item the result expression is \textbf{replaced} by the constant
+        \end{enumerate}
+  \item if at least \textbf{one of them} is not a constant
+        \begin{enumerate}
+          \item if there's a constant, it is moved to a register
+          \item the code that will compute the result at runtime is generated
+          \item the result expression is replaced by the register identifier which will contain the result
+        \end{enumerate}
+\end{itemize}
+
+The double meaning is implemented via a new type of semantic value, called \texttt{t\_axe\_expression};
+Code~\ref{code:constant-expression-struct} shows the definition of the new type in the \texttt{acse\_struct.h} header file, and Code~\ref{code:constant-expression-grammar} shows the grammar rules that use it, as defined in the \texttt{acse.y} file.
+
+Code~\ref{code:create-expression} shows the use of the helper function \texttt{create\_expression} to create a new expression.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Constant expression struct in \texttt{acse\_struct.h}}, label={code:constant-expression-struct}]
+typedef struct t_axe_expression {
+  int value;
+  int expression_type; // IMMEDIATE (constant) or REGISTER (variable)
+} axe_expression;
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Constant expression grammar rules in \texttt{acse.y}}, label={code:constant-expression-grammar}]
+%union {
+  /* ... */
+  t_axe_expression expr;
+  /* ... */
+}
+
+%type <expr> exp
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Helper function to create a new expression in \texttt{acse\_struct.h}}, label={code:create-expression}]
+t_axe_expression create_expression(int value, int expression_type) {
+  t_axe_expression expr;
+  expr.value = value;
+  expr.expression_type = expression_type;
+  return expr;
+}
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Expression with constant folding}
+
+Code~\ref{code:constant-expression-code-generation} shows the code generation for expressions with constant folding.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Expression with constant folding code generation}, label={code:constant-expression-code-generation}]
+exp : NUMBER
+    {
+      $$ = create_expression($1, IMMEDIATE);
+    }
+    | IDENTIFIER
+    {
+      int location = get_symbol_location(program, $1, 0);
+      $$ = create_expression(location, REGISTER);
+      free($1);
+    }
+    | LPAR exp RPAR
+    {
+      $$ = $2;
+    }
+    | /* ... */
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Operators with constant folding}
+
+\acse offers two helper functions to generate code for operators with constant folding, both defined in the \texttt{axe\_expression.h} file:
+
+\begin{itemize}[label=\textbf{\texttt{>}}]
+  \item \texttt{handle\_bin\_numeric\_op()} for arithmetic and logical operations
+  \item \texttt{handle\_binary\_comparison()} for comparison operations
+\end{itemize}
+
+Both their signatures are shown in Code~\ref{code:constant-expression-helper-functions}, while their usage in operators grammar is shown in Code~\ref{code:constant-expression-operators};
+note that in the latter, non-binary operators are handled without any helper function.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Constant expression helper functions in \texttt{axe\_expression.h}}, label={code:constant-expression-helper-functions}]
+/*
+ * Valid values for binop variables are:
+ * ADD SUB MUL DIV ANDL ORL EORL
+ * ANDB ORB EORB SHL SHR */
+t_axe_expression handle_bin_numeric_op(t_axe_expression left, t_axe_expression right, int binop);
+/*
+ * Valid values for condition are:
+ * _LT_ _GT_ _EQ_ _NOTEQ_ _LTEQ_ _GTEQ_ */
+t_axe_expression handle_binary_comparison (t_axe_expression left, t_axe_expression right, int condition);
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Constant expression operators via helper functions}, label={code:constant-expression-operators}]
+exp : /* ... */
+    | exp AND_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, ANDB); }
+    | exp OR_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, ORB); }
+    | exp PLUS exp { $$ = handle_bin_numeric_op(program, $1, $3, ADD); }
+    | exp MINUS exp { $$ = handle_bin_numeric_op(program, $1, $3, SUB); }
+    | exp MUL_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, MUL); }
+    | exp DIV_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, DIV); }
+    | exp LT exp { $$ = handle_binary_comparison(program, $1, $3, _LT_); }
+    | exp GT exp { $$ = handle_binary_comparison(program, $1, $3, _GT_); }
+    | exp EQ exp { $$ = handle_binary_comparison(program, $1, $3, _EQ_); }
+    | exp NOTEQ exp { $$ = handle_binary_comparison(program, $1, $3, _NOTEQ_); }
+    | exp LTEQ exp { $$ = handle_binary_comparison(program, $1, $3, _LTEQ_); }
+    | exp GTEQ exp { $$ = handle_binary_comparison(program, $1, $3, _GTEQ_); }
+    | exp SHL_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, SHL); }
+    | exp SHR_OP exp { $$ = handle_bin_numeric_op(program, $1, $3, SHR); }
+    | exp ANDAND exp { $$ = handle_bin_numeric_op(program, $1, $3, ANDL); }
+    | exp OROR exp { $$ = handle_bin_numeric_op(program, $1, $3, ORL); }
+    | /* ... */
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Assignment}
+
+Since the right-hand-side of an assignment is an expression, there are two cases:
+
+\begin{enumerate}
+  \item the expression is a constant: the value is materialized and assigned
+  \item the expression is a register: the code to copy the value from the register to the variable is generated
+\end{enumerate}
+
+The code to handle both cases is shown in Code~\ref{code:assignment-code-generation}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Assignment code generation}, label={code:assignment-code-generation}]
+assign_statement : IDENTIFIER ASSIGN exp
+                 {
+                    int location;
+                    location = get_symbol_location(program, $1, 0);
+
+                    if ($3.expression_type == IMMEDIATE) {
+                      /* constant */
+                      gen_move_immediate(program, location, $3.value)
+                    } else {
+                      /* register */
+                      gen_add_instruction(program, location, REG_0, $3.value, 0);
+                    }
+
+                    free($1);
+                 }
+                 ;
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Arrays}
+
+\paragraph{Array access}
+
+Arrays are stored in memory locations identified by labels, constant pointers to the first element of the array.
+The compiler does not know the address of the label, but it is able to access to the element at a given index by offsetting the memory location pointed by the label.
+
+The intermediate representation of the \texttt{MOVA} instruction executes the following steps:
+
+\begin{enumerate}
+  \item load the address into a register
+  \item add the offset of the desired element to the address
+  \item use indirect addressing to read or write the element
+\end{enumerate}
+
+Furthermore \acse provides two helper functions to handle array access, defined in \texttt{axe\_array.h}:
+
+\begin{itemize}[label=\textbf{\texttt{>}}]
+  \item \texttt{loadArrayElement()} to load an element from an array
+  \item \texttt{storeArrayElement()} to store an element into an array
+\end{itemize}
+
+The code to handle array access is shown in Code~\ref{code:array-access-code-generation}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Array access code generation}, label={code:array-access-code-generation}]
+/* ID is the variable identifier of the array
+ * index is the expression that evaluates to the index of the element to access
+ * data is the expression that evaluates to the value to store
+ * Return the identifier of the register which will contain the value read from the array element
+ */
+int loadArrayElement(t_program_infos *program, char *ID, t_axe_expression index);
+int storeArrayElement(t_program_infos *program, char *ID, t_axe_expression index, t_axe_expression data);
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Arrays in expressions}
+
+When an array appears in an expression:
+
+\begin{enumerate}
+  \item generate a \texttt{LOAD} to the array element into a new register
+  \item the expression semantic value is that register identifiers
+\end{enumerate}
+
+The grammar rule for array access is shown in Code~\ref{code:array-access-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Array access grammar}, label={code:array-access-grammar}]
+exp : /* ... */
+    | IDENTIFIER LSQUARE exp RSQUARE
+      {
+        int reg;
+        reg = loadArrayElement(program, $1, $3);
+        $$ = create_axe_expression(reg, REG);
+        free($1);
+      }
+    ;
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Array assignment}
+
+Value assignment to array is handled by the \texttt{storeArrayElement()} function;
+the grammar rule for array assignment is shown in Code~\ref{code:array-assignment-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Array assignment grammar}, label={code:array-assignment-grammar}]
+assign_statement : IDENTIFIER LSQUARE exp RSQUARE ASSIGN exp
+                 {
+                    storeArrayElement(program, $1, $3, $6);
+                    free($1);
+                 }
+                 | /* ... */
+                 ;
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Checking variable properties}
+
+Inside \acse, both arrays and scalars are variables;
+as such, it might need necessary to check the properties of a variable, such as its type or its size.
+The function to retrieve this information is \texttt{getVariable()}, shown in Code~\ref{code:variable-properties};
+the definition of the \texttt{t\_axe\_variable} structure is shown in Code~\ref{code:variable-structure}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Variable properties}, label={code:variable-properties}]
+t_variable *getVariable (t_program_infos *program, char *ID);
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Variable structure}, label={code:variable-structure}]
+typedef struct t_axe_variable {
+  int type;
+  int isArray; // 1 if the variable is an array, 0 otherwise
+  int arraySize, // the size of the array (if isArray == 1)
+  int init_value // the initial value of the variable (if isArray == 0)
+  char *ID; // the identifier of the variable
+  t_axe_label *labelID; // the label of the variable
+} t_axe_variable;
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{Checking if a variable is an array}
+
+A common pattern is checking id a given identifier is associated to an array;
+such implementation is shown in Code~\ref{code:is-array}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Checking if a variable is an array}, label={code:is-array}]
+char *the_id;
+t_axe_variable *v_ident = getVariable(program, the_id);
+if (!v_ident->isArray) {
+  // the variable is not an array
+  yyerror("the variable is not an array");
+  YYERROR;
+}
+\end{lstlisting}
+\end{onepage}
+
+\subsubsection{Control statements}
+
+In intermediate language, control statements are represented by branches, via jump instructions.
+Branch destinations are represented by labels, which are used to identify the target of a jump instruction.
+
+There are two kinds of branches:
+
+\begin{itemize}
+  \item[\(\rightarrow\)] \textbf{Forward}, where the label is \textbf{after} the branch
+  \item[\(\leftarrow\)] \textbf{Backward}, where the label is \textbf{before} the branch
+\end{itemize}
+
+Since \acse is a syntactic directed translator, labels that appear after the branch must be also generated after the branch:
+the labels must be allocated without being generated \textit{(they must be not added to the instruction list)}.
+
+\acse provides \(3\) primary functions to create labels:
+
+\begin{itemize}[label=\textbf{\texttt{>}}]
+  \item \texttt{newLabel()}, which creates a new label without inserting into the new instruction list
+  \item \texttt{assignLabel()}, which assigns a label to a given instruction
+  \item \texttt{assignNewLabel()}, which creates a new label and assigns it to a given instruction,
+\end{itemize}
+
+The signatures of these functions are shown in Code~\ref{code:label-functions};
+the instructions to create labels are shown in the next Paragraphs.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Label functions}, label={code:label-functions}]
+// create a new label
+t_axe_label *newLabel(t_program_infos *program);
+// assign a label to an instruction
+void assignLabel(t_program_infos *program, t_axe_instruction *instruction, t_axe_label *label);
+// create a new label and assign it to an instruction
+t_axe_label *assignNewLabel(t_program_infos *program) {
+  t_axe_label *label = newLabel(program);
+  assignLabel(program, instruction, label);
+  return label;
+}
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Creating forward labels}
+
+\begin{enumerate}
+  \item Create the label with the instruction \texttt{newLabel()}
+  \item Generate the branch passing the newly created label structure
+  \item Insert the label in the program by using the instruction \texttt{assignLabel()} just before generating the destination instruction
+\end{enumerate}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Creating forward labels}, label={code:forward-labels}]
+t_axe_label *label = newLabel(program);
+gen_bt_instruction(program, label, 0);
+
+/* ... */
+
+assignLabel(program, instruction, label);
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Creating backward labels}
+
+\begin{enumerate}
+  \item Create and insert the label in the program with the instruction \texttt{assignNewLabel()}
+  \item Generate the branch instruction when needed
+\end{enumerate}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Creating backward labels}, label={code:backward-labels}]
+t_axe_label *label = assignNewLabel(program);
+label = assignNewLabel(program);
+
+/* ... */
+
+gen_bt_instruction(program, label, 0);
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{\texttt{if} statement without \texttt{else}}
+
+The grammar for the \texttt{if} statement without \texttt{else} is shown in Code~\ref{code:if-grammar}.
+The expression iside the parenthesis is called \textbf{condition};
+the code block is executed only if the condition is not equal to zero.
+
+The instruction in the intermediate representation is a \texttt{BEQ} on the \texttt{Z} flag.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Grammar for the if statement}, label={code:if-grammar}]
+if_statement : IF LPAR exp RPAR block;
+\end{lstlisting}
+\end{onepage}
+
+Three semantic actions are needed:
+
+\begin{enumerate}
+  \item One for the code before the body
+  \item One for the body
+  \item One for assigning the label to the end of the body
+\end{enumerate}
+
+Parsing the \texttt{exp} nonterminal does not always results in code generation since the expression can be a variable or a constant.
+
+The label must be shared between the first two actions; the code grammar for the \texttt{if} statement is shown in Code~\ref{code:if-code}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Code for the if statement}, label={code:if-code}]
+%union {
+  /* ... */
+  t_axe_label *label;
+  /* ... */
+}
+%token <label> IF
+/* ... */
+if_statement : IF LPAR exp RPAR { /* ... */ }
+             | code_block { /* ... */ }
+             ;
+\end{lstlisting}
+\end{onepage}
+
+\subparagraph*{Conditional jumps and constant expression}
+
+When the conditional expression is of immediate type, the expression can be evaluated at compile time.
+Since said expression is constant, it's possible to know in advance \textit{(at compile time)} if the branch will never \textit{(or always)} be taken: the \textbf{conditional} branch can be replaced by an \textbf{unconditional} one.
+
+\paragraph{\texttt{if} statement with \texttt{else}}
+
+Since the \texttt{else} statement is optional, a new nonterminal is needed to handle the case in which it is not present;
+such grammar is shown in Code~\ref{code:if-else-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Grammar for the if statement with else}, label={code:if-else-grammar}]
+if_statement : if_stmt
+             | if_stmt ELSE code_block
+             ;
+if_stmt : IF LPAR exp RPAR code_block
+        ;
+\end{lstlisting}
+\end{onepage}
+
+\paragraph{\texttt{while} statement}
+
+This statement repeats the contained code block until a given condition is not satisfied;
+this is the simplest looping construct in the language.
+
+Its grammar is shown in Code~\ref{code:while-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Grammar for the while statement}, label={code:while-grammar}]
+while_statement : WHILE LPAR exp RPAR code_block;
+\end{lstlisting}
+\end{onepage}
+
+A loop is implemented by via an unconditional backward branch at the end of the loop and a conditional one at the start.
+Before each iteration, the condition is checked; if not satisfied, the execution of the program continues after the code block.
+
+Due to this structure, it's necessary to share informations between the two semantic actions:
+
+\begin{itemize}
+  \item the label for breaking out of the loop at the end
+  \item the label for continuing the loop at the start of the loop
+\end{itemize}
+
+The definition of the \texttt{while} statement, as implemented in \texttt{axe\_struct.h} is shown in Code~\ref{code:while-code}; the semantic actions are shown in Code~\ref{code:while-actions}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Code for the while statement}, label={code:while-code}]
+typedef struct {
+  t_axe_label *break_label;
+  t_axe_label *continue_label;
+  t_axe_code_block *code_block;
+} t_axe_while_statement;
+\end{lstlisting}
+\end{onepage}
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Semantic actions for the while statement}, label={code:while-actions}]
+%union {
+  /* ... */
+  t_axe_while_statement *while_statement;
+  /* ... */
+}
+/* ... */
+%token <while_statement> WHILE
+/* ... */
+  \end{lstlisting}
+\end{onepage}
+
+\paragraph{\texttt{do while} statement}
+
+This statement is similar to the \texttt{while} statement, but the condition is checked after the execution of the code block.
+It simplifies the control flow graph, since only one label is needed.
+
+The branch instruction is implemented via a \texttt{BNE} instruction because it must be taken if the condition is not satisfied.
+As such, the body is executed always at leat once.
+
+The grammar is shown in Code~\ref{code:do-while-grammar}.
+
+\begin{onepage}
+  \begin{lstlisting}[language=LANCE, caption={Grammar for the do while statement}, label={code:do-while-grammar}]
+do_while_statement : DO code_block WHILE LPAR exp RPAR;
+\end{lstlisting}
+\end{onepage}
 
 \clearpage
 
