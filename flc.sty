@@ -48,3 +48,14 @@
 \newcommand{\clang}{\texttt{C}\xspace}
 \newcommand{\flex}{\texttt{FLEX}\xspace}
 \newcommand{\bison}{\texttt{BISON}\xspace}
+\newcommand{\acse}{\texttt{ACSE}\xspace}
+\newcommand{\lance}{\texttt{LANCE}\xspace}
+\newcommand{\mace}{\texttt{MACE}\xspace}
+
+% LANCE language definition
+\lstdefinelanguage{LANCE}{
+  language=C,
+  morekeywords={t_axe_instruction,t_program_infos,t_axe_expression,t_axe_variable,t_axe_label,t_variable,t_axe_code_block,t_axe_while_statement,exp},
+  morecomment=[l][keywordstyle]{\%},
+  mathescape=false,
+}
