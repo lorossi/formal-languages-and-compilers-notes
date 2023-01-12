@@ -828,7 +828,7 @@ This is the rarest case of ambiguity and it can be avoided in technical language
 \paragraph{Ambiguity from Concatenation of Languages}
 
 Concatenating two \textit{(or more)} non ambiguous languages \(L_1 = L(G_1)\) and \(L_2 = L(G_2)\) can generate ambiguity \textbf{if a suffix of \(L_1\) is a prefix or a sentence of \(L_2\)}.
-The concatenation grammar  of \(L_1 L_2\)
+The concatenation grammar of \(L_1 L_2\):A
 \[G = \left(\Sigma_1 \cup \Sigma_2, \{S\} \cup V_{N_1} \cup V_{N_2}, \{S \rightarrow S_1 S_2\} \cup P_1 \cup _2, S\right)\]
 contains the axiomatic rule \(S \rightarrow S_1 S_2\) in addition to the rules of \(G_1\) and \(G_2\).
 
@@ -2065,7 +2065,7 @@ The final states are those containing the end marker \(\dashv\).
 the sets \Ini and \Fol of a numbered \re \(e^\prime\).
 
 \subparagraph*{Output}
-recognizer \(A = \langle \Sigma, Q, q_0, \delta,  F \rangle\) of the unnumbered \re \(e\).
+recognizer \(A = \langle \Sigma, Q, q_0, \delta, F \rangle\) of the unnumbered \re \(e\).
 
 \begin{lstlisting}[caption={Berry-Sethi Algorithm}, label=lst:berry-sethi-algorithm]
 I(q_0) := $\Ini(e^\prime \dashv)$ // create initial state
@@ -2535,7 +2535,7 @@ A procedure to determine if a given \CF grammar is also in the \DET family will 
 
 \textbf{Parsing}, also called \textit{Syntax }, is the process of analysing a string of symbols according to a grammar, intending to determine a derivation \textit{(or syntax)} tree;
 an analyser is simply a recognizer capable of recording a derivation tree, reading the input and eventually stopping on an error or accepting the string.
-If the source string is ambiguous, the result of the  is a set of derivation trees, also called tree forest.
+If the source string is ambiguous, the result of the analysis is a set of derivation trees, also called tree forest.
 
 As studied before \textit{(Section~\ref{sec:left-right-derivation})}
 the same syntax tree corresponds to many derivations, notably the leftmost and rightmost ones, as well as to less relevant others.
@@ -2574,7 +2574,7 @@ At each step of the , the parser must decide whether:
 The choice is made based on the symbols coming after the current one \textit{(lookahead)}.
 
 \bigskip
-In principle, syntax  would work as well from right to left by scanning the reversed source string;
+In principle, syntax analysis would work as well from right to left by scanning the reversed source string;
 however reversing the scanning order may cause a loss of determinism, as the \DET family is not closed under reflection \textit{(as shown in Table~\ref{tab:closure-det})}.
 
 Moreover, all existing languages are designed for left-to-right processing, as their reading direction matches the natural language direction \textit{(left to right)}.
@@ -3035,7 +3035,7 @@ The surjective mapping from vector-stack \mstates to pilot \mstates is denoted \
 This strategy requires making a hypothesis about the parse tree structure and then verifying if the basic rules of the grammar are satisfied.
 
 \bigskip
-The  procedure is driven by the machine network, without the need for a pilot graph, as the machine itself can work as a pilot for the \PDA;
+The analysis procedure is driven by the machine network, without the need for a pilot graph, as the machine itself can work as a pilot for the \PDA;
 however, the final net needs annotations to choose the correct transition when in doubt.
 The syntax analyser can recognize early which rule it should apply to a phrase, as soon as it finds the leftmost character of the rule.
 
@@ -3293,7 +3293,7 @@ A grammar has the \(\textit{ELL}(k)\) property if there exists an integer \(k \g
 
 Formally, the elements of \(\textit{ELL}(k)\) guide sets are the strings of length up to \(k\) terminals.
 
-\subsection{Syntax  of Nondeterministic Grammars}
+\subsection{Syntax Analysis of Nondeterministic Grammars}
 
 The \textbf{Earley} method \textit{(also called \textbf{tabular} method)} deals with any grammar type, including ambiguous and non deterministic ones.
 It works by building in parallel all the possible derivations of the string prefix scanned so far, without having to implement a lookahead;
@@ -3778,7 +3778,7 @@ A formal definition is shown in \textit{(\ref{def:pushdown-transducer})}.
 
 \begin{definition}[IO automaton]
   \label{def:pushdown-transducer}
-  A \textbf{IO automaton} is  a \(8\)-tuple \(\left( Q, \Sigma, \Gamma, \Delta, \delta, q_0, Z_0, F \right)\):
+  A \textbf{IO automaton} is a \(8\)-tuple \(\left( Q, \Sigma, \Gamma, \Delta, \delta, q_0, Z_0, F \right)\):
 
   \begin{itemize}
     \item \(Q\) is a finite set of \textbf{states}
@@ -3926,7 +3926,7 @@ Note that this automaton does not need necessarily states, but they will be adde
   \item Finally, row \(8\) accepts the string if the stack is empty and the current character marks the end of the input string
 \end{itemize}
 
-\subsubsection{Syntax  with Online Translation}
+\subsubsection{Syntax Analysis with Online Translation}
 
 A pushdown transducer created with the algorithm shown in Paragraph~\ref{par:predictive-pushdown-tansducer-construction-algorithm} is often non deterministic and generally not suitable for a compiler.
 A more efficient transducer can be built directly:
@@ -4172,7 +4172,7 @@ A formal definition of attribute grammar is shown in~\ref{def:attribute-grammar}
             \item For each attribute \(\delta_i, \ i \geq 1\), there exists in \(\fun(p)\) \textbf{exactly one function} defining the attribute
           \end{enumerate}
           \begin{itemize}
-            \item The left attributes \(\sigma_0\) and the right ones \(\delta_i\) with \(i \geq 1\) are called \textbf{internal} for production \(p\) because they are  defined by functions supported by \(p\)
+            \item The left attributes \(\sigma_0\) and the right ones \(\delta_i\) with \(i \geq 1\) are called \textbf{internal} for production \(p\) because they are defined by functions supported by \(p\)
             \item The right attributes \(\delta_0\) and left attributes \(\sigma_i\) with \(i \geq 1\) are called \textbf{external} for production \(p\) because they are defined by functions supported by other productions
           \end{itemize}
     \item Some attributes can be initialized with constant values or with values computed by external functions.
@@ -4320,7 +4320,7 @@ There are three typical situations for the , depending on the nature of the sour
   \begin{tblr}{colspec={c|c|c}, row{1}={font=\itshape}, cell{2,4}{3}={font=\ttfamily}, cell{3,4}{1}={mode=math}}
     source language &                                          & tool        \\
     \hline
-    regular         & lexical  with lexical attributes         & flex, lex   \\
+    regular         & lexical analysis with lexical attributes         & flex, lex   \\
     LL(k)           & recursive descent parser with attributes &             \\
     LR(k)           & shift-reduce parser with attributes      & yacc, bison
   \end{tblr}
@@ -4329,7 +4329,7 @@ There are three typical situations for the , depending on the nature of the sour
   \bigskip
 \end{table}
 
-\paragraph{Lexical  with Attribute Evaluation}
+\paragraph{Lexical Analysis with Attribute Evaluation}
 
 The \textbf{lexical analyser} \textit{(or scanner)} segments the source text into the lexical elements, called \textbf{lexemes} \textit{(or tokens)}, such as identifiers, integers and strings;
 lexemes are the smallest substrings that can be invested with some semantic meaning.
@@ -4381,23 +4381,23 @@ The next Property \textit{(\ref{def:attribute-grammar-and-deterministic-parsing}
   It's possible to construct a top-down deterministic parser with attribute evaluation able to compute the attributes of \(G\) at parsing time.
 \end{definition}
 
-\subsection{Static }
+\subsection{Static Analysis}
 
-Static  is a technique used by compilers to check some properties of the source code, before the compilation phase.
+\textbf{Static Analysis} is a technique used by compilers to check some properties of the source code, before the compilation phase.
 The different analyses are categorized according to the purpose of the check, for example:
 
 \begin{itemize}
   \item \textbf{verification}, to examine the program correctness
-  \item optimization, to improve the efficiency of the program
+  \item \textbf{optimization}, to improve the efficiency of the program
   \item \textbf{scheduling} and parallelizing, to change the execution order of the program in order to exploit the parallelism
 \end{itemize}
 
 Such cases use a \textbf{control-flow graph}, a directed graph similar to a program flowchart.
 It's convenient to view this graph as describing the state-transition function of a finite automaton:
-static  is performed by analysing it, using various techniques.
+static analysis is performed by analysing it, using various techniques.
 
 It's important to notice that the control-flow graph does not represent the entire source language, but only the source code of a single program:
-static flow  must not be confused with syntax-driven translation.
+static flow analysis must not be confused with syntax-driven translation.
 
 \subsubsection{Program as an Automaton}
 
@@ -4452,7 +4452,7 @@ Furthermore, language \(L\) is \textbf{local} \textit{(Definition~\ref{def:local
 \subparagraph*{Conservative approximation}
 
 The automaton can specify only an approximation of the valid execution path of a program.
-Not all paths are executable by the program, as no syntax  is performed on the conditions selecting the successor's nodes in conditional instructions.
+Not all paths are executable by the program, as no syntax analysis is performed on the conditions selecting the successor's nodes in conditional instructions.
 For example, consider the following instruction.
 \begin{verbatim}
   1: if x^2 >= 0 then
@@ -4463,14 +4463,14 @@ The formal language accepted by the automaton contains two paths:
 \[ \left\{ 1 \, 2, \ 1 \, 3 \right\} \]
 even though the second path is not executable, as the condition is always true.
 
-As a consequence, static  may sometimes reach pessimistic conclusions \textit{(it may discover never executed code paths)}.
+As a consequence, static analysis may sometimes reach pessimistic conclusions \textit{(it may discover never executed code paths)}.
 It's not decidable whether a path of a control-flow graph will ever be executed by the program, as the problem can be reduced to the halting problem.
 
 The decision to analyze all recognized paths is a conservative approximation to program:
 it might diagnose non-existing errors or erroneously assign resources, but real errors will never be missed.
 The method is then defined as \textbf{error safe}, despite being possibly inefficient.
 
-A usual hypothesis in static  is that the automaton is clean \textit{(Section~\ref{sec:clean-automaton}, page~\pageref{sec:clean-automaton})}, and every instruction is on a path from the entry point to the exit point.
+A usual hypothesis in static analysis is that the automaton is clean \textit{(Section~\ref{sec:clean-automaton}, page~\pageref{sec:clean-automaton})}, and every instruction is on a path from the entry point to the exit point.
 If this is not the case, anomalies may happen:
 
 \begin{itemize}
@@ -4480,8 +4480,8 @@ If this is not the case, anomalies may happen:
 
 \subsubsection{Liveness of a variable}
 
-A professional compiler performs several passes of , in order to optimize the code.
-One of the most important is the  of \textbf{variable liveness} \textit{(Definition~\ref{def:variable-liveness})} that determines how long the value of a variable is needed.
+A professional compiler performs several passes of analysis to optimize the code.
+One of the most important is the analysis of \textbf{variable liveness} \textit{(Definition~\ref{def:variable-liveness})} that determines how long the value of a variable is needed.
 
 \begin{definition}[Variable liveness]
   \label{def:variable-liveness}
@@ -4489,9 +4489,9 @@ One of the most important is the  of \textbf{variable liveness} \textit{(Definit
   \begin{itemize}
     \item the path does not traverse an instruction \(r \neq q\) that define \(a\)
           \begin{itemize}[label=\(\rightarrow\)]
-            \item if \(r\) defines \(a\), then \(a \in \text{def}\left(r\right)\)
+            \item if \(r\) \textbf{defines} \(a\), then \(a \in \text{def}\left(r\right)\)
           \end{itemize}
-    \item instruction \(q\) uses \(a\)
+    \item instruction \(q\) \textbf{uses} \(a\)
           \begin{itemize}[label=\(\rightarrow\)]
             \item if \(q\) uses \(a\), then \(a \in \text{use}\left(q\right)\)
           \end{itemize}
@@ -4512,11 +4512,12 @@ Let \(D(a)(I) \subseteq I\) and \(U(a)(I) \subseteq I\) be the sets of instructi
 
 Variable \(a\) is live-out of an instruction \(p\) if and only if for the language \(L(A)\) accepted by the automaton, the following condition holds:
 language \(L(A)\) contains a sentence \(x = u p v q w\), where:
+
 \begin{itemize}
-  \item \(u, \ w\) are arbitrary sequences of instructions \textit{(possibly empty)}
-  \item \(p\) is any instruction
-  \item \(v\) is a possibly empty instruction sequence not containing a definition of \(a\)
-  \item \(q\) is an instruction that uses \(a\)
+  \item \(u, \ w\) are arbitrary \textbf{sequences of instructions} \textit{(possibly empty)}
+  \item \(p\) is any \textbf{instruction}
+  \item \(v\) is a \textbf{possibly empty instruction sequence} not containing a definition of \(a\)
+  \item \(q\) is an \textbf{instruction} that uses \(a\)
 \end{itemize}
 
 The above conditions are formalized by the equation:
@@ -4534,12 +4535,12 @@ to achieve that goal it's sufficient to build the recognizer as the product of m
 If no path connecting the input node to the final node exists, then \(L_p\) is empty.
 
 Such a procedure is however not efficient, considering the big number of variables and instructions in real-world programs;
-a more efficient technique is the \textbf{data-flow }.
+a more efficient technique is the \textbf{data-flow analysis}.
 This method examines all paths from any instruction to another instruction that uses the same variable.
 
 The liveness computation is expressed as a system of data-flow equations:
 consider a node \(p\) of a program \(A\).
-A first equation expresses the relation between the variables live-out \(\text{live}_\text{out}\left( p \right)\) and those live-in \(\text{live}_\text{in}\left( p \right)\) of the node;
+A first equation expresses the relation between the variables live-out (denoted \(\text{live}_\text{out}\left( p \right)\)) and those live-in (denoted by \(\text{live}_\text{in}\left( p \right)\)) of the node;
 a second equation expresses the relation between the variables live-out of a node and those live-in for its successors.
 \(\text{succ}\left( p \right)\) denotes the set of \textit{(eventually immediate)} successors of node \(p\) and by \(\text{var}(A)\) the set of all the variables of program \(A\).
 
@@ -4575,11 +4576,11 @@ A finite number of iterations is always sufficient to compute the least fixed po
   \item when the solution does not change anymore, the algorithm terminates
 \end{itemize}
 
-\paragraph{Application of Liveness }
+\paragraph{Application of Liveness Analysis}
 
 \subparagraph*{Memory allocation}
 
-Liveness  is best applied to decide if two variables can reside in the same memory cell:
+\textbf{Liveness Analysis} is best applied to decide if two variables can reside in the same memory cell:
 if two variables are live-in in the same program instruction, then both variables must be stored in different memory cells.
 The two variables then \textbf{interfere}.
 
@@ -4591,9 +4592,9 @@ An instruction defining a variable is \textbf{useless} is the value assigned to 
 the value is not live-out for the defining instruction.
 Therefore, to verify that the definition of a variable \(a\) by instruction \(p\) is useless, it is sufficient to check if \(\text{live}_\text{out}\left( p \right) \not\subseteq \left\{ a \right\}\).
 
-\subsubsection{Reaching Definition }
+\subsubsection{Reaching Definition Analysis}
 
-Another basic applied type of static  is the search for a variable definition that reaches a given instruction.
+Another basic applied type of static analysis is the search for a variable definition that reaches a given instruction.
 
 Consider an instruction that assigns a constant value to variable \(a\).
 The compiler examines the program to see if the same constant can be replaced for the variable in the instructions using \(a\), with the advantage of:
@@ -5072,8 +5073,8 @@ By associating a variable to each token \textit{(or non-terminal)} parsed, it is
 The \textbf{\texttt{\%union}} declarator specifies the entire collection of possible data types:
 
 \begin{itemize}
-  \item type specification for \textbf{terminals} \textit{(tokens)} is done in the \textbf{token declaration
-  \item type specification for }non-terminals is done in the special \textbf{\texttt{\%type} instruction}
+  \item type specification for \textbf{terminals} \textit{(tokens)} is done in the \textbf{token declaration}
+  \item type specification for \textbf{non-terminals} is done in the special \textbf{\texttt{\%type} instruction}
 \end{itemize}
 
 \begin{onepage}
@@ -5120,7 +5121,7 @@ section : LSQUARE // $1
         | options // $5
         | { $$ = create_sections($2, $5); } // $6
         ;
-// $$ contains the value of section
+// the variable $$ contains the value of section
 \end{lstlisting}
 \end{onepage}
 
@@ -5209,7 +5210,7 @@ it just produces \clang code that computes the value of the expressions.
 The computation happens when the \clang code is compiled and executed:
 since \texttt{cc} is only a compiler, no computation happens in this stage.
 
-In an \textbf{interpreter}, execution of the  parsed commands happens immediately after the parsing phase;
+In an \textbf{interpreter}, execution of the analysed parsed commands happens immediately after the parsing phase;
 in a \textbf{compiler}, commands are rewritten in another language without being executed.
 The definitions of parse time and compile time are shown in \ref{def:compile-time} and \ref{def:run-time}.
 
