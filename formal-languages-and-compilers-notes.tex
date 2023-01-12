@@ -4158,7 +4158,7 @@ A formal definition of attribute grammar is shown in~\ref{def:attribute-grammar}
             \item a \textbf{semantic function} has the \textbf{form}
                   \[ \sigma_k \coloneqq f \left( \text{attr} \left( \left\{ D_0, D_1, \,\ldots\, , D_k \right\} \right) \setminus \left\{ \sigma_k \right\}\right) \quad 0 \leq k \leq r \]
                   function \(f\) assigns to the attribute \(\sigma\) of symbol \(D_k\) the value computed by the function body and its arguments can be any attributes of the same production \(p\), excluding \(\sigma_k\) itself.
-            \item normally, semantic functions \textbf{are total in their domain} and written in a suitable notation, called semantic metalanguages. which can be informal
+            \item normally, semantic functions \textbf{are total in their domain} and written in a suitable notation, called semantic metalanguages, which can be informal
             \item a function \(\sigma_0 \coloneqq f(\ldots)\) defines an \textbf{attribute}, qualified as \textbf{left}, of the nonterminal \(D_0\), which is the \LP \textit{(or parent)} of the production
             \item a function \(\sigma_k \coloneqq f(\ldots), \ k \geq 1\) defines an \textbf{attribute}, qualified as \textbf{right}, of a symbol \textit{(sibling or child)} \(D_k\) occurring in the \RP
             \item the same attribute cannot be in the \textbf{left in a function and right in another}
@@ -4538,6 +4538,8 @@ Such a procedure is however not efficient, considering the big number of variabl
 a more efficient technique is the \textbf{data-flow analysis}.
 This method examines all paths from any instruction to another instruction that uses the same variable.
 
+\paragraph{Data-Flow equations}
+
 The liveness computation is expressed as a system of data-flow equations:
 consider a node \(p\) of a program \(A\).
 A first equation expresses the relation between the variables live-out (denoted \(\text{live}_\text{out}\left( p \right)\)) and those live-in (denoted by \(\text{live}_\text{in}\left( p \right)\)) of the node;
@@ -4551,7 +4553,7 @@ The equations are shown in Definition~\ref{def:data-flow-equations}.
   For each final node \(p\):
   \[ \text{live}_\text{out}\left( p \right) = \emptyset \]
   For any other node \(p\):
-  \[ \text{live}_\text{in}\left( p \right) = \text{use}\left( p \right) \cup \left( \text{live}_\text{out} \left( p \right) \leq \text{def}\left( p \right) \right) \]
+  \[ \text{live}_\text{in}\left( p \right) = \text{use}\left( p \right) \cup \left( \text{live}_\text{out} \left( p \right) \setminus \text{def}\left( p \right) \right) \]
   \[ \text{live}_\text{out}\left( p \right) = \bigcup_{q \in \text{succ}\left( p \right)} \text{live}_\text{in}\left( q \right) \]
 \end{definition}
 
@@ -4568,12 +4570,12 @@ the new iteration \(i + 1\) is then calculated.
 The iteration stops when the values computed in the last iteration are equal to those computed in the previous iteration \textit{(a fixed point is reached)};
 this solution is termed the \textbf{least fixed point solution} of the transformation that computes a new vector from one of the preceding iterations.
 
-A finite number of iterations is always sufficient to compute the least fixed point solution, because:
+A \textbf{finite} number of iterations is always sufficient to compute the least fixed point solution, because:
 
 \begin{itemize}
-  \item every set \(\text{live}_\text{in}\left( p \right)\) and \(\text{live}_\text{out}\left( p \right)\) is finite \textit{(the number of variables is finite)}
-  \item every iteration step either increases the cardinality of the above sets of variables or leaves them unchanged, as the equation is monotonic
-  \item when the solution does not change anymore, the algorithm terminates
+  \item every set \(\text{live}_\text{in}\left( p \right)\) and \(\text{live}_\text{out}\left( p \right)\) is \textbf{finite}, since the number of variables is finite
+  \item every iteration step either increases the cardinality of the above sets of variables or leaves them unchanged, as the equation is \textbf{monotonic}
+  \item when the solution does not change anymore, the algorithm \textbf{terminates}
 \end{itemize}
 
 \paragraph{Application of Liveness Analysis}
@@ -6522,12 +6524,29 @@ A right or left unilinear grammar can be transformed into a regular grammar by m
 \subsubsection{Drawing the Pilot graph}
 
 \begin{itemize}
-  \item The initial state of the axiom has no base and its closure contains the terminal character \(\dashv\)
+  \item The \textbf{initial state} of the axiom has \textbf{no base} and its closure contains the \textbf{terminal character} \(\dashv\)
   \item A state without transitions labelled with a terminal has an empty closure set
-  \item The closure of a \mstate contains the nonterminal characters labelling the arches that leave the machine states inside it
-  \item The base of an \mstate contains the terminal characters labelling the arches that leave the machine states inside it
-  \item The lookahead set contains all the terminal characters that can be read after the machine is done (including the \(\dashv\) character)
+  \item The \textbf{closure} of a \mstate contains the \textbf{nonterminal characters} labelling the arches that leave the machine states inside it
+  \item The \textbf{base} of an \mstate contains the \textbf{terminal characters} labelling the arches that leave the machine states inside it
+  \item The \textbf{lookahead} set contains all the \textbf{terminal characters that can be read} after the \mstate base
 \end{itemize}
+
+\subparagraph*[Determining if the machine net is ELL(1)]{Determining if the machine net is \ello}
+
+The machine net is not \ello if any of the following conditions is true:
+
+\begin{itemize}
+  \item the guide sets of each exit arrow of the machine net are not disjoint
+  \item the base of a \mstate has more than one item
+  \item any \mstate has more than one transition
+  \begin{itemize}[label=\(\rightarrow\)]
+    \item in this case, the graph is also missing the \textit{STP}
+  \end{itemize}
+\end{itemize}
+
+\subparagraph*[Determining if the machine is ELR(1)]{Determining if the machine is \elro}
+
+The machine is \elro if there is no shift-reduce conflict.
 
 \subsubsection[Simplification of a ELL(1) Pilot]{Simplification of a \ello Pilot}
 
